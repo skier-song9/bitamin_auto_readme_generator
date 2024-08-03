@@ -1,0 +1,226 @@
+p.01
+2024 BITAmin 겨울 연합프로젝트 시계열 1조
+Netflix Stock Price Prediction with News Topic & Sentiment
+시계열 1조12기 송규헌12기 권도영12기 이태경13기 김서윤13기 한진솔
+p.02
+CONTENTS
+01. INTRODUCTION
+04. CONCLUSIONS AND LIMITATION
+03. MODELING
+02. DATA PREPROCESSING
+p.03
+01. INTRODUCTION
+p.04
+01. INTRODUCTION
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+1.1 Background of topic selection
+1.뉴스가 주가 변동에 미치는 영향 탐구주가 예측에 뉴스를 활용할 수 있는지 탐구해보고자 함주가를 예측하는 데 사용하는 데이터로 뉴스의 감성분석 및 토픽 모델링 결과를 사용하고자 함 뉴스 기사에서는 주로 한 기업에 대해 보도하고 있어 예측 대상은 한 개의 주식 종목으로 정함 뉴스 감성 분석/토픽 모델링 결과를 활용하여 주가를 예측하는 프로젝트는 많지 않아, 직접 뉴스 데이터를 활용하고자 함
+p.05
+01. INTRODUCTION
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+1.1 Background of topic selection
+2. 장기적인 추세를 고려할 수 있는 주가 예측 모델 구현기존의 주가 예측 프로젝트는 주로 모델의 예측 일수나 시퀀스 길이를 1~5로 설정함 짧은 시간 동안의 주가 변동을 예측한 프로젝트와 달리 예측 일수와 시퀀스 길이를 늘려 단기적인 변동뿐만 아니라 장기적인 추세를 고려한 예측 결과를 얻고자 함기존 프로젝트에서 주가 예측 그래프가 실제 주가 그래프를 단순 평행 이동한 형태로 나타나는 문제를 해결하고자 함
+p.06
+01. INTRODUCTION
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+1.2 Brief Project Introduction
+[목표] 뉴스 데이터를 활용한 주가 예측 모델의 최적화 및 효율적인 파라미터 선정
+[주요 내용] 장기적인 추세 예측에 효과적인 모델 판별: LSTM vs. GRU vs. Transformer실험을 통한 모델 파라미터 튜닝 뉴스 감성분석과 토픽 모델링의 주가 예측 유용성 검토 각 실험 결과 평가에 필요한 지표 선정
+[개발 환경] Colab
+p.07
+01. INTRODUCTION
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+1.3 Data collection 
+1.주가 데이터 FinanceDataReader 라이브러리를 활용하여 NETFLIX 기업의 2018년 1월 2일 ~ 2023년 12월 29일주가 데이터 수집동일한 기간에 대한 핀터레스트, 메타플렛폼스, 스포티파이의 주가 데이터 수집
+p.08
+01. INTRODUCTION
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+1.3 Data collection 
+2. 뉴스 데이터 Stock News API를 활용하여 2018년 1월 2일 ~ 2023년 12월 29일 기간에 발행된 NETFLIX 기업과 관련된 뉴스 데이터 수집웹 스크래핑을 통해 뉴스 수집 후 FinBERT와 BERTopic을 활용하여 감성분석과 토픽모델링을 시도하였지만, 시계열 예측에 집중하고 데이터셋의 정확도를 높이고자 API를 사용함.
+p.09
+01. INTRODUCTION
+1.3 Data collection 
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+p.10
+02. DATA PREPROCESSING
+p.11
+02. DATA PREPROCESING
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+2.1 Make derived variable
+Roc(Range of Change) 변화율 : 1d_RoC, 5d_RoC MA(Moving Average) 이동 평균 : 5MA, 120MA
+이전 시점을 포함하여 rolling하는 변수이므로 생성된 파생변수의 첫 시점은 NaN 상태=> 2018년 데이터를 추가로 수집해 파생 변수 생성에 활용
+p.12
+02. DATA PREPROCESING
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+TA(Technical Analysis) Library: 금융 시계열 데이터 세트(시가, 마감, 고가, 저가, 거래량)에 대한 기술 분석 라이브러리.
+2.2 Add indecators
+p.13
+02. DATA PREPROCESING
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+TA(Technical Analysis) Llbrary
+2.2 Add indecators
+Bol_high: Bollinger Bands (상단 밴드) KCH: Keltner Channel High -VI: Negative Directional Movement Index Bol_low: Bollinger Bands (하단 밴드) KCL: Keltner Channel Low +VI: Positive Directional Movement Index ADI: Accumulation/Distribution Index KCM: Keltner Channel Middle TRIX: Triple Exponential Moving Average OBV: On-Balance Volume DCH: Donchian Channel High MI: Mass Index CMF: Chaikin Money Flow DCL: Donchian Channel Low CCI: Commodity Channel Index FI: Force Index DCM: Donchian Channel Middle DPO: Detrended Price Oscillator EOM: Ease of Movement UI: Ulcer Index KST: Know Sure Thing VPT: Volume-price Trend SMA: Simple Moving Average STC: Schaff Trend Cycle NVI: Negative Volume Index EMA: Exponential Moving Average RSI: Relative Strength Index VMAP: Volume-weighted Average Price WMA: Weighted Moving Average SRSI: Stochastic RSI ATR: Average True Range MACD: Moving Average Convergence Divergence UO: Ultimate Oscillator BHB: Bollinger Bands High MFI: Money Flow Index BLB: Bollinger Bands Low ADX: Average Directional Index
+한국투자증권 mts에서 지원하는 37개 지표 선정
+p.14
+2.3 Peer Analysis : Add similar stock price
+02. DATA PREPROCESING
+PINS(핀터레스트), FB(메타플렛폼스), SPOT(스포티파이)
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+Netflix와 유사한 사업을 영위하고 있는 기업의 해당 기간 종가를 feature로 추가.
+p.15
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+2.3 Peer Analysis : Fill missing value
+02. DATA PREPROCESING
+df.bffil()
+PINS의 경우 2019년 04월 22일에 최초 상장=> 상장 이전의 결측값은 최초 상장일의 종가(24.99$)를 기준으로 대체
+p.16
+2.4 Remove multicollinearity
+02. DATA PREPROCESING
+Open, Close, High, Low, 5MA, 120MA, bol_high, bol_low주가의 변화와 관련된 기본 지표이므로 유지
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+VMAP, BHB, BLB, KCH, KCL, KCM,DCH, DCL, DCM, SMA, EMA, WMA주가 변화 관련 기본 지표들과 1에 가까운 상관관계를 가지는 보조 지표 Drop
+FB, PINS, SPOTPeer stock은 유지
+p.17
+02. DATA PREPROCESING
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+2.5 Make derived variable for News Topics & Sentiment
+TopicsLabel Encoding 5MM, 60MM, 120MM 5MA, 60MA, 120MA Sentiments OneHot Encoding 5MM, 60MM, 120MM
+당일의 뉴스가 당일의 주가에 영향을 미칠 가능성은 적기 때문에 과거 뉴스의 영향력을 측정하기 위해 Moving Averae, Moving Mode로 추가
+p.18
+02. DATA PREPROCESING
+2.6 Dataset : stockOnly_df (1257*38)
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+p.19
+02. DATA PREPROCESING
+2.6 Dataset : total_df (1257*59)
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+p.20
+03. MODELING
+p.21
+3.1 Time Series
+03. MODELING
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+시간에 따른 데이터 패턴을 분석하여 미래 값을 예측
+Sequence Length (w): 한 번에 모델에 입력되는 연속된 데이터의 수 (input data)  Predict Size (k):모델이 예측할 미래 데이터의 길이 (output data)
+=> 고정된WindowSize: w+k
+p.22
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+03. MODELING
+3.2 Modeling 
+Step 1: Sequence Length = 60,   Predict Size  = 10
+학습에 사용할 1개의 시퀀스 데이터 형태
+60개의 Sequence 데이터
+10개의 Predict Size 데이터
+p.23
+03. MODELING
+3.2 Modeling 
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+Step 2: Define Model
+LSTM:  기존의 주가 예측 모델이 주로 LSTM을 사용했지만, 주로 sequence length =1 , prediction size = 1 로 예측을 하기 때문에, 이 파라미터들을 바꿔서 예측해보는 것이 유의미할 거라 생각GRU: 기존의 LSTM 모델의 복잡성을 간단화함으로써 문제점을 극복Transformer: NLP에서 좋은 성능을 보이는데, 주가 예측에서도 유의미한 결과를 가져오는지 확인하기 위해 선택
+p.24
+3.2 Modeling 
+03. MODELING
+3.2 Modeling Step 3 : Model Comparison 1 : 무엇을 target으로?
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+TARGET'CLOSE'
+VS
+TARGET'1D_ROC'
+p.25
+3.2 Modeling
+03. MODELING
+3.2 ModelingStep 3 : Model Comparison 2 : 뉴스 포함? 미포함?
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+VS.
+ONLY STOCKDATA
+p.26
+3.2 Modeling 
+03. MODELING
+3.2 Modeling Step 3 : Model Comparison 3 : LSTM vs. GRU vs. Transformer
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+LSTM MODEL
+GRU MODEL
+TRANSFORMER
+p.27
+04. CONCLUSION AND LIMITATION
+p.28
+4.1 Evaluation
+04. CONCLUSIONS AND LIMITATIONS
+예측 평가 기준 
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+시계열 모델의 손실함수로 MSE는 값이 너무 커서 RMSE를 선택 
+어떤 변수를 Target으로 예측하는 것이 좋을까? Close(종가) vs 1d_ROC(일일 등락율) 뉴스 데이터는 예측에 유의미한 영향을 주는가? stock_only_df vs total df 어떤 모델이 예측에 가장 효과적인가? LSTM vs. GRU vs. transformer
+p.29
+4.2 Select target variable
+04. CONCLUSIONS AND LIMITATIONS
+Close vs. 1d_ROC
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+Dataset : stockOnly_dfmodel : LSTM, seq_size : 60, batch_size : 8, model_size : 64
+p.30
+04. CONCLUSIONS AND LIMITATIONS
+4.2 Select target variable
+Close vs. 1d_ROC
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+Dataset : total_dfmodel : LSTM, seq_size : 60, batch_size : 8, model_size : 64
+=> Close를 직접 예측할때보다 ROC로 예측하는것이 추세 반영이 잘 되는 것을 확인시계열 예측에서 정상성을 확보해야 예측모델을 더욱 신뢰할 수 있기에 ROC로 Target 확정 
+p.31
+04. CONCLUSIONS AND LIMITATIONS
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+4.3 Model Result : LSTM (loss = RMSE)
+p.32
+04. CONCLUSIONS AND LIMITATIONS
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+4.3 Model Result : GRU (loss = RMSE)
+p.33
+04. CONCLUSIONS AND LIMITATIONS
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+4.3 Model Result : Transformer (loss = RMSE)
+p.34
+04. CONCLUSIONS AND LIMITATIONS
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+4.4 Compare each parameter
+세 모델 중 lstm의 loss 평균값이 가장 작고 transformer의 loss평균값이 가장 큼 gru 모델에서는 주식 데이터로만 사용한 경우, lstm과 transformer 모델에서는 뉴스 데이터를 포함한 데이터셋을 사용한 경우 loss평균값이 더 작음.
+p.35
+04. CONCLUSIONS AND LIMITATIONS
+4.4 Compare each parameter
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+=> loss값은 Sequence_size, Batch_size는 값이 작을수록 유의미한 결과를 나타내고, Model_size에서는 LSTM, Transformer 모두 64에서 유의미했지만 GRU에서는 128에서 유의미한 결과를 보임
+p.36
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+4.5 Best parameter for each model
+04. CONCLUSIONS AND LIMITATIONS
+validation_loss를 기준으로 모델별로 최적의 파라미터 조합을 선정하여 50번 반복 => 평균값으로 경향성과 오차율을 파악 후 최종 모델 선정
+[LSTM] stock_only 데이터셋, seq 30, batch 1, model 64 평균 오차율 : 1.85%
+[GRU] total 데이터셋, seq 30, batch 1, model 128 평균 오차율 : 1.66%
+[Transformer] total 데이터셋, seq 30, batch 1, model 64 평균 오차율 : 1.62%
+p.37
+04. CONCLUSIONS AND LIMITATIONS
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+4.5 Best parameter for each model
+LSTM
+p.38
+04. CONCLUSIONS AND LIMITATIONS
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+4.5 Best parameter for each model
+GRU
+p.39
+04. CONCLUSIONS AND LIMITATIONS
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+4.5 Best parameter for each model
+Transformer
+p.40
+4.6 Limitations
+04. CONCLUSIONS AND LIMITATIONS
+금융 시장에서는 예상치 못한 사건이 발생하는는  일이 잦아 예측에 어려움이 있음 
+2024 BITAmin 겨울 연합프로적트 시계열 1조
+수치만으로 모델의 성능을 평가하기 어려워 일일이 예측 그래프를 확인해야 함 -> 실험 결과를 비교하는 데 시간 소요 
+뉴스 Topic NLP로 감성분석과 토픽모델링을 시도하였지만, 시퀀스 길이 문제와 정확도를 높이는 것에 한계가 있어 API를 사용 
+일반적인 예측의 경우, 5%의 오차가 좋은 평가를 받을 수 있으나 주식 시장에서 5% 오차는 큰 손실 또는 큰 이익-> 예측 성능이 5% 이하로 나온 모델이라 할지라도 검토가 필요
+p.41
+2024 BITAmin 겨울 연합프로젝트 시계열 1조
+THANK YOU
+시계열 1조
+12기 송규헌
+12기 권도영
+12기 이태경
+13기 김서윤
+13기 한진솔
