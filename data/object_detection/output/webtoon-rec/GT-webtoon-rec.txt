@@ -28,7 +28,8 @@ kaggle
 프로젝트 목표
 사용자 데이터, 웹툰 데이터를 이용해 개인화된 추천 시스템 개발 사용자가 흥미를 느낄 만한 웹툰을 정확히 추천 사용자와 아이템의 interaction 데이터에 맞는 알고리즘 탐색 및 적용
 p.04
-02 데이터 수집 및 전처리
+02
+데이터 수집 및 전처리
 BITAmin
 데이터 소스 설명
 webtoon_customers.csv
@@ -89,7 +90,8 @@ SVD(Singular Value Decomposition) 모델링 및 결과 출력
 # 모델 성능 평가 predictions = model2.test(testset) rmse = accuracy.rmse(predictions) print("RMSE:", rmse) RMSE: 0.0827 RMSE: 0.08270541810260648 모델 성능 평가(RMSE)
 surprise 라이브러리를 이용하여 SVD 모델 생성
 p.13
-03 모델 선택 및 학습 - SVD
+03
+모델 선택 및 학습 - SVD
 BITAmin
 SVD(Singular Value Decomposition) 모델링 및 결과 출력
 GridSearchcV틀 이용하여 하이퍼파라미터 최적화
@@ -107,10 +109,11 @@ p.15
 BITAmin
 ALS(Alternative Least Squares) 모델 선정 이유
 p.16 
-03  최종 모델 선정
+03
+최종 모델 선정
 BITAmin
-ALS(Alternative Least Squares) 모델 선정 이유Implicit feedback의 형태로 수집된 데이터의 문제점
-사용자의 호불호를 정확하게 파악하기 어려움1. 선호와 비선호를 나타내는 binary로 분류하는 방법2. Implicit feedback을 대상으로 하는 MF의 목적함수정리 1. rating 값 없음 -> implicit  feeback 형태의 데이터2. 대규모 데이터에 적합3. RMSE 수치:0.1
+ALS(Alternative Least Squares) 모델 선정 이유
+Implicit feedback의 형태로 수집된 데이터의 문제점 사용자의 호불호를 정확하게 파악하기 어려움1. 선호와 비선호를 나타내는 binary로 분류하는 방법2. Implicit feedback을 대상으로 하는 MF의 목적함수정리 1. rating 값 없음 -> implicit  feeback 형태의 데이터2. 대규모 데이터에 적합3. RMSE 수치:0.1
 p.17
 03
 최종 모델 선정

@@ -8,31 +8,23 @@ p.02
 비타민 11기 겨울 컨퍼런스
 서비스 배경 및 기획
 서비스 배경 및 기획 | 모델 구축 과정 | 결론 및 제언
-
 p.03
 서비스 배경 및 기획 ► 문제 상황
 비타민 11기 겨울 컨퍼런스
 피해자 얼굴도 모른 '11개월 옥살이'
-###
-하루아침에 무고한 사람을 성뚜행범으로 만든 수사 기관의 수사 과정은 너무나 허술햇습니다: "김 씨 가 차량에 태위 모델로 골고 간 뒤 성뚜행하고 마트 앞에 내려주다"눈 피해자 진술이 있없음에도 경찰 은 기본 중에 기본인 김 씨 차량 불렉박스와 모델 마트 CCTV틀 확인하지 않있습니다. 김 씨 카드 사용 목록에 범행 장소로 지목된 모델 결제 내우이 없엎음에도 김 씨틀 기소해야 한다여 사건을 검찰에 넘 겪습니다 여러 인물 사진올 보여주고 범인올 특정하게 하는 서면 수사름 진행할 때도 고모인 정 씨 논 조카 곁을 지키고 있있습니다: 결국 경찰의 판단 근거는 정 씨 조카의 진술 그리고 재판에서 증거 흐력이 어느 거지막 탁지기 결과 저도여습니다
-###
+하루아침에 무고한 사람을 성폭행범으로 만든 수사 기관의 수사 과정은 너무나 허술햇습니다. "김 씨가 차량에 태위 모델로 끌고 간 뒤 성폭행하고 마트 앞에 내려줬다"는 피해자 진술이 있었음에도 경찰은 기본 중에 기본인 김 씨 차량 블랙박스와 모텔, 마트 CCTV틀 확인하지 않았습니다. 김 씨 카드 사용 목록에 범행 장소로 지목된 모텔 결제 내역이 없었음에도 김 씨를 기소해야 한다며 사건을 검찰에 넘겼습니다. 여러 인물 사진올 보여주고 범인을 특정하게 하는 서면 수사를 진행할 때도 고모인 정 씨는 조카 곁을 지키고 있있습니다. 결국 경찰의 판단 근거는 정 씨 조카의 진술, 그리고 재판에서 증거 효력이 없는 거짓말 탐지기 결과 정도였습니다
 거짓말탐지기 폴리그래프,과연 신뢰해도 괜찮을까?
-###
-실제 고소틀 당해 수사름 받게 되자 자신의 억울함올 호소하면서 담당 수사관에게 먼저 거짓말담지기 검사름 요청햇으나 공교롭게도 거짓말담지기 검사 결과 '거짓' 반응이 나와 재판에 넘겨진 사례가 있없다 그는 불행 중 다행으로 재판 과정에서 새로운 증거가 발견되 무죄가 선고렇다. 거짓말담지기 검사가 매우 정확하다는 주변 사람의 조언올 듣고 먼저 거짓말담지기 조사름 요청햇는데 오히려 그것이 즉소가 돼 이틀 풀기까지 너무나도 많은 대가루 치러야 햇다:
-###
+실제 고소를 당해 수사를 받게 되자 자신의 억울함을 호소하면서 담당 수사관에게 먼저 거짓말탐지기 검사를 요청했으나 공교롭게도 거짓말탐지기 검사 결과 '거짓' 반응이 나와 재판에 넘겨진 사례가 있었다. 그는 불행 중 다행으로 재판 과정에서 새로운 증거가 발견돼 무죄가 선고됐다. 거짓말탐지기 검사가 매우 정확하다는 주변 사람의 조언올 듣고 먼저 거짓말탐지기 조사를 요청했는데 오히려 그것이 족쇄가 돼 이를 풀기까지 너무나도 많은 대가를 치러야 했다.
 p.04
 서비스 배경 및 기획 ► 문제 상황
 비타민 11기 겨울 컨퍼런스
 비언어적 생체 신호의 오인
 거짓말의 복잡성
 언어적 요소의 무시
-생리적 반응을 측정하는 거짓말 탐지기는 긴장, 감정 상태, 신체 상태, 등에 의해
-오류가 발생할 수 있어 결과의 정확성을 보장할 수 없음
+생리적 반응을 측정하는 거짓말 탐지기는 긴장, 감정 상태, 신체 상태, 등에 의해 오류가 발생할 수 있어 결과의 정확성을 보장할 수 없음
 거짓말은 개인의 상황, 심리 상태 등 다양한 요소에 의해 영향을 받아 복합적으로 이루어지는 행위
-현재 거짓말 탐지기는 발화 내용의 모순, 언어적 특징, 문맥의 미묘한 변화, 등
-언어적 요소를 전혀 고려하지 못하고 있음
-“기존 거짓말 탐지 방법 중 대부분은 비언어적 생체 신호를 기반으로 하며,
-거짓말 탐지를 위한 언어적 접근은 미비한 상황이다.”
+현재 거짓말 탐지기는 발화 내용의 모순, 언어적 특징, 문맥의 미묘한 변화, 등 언어적 요소를 전혀 고려하지 못하고 있음
+“기존 거짓말 탐지 방법 중 대부분은 비언어적 생체 신호를 기반으로 하며, 거짓말 탐지를 위한 언어적 접근은 미비한 상황이다.”
 p.05
 서비스 배경 및 기획 ► 문제 상황
 비타민 11기 겨울 컨퍼런스
@@ -44,11 +36,8 @@ p.06
 서비스 배경 및 기획 ► 서비스 제안 및 사용 예시
 비타민 11기 겨울 컨퍼런스
 저는 수사관의 심문을 돕는 AI assistant 입니다.
-심문관은 피의자의 거짓말 유형을 이해하여 실시간으로 질문 전략을 조정함으로써
-보다 효과적으로 진실에 가까워질 수 있음
-###
-Q: Blurry? Can you try to remember any other details about that day? A: <NF> Well Sarah said it was very hot and humid that CINF> day
-###
+심문관은 피의자의 거짓말 유형을 이해하여 실시간으로 질문 전략을 조정함으로써 보다 효과적으로 진실에 가까워질 수 있음
+Q: Blurry? Can you try to remember any other details about that day? A: <NF> Well Sarah said it was very hot and humid that day</NF>
 [거짓말 유형이 태깅된 심문기록 예시]
 p.07
 서비스 배경 및 기획 ► 실무 파이프라인
@@ -73,8 +62,7 @@ Fine tuning & RAG의 차이점
 • Fine tuning 모델의 행동을 조정하거나 특화 시키는 것에 중점을 둠
  Parameter Efficient Fine Tuning
 • RAG 
-외부 데이터 소스를 검색하여 모델에 추가 정보를 제공함
-지식을 추가하지 않고, 검색 결과를 활용
+외부 데이터 소스를 검색하여 모델에 추가 정보를 제공함 지식을 추가하지 않고, 검색 결과를 활용
 p.10
 비타민 11기 겨울 컨퍼런스
 모델 구축 과정
@@ -162,7 +150,8 @@ p.18
 Synthetic Data Generation
 2 Data Generation
 LangChain의 synthetic data generator 활용 • Pydantic을 활용한 데이터 타입 validation 기능을 제공 • GPT-3.5-Turbo 모델을 활용 • 모순되는 두 문장인 A, B와 거짓말 신호들을 포함하는 피의자 신문 기록 데이터 생성
-3 Preprocessing llama 2 모델을 미세 조정하기 위한 포맷으로 전처리
+3 Preprocessing 
+llama 2 모델을 미세 조정하기 위한 포맷으로 전처리
 • Alpaca format • LLM 모델에게 요청할 Query와 그에 적절한 답을 함께 제공 • 최종적으로 1,700개의 가상 피의자 신문 데이터 생성
 ① Prompt Construction ② Data Generation ③ Preprocessing
 p.19
@@ -207,8 +196,7 @@ p.23
 비타민 11기 겨울 컨퍼런스
 Fine Tuning via PEFT
 1 Fine Tuning
-autotrain-advanced 패키지 활용 • CLI로 fine tuning을 진행할 수 있게 함 • Epoch 15, batch size 2로 학습한 모델의 성능이 loss 값 0.05로
-가장 우수 • https://huggingface.co/DominoPizza/ft400-first
+autotrain-advanced 패키지 활용 • CLI로 fine tuning을 진행할 수 있게 함 • Epoch 15, batch size 2로 학습한 모델의 성능이 loss 값 0.05로 가장 우수 • https://huggingface.co/DominoPizza/ft400-first
 2 Inference
 미세 조정된 모델 로드 후 Inference 진행
 • 미세 조정된 모델에 추가적인 prompt engineering을 수행 • 인력의 한계로 Test Set을 구축하지 못해 성능 평가는 타 모델의 Output과 결과를 비교하는 방식으로 진행
@@ -236,8 +224,7 @@ p.26
 1 Create Investigation Record
 KBI를 검출하기 위한 사건 기록 제작
 KBI (Knowledge Based Inconsistency)란? 기존에 알려진 타당한 사실에 위배되는 진술
-• 용의자가 사건에 대해 확인된 사실에 위배되는 진술을 하는지
- 대조하기 위해 “Base Knowledge”로서의 사건 기록 제작
+• 용의자가 사건에 대해 확인된 사실에 위배되는 진술을 하는지 대조하기 위해 “Base Knowledge”로서의 사건 기록 제작
 2 RAG with LangChain
 LangChain올 활용하여 RAG 구현
 사건 기록올 Documents Loader틀 통해 불러옴 문서의 내용올 임베딩한 뒤,Chroma 백터 스토어에 저장 사용자의 Query에 검색 기반으로 KBI 검출
@@ -250,14 +237,11 @@ Final Output
 Output
 investigator: Let's talk about the night of January 31st. Were you in the vicinity of 752 Pine Street? suspect: <KBI> I can't say I remember anything special about Pine Street. Isn't that in the northern part of Lakeside? </KBI> investigator: It's actually downtown, where the robbery happened. We have CCTV footage showing someone matching your description. suspect: <KBI>I was wearing a red jacket that night, not a black hoodie.</KBI>
 investigator: A witness described someone fitting your description arguing with her: suspect: <VE> Maybe there was some disagreement, but who can say what it was about?<IVE>
-Lakeside에 거주하고 있음에도 불구하고 Lakeside의 downtown인 Pine Street을 모른다고 응답한 KBI 검출
-사건 당일 검은 후드티를 입었으나 빨간 자켓을 입었다고 응답한 KBI 검출
-
+Lakeside에 거주하고 있음에도 불구하고 Lakeside의 downtown인 Pine Street을 모른다고 응답한 KBI 검출 사건 당일 검은 후드티를 입었으나 빨간 자켓을 입었다고 응답한 KBI 검출
 p.28
 비타민 11기 겨울 컨퍼런스
 서비스 배경 및 기획 | 모델 구축 과정 | 결론 및 제언
 결론 및 제언
-
 p.29
 결론 및 제언 ► 프로젝트 의의
 비타민 11기 겨울 컨퍼런스
@@ -280,12 +264,3 @@ llama2 70b / GPT-4모델사용시 성능이크게향상할것으로기대
 p.31
 End of Document
 팀원 | 조민호 박소연 박준형 박세준
-
-
-
-
-
-
-
-
-

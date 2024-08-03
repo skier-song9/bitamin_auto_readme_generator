@@ -189,9 +189,7 @@ p.36
 4.5 Best parameter for each model
 04. CONCLUSIONS AND LIMITATIONS
 validation_loss를 기준으로 모델별로 최적의 파라미터 조합을 선정하여 50번 반복 => 평균값으로 경향성과 오차율을 파악 후 최종 모델 선정
-[LSTM] stock_only 데이터셋, seq 30, batch 1, model 64 평균 오차율 : 1.85%
-[GRU] total 데이터셋, seq 30, batch 1, model 128 평균 오차율 : 1.66%
-[Transformer] total 데이터셋, seq 30, batch 1, model 64 평균 오차율 : 1.62%
+[LSTM] stock_only 데이터셋, seq 30, batch 1, model 64 평균 오차율 : 1.85% [GRU] total 데이터셋, seq 30, batch 1, model 128 평균 오차율 : 1.66%[Transformer] total 데이터셋, seq 30, batch 1, model 64 평균 오차율 : 1.62%
 p.37
 04. CONCLUSIONS AND LIMITATIONS
 2024 BITAmin 겨울 연합프로적트 시계열 1조
@@ -218,9 +216,4 @@ p.40
 p.41
 2024 BITAmin 겨울 연합프로젝트 시계열 1조
 THANK YOU
-시계열 1조
-12기 송규헌
-12기 권도영
-12기 이태경
-13기 김서윤
-13기 한진솔
+시계열 1조 12기 송규헌 12기 권도영 12기 이태경 13기 김서윤 13기 한진솔
