@@ -1,0 +1,163 @@
+p.01
+ BIT Amin
+ 24-1R 학기 프로젝트
+ 독자와 웹툰 간 로그데이터를 활용한 웹툰 추천 시스템
+ 20240605
+ RecSys Team 2 - 강나영 김나현 엄성원 이철민
+p.02
+ BIT Amin
+ TABLE OF CONTENTS
+ 목차소개
+ 이
+ 프로젝트 소개 프로젝트 배경 프로젝트 목표
+ 02
+ 데이터 수집 및 전처리 데이터 소스 설명 데이터 전처리
+ 03
+ 모델 선택 및 학습 모델 비교 최종 모델 선정
+ 04
+ 웹툰 추천 시스템 구현 기존 사용자 신규 사용자
+ 05
+ 결론 및 향후 과제 프로젝트 요약 및 의의 한계점 및 향후 과제
+p.03
+ 이
+ 프로젝트 소개
+ BITAmir
+ 프로젝트 배경
+ 정제된 '대량의 데이터'를 사용하여 모델 선택 범위를 넓히고자 함 사용자의 데이터를 효과적으로 사용할 수 있는 주제 선정 직관적으로 추천 시스템의 작동을 확인할 수 있도록 가급적 국내 최신 데이터 활용
+ kaggle
+ 프로젝트 목표
+ 사용자 데이터 웹툰 데이터를 이용해 개인화된 추천 시스템 개발 사용자가 흥미를 느낄 만한 웹툰을 정확히 추천 사용자와 아이템의 데이터에 맞는 알고리즘 nteraction 탐색 및 적용
+p.04
+ 02
+ 데이터 수집 및 전처리
+ BITAmir
+ 데이터 소스 설명
+ Webtoon_CustomersCsV
+ Webtoon_articlescs!
+ Webtoon_interaction_traincs!
+ interaction data = pd read _Csv< Idata/webtoon interaction webtoon_data pdread_csv /data/webtoon = user_data pdread = I_csv[ /data/webtoon CustomersCsy'
+p.05
+ 02
+ 데이터 수집 및 전처리
+ BITAmin
+ 데이터 전처리
+ filtered interaction data
+ # 649만 개의 데이터 100개 이상 평가한 유저만 남음
+p.06
+ 02
+ 데이터 수집 및 전처리
+ BIT Amin
+ 데이터 전처리
+ 피봇 테이블 형식의 데이터 생성
+p.07
+ 03
+ 모델 선택 학습 및 CF
+ BIT Amin
+ Filtering 모델 CFCCollaborative
+ 개념 어떤 아이템에 대해서 비슷한 취향을 가진 사용자들이 다른 아이 템에 대해서도 비슷한 취향을 가지고 있을 것이라고 가정하고 추천을 하는 알고리즘 사용자 유사도를 측정하는 User-Based 아이템 간 유사도를 측정하는 Item-Based로 나님 간
+ 특징 데이터 크기가 작고 각 사용자에 대한 충분한 정보구매나 평가가 있는 경우에는 UBCF 데이터가 각 크거나 사용자에 대한 충분한 정보가 없는 경우에는 IBCF가 적합 장점: 직관적인 결과 상품의 정보 없이 추천 가능 단점: Cold Start Problem 계산량이 많아 추천의 효율성 떨어짐
+p.08
+ 03
+ 모델 선택 및 학습 CF
+ BIT Amin
+ Filtering 모델 CFCCollaborative
+ 07039441701109602 모델 성능 평가RMSE
+p.09
+ 03
+ 모델 선택 및 학습 NCF
+ BITAmin
+ NCF Filtering 모델 Neura Collaborative
+ 개념 사용자와 아이템을 각각 embedding vector로 표현하고 사용자-아이템 간 interaction을 바탕으로 학습 할 확률 학습하여 특정 interaction 사용자에 대해 확률 높은 순서로 아이템 추천
+ 특징 이용하여 아이템 간의 복잡한 비선형 학습 신경망을 사용자와 상호작용을 장점: 추천 알고리즘 직관성 사용성 단점: Long tail Data Sparsity
+p.10
+ 03
+ 모델 선택 및 학습 NCF
+ BITAmir
+ NCF Filtering 모델링 및 결과 출력 Neural Collaborative
+p.11
+ 03
+ 모델 선택 및 학습 SVD
+ BIT Amin
+ 모델 SVDSingular Value Decomposition
+ 개념 사용자-아이템 행렬을 세 개의 행렬로 분해하여 사용자와 아이템의 잠재적 특성latent factors을 추출하는 방식 특징 행렬로도 대각행렬을 통한 특이값 분해가 가능하기 때문에 mXn 유저 아이템의 행과 열의 개수가 다른 추천모델에도 적합하며 잠재 요인을 이용하여 사용자가 아직 평가하지 않은 아이템에 대한 평점을 예측 장점: 차원 축소를 통해 계산 효율성 증가 및 노이즈 제거 단점: 계산 비용이 높아질 수 있음 큰 데이터셋에서 실시간 업데이트 어려움
+ 임의의 차원의 행렬 A에 대하여 행렬 분해 Mxn
+ U: 사용자 특성 행렬 Ieft singular Vector 2: 대각 행렬 Singular Vector V시T: 아이템 특성 행렬 right singular Vector
+p.12
+ 03
+ 모델 선택 및 학습 SVD
+ BIT Amin
+ SVDSingular 모델링 및 결과출력 Value Decomposition
+ 모델 성능 평가 Predict = Mode 2 Lestltestset = 크-_rat르l' Imsel pred ict ONE] Dr- int[ "타ME Fmse] FUEE: 0 [027 FMEE: [H2TUE41R1U2HNE4 모델 성능 평가RMSE
+ 라이브러리를 이용하여 SVD 모델 생성 Surprise
+p.13
+ 03
+ 모델 선택 및 학습 SVD
+ BITAmir
+ SVDSingular 모델링 및 결과 Value 출력 Decomposition
+ GridSearchCV를 이용하여 하이퍼파라미터 최적화
+ 모델 재학습 후모델 성능 평가RMSE
+p.14
+ 03
+ 모델 선택 및 학습 ALS
+ BITAmir
+ ALS 모델 Alternating Least Squares
+ 개념 추천 시스템에서 주로 사용되는 행렬 분해Matrix Factorization 기법 중 하나이며 사용자-아이템 상호작용 행렬을 두 개의 저차원 행렬로 분해하여 잠재 요인을 학습하는 방식
+ 특징 교대 최소 제곱법 Alternating Least Squares 손실 함수 최적화 Loss Function Optimization 정규화 Regularization 대규모 데이터셋에 적합 Scalability
+p.15
+ 03
+ 최종 모델 선정
+ BIT Am in
+ 모델 선정 이유 ALS Alternating Least Squares
+p.16
+ 03
+ 최종 모델 선정
+ BITAmir
+ ALS Squares 모델 선정 이유 Alternating Least
+ Implicit Feedback의 형태로 수집된 데이터의 문제점 7 사용자의 호불호를 정확하게 파악하기 어려움 1 선호와 비선호를 나타내는 binary로 분류하는 방법 2 Implicit 대상으로 하는 feedback을 MF의 목적함수 정리 1 rating 값 없음 > implicit feedback 형태의 데이터 2 대규모 데이터에 적합 3 RMSE 수치: 01
+p.17
+ 03
+ 최종 모델 선정
+ BITAmir
+ ALS Alternating Least Squares 모델링 및 결과 출력
+ 웹툰 추천 진행
+ ALS 모델을 활용한 모델링 진행
+ 모델 성능 평가RMSE
+p.18
+ 04
+ 웹툰 추천 시스템 구현 기존 사용자
+ BIT Amin
+ 웹툰 추천 결과
+ USER_ID 100001344 사용자가 이전에 봤던 웹툰: 올가미17회 외모지상주의16회 이상한 변호사 우영우7회 타입: 스토리 장르: 판타지 드라마 등
+ RMSE: 010001713
+p.19
+ 04
+ 웹툰 추천 시스템 구현 신규 사용자
+ BIT Amin
+ 웹툰 추천 결과
+ USER_ID 123456/ 좋아하는 웹툰 3개 입력: 이별후 사내 결혼 순정말고 순종 다시 쓰는 연애사
+ 타입: 스토리 장르: 로맨스등
+ RMSE: 010001718
+p.20
+ 05
+ 결론 및 향후 과제
+ BITAmir
+ 프로젝트 요약 및 의의
+ 결론 01
+ 02 결론
+ 03 결론
+ CF NCF SVD ALS 등 여러 가지 추천 알고리즘 모델을 구축하고 비교 분석한 결과를 토대로 최적의 모델을 선택함으로써 사용자에게 더 나은 추천을 제공할 수 있음
+ Explicit feedback 없이 Implicit feedback을 사용하여 모델을 ALS 구축하고 이를 통해 최상의 결과를 도출해냄
+ 추천 시스템을 통해 사용자의 선호에 맞는 웹툰을 제공함으로써 사용자들의 만족도를 향상시키고 플랫폼 이용률을 증가시킬 수 있음
+p.21
+ 05
+ 결론 향후 과제 및
+ BIT Amin
+ 이미 정제된 데이터를 사용한 점 데이터 사용자와 아이템 간의 여부만 포함되어 있고 내 nteractioin rating 값이 없어서 사용자의 선호도를 정확하게 파악하기 어려웠음 추천 이전 행동을 없는 시스템은 사용자의 기반으로 작동하기 때문에 interaction 데이터가 신규 사용자에 대한 추천에는 적합하지 않을 수 있음 Cold Start Problem
+ 한계점
+ 향후과제
+ feedback명시적 데이터 수집을 통한 Explicit 모델 성능 향상 아이템 데이터 내 genre 컬럼을 활용하여 모델 개선 description
+p.22
+ BIT Amin
+ 24-1R 학기 프로젝트
+ 감사합니다
+ RecSys Team 2 강나영 김나현 엄성원 이철민
