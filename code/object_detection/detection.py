@@ -16,7 +16,7 @@ model.to(device)
 
 # Set directory
 # 원하는 pdf의 이미지가 담겨있는 폴더명으로 바꾸기
-folder_name = '웹툰추천'
+folder_name = 'webtoon-rec'
 image_dir =  os.path.join(current_dir, '..','..','data','object_detection','input',folder_name)
 textbox_save_dir = os.path.join(current_dir, '..','..','data','object_detection','output',folder_name,'textbox')
 image_save_dir = os.path.join(current_dir, '..','..','data','object_detection','output',folder_name,'image')
