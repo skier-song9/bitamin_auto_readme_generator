@@ -1,0 +1,878 @@
+p.01
+LLM 기반 거짓말 탐지기
+:피의자 신문 언어적 접근
+
+비타민 11기 겨울 컨퍼런스
+
+탐지기
+
+oll
+Ks
+
+LLM 기반 거
+
+
+KE
+
+p.02
+비타민 117| 겨울 컨퍼런스
+
+
+바
+
+p.03
+서비스 배경 및 기획 문제 상황
+
+비타민 1기 겨울 컨퍼런스
+
+피해자 SSS 모른 '11개월 옥살이.
+
+하루아침에 무고한 사람을 성폭행범으로 만든 수사 기관의 수사 과정은 너무나 허술했습니다. “A 씨
+모텔로 끌고 간 뒤 성폭행하고 마트 앞에 내려줬다"는 피해자 진술이 있었음에도 경찰
+은 기본 중에 기본인 김 씨 차량 블랙박스와 모텔, 마트 CCTVS 확인하지 않았습니다. AA 카드 사용
+목록에 범행 장소로 지목된 모텔 결제 내역이 없었음에도 김 씨를 기소해야 한다며 사건을 검찰에 넘
+을 보여주고 범인을 특정하게 하는 서면 수사를 진행할 때도 고모인 정 씨
+는 조카 SS 지키고 있었습니다. 결국 경찰의 판단 근거는 BMW 조카의 진술, 그리고 재판에서 증거
+
+So] AHH 거진망 탄지기 경과 정도연슨니다
+
+
+실제 고소를 당해 수사를 받게 되자 자신의 억울함을 호소하면서 담당 수사관에게 먼저 거짓말탐지기
+BAS 요청했으나 공교롭게도 거짓말탐지기 검사 결과 ABV 반응이 나와 재판에 SAS! 사례가
+있었다. 그는 불행 중 다행으로 재판 과정에서 새로운 증거가 발견돼 무죄가 선고됐다. 거짓말탐지기
+검사가 매우 정확하다는 주변 사람의 AAS 듣고 먼저 거짓말탐지기 SAS 요청했는데, 오히려
+
+매우                                       =
+그것이 족쇄가 돼 이를 풀기까지 너무나도 많은 대가를 치러야 했다.
+
+
+p.04
+서비스 배경 및 기획 * 문제 상황
+
+비타민 117| 겨울 컨퍼런스
+
+
+
+
+탐지기는
+
+거짓말 탐
+
+로트
+=
+
+「
+
+ㅎ
+
+측정
+
+az
+< 2
+
+생리적 반응을
+
+nu
+of
+
+복한적으로 이루어지는 행위
+
+현재 거짓말 탐지기는
+
+발화 내용의 모순, 언어적 특
+
+Kl
+oOo
+
+|며,
+
+ㅎ
+
+를 기반으로
+
+HO}
+
+p.05
+서비스 배경 및 기획 * 문제 상황
+
+비타민 |1키 AS ATA
+
+
+
+상황에 따른
+
+생체
+
+신호 왜
+
+신
+
+"피의자
+
+p.06
+서비스 배경 및 기획 > 서비스 제안 및 사용 예시
+
+비타민 11기 겨울 컨퍼런스
+
+저는 수사관의 심문을 돕는
+
+Al assistant 2!
+
+|여
+
+ㅎ
+
+과적으로 진실에 가까워질 수 있음
+
+보다효
+
+Q: Blurry? Can you try to remember any other details about that day?
+A: <NF>Well, Sarah said it was very hot and humid that day</NF>
+
+7|= Al]
+
+100
+
+p.07
+서비스 배경 및 기획 실무 파이프라인
+
+비타민 117| 겨울 컨퍼런스
+
+RAG
+
+LLM with RAG & PEFT
+
+08
+Vector Store
+
+Augment
+knowledge &
+Context
+
+Speech
+To Text
+
+Tokenize &
+Encode
+
+Fine-tuned
+LLM
+
+p.08
+RAG Retrieval -Augmented Generation
+
+사용자의 질문에 답변할 때
+
+외부 정보를 쌓은 데이터베이스에서
+
+필요한 정보를 검색할 수 있도록 하여
+
+생성 시 모델의 정확성과 신뢰성을 향상 시키는 기술
+
+WHY RAG?
+
+개
+
+능성이 낮아짐
+
+루시네이션 가
+
+ot
+=
+
+
+p.09
+적은 매개변수 학습만으로 빠른 시간에
+새로운 문 문제를 효과적으로 해결하는 파인튜닝 기법으로
+모델 훈련시 필요한 GPU, 시간 등의 비용을 크게 절감시킴
+
+titre
+
+at 법  J
+
+
+Fine tuning & RAGQ| 차이점
+
+ㆍ Fine tuning
+
+S
+모델의 행동을 조정
+
+하거나 특화 시키는 2
+
+것에
+
+Parameter-Efficient Fine-Tuning
+
+ㆍ RAG
+
+외부 데이터 소스를 검색하여 모
+지식을 추가하지 않고, 검색 결고
+
+not
+
+p.10
+비타민 11기 겨울 컨퍼런스
+
+Al
+Co)
+
+과
+
+Eee
+
+cil 구죽
+
+모델
+
+서비스 배경 및 기획 | 모델 구축 과
+
+점
+
+p.11
+모델 구축 과정 p> 517 구현
+
+비타민 117| 겨울 컨퍼런스
+
+08
+Vector Store
+
+Augment
+knowledge &
+Context
+
+Speech
+To Text
+
+Tokenize &
+Encode
+
+Fine-tuned
+LLM
+
+사용자의 음성을
+텍스트로 변환
+
+Prompt
+Engineering
+
+p.12
+모델 구축 과정 p 517 구현
+
+비타민 11기 겨울 컨퍼런스
+
+Speech
+
+  Get audio from user
+
+
+ㆍ ffmpeg 패키지 활용
+ㆍ 사용자 SAS wav 파일로 Az
+
+  Convert to text
+
+
+Google cloud 의 speech to text API 활용
+speaker_diarizationS 통해 하나의 wav 116에서 개별 화자 구분
+화자 간의 발화를 구분한 5010 형태의 문자열 반환
+
+Speaker
+
+@ Get audio from user
+@ Convert to text
+
+p.13
+모델 구축 과정 * 데이터 구축
+
+비타민 117| 겨울 컨퍼런스
+
+Augment
+knowledge &
+Context
+
+Speech
+To Text
+
+Tokenize &
+Encode
+
+Fine-tuned
+LLM
+
+및 전처리
+
+학습을 위한 데이터셋
+생성 및
+
+p.14
+모델 구축 과정 * 데이터 구축
+
+비타민 117| 겨울 컨퍼런스
+
+데이터 형식 예시
+
+필요 데이터와 문제점
+
+필요 데이터
+
+쑥사관-피의자신문기록"
+
+[= |
+문제점
+
+신문기록은 보안문제로 민간인에게 공개되지 않음
+비슷한형태의 데이터셋이존재하지 않음
+
+대부분의 레퍼런스들이 영어 레퍼런스
+
+Open Al APIS 활용하여 직접 11310 DatasetS 구축하기로 결정함
+
+p.15
+모델 구축 과정 * 데이터 구축
+
+비타민 17| AS 겉퍼런스
+
+데이터가 갖춰야 할 조건
+
+2 피의자의 발화에는 거짓말신호가 포함되어야 St
+
+3. 거짓말 신호는 오직 피의자의 발화에서만 발생
+
+1 대화형식의심문기록 : 수사관-피의자
+
+* SCAN 기법 기
+
+1. <ㅣ| 대화 내용 불일치 -/|!~ : 모순되는 두 StS 차례로 말하기
+
+ㅁ
+m 왕
+
+2. <150.^~혐의에 대한 미약한 Hol</NSDA> : 범인으로 o
+
+약한 부인             |심함에도 강력하게 부인하지 않음
+3. <VE> 모호한 표현 사용 </VE>: 누군가\ 어떤 것, 언젠가" 등 모호한 용어를 사용
+4. <Ｌ.11>기억 못함 </LM>: 사건과 관련된 중요한 AHS 기억하지 못하는 척 St
+
+5. <NF> 인칭 OF </NF>: 피의자가 사건을1인칭 시점 의 ㄷ
+
+LO
+
+ru
+[은
+ow
+i
+>
+ry
+ilo
+<I
+I>
+
+*SCAN (Scientific Content Analysis) 기법:
+
+
+p.16
+모델 구축 과정 p 데이터 구축
+
+비타민 117| 겨울 컨퍼런스
+
+Train datasetS 구축하기 위해 Contradiction Detection 데이터를 활용함
+
+Contradiction detection
+
+세부 내역
+
+Whether the two sentences are contradictory?You know
+
+About Dataset
+
+Contradiction Detection Data
+
+서로 모순되는
+나열한 데이터셋으로, 이
+
+피의자의 발화 중
+
+Sentence AS} BS
+를 활용하여
+
+p.17
+모델 구축 과정 * 데이터 구축
+
+비타민 기 겨울 컨퍼런스
+
+Synthetic
+Data
+Generation
+
+  Prompt Construction
+
+& Awesome ChatGPT Prompts
+
+617에게 데이터 생성을 요청하기 위한 prompt 24
+
+ㆍ awesome-chatgpt-promptS 레퍼런스로 활용
+ㆍ Few shot prompt 기법 사용하여 두 개의 예시를 제공
+
+ㆍ 두 개의 모순되는 문장인 ABS 함께 제공
+
+Welcome to the "Awesome ChatGPT Prompts" repository! This is
+the ChatGPT model.
+
+Be my sponsor and your logo will be here and prompts.chat!
+
+
+The ChatGPT model is a large language model trained by OpenA
+
+I want you to act as a synthetic data generator.
+
+Persona 부여
+- GPT 모델의 역할 명시
+
+Delimiter
+명확히 st
+
+- Prompt 맥락을 명확
+
+
+@ Prompt Construction
+@ Data Generation
+@ Preprocessing
+
+- Prompt 맥락을
+
+Below are examples of the synthetic data. IH_A i
+
+Examples
+- Few shot prompting 레퍼런스를 제공
+
+p.18
+모델 구축 과정 * 데이터 구축
+
+비타민 11기 겨울 컨퍼런스
+
+Synthetic
+Data
+Generation
+
+  Data Generation
+
+LangChain2| synthetic data generator
+
+ㆍ GPT-3.5-Turbo 모델을 활용
+ㆍ 모순되는 두 문장인 A, Bet 거짓말 신호들을 포함히
+
+피의자 신문 기록 데이터 생성
+
+st
+
+I
+
+Ir
+
+PydanticS 활용한 데이터 Efe! validation 기능을 제공
+
+  Preprocessing
+
+llama 2 모델을 미세 조정하기 위한 25H          전처리
+
+Alpaca format
+LLM 모델에게
+
+요청할 Query} 그에 적절한 답
+
+[을
+—
+
+ot
+a
+
+께 제공
+
+최종적으로 1700개의 가상 피의자 신문 데이터 생성
+
+@ Prompt Construction
+@ Data Generation
+(3) Preprocessing
+
+p.19
+모델 구축 과정 * 데이터 구축
+
+비타민 117| 겨울 컨퍼런스
+
+Synthetic
+Data
+Generation
+
+Generated train data
+
+I want you to find lying signals from a given conversation script. I’ll give you a conversation script between an investigator and a
+suspect that contains lying signals. You must find a sentence that reveals lying signals and tag the sentence with the signal type.
+Be sure that all lying signals (H_A, IH_B, NSDA, VE, LM, NF) are spoken on the suspect’s turn only. There are five types of
+
+### Instruction
+
+### Input
+
+### Response
+
+investigator: Why would you say that?
+suspect: I do not need to be sure because I'm confident in my
+innocence.
+
+investigator: Why would you say that?
+suspect: <IH_B>I do not need to be sure</IH_B> because I'm
+confident in my innocence.
+
+suspect: I was just doing some work on my computer.
+investigator: Can you be more specific about the work you were
+doing?
+
+suspect: I can't remember exactly what I was working on.
+investigator: Are you sure you were at home that night?
+
+@ Prompt Construction
+@ Data Generation
+(3) Preprocessing
+
+p.20
+모델 구축 과정 p Fine Tuning
+
+비타민 11기 겨울 컨퍼런스
+
+08
+Vector Store
+
+Augment
+knowledge &
+Context
+
+Speech
+To Text
+
+Tokenize &
+Encode
+
+Fine-tuned
+LLM
+
+llama 2 모델
+미세 조정
+
+p.21
+모델 구축 과정 p Fine Tuning
+
+비타민 11기 겨울 컨퍼런스
+
+다양한 Large Language Model 중 현재 여건에서 활용 가능
+
+rk
+
+LLama-2-7b-chat-hf
+
+비용으로 최대
+
+[cist 적은
+
+죄
+
+현재 여건에서
+
+LLMS 중에서
+
+한
+
+ㆍ 다양
+
+* 14613에서 개발한 Open Source LLM
+© 매개변수 규모에 따라 7B, 138, 708 세 가지 모델이 제공됨
+
+ㆍ 가장 경량화된 모델인 78 모델을 선정
+
+LLaMA 2 모델들 중 매개변수가 가장 적은 LLaMA-2-7b-chat-hf 모델
+
+p.22
+모델 구축 과정 p Fine Tuning
+
+비타민 11기 겨울 컨퍼런스
+
+
+ㆍ 기본 16GB, 고용량 RAM 사용 시 약 50GB
+* 고용량 8414 사용 시 충분한 RAM 크기 확보 가능
+
+ㆍ 100 컴퓨팅 단위 당 9.99 달러
+ㆍ 학습 시간은 훨씬 더 적게 BAIL,
+Colab Pro+S 사용하더라도 830<8『0400 실행은 최대 24시간
+
+로컬에서 llama 2 inference 테스트 결과, 막대한 시간 소요로 인해 Colabl|A] 학습하기로 결정
+
+p.23
+모델 구축 과정 p Fine Tuning
+
+비타민 1기 겨울 컨퍼런스
+
+Fine
+Tuning
+via
+
+PEFT
+
+  Fine Tuning
+
+autotrain-advanced 패키지 활용
+할 수 있게 함
+습한 모델의 성능이 loss 값 0.05로
+
+ㆍ (니로 1106 tuningS 진행
+ㆍ Epoch 15, batch 91262 2로 st
+가장 우수
+ㆍ https://huggingface.co/DominoPizza/ft400-first
+
+|  Inference
+
+KJ
+
+Inference
+
+110
+비
+
+모델 로
+
+ry)
+KO
+
+|
+
+미세 조
+
+ㆍ 미세 조정된 모델에 추가적인 prompt engineeringS 수행
+ㆍ 인력의 한계로 Test SetS 구축하지 못해 성능 평가는
+
+타 모델의 0410과 결과를 비교하는 방식으로 진행
+
+@ Fine Tuning
+@ Inference
+
+p.24
+모델 구축 과정 p Fine Tuning
+
+비타민 11기 겨울 컨퍼런스
+
+Chat GPT 3.5
+
+Output Comparison
+
+Fine Tuned llama 2
+
+Suspect: That’s ridiculous. <[H-A>I never visited a crime scene that night.</IH-A>
+
+Suspect: <NSDA>Well, I can’t deny that people might have seen me, but I wasn’t
+involved in any criminal activities. I might have been near the area, but...
+</NSDA>
+
+Suspect: Uh, you know, I might have bumped into someone on the way home, and
+we talked about something. It’s all a bit foggy. <LM>I can’t remember the exact
+details.</LM>
+
+Suspect: <NF>There were people arguing on the street. Someone said it was about
+a stolen car.</NF>
+
+p.25
+모델 구축 과정 p Fine Tuning
+
+비타민 11키 겨울 겉퍼런스
+
+Augment
+knowledge &
+Context
+
+RAG 모델을 이용한
+KBI 검출
+
+Speech
+To Text
+
+Tokenize &
+Encode
+
+Fine-tuned
+LLM
+
+p.26
+모델 구축 과정 * RAG
+
+비타민 1기 겨울 컨퍼런스
+
+  Create Investigation Record
+
+
+KBI (Knowledge Based Inconsistency)2t?
+기존에 알려진 타당한 사실에 위배되는 진술
+
+ㆍ 용의자가 사건에 대해 확인된 사실에 위배되는 진술을 하는지
+
+Sy) Tee
+
+대조하기 위해 “Base Knowledge” =2A{2| 사건 기록 제작
+
+  RAG with LangChain
+
+Ｌ308다1210을 활용하여 RAG 구현
+
+사건 기록을 0001076015 Loader= 통해 불러옴
+문서의 WSS 임베딩한 뒤, Chroma 벡터 스토어에 저장
+
+사용자의 Query] 검색 기반으로 KBI 검출
+
+© Create Investigation Record
+@ RAG with LangChain
+
+p.27
+모델 구축 과정 pm RAG
+
+비타민 11기 겨울 컨퍼런스
+
+Investigation Record
+
+Final Output
+
+Output
+
+investigator: Let's talk about the night of January 31st. Were you in the
+vicinity of 752 Pine Street?
+
+suspect: </< B!>I can't say I remember anything special about Pine
+Street. Isn't that in the northern part of Lakeside?</Ix BI>
+
+investigator: It's actually downtown, where the robbery happened. We
+have CCTV footage showing someone matching your description.
+suspect: </< B!>I was wearing a red jacket that night, not a black
+hoodie.</IK BI>
+
+investigator: A witness described someone fitting your description
+arguing with her.
+
+suspect: <VE>Maybe there was some disagreement, but who can say
+what it was about?</VE>
+
+LakesideO|| 74
+
+ㅅ
+
+주하고
+
+ol
+AK
+
+|건당
+
+eS
+[=]
+
+당
+
+다이
+=
+
+에도
+
+건으
+ow
+
+브
+[그
+
+구
+
+st
+ㅜ=
+
+ㅎㅇ
+
+[고 La
+
+드티를 입
+
+keside2| downtown¢@! Pine StreetS 모른다고
+
+|었으나 빨간 자켓을 입었다고 응답한 KBI AS
+
+00
+
+다ㅎ
+
+Be!
+
+[
+
+KBI
+
+건
+ㅁ
+
+my
+
+p.28
+비타민 117| 겨울 컨퍼런스
+
+
+ny
+rh
+
+
+p.29
+
+비타민 11기 겨울 컨퍼런스
+
+프로젝트 의의
+
+프로토타입 개발을 통한
+LIME 활용한 거짓말 탐지 기술의 가능성 제시
+
+수사 효율성
+
+증대
+
+
+기존의 생체신호 기반 거짓말 탐지기와 달리
+이 DAS 심문 대화 도중 문장 단위의 거짓말 탐지 가능
+
+=r
+깨
+
+aK
+
+ar
+
+
+p.30
+
+비타민 1기 겨울 컨퍼런스
+
+llama2 70b / GPT-422! 사용시
+성능이 크게 향상할 것으로 기대
+
+다른 LLM 사용
+
+실제 경찰청 데이터 활용
+
+oll
+
+0
+
+>
+
+과 답변을 즉각적으로
+
+oO
+=
+
+Al
+
+씩처리가능한 모델로의 전환
+
+
+p.31
+End.of Document
+
+
