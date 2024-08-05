@@ -1,0 +1,98 @@
+<p.01>
+ 데이터 증강 BRAIN 및 TUMOR
+ |% 한 아 ㅋ 치 홀 R E S 성 - 동 등 비 교 -
+ CV 3조
+ 12기 김고은 12기 김채연 12기 김희원 13기 이예령 13기 이승우
+<p.02>
+ CONTENTS
+ 01
+ 주제 선정 이유
+ 04
+ 구현 RESNET
+ 02
+ RESNET
+ 05
+ 결과 비교
+ 03
+ 원본데이터 설명 및 한계
+ 06
+ 결론 및 아쉬운 점
+<p.03>
+ 주제 선정 이유
+<p.04>
+ RESNET
+ Figurte 1 Training [en] FrthT 10면 frighi] CTIFA I4- I1! With 201-]ay다 'plain" Thr HELHhtl higher Trainin? n 11 'TTI!T Himilar PiteHdiCHH TTHHCFIC-! 1 Fi프 4
+<p.05>
+ ROADMAP
+ STEP 01
+ STEP 02
+ STEP 03
+ STEP 04
+ 데이터 전처리 및 증강
+ RESNET 18 구현
+ 50 구현 RESNET
+ 원본데이터 RESNET 18 / 50 증강데이터 RESNET 18 /50 결과 비교
+<p.06>
+ 원본데이터 설명
+ YES
+ Total 253
+ NO
+<p.07>
+ 원본데이터 한계
+ 이미지 증강 및 컨투어
+<p.08>
+ 원본데이터 한계
+ 이미지 증강 및 컨투어
+<p.09>
+ 원본데이터 한계
+ 이미지 증강 및 컨투어
+ Count of Classes in each set
+ Iti! - +므소
+<p.10>
+ RESNET 18
+<p.11>
+ RESNET 50
+<p.12>
+ 원본 데IOEACCUARCY&LOSS
+ ResNet--18
+ ResNet-50
+<p.13>
+ 원본 예측 TEST DATA
+ ResNet--18
+ ResNet-50
+<p.14>
+ 원본 데이터 성능 시각회 RESNET-18
+<p.15>
+ 원본 데이터 RESNET-5O성능 시각화
+<p.16>
+ 증강 데O터ACCUARCY&LOSS
+ ResNet-I:
+ ResNet-50
+<p.17>
+ 증강 예측 1s DATA
+ ResNet-18
+ ResNet-50
+<p.18>
+ 증강 데이터 성능 시각화 RESNET -18
+<p.19>
+ 증강 데이터 성능 시각화 RESNET-5O
+<p.20>
+ 결론
+ 01
+ 논문 통해 구조를 스터디를 RESNET 학습하여 BRAIN TUMOR DATA에 적용함
+ 02
+ DATA의 개수가 적어 AUGMENT ATION을 진행하여 새로운 DATA를 생성함
+ 03
+ RESNET-18과 RESNET-5O를 직접 구현하여 학습을 진행함
+ 04
+ 원본 DATA에서는 성능이 같았음 데이터의 개수가 적어 모델의 성능을 판단하기에는 부적절함
+ 05
+ 증강 DATA에서는 RESNET-5O의 성능이 더 좋았음
+<p.21>
+ 보완점
+ 01
+ DATA가 부족하여 모델의 정확도 자체가 높지 않았음
+ 02
+ DATA 개수 부족으로 TRAIN DATA에 할당할 수있는 DATA의 수가 여전히 부족했음
+ 03
+ DATA 통해 ARGUMENTATION을 DATA의 수를 늘리는 방법론이 필요함

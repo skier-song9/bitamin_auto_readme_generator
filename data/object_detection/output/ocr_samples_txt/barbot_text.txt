@@ -1,0 +1,152 @@
+<p.01>
+ 추천 챗못 칵테일 "BarBot"
+ 추천 1조 이선경 강춘우 이예령 임채현 조성빈
+<p.03>
+ 프로젝트 타임라인 1
+<p.04>
+ 주제 선정 배경 21
+ 추천 시스템 입문자들로 구성되어 흥미 위주의 주제 선택
+ 칵테일 소비가 증가했지만 사람들은 칵테일 종 류를 잘 알지 못하는 경우가 많음
+ 다른 주류에 비해 다양한 재료와 맛을 가지고 있어 선택하기 더 어려움
+ 소비자가 쉽게 원하는 칵테일을 선택할 수 있도 록 도와주는 모델 구현을 목표
+ 칵테일을 추천하고 관련 정보를 챗못 알려주는 구축
+<p.05>
+ 칵테일 추천 챗못 22
+ 칵테일의 재료 선호하는 칵테일과 맛을 기반으로 칵테일을 추천해주는 모델 구현
+ 위 모델을 기반으로 칵테일을 추천해주고 추천 칵테일의 기본 정보 및 제조 방법을 알려주는 챗봇인 구현 "BarBot"
+<p.06>
+ 칵테일 데이터 31
+ 크롤링하여 데이터 저장
+ 칵테일명 재료 재료 비율 도수에 대한 데이터 확보
+ 칵테일별 데이터가 분리되어 있어 전처리 필요
+<p.07>
+ 사용자 선호 데이터 32
+ 칵테일 선호 설문조사 실시 구글폼으로 선호 칵테일 재료 맛 도수를 질문 80개의 사용자 선호 데이터 확보
+<p.08>
+ 33 데이터셋 전처리
+ 1 재료에 따라 맛 분류하기
+ 각 각 의 유 가 들 이 개 의 재 언 10 | 재 45 료 를 분 류 해 줄 자 연 어 가 로 필 함 4 E
+ 모델 사용! =>BERT
+ 대표적인 재료들을 이용해 Bert 모델을 학습시키고 재료마다 맛 분류를 진행
+<p.09>
+ 33 데이터셋 전처리
+ 재료 비율에 따른 맛점수 매기기
+ 재료마다 맛 매핑한 데이터셋 구축
+ 분류 결과->꽤정 정확한 결과가 나옴
+<p.10>
+ 33 데이터셋 전처리
+ 2 재료 비율에 따른 맛점수 매기기
+ 일별 칵테 맛 데0 |터기 필도 어 O Core 있는 료비 율더 를힐 재료 부 여!층 가지 재 이터 용해 마다 의 점수 합 점 점 [
+ 재료 별맛점수 칵테일의 재료비율5
+ 최종 데이터셋
+<p.11>
+ 선호 칵테일 존재 41
+ def Ca Icul ate_aI cohol _simi| |라r ityidf 니타 'ef]: 마 df['A I coho! _Di st ance' df[' 리 IcohoI appI yl I anbda 맛: abslx L타 _pref[ alcono ']}] ]
+ 유클리드 유사도를 활용하여 도수 유사도 계산 후 반전 코사인 맛과 재료 계산 유사도로 유사도 스케일링 결합하여 최종 후 점수 도출
+<p.12>
+ 선호 칵테일 존재 41
+ 주전 암주 recommend Cocktail_name Jef Cocktails Combined_sim data: if Cocktail_name not in data: "칵테일 이름이 데이터베이스에 return 없습니다 None idx data indexcocktail_name = Sim_scores ListCenume rate combined _Sim[idx]]] |I sim_scores sim_ scores key=lambda *: X[1] Ssorted reverse-True = top_3_similar [data [i] for 1 in Sim_scores [1:4]] = top 3 Similar return
+ 입력한 칵테일이 데이터베이스어 존재하는지 확인 코사인 유사도와 호환되게 스케일 및 점수 변환 가장 유사한 상위 3개의 칵테일 반환
+<p.13>
+ 선호 칵테일 존재 41
+ 가장 유사한 상위 3개 칵테일 1번 gin and tonic 2번 Club pegu 3번 salty dog
+ 가장 유사한 상위 3개의 칵테일 출력 gimlet과
+<p.14>
+ 선호 칵테일 존재 42 X
+ Gef fiIter _cockt ails_by_al coholI df a|Cohol -|abel]: 맛 말코돌 구간 매품 aI cohol _m app ing = { '12~6도 ': 1 6-13도 '을 1 13~20도 '' 2 20~30도 3 30도 이살': 4 } tar get _index al cohol _Mapp ng[a] Coho| _Iabel] = YaI id_I ndi [tar: _index - 1 target_index tar get _index 1] CE돈 'Get + < 유효한 구간 추출 VaI id_| abeIs [Iabe| for I abel I nidex in aI coho| _m app i Ing it emst! if Index in Iid_ Indi Ces] = "a| 구간에 맞는 박테일 규 프티림 fiIt ered Cocktails df[ [df[ A| _Labe '] Isinl va! id_ abels]] = Coho Fetur fiItered Cockt ai Is
+ 도수:사용자가 고른 선호 도수의 앞뒤 구간만 추천
+<p.15>
+ 선호 칵테일 존재 42 X
+ 맛: :칵테일 별로 가장 대표적인 맛두 가지를 추출
+<p.16>
+ 선호 칵테일 존재 42 X
+ 맛:사용자가 고른 맛이 칵테일을 대표하는 가지 맛에 해당되는 경우추천 두
+<p.17>
+ 선호 칵테일 존재 42 X
+ 재료 고른 사용자가 재료의 유사도와 칵테일 재료 유사도 비교 유사도를 통해 가장 유사도 높은 칵테일을 추천 Cosine
+<p.18>
+ 아이템 기반 협업필터링 43
+ 선호하는 맛 재료 도수에 따른 유사 칵테일 리스트 1 선호 칵테일 경우를 이용해 응답한 아이템 기반 협업필터링 알고리즘 적용
+<p.19>
+ 아이템 기반 43 협업필터링
+ - 협업필터링
+ 사용자 집단별 추천에서의 변수 나이 성별 인구통계학적 등가아 닌 사용자의 취향을 고려한 추천시스템 개발 특정 아이템에 대해 비슷한 취향을 가진 사람들은 다른 아이템 또한 비슷한 취향을 가질 것이라고 가정 특정 사용자와 취향이 비슷한 집단 유사 집단 의 취향을 기반으로 아이템 추천
+<p.20>
+ 아이템 기반 43 협업필터링
+ 2 사용자 기반 아이템 기반 VS
+ 사용자 기반: 취향이 비슷한 집단을 알아내고 집단에 속한 사용자들이 공통적으로 좋게 평가한 아이템을 추천 사용자 간의 유사도 아이템 기반: 평가 바탕으로 아이템 간의 유사도를 사용자들의 패턴을 특정 아이템에 대한 예측 계산 계산해서 사용자의 평점을
+ 사용자가 직접 칵테일에 대한 평가를 매긴 데이터가 없으므로 '칵테일 자체'에 초점을 맞춘 아이템 기반 협업필터링 적용
+<p.21>
+ 아이템 기반 협업필터링 43
+ 기본 설정은 3개 없으면 3개 # 이하로 나올 수 있을 fr J5er in |5err5: Fecommend items for _user user 3 recommendations User = 의 추천: print f"User [user} [user _recommendations}"
+ 추천 알고리즘 최종 결과
+ User Index User_ingredients User_ flavor User_alchols Iime whiskey Cola fresh 0 Sweet 6-13도 whiskey - fruit Sugar 6-~13도 Sweet Iemon fruit ade fresh [~ SWeet 6-13도 Vodka whiskey bitter 30도 이상 um Sweet fruit Chocolate fresh Sugar Sweet 6--13도
+ recommend Cocktail [gin and tonic adam Coffee] Sunrise Swedish [espresso martini adam Sunrise daiquiri] [spritz Veneziano Spritz irish Coffee] [irish Coffee kamikaze Iemon drop] [espresso martini Irish Coffee black Fussian]
+<p.22>
+ LLM과 51 RAG
+ LLM Large Language Model이란?
+ 인공지능이 대량의 텍스트 데이터를 학습하여 언어를 이해하고 생성하는 능력을 갖춘 생성형 Al 모델 ex ChatGPT
+ 기존 LLM의 한계점 할루시네이 LLM이 사실이 아닌 그: 션: 정보를 사실인 것처럼 제시하는 현상
+ 2 모델이 학습을 마친 시점 이후에 발생한 사건이나 최신의 지식을 반영하는 데 한계가 있음
+<p.23>
+ LLM과 51 RAG
+ RAG를 활용한 한계 극복 방안 LLM
+ 정보를 데이터베이스에 저장하고 사용자의 질문에 맞게 검색하여 LLM을 통해 답변을 전달
+ 외부 데이터를 활용하여 답변을 생성하기 때문에 할루시네이션 적 고 최신 정보 업데이트 용이
+ 정보가 업데이트 돼도 RAG에 입력한 외부 문서만 수정하면 되며 추가적인 모델 파인튜닝이 불필요함
+<p.24>
+ 52 모델에 사용된 데이터 RAG
+ 01 칵테일 기본 정보 알코올 을도수 칵테일 재료 제조 방법
+ 쿨러Cooler; 술 설탕 레몬또는 라임 주스를 넣고 진저에일을 채운다수 사워Sour 레몬이나 라임을 사용한 상큼한 맛의 칵테일이다수 데이지Daisy 큐라소와 레몬/라임을 사용한다4 크러스타Crusta 큐라소와 레몬/라임 그외의 리큐르를 사용한다-수
+ 02 칵테일 관련 용어의 개념
+ 동양의 진주라고 불리는 싱가포르에 있는 라플즈 호텔의 Bar에서 1910년에 어느 바텐더가 아름다운 석양을 바라보며 석양이 너울너울 넘어가는 모습을 연상하면서 Tropical Cocktail을 만들었는데 이제 는 세계적인 칵테일이 되었다수
+<p.25>
+ 모델 프로세스 53 RAG
+ Bnb_conf i Bit shndyt esLonf igl - I oad in_4b it --TrIe Bonb_4b it _Lise_dolb Ie_quant --IrLe Enb_4b it_cLant _type--"nf4" brb_4b it _com put e_dt ype-t or ch bf I oat 1 E
+ 양자화를 설정하여 모델의 메모리 사용량을 최적화하고 사전 훈련된 한국어 언어 모델 적용 Ko-PlatYi-6B에
+ Lext_Heierat RpiPe| I ne = Pipe| ine[ Mode|Emode| tukenIzer-tkenizer Iask="text -generat in Lemperature=2 Feturi_fu I I_text=True Ma_Tew_t rkens=Hl
+ 입력 데이터를 토큰화 생성된 텍스트의 다양성을 조절하기 위해 특정 값 설정 언어 모델과 프롬프트를 연결해 자연스러운 대화 흐름을 생성 LangChain
+<p.26>
+ 모델 프로세스 53 RAG
+ Fh IEE I rom_docuneuts[ texts +1] - Fetr iewe Dbas_ret riever[ =
+ PDF 문서를 임베딩하여 텍스트를 벤터로 변환하고 이 벤터들을 기반으로 유사도 검색을 효율적으로 수행할 수 있는 FAISS 데이터베이스를 생성
+<p.27>
+ 모델 53 프로세스 RAG
+ 질문과 관련된 근거를 유사도를 기준으로 FAISS 데이터베이스에서 검색후 출력한 뒤 가장 근접한 근거를 토대로 답변을 구성
+ 후만 콜린스의 패료는 데킬라 레몬 주스 설탐 시럽 초다수밉니다
+<p.28>
+ 6 모델 프로세스
+ 추천기능
+ 챗못기능
+ 기본정보 받기
+ 설명 및 유래 추천칵테일의 설명 및 유래를 제공
+ 설문조사를 통해 선호 칵테일 재료 맛에 대한 정보 받기
+ 선호 칵테일 0 선호 칵테일과 유사한 칵테일 추천
+ 기본정보
+ 추천칵테일의 알코올 도수 및 재료명 제공
+ 추천 리스트 추출 아이템 기반 협업필터링을 통해 3개의 칵테일 추천 리스트를 추출
+ 재료 비율 및 제조 방법 추천칵테일의 재료 비율 및 제조 방법 설명
+ 아이템 기반 협업필터링을 통해 3개의 칵테일 추천 리스트를 추출
+<p.29>
+ 6 모델 파이프라인
+ RAG
+ 칵테일의 유래재료제조 방법등질의응답가능
+<p.30>
+ 결과-추천 기능 6
+ 선호 칵테일
+ 추천 칵테일 리스트
+ 사용자메게 추천하는 칵테일은 kahl La I'm i Ik' t ir i sh Cof fee' adam Sunr i se' 입니다 칵테일메 관한 절보[뮤래 채 제조발법 등]를알고 챗봉메 질문해보세요 싶다면
+ 추가 질문 가능
+<p.31>
+ 결과-챗못 기능 6
+ 칵테일 유래
+ 주어진 근거: 제조 밤법은 아이리시 뮈스키와 커피를 Ir ish Cof fee 의 섞는후"설탐를 넣고 휘필크림들 몰려 제
+<p.32>
+ 결과-챗못 기능 6
+ 알코올 도수
+<p.33>
+ 결과챗못 6 기능
+ 재료 및 제조 방법
+ 而# ET 마: kahl La |k의 제조 밤법를 알려줘
+<p.34>
+ Thank YOU
