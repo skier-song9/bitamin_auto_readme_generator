@@ -1,0 +1,87 @@
+<subject>독자와 웹툰 간 로그데이터를 활용한 웹툰 추천 시스템</subject>
+<team>강나영, 김나현, 엄성원, 이철민</team>
+<index>프로젝트 소개, 프로젝트 배경, 프로젝트 목표, 데이터 수집 및 전처리, 데이터 소스 설명, 데이터 전처리, 모델 선택 및 학습, 모델 비교, 최종 모델 선정, 웹툰 추천 시스템 구현, 기존 사용자, 신규 사용자, 결론 및 향후 과제, 프로젝트 요약 및 의의, 한계점 및 향후 과제</index><main>프로젝트 소개</main>
+<subtitle>프로젝트 배경</subtitle>
+<content>정제된 대량의 데이터를 활용하여 모델 선택 범위를 넓히고, 사용자의 데이터를 효과적으로 이용할 수 있는 주제를 선정하며, 직관적으로 추천 시스템의 작동을 확인하기 위해 국내 최신 데이터를 활용하고자 한다.</content>
+
+<subtitle>프로젝트 목표</subtitle>
+<content>사용자의 웹툰 데이터를 기반으로 개인화된 추천 시스템을 개발하여 사용자가 흥미를 느낄 만한 웹툰을 정확하게 추천하고, 사용자와 아이템 데이터에 맞는 알고리즘을 탐색 및 적용한다.</content><main> 프로젝트 배경</main>
+<subtitle>데이터 수집 및 전처리</subtitle>
+<content>프로젝트에서는 웹툰 관련 데이터를 수집하고 이를 전처리하는 과정을 설명하고 있다. 주요 데이터 소스로는 웹툰 고객 데이터, 웹툰 기사 데이터, 그리고 웹툰 상호작용 데이터가 포함된다.</content><main> 프로젝트 목표</main>
+<subtitle>데이터 수집 및 전처리</subtitle>
+<content>649만 개의 데이터를 수집하고, 100개 이상 평가한 유저만을 선별하여 남기는 목표가 설정되었다. 이를 통해 사용자가 효과적으로 분석 가능한 피봇 테이블 형식의 데이터로 전처리하는 과정도 포함된다.</content><main> 데이터 수집 및 전처리</main>
+<subtitle>데이터 수집</subtitle>
+<content>사용자와 아이템에 대한 정보를 수집하는 과정으로, 사용자 유사도를 기반으로 한 추천 알고리즘을 적용하기 위한 기초 데이터를 확보하는 것이 중요하다.</content>
+
+<subtitle>데이터 전처리</subtitle>
+<content>수집된 데이터에서 중복이나 결측치를 제거하고, 사용자 및 아이템의 특성을 정제하여 알고리즘의 효율성과 정확성을 높이는 작업이 필요하다.</content><main> 데이터 소스 설명</main>
+<subtitle>NCF</subtitle>
+<content>NCF(Neural Collaborative Filtering)는 사용자와 아이템을 각각 embedding vector로 표현하고, 이들 간의 상호작용을 바탕으로 추천할 아이템의 확률을 학습하여, 특정 사용자에게 적합한 아이템을 높은 확률 순서로 추천하는 방식이다.</content>
+
+<subtitle>BITAmin</subtitle>
+<content>BITAmin은 아이템 간의 복잡한 비선형 학습을 위한 신경망 기반의 추천 알고리즘으로, 사용자와 아이템 간의 상호작용을 통해 추천의 직관성과 사용성을 높이는 데 기여한다.</content>
+
+<subtitle>모델 특징</subtitle>
+<content>본 모델의 장점은 사용자가 직관적으로 사용할 수 있는 추천 시스템을 제공하는 것이고, 단점으로는 Long tail Data와 데이터 희소성이 존재한다는 점이 있다.</content><main> 데이터 전처리</main>
+<subtitle>모델 선택 및 학습</subtitle>
+<content>모델 선택 및 학습 과정에서는 다양한 모델을 비교하고 적합한 모델을 선택하여 학습하는 절차가 포함된다. 이 과정에서 데이터 전처리 방법이 모델 성능에 미치는 영향이 중요하게 다루어진다.</content>
+
+<subtitle>NCF</subtitle>
+<content>NCF(Neural Collaborative Filtering)에서는 사용자와 아이템 간의 상호작용을 기반으로 추천 시스템을 향상시키기 위해 신경망을 활용한다. 데이터 전처리를 통해 입력 데이터의 품질을 높여 모델의 예측 정확도를 개선할 수 있다.</content>
+
+<subtitle>BITAmir</subtitle>
+<content>BITAmir는 특정 데이터셋을 대상으로 한 모델로, 데이터 전처리 단계에서 특성 선택 및 정규화를 통해 모델 성능을 최적화하는 방법이 포함된다.</content>
+
+<subtitle>NCF Filtering 모델링 및 결과 출력</subtitle>
+<content>NCF Filtering 모델링 과정에서는 데이터 전처리를 통해 불필요한 노이즈를 제거하고, 학습을 위한 데이터를 정제하여 최종 결과를 출력하는 방법이 중요하다.</content> 
+
+<subtitle>Neural Collaborative</subtitle>
+<content>Neural Collaborative에서는 신경망 기반의 대화형 추천을 위해 데이터 전처리 단계에서 사용자 및 아이템 정보의 전처리가 필요하며, 이는 모델의 학습과 예측 성능을 결정짓는 핵심 요소이다.</content><main> 모델 선택 및 학습</main>
+<subtitle>모델 개념</subtitle>
+<content>사용자-아이템 행렬을 세 개의 행렬로 분해하여 사용자의 잠재적 특성과 아이템의 특성을 추출하는 방식으로, SVD(Singular Value Decomposition)를 통해 차원 축소와 노이즈 제거의 장점이 있으나 큰 데이터셋에서는 계산 비용이 높아질 수 있어 실시간 업데이트가 어렵다.</content>
+
+<subtitle>모델 성능 평가</subtitle>
+<content>SVD 모델의 성능 평가는 RMSE(Root Mean Square Error)를 이용하여 수행하며, 모델 예측과 실제 값을 비교하여 오류를 나타낸다. 이는 모델의 정확도를 파악하는 중요한 지표로 사용된다.</content>
+
+<subtitle>모델 구현</subtitle>
+<content>SVD 모델은 Surprise 라이브러리를 이용하여 구현할 수 있으며, 이를 통해 데이터셋에 대한 추천 시스템을 구축하고 결과를 출력할 수 있다.</content><main> 모델 비교</main>
+<subtitle>모델 선택 및 학습</subtitle>
+<content>모델의 선택과 학습 과정을 설명하며, SVD(Singular Value Decomposition) 기법을 통해 모델링을 진행하였다.</content>
+
+<subtitle>하이퍼파라미터 최적화</subtitle>
+<content>GridSearchCV를 활용하여 하이퍼파라미터를 최적화하는 방법을 설명하였다.</content>
+
+<subtitle>모델 성능 평가</subtitle>
+<content>모델을 재학습한 후 RMSE(Root Mean Square Error)를 기준으로 성능을 평가하였다.</content><main> 최종 모델 선정</main>
+<subtitle>모델 선정 이유</subtitle>
+<content>ALS(Alternating Least Squares) 모델은 추천 시스템에서 사용자-아이템 상호작용을 효과적으로 학습할 수 있는 행렬 분해 기법으로, 대규모 데이터셋을 처리하는 데 적합한 특징을 가지고 있다. 이러한 이유로 BITAmir에서는 ALS 모델을 최종 선택하였다.</content><main> 웹툰 추천 시스템 구현</main>
+<subtitle>[최종 모델 선정]</subtitle>
+<content>최적의 추천 모델로 ALS 모델을 선정한 이유는 implicit feedback 데이터를 효과적으로 처리할 수 있으며, 대규모 데이터에 적합하여 사용자 선호도를 정확하게 파악할 수 있기 때문이다. RMSE 수치가 0.1로 우수하여 추천 성능이 높다.</content>
+
+<subtitle>[결론 및 향후 과제]</subtitle>
+<content>다양한 추천 알고리즘 모델을 비교 분석한 결과, explicit feedback 없이 implicit feedback을 활용한 ALS 모델이 최상의 결과를 도출함으로써 사용자 맞춤형 웹툰 추천이 가능하게 하였고, 이는 사용자 만족도 및 플랫폼 이용률 향상에 기여할 것으로 전망된다.</content><main> 기존 사용자</main>
+<subtitle>[모델 성능 평가]</subtitle>
+<content>기존 사용자에 대한 모델 성능은 RMSE(평균 제곱근 오차)를 통해 평가되며, 이는 추천 시스템의 정확성을 나타내는 중요한 지표입니다.</content><main> 신규 사용자</main>
+<subtitle> 신규 사용자 추천 시스템 </subtitle>
+<content> 신규 사용자를 위한 웹툰 추천 시스템이 필요하며, 이를 통해 처음 이용하는 사용자에게 적합한 웹툰을 추천해야 한다. </content> 
+
+<subtitle> 신규 사용자의 취향 파악 </subtitle>
+<content> 신규 사용자의 취향을 이해하기 위해 초기 입력값으로 선호 장르나 스타일을 수집하고, 이후 추천 알고리즘에 반영해 개인화된 추천을 제공할 수 있다. </content><main> 결론 및 향후 과제</main>
+<subtitle>결론</subtitle>
+<content>웹툰 추천 시스템은 사용자의 입력에 기반하여 개인화된 추천 결과를 제공함으로써 사용자 만족도를 높이고, 최적화된 모델을 통해 정확성을 향상시킬 수 있다.</content>
+
+<subtitle>향후 과제</subtitle>
+<content>향후 과제로는 다양한 사용자 데이터를 수집하여 추천 알고리즘을 지속적으로 개선하고, 다른 장르와 유형의 웹툰 추천을 확대하는 방향이 필요하다.</content><main> 프로젝트 요약 및 의의</main>
+<subtitle>결론</subtitle>
+<content>프로젝트는 사용자와 아이템 간의 상호작용 데이터를 분석하였으나, 사용자 선호도를 파악하기에는 불완전한 데이터를 사용한 한계가 있었다.</content>
+
+<subtitle>향후 과제</subtitle>
+<content>향후 과제로는 명시적 데이터 수집을 통해 Explicit 모델 성능을 향상시키고, 아이템 데이터의 장르 정보를 활용하여 모델 개선을 도모할 계획이다.</content>
+
+<subtitle>한계점</subtitle>
+<content>모델은 Cold Start Problem을 겪고 있으며, 신규 사용자에 대한 추천 시스템이 충분하지 않다.</content><main> 한계점 및 향후 과제</main>
+<subtitle>한계점</subtitle>
+<content>프로젝트에서 제시된 데이터나 알고리즘의 한계로 인해 추천 시스템의 정확도가 다소 낮을 수 있으며, 사용자 선호도 변화에 대한 적응력이 부족할 가능성이 있다.</content>
+
+<subtitle>향후 과제</subtitle>
+<content>향후에는 사용자 피드백을 지속적으로 반영하고, 다양한 알고리즘을 적용하여 추천 시스템의 성능을 개선하는 것이 필요하다. 또한, 사용자 인터페이스를 개선하여 사용자 경험을 향상시킬 과제가 남아 있다.</content>

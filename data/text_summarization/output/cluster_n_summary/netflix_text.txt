@@ -1,0 +1,26 @@
+<subject>Netflix Stock Price Prediction with News Topic & Sentiment</subject>
+<team>송규헌, 권도영, 이태경, 김서윤, 한진솔</team>
+<index>INTRODUCTION, DATA PREPROCESSING, MODELING, CONCLUSIONS AND LIMITATIONS</index><main>INTRODUCTION</main>
+<subtitle>프로젝트 개요</subtitle>
+<content>2024 BITAmin 겨울 연합프로젝트는 시계열 분석을 목표로 하며, NETFLIX, 핀터레스트, 메타플랫폼스, 스포티파이의 주가 데이터를 수집하여 분석할 예정이다.</content>
+
+<subtitle>데이터 수집 방법</subtitle>
+<content>주가 데이터는 FinanceDataReader 라이브러리를 사용하여 2018년 1월 2일부터 2023년 12월 29일까지의 데이터를 수집했으며, Stock News App을 통해 NETFLIX 관련 뉴스 데이터도 수집하였다.</content>
+
+<subtitle>데이터 처리 및 분석 목표</subtitle>
+<content>수집된 뉴스 데이터는 감성 분석과 토픽 모델링을 통해 분석되었으나, 최종적으로 시계열 예측에 중점을 두고 데이터셋의 정확도를 높이는 방법으로 접근하고자 한다.</content><main> DATA PREPROCESSING</main>
+<subtitle>Indicators Selection</subtitle>
+<content>뉴스 데이터를 활용한 주가 예측을 위해 표시된 총 37개의 기술적 지표를 선정하였으며, 이들은 주가 변화와 관련된 주요 지표로 유지된다. 다중공선성을 제거하기 위해 상관관계가 높은 보조 지표를 삭제하였다.</content>
+
+<subtitle>Derived Variables for News Topics & Sentiment</subtitle>
+<content>뉴스의 주제와 감성을 모델에 반영하기 위해 레이블 인코딩 및 원핫 인코딩 기법을 활용하여 새로운 변수들을 생성하였다. 또한, 주가에 미치는 과거 뉴스의 영향력을 측정하기 위해 이동 평균을 추가하였다.</content><main> MODELING</main>
+<subtitle>Modeling Step 3: Model Comparison</subtitle>
+<content>모델 비교 단계에서는 두 가지 타겟, 'CLOSE'와 'ID-ROC'을 설정하여 각 모델의 성능을 비교하는 과정이 포함되어 있다.</content>
+
+<subtitle>Model Result</subtitle>
+<content>각 모델(LSTM, GRU, Transformer)의 결과는 RMSE(Jloss)를 기준으로 평가되었으며, 각 모델에 대한 최적의 파라미터 또한 도출되었다.</content>
+
+<subtitle>Best parameter for each model</subtitle>
+<content>LSTM, GRU, Transformer 각 모델에 대한 최적의 파라미터가 제시되었으며, 이는 모델 성능 향상에 중요한 요소로 작용한다.</content><main> CONCLUSIONS AND LIMITATIONS</main>
+<subtitle>예측 평가기준</subtitle>
+<content>시계열 모델의 손실함수로 MSE가 너무 커서 RMSE를 선택하였고, 여러 변수를 대상으로 종가를 예측할 때, 뉴스 데이터의 영향 및 다양한 모델의 예측 효과에 대한 검토가 필요하다는 결론을 도출하였다.</content>

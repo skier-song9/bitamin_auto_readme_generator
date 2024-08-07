@@ -1,0 +1,28 @@
+<subject>도배 하자 질의 응답 처리 한솔데코 시즌 2 Al 경진대회 알고리즘 언어 - LLM MLOps OA - Cosine Similarity, 도배하자 질의응답 LLM 개발</subject>
+<team>구준회, 김지원, 박서진, 신진섭, 엄성원</team>
+<index>프로젝트 배경, EDA, Text Augmentation, Modeling & Inference, 보완할 점 & 추후계획</index><main>프로젝트 배경</main>
+<subtitle>[목표]</subtitle>
+<content>자연어를 처리하여 언어모델에 학습시키고, 특정 작업에 적합한 텍스트를 생성하는 원리를 이해하는 것이 이 프로젝트의 목표이다.</content><main> EDA</main>
+<subtitle>[Overall Progress]</subtitle>
+<content>전체 진행 상황은 NLP 도메인과 데이터 분석의 기초를 이해하는 것과 관련이 있습니다. Transformer 모델과 관련된 질의 응답 시스템에 대한 연구도 포함되어 있습니다.</content><main> Text Augmentation</main>
+<subtitle>[Text Augmentation]</subtitle>
+<content>텍스트 증강은 다양한 질문을 생성하고 이들의 답변을 만들어내는 과정을 포함하며, 주로 ChatGPT를 이용하여 특정 전문 분야에 대한 답변을 200글자로 요약하는 방식으로 구현된다.</content>
+
+<subtitle>[Crawling & Prompt Engineering]</subtitle>
+<content>웹 크롤링 및 프롬프트 엔지니어링을 통해 다양한 자료를 수집하고, 이들을 통해 실용적인 트레인 데이터를 생성하는 방법이 설명된다.</content>
+
+<subtitle>[키워드 탐색]</subtitle>
+<content>사람들이 자주 묻는 질문에 대한 실용적인 키워드를 탐색하여 전문적인 질문을 생성하는데 중점을 두고 있으며, 이를 통해 질문의 다양성을 높이고 있다.</content><main> Modeling & Inference</main>
+<subtitle>Modeling Fine Tuning</subtitle>
+<content>모델 학습은 LLM에 특정 작업에 적합한 답변을 형성하도록 지시하는 과정이며, Fine Tuning은 사전 학습된 모델을 소규모의 특정 데이터 세트로 추가 학습하여 성능을 개선하는 방법이다.</content>
+
+<subtitle>Modeling LORA PEFT</subtitle>
+<content>LoRA는 적은 수의 매개변수로도 새로운 문제를 효과적으로 해결하기 위한 Fine-Tuning 기법으로, 대부분의 매개변수를 유지하고 일부만 조정하여 훈련 비용과 리소스를 절약하면서 특정 작업의 성능을 향상시킨다.</content>
+
+<subtitle>Inference</subtitle>
+<content>Inference 과정에서 기본 모델은 무의미한 동어 반복을 포함한 텍스트 생성의 문제를 가질 수 있지만, Fine-tuned 모델은 주어진 질문에 대한 구체적인 답변을 생성할 수 있도록 instruction을 제공받아 훈련됨으로써 성능을 개선한다.</content><main> 보완할 점 & 추후계획</main>
+<subtitle>한정된 GPU 자원</subtitle>
+<content>Kaggle Notebook과 Colab T4를 사용하고 있으며, RAM이 16GB로 제한적이므로 모델 훈련에 있어 자원 활용의 최적화가 필요하다.</content>
+
+<subtitle>모델 성능 개선</subtitle>
+<content>파라미터 수가 큰 모델에서는 한국어 데이터로 사전훈련된 모델이 아니더라도 높은 성능을 기대할 수 있으며, 향후 이에 대한 연구 및 적용이 필요하다.</content>

@@ -148,8 +148,8 @@ if __name__ == '__main__':
     start_time = time.time()
     # 매개변수 받기
     parser = argparse.ArgumentParser()
-    parser.add_argument('--pdf', type=str)
-    parser.add_argument('--clf', type=str)
+    parser.add_argument('--pdf')
+    parser.add_argument('--clf')
     # 인자 파싱
     args = parser.parse_args()
 
