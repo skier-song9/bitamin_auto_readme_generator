@@ -1,0 +1,84 @@
+<subject>추천 시스템을 통한 칵테일 추천 챗봇 "BarBot"의 개발 및 기능 설명</subject>
+<team>이선경, 강춘우, 이예령, 임채현, 조성빈</team>
+<index>추천 챗못 칵테일 "BarBot", 프로젝트 타임라인, 주제 선정 배경, 칵테일 추천 챗못, 칵테일 데이터, 결과-챗못 기능, 결과챗못 기능</index>
+<main>추천 챗못 칵테일 "BarBot"</main>
+<subtitle>프로젝트 타임라인</subtitle>
+<content>프로젝트는 데이터셋 전처리와 재료에 따른 맛 분류로 시작되며, BERT 모델을 활용하여 재료마다 맛을 분류하는 과정을 포함합니다.</content>
+
+<subtitle>추천 알고리즘 최종 결과</subtitle>
+<content>최종 추천 결과에는 사용자의 재료와 알콜 종류에 따라 다양한 칵테일이 추천되며, 예를 들어 'gin and tonic', 'espresso martini', 'Irish Coffee' 등이 포함됩니다.</content>
+
+<subtitle>모델 프로세스</subtitle>
+<content>PDF 문서를 임베딩하여 텍스트를 벡터로 변환하고, 이 벡터들을 사용해 유사도 검색이 가능한 FAISS 데이터베이스를 생성하여 효율적인 검색을 수행합니다.</content>
+<main> 프로젝트 타임라인</main>
+<subtitle>주제 선정 배경</subtitle>
+<content>칵테일 소비가 증가함에 따라 소비자들이 칵테일의 종류를 잘 알지 못하는 문제를 해결하기 위해 추천 시스템을 개발하기로 했다.</content>
+
+<subtitle>데이터셋 전처리</subtitle>
+<content>재료 비율에 따라 맛 점수를 매기고, 각 재료에 대한 맛 매핑을 통해 정확한 분류 결과를 도출하였다.</content>
+
+<subtitle>LLM과 RAG</subtitle>
+<content>LLM의 한계점을 극복하기 위해 RAG를 활용하여 외부 데이터를 검색하고 최신 정보를 반영할 수 있는 방안을 모색하였다.</content>
+
+<subtitle>모델 프로세스 RAG</subtitle>
+<content>질문과 관련된 근거를 검색하여 유사도를 기준으로 하여 답변을 구성하는 프로세스를 도입하였다.</content>
+
+<subtitle>모델 파이프라인</subtitle>
+<content>칵테일의 유래, 재료, 제조 방법 등의 질의응답이 가능한 시스템을 구축하였다.</content>
+<main> 주제 선정 배경</main>
+<subtitle>[칵테일 추천 모델 구현]</subtitle>
+<content>사용자 선호하는 칵테일과 맛을 기반으로 추천해주는 챗봇 모델 "BarBot"을 구현하는 배경에는 개인의 취향에 맞춘 맞춤형 서비스 제공의 필요성이 있다.</content>
+
+<subtitle>[사용자 선호 데이터 수집]</subtitle>
+<content>칵테일 선호도 조사를 위해 구글폼을 통해 80개의 사용자 선호 데이터를 확보하고, 이 데이터를 토대로 재료와 맛, 도수 등에 대한 질문을 실시하였다.</content>
+
+<subtitle>[아이템 기반 협업 필터링]</subtitle>
+<content>사용자의 선호 칵테일에 기반하여 재료의 유사도와 칵테일의 유사도를 비교하는 아이템 기반 협업필터링 알고리즘을 적용해, 사용자가 선호하는 칵테일을 추천하는 시스템을 구축하였다.</content>
+
+<subtitle>[모델에 사용된 데이터]</subtitle>
+<content>모델에는 칵테일의 기본 정보와 제조 방법을 포함하여 알코올 도수와 주요 재료 등의 데이터가 활용되어 사용자에게 자세한 정보를 제공한다.</content>
+
+<subtitle>[칵테일 관련 용어의 개념]</subtitle>
+<content>칵테일의 역사적 배경과 문화적 의미를 담은 다양한 이야기가 칵테일의 매력으로 작용하며, 이를 통해 사용자의 흥미를 유도하는 요소가 된다.</content>
+<main> 칵테일 추천 챗못</main>
+<subtitle>[칵테일 데이터 수집]</subtitle>
+<content>칵테일 관련 데이터를 31개 수집하여 저장하고, 각각의 칵테일명, 재료, 재료 비율, 도수에 대한 정보를 확보하였다.</content>
+
+<subtitle>[데이터 전처리 필요성]</subtitle>
+<content>수집한 칵테일별 데이터가 분리되어 있어, 분석을 위해 전처리가 필요하다.</content>
+<main> 칵테일 데이터</main>
+<subtitle>데이터셋 전처리</subtitle>
+<content>칵테일 데이터의 전처리 과정에서는 재료 비율에 따른 맛 점수를 매기고, 최종 데이터셋을 생성하여 칵테일의 재료별 맛 점수를 규명하였습니다.</content>
+
+<subtitle>협업필터링</subtitle>
+<content>사용자 기반 추천과 아이템 기반 추천의 차이를 설명하며, 사용자의 취향을 반영한 추천 시스템을 개발하였고, 칵테일에 대한 사용자의 평점 데이터가 없어서 아이템 기반 협업필터링을 적용하였습니다.</content>
+
+<subtitle>모델 프로세스</subtitle>
+<content>추천 시스템의 메모리 사용량 최적화를 위해 양자화를 설정하고, 사전 훈련된 한국어 언어 모델을 활용하여 입력 데이터를 토큰화하고 자연스러운 대화를 생성하는 과정을 포함하고 있습니다.</content>
+
+<subtitle>추천기능</subtitle>
+<content>챗봇 기능을 통해 사용자에게 추천 칵테일의 설명 및 유래 정보를 제공하고, 설문조사를 통해 선호하는 재료와 맛에 대한 데이터를 수집하여 유사한 칵테일을 추천하는 시스템이 구축되었습니다.</content>
+
+<subtitle>추천 리스트 추출</subtitle>
+<content>아이템 기반 협업 필터링을 통해 3개의 추천 칵테일 리스트를 생성하며, 각 칵테일의 재료 비율 및 제조 방법도 함께 설명하였습니다.</content>
+<main> 결과-챗못 기능</main>
+<subtitle>[선호 칵테일 존재]</subtitle>
+<content>이 기능은 사용자가 입력한 칵테일의 유사도를 기반으로 가장 비슷한 상위 3개의 칵테일을 추천하는 기능이다. 유클리드 유사도를 통해 도수와 맛, 재료의 유사도를 결합하여 최종 점수를 도출한다.</content>
+
+<subtitle>[유사한 상위 3개 칵테일]</subtitle>
+<content>사용자가 입력한 칵테일과 가장 유사한 상위 3개의 칵테일이 출력된다. 예를 들어, 'gin and tonic', 'Club pegu', 'salty dog'와 같은 칵테일들이 추천된다.</content>
+
+<subtitle>[알코올 도수 필터링]</subtitle>
+<content>사용자가 선호하는 알코올 도수를 기준으로 특정 구간의 칵테일만 추천하는 기능을 제공한다. 이 기능은 미리 정의된 도수 구간을 기반으로 사용자가 선택한 도수에 맞는 칵테일을 효과적으로 필터링한다.</content>
+<main> 결과챗못 기능</main>
+<subtitle>결과-챗못 기능 6</subtitle>
+<content>결과챗못 기능 6은 사용자에게 선호하는 칵테일을 추천하고, 관련된 제조 방법 및 알코올 도수에 대해 질문할 수 있도록 돕는 기능입니다.</content>
+
+<subtitle>선호 칵테일</subtitle>
+<content>사용자에게 추천하는 칵테일 리스트에는 Irish Coffee와 Adam Sunrise가 포함되어 있으며, 각각의 칵테일에 대한 추가 질문을 할 수 있습니다.</content>
+
+<subtitle>칵테일 유래</subtitle>
+<content>Irish Coffee의 제조법은 아이리시 위스키와 커피를 섞고, 설탕을 넣은 후 휘핑크림을 올리는 방식으로 전통적인 제조 과정이 설명됩니다.</content>
+
+<subtitle>알코올 도수</subtitle>
+<content>알코올 도수와 관련된 정보도 결과챗못 기능을 통해 제공되며, 사용자는 직접적으로 재료 및 제조 방법을 질문할 수 있습니다.</content>

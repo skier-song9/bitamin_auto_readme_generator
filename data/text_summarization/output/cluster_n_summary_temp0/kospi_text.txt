@@ -1,0 +1,30 @@
+<subject>비타민 학기 프로젝트를 통한 KOSPI 지수 예측과 피쳐 중요도 분석</subject>
+<team>None</team>
+<index>모델 소개, 피쳐 중요도 분석, 결과 비교 및 결론</index><main>모델 소개</main>
+<subtitle>모델 정의 및 구조</subtitle>
+<content>Transformer 블록을 포함한 모델이 정의되었으며, 입력 형태와 여러 하이퍼파라미터를 설정하여 KOSPI 지수 예측을 위한 구조를 구성하였다.</content>
+
+<subtitle>Attention SHAP 적용</subtitle>
+<content>Attention SHAP은 게임이론에 기반하여 머신러닝 모델의 출력을 설명하고 피쳐 중요도를 시각화하는 방법으로 활용되며, 이를 통해 상위 20개 피쳐의 중요도를 분석하였다.</content>
+
+<subtitle>피쳐 중요도 분석 결과</subtitle>
+<content>SHAP 값을 기반으로 피쳐의 중요도를 평가하였고, 피쳐 값의 크기와 방향을 통해 예측 확률에 미치는 영향을 해석하였다. 분석 결과, 중요한 피쳐를 추출하여 모델의 성능을 비슷하게 유지할 수 있었다.</content><main> 피쳐 중요도 분석</main>
+<subtitle>피쳐 중요도 분석을 통한 KOSPI 지수 예측</subtitle>
+<content>XGBoost와 LSTM, GRU 모델을 활용하여 KOSPI 지수를 예측하는 기법에 대해 설명하며, 트리 기반 학습 알고리즘을 사용하였고, 병렬 처리를 통해 빠른 속도로 예측 성능이 뛰어나다고 강조하고 있다.</content>
+
+<subtitle>Attention</subtitle>
+<content>Attention 기법이 시계열 데이터에 적용되어 중요한 정보에 집중할 수 있도록 하며, 각 단어의 중요도를 계산해 가중치를 생성하는 방식을 설명한다. 이로 인해 모델이 특정 시간에서 중요한 변수를 반영할 수 있게 된다.</content>
+
+<subtitle>SHAP XGB</subtitle>
+<content>SHAP를 사용하여 피쳐 간의 상호작용을 분석하고, 상위 피쳐만을 추출하여 모델링한 결과를 강조한다. 적은 수의 피쳐로도 모델 성능을 크게 유지할 수 있음을 보여준다.</content>
+
+<subtitle>결과 비교</subtitle>
+<content>XGBoost 모델이 가장 우수한 성능을 보였으며, 변화율 데이터가 종가 데이터에 비해 모델의 예측 정확성을 높이는 데 효과적임을 확인하였다.</content><main> 결과 비교 및 결론</main>
+<subtitle>하이퍼 파라미터 튜닝 결과</subtitle>
+<content>XGBoost가 가장 우수한 성능을 보여주며, LSTM 및 GRU에 비해 더 높은 정확도를 기록했다. Attention 메커니즘을 적용한 결과 LSTM과 GRU의 성능은 증가했으나, XGBoost는 성능이 약간 감소하는 경향을 보였다.</content>
+
+<subtitle>결과 비교</subtitle>
+<content>변수 중요도 적용 여부에 따른 모델 성능 비교에서, XGBoost와 LSTM이 각각 우수한 성능을 보여 주었다. 특히, 변수 중요도를 적용한 데이터셋에서 LSTM이 성능 개선을 보인 반면, XGBoost는 어텐션 적용 시 성능 저하가 나타났다.</content>
+
+<subtitle>결론</subtitle>
+<content>변화율 데이터가 잡음을 줄이고 추세성을 반영함으로써 종가 데이터보다 더 정확한 성능을 보였다. 변수 중요도 분석을 통해 RNN 모델의 예측 성능을 향상시킬 수 있으며, Feature Selection을 통해 적은 피쳐로도 모델 성능을 유지할 수 있다.</content>

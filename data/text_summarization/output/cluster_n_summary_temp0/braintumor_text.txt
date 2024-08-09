@@ -1,0 +1,57 @@
+<subject>데이터 증강 BRAIN 및 TUMOR</subject>
+<team>김고은, 김채연, 김희원, 이예령, 이승우</team>
+<index>주제 선정 이유, RESNET, 원본데이터 설명 및 한계, 구현 RESNET, 결과 비교, 결론 및 아쉬운 점</index><main>주제 선정 이유</main>
+<subtitle>구조 학습 및 적용</subtitle>
+<content>RESNET 구조를 연구하여 뇌종양 데이터에 적용하는 과정이 주제 선정의 이유 중 하나이다.</content>
+
+<subtitle>데이터 증강</subtitle>
+<content>데이터의 개수가 적어 증강을 통해 새로운 데이터를 생성하여 모델 학습의 기회를 확대하는 이유가 설명되었다.</content>
+
+<subtitle>모델 구현 및 학습</subtitle>
+<content>RESNET-18과 RESNET-50을 직접 구현하여 학습하여 성능을 비교하는 것이 주제 선정의 중요한 요소로 언급되었다.</content>
+
+<subtitle>성능 평가</subtitle>
+<content>원본 데이터에서는 성능 차이가 없었으나, 데이터의 양이 적어 성능 판단이 불가능하다는 점이 지적되었다.</content>
+
+<subtitle>증강 데이터의 성능</subtitle>
+<content>증강된 데이터에서 RESNET-50의 성능이 더 우수하다는 결과가 나타나 주제 선정의 합리성을 뒷받침하였다.</content><main> RESNET</main>
+<subtitle>[Training Issues]</subtitle>
+<content>모델의 정확도가 낮았던 이유는 데이터가 부족했기 때문이며, 이로 인해 훈련 데이터에 할당할 수 있는 데이터의 수가 제한적이었다. 데이터 수를 늘리기 위해 데이터 증강 방법론이 필요하다.</content><main> 원본데이터 설명 및 한계</main>
+<subtitle>원본데이터</subtitle>
+<content>원본데이터는 RESNET 18과 RESNET 50 모델에 사용되는 이미지 데이터로, 이를 기반으로 성능 분석이 진행된다.</content>
+
+<subtitle>원본데이터 한계</subtitle>
+<content>원본데이터는 특정 이미지와 피처에 국한되어 있으며, 데이터의 다양성이 부족해 모델의 일반화 성능에 한계를 초래할 수 있다.</content><main> 구현 RESNET</main>
+<subtitle>[원본데이터 설명]</subtitle>
+<content>총 253개의 원본 데이터를 기반으로 RESNET 모델을 구현하기 위한 설명으로, 이미지 증강이 필요하다는 것을 암시하고 있다.</content>
+
+<subtitle>[원본데이터 한계]</subtitle>
+<content>원본 데이터는 한계가 있으며, 이미지 증강과 컨투어 기법을 통해 성능을 향상시키는 필요성이 강조된다.</content>
+
+<subtitle>[Count of Classes in each set]</subtitle>
+<content>데이터셋의 클래스 수에 대한 카운트 정보가 언급되나, 구체적인 클래스 수는 제시되어 있지 않다.</content>
+
+<subtitle>[RESNET 50]</subtitle>
+<content>RESNET-50 모델을 사용하여 성능을 개선하고자 하며, 증강 데이터와의 조합으로 더 나은 결과를 보여줄 가능성이 있다.</content>
+
+<subtitle>[증강 데이터 ACCURACY&LOSS]</subtitle>
+<content>증강 데이터를 통한 정확도 및 손실 분석 결과가 나타나며, 이 데이터를 기반으로 모델 성능을 평가할 수 있다.</content>
+
+<subtitle>[ResNet-I: ResNet-50]</subtitle>
+<content>ResNet-I의 실험으로 ResNet-50의 성능을 검토하고 있으며, 관련 데이터 및 결과가 포함된다.</content>
+
+<subtitle>[증강 데이터 성능 시각화 RESNET -18]</subtitle>
+<content>RESNET-18 모델의 성능을 증강 데이터를 통해 시각화하여, 개선된 모델의 효율성을 보여준다.</content>
+
+<subtitle>[증강 데이터 성능 시각화 RESNET-50]</subtitle>
+<content>RESNET-50 모델의 성능 또한 증강 데이터로 시각화 되어, 기존 모델과의 비교가 가능하다.</content><main> 결과 비교</main>
+<subtitle>ResNet-18의 성능</subtitle>
+<content>ResNet-18의 성능 시각화 결과를 통해 원본 데이터에 대한 정확성과 손실이 분석되었다.</content>
+
+<subtitle>ResNet-50의 성능</subtitle>
+<content>ResNet-50의 성능 또한 원본 데이터에서 평가되었으며, 전체적인 결과가 제시되었다.</content><main> 결론 및 아쉬운 점</main>
+<subtitle>결론</subtitle>
+<content>RESNET-50의 성능 시각화 결과, 높은 정확도와 안정성을 보여주며 다양한 데이터셋에 대한 일반화 능력이 우수함을 확인하였다.</content>
+
+<subtitle>아쉬운 점</subtitle>
+<content>다양한 환경에서의 검증이 부족하여 일부 조건에 따른 성능 저하를 예상할 수 있으며, 더 많은 실험이 필요하다.</content>

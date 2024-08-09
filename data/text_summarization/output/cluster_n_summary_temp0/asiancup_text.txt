@@ -1,0 +1,44 @@
+<subject>자연어처리 모델을 이용한 클린스만 감독의 감성 분석을 주제로 한 연구</subject>
+<team>송용호, 서윤, 임채현, 임형수, 김시연</team>
+<index>주제 선정 배경, 데이터 수집 기준, 데이터 수집 - 웹크롤링, 전처리 및 EDA 분석, 모델링, 결과 분석 및 시각화, 결론</index><main>주제 선정 배경</main>  
+<subtitle>[자연어 처리(NLP)]</subtitle>  
+<content>자연어 처리 기술을 활용하여 클린스만호의 감성을 분석하는 프로젝트가 선정되었다. 이 기술의 중요성과 활용 가능성이 주제 선정의 배경이 된다.</content>  
+
+<subtitle>[결과:토너먼트 별 클린스만호 감성분석]</subtitle>  
+<content>클린스만호의 감성을 토너먼트 별로 분석하는 결과가 주제 선정의 주요 포인트가 되며, 이는 스포츠 데이터 분석의 필요성을 강조한다.</content>  
+
+<subtitle>[결과분석 및 시각화]</subtitle>  
+<content>결과를 시각화하여 보다 명확한 이해를 돕기 위해 분석 및 시각화 작업이 중요하다는 점이 주제 선정 배경에 포함된다.</content>  <main> 데이터 수집 기준</main>
+<subtitle>경기 날짜 기준 데이터 수집</subtitle>
+<content>경기 날짜를 기준으로 데이터 수집이 이루어지며, 조별리그부터 4강 이후까지의 기간에 따라 여론 분석이 진행된다.</content>
+
+<subtitle>여론 분석 데이터 수집 기준</subtitle>
+<content>조별리그와 16강, 8강, 4강 등 각 단계에 따른 여론을 분석하며, 특히 4강 이후의 여론 이슈가 중요하게 다뤄진다.</content>
+
+<subtitle>감성 분석 결과</subtitle>
+<content>감성 분석 결과, 4강을 기점으로 부정적인 여론이 증가하였으며, 이를 통해 트렌드 파악 및 위기 대응이 가능하다는 결론을 도출하였다.</content><main> 데이터 수집 - 웹크롤링</main>
+<subtitle>데이터 수집 기준</subtitle>
+<content>여론 이슈와 관련된 데이터 수집 기간이 명시되어 있으며, 클린스만 경질 전후의 여론변화를 다루고 있다.</content>
+
+<subtitle>크롤링 - Crawler 함수</subtitle>
+<content>크롤링 함수는 Naver 뉴스 검색을 통해 동적으로 생성된 URL에서 HTML 내용을 가져오고, Beautiful Soup을 활용하여 뉴스 기사의 제목과 링크를 추출하는 과정이다.</content>
+
+<subtitle>웹 크롤링 - Crawler 함수</subtitle>
+<content>불필요한 정보를 제거한 후, 데이터 정제 과정을 진행하며, 사용자에게 입력 형식을 안내하고 검색어 및 날짜 범위를 입력받아 크롤링을 시작할 수 있도록 한다.</content><main> 전처리 및 EDA 분석</main>
+<subtitle>날짜 정제화 함수</subtitle>
+<content>뉴스의 날짜 형식을 정제하기 위한 정규표현식을 사용하여, 과거 및 최근 뉴스의 날짜를 추출하고 적절히 리스트에 추가하는 과정을 설명합니다.</content>
+
+<subtitle>감성 분석</subtitle>
+<content>감성 분석은 비정형 데이터로부터 주관적인 감정을 추출하는 과정으로, Lexicon-based, Linguistic, Machine Learning 접근법을 포함하여 다양한 기법이 사용됩니다.</content><main> 모델링</main>
+<subtitle>웹 크롤링 - 내용 정제</subtitle>
+<content>웹 크롤링을 위한 내용 정제 과정은 세 단계로 이루어지며, 각 단계에서 불필요한 HTML 태그를 제거하고 공백을 정리한다. 첫 번째 정제에서는 <dl> 태그로 시작하고 </dd>로 끝나는 부분을 제거하고, 두 번째 정제에서는 특정 클래스의 <u> 태그로 시작하고 끝나는 부분을 제거하며, 마지막으로 세 번째 정제에서는 모든 HTML 태그를 제거하여 최종적으로 깔끔한 텍스트 데이터를 추출한다.</content><main> 결과 분석 및 시각화</main>
+<subtitle>[전처리 및 분석 결과 EDA]</subtitle>
+<content>전처리 및 분석 결과를 통해 데이터의 특성을 이해하고, 분석을 위한 기초 작업을 수행하였다. EDA를 통해 데이터의 분포와 패턴을 시각적으로 확인하였다.</content>
+
+<subtitle>[모델링]</subtitle>
+<content>Hugging Face의 amphOra/KorFinASC-XLM-RoBERTa 모델을 사용하여 감성 분석을 진행하였으며, 이 모델은 금융 분야에서의 감성 분석에 효과적으로 활용될 수 있도록 개발되었다.</content><main> 결론</main>
+<subtitle>모델링</subtitle>
+<content>모델링 과정에서 결과를 성공적으로 도출하였고, 실험 및 분석이 중요한 역할을 했다.</content>
+
+<subtitle>결과 분석 및 시각화</subtitle>
+<content>결과 분석 및 시각화 실험을 통해 데이터의 통찰력을 제공하며, 이해하기 쉽게 표현하였다.</content>

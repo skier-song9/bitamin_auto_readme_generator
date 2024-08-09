@@ -55,12 +55,16 @@ def split_by_pages(filepath, encoding='utf-8'):
 
 def erase_tag(text, tag):
     """
-    text : split_by_page로 얻은 텍스트 리스트
+    text : split_by_page로 얻은 텍스트 리스트 또는 텍스트
     tag : 지우고 싶은 <tag>
     """
     tag_pattern = re.compile(f'<{tag}>|</{tag}>')
-    text_ = [tag_pattern.sub('',x) for x in text]
-    return text_
+    if isinstance(text, list):
+        text_ = [tag_pattern.sub('',x) for x in text]
+        return text_
+    else:
+        text_ = tag_pattern.sub('',text)
+        return text_
 
 def extract_text_between_tag(text, tag):
     """
@@ -105,10 +109,11 @@ class GPT():
         self.api_key = ak['OPENAI_API_KEY']
         self.client = OpenAI(api_key=self.api_key)
         
-    def get_chat_completion(self, msg, model='gpt-4o-mini', **kargs):
+    def get_chat_completion(self, msg, model='gpt-4o-mini', temperature = 0):
         response = self.client.chat.completions.create(
             model = model,
-            messages = msg
+            messages = msg,
+            temperature = temperature
         )
         return response.choices[0].message.content
 
@@ -206,6 +211,7 @@ class TextSummerizer():
         total_dict = {}
         max_cluster = len(text)-1
         # sentence 단위로 임베딩하는 모델의 경우
+        print("--Sentence Embedding Methods--")
         for model in self.model_dict['sentence']:
             model_name = model.__classname__
             if model_name == 'Encoding':
@@ -270,6 +276,7 @@ class TextSummerizer():
             # gc.collect()
     
         # token 단위로 임베딩하는 모델의 경우
+        print("--Token Embedding Methods--")
         for tokenizer, model in self.model_dict['token']:
             model_name = model.__classname__
             if model_name == 'Canine-C':
@@ -374,7 +381,7 @@ if __name__ == '__main__':
     # 매개변수 받기
     parser = argparse.ArgumentParser()
     parser.add_argument('--input') # ocr_samples_txt 전달하기
-    parser.add_argument('--output') # ocr_samples_summarization 전달하기
+    parser.add_argument('--output') # cluster_n_summary 전달하기
     # 인자 파싱
     args = parser.parse_args()
 
@@ -387,6 +394,7 @@ if __name__ == '__main__':
     text_summarization = TextSummerizer(gpt_client=gpt)
     
     for file in os.listdir(input_dir):
+        print(file,"work started.")
         start_time = time.time()
         filepath = os.path.join(input_dir, file)
         # load text
@@ -423,16 +431,17 @@ If any result is unclear or not found, indicate it as None.
         # 텍스트에서 page tag와 \n 문자열을 제거
         textlist_preprocessed = [text.replace('\n',' ') for text in erase_tag(textlist,'p.\d*')]
         # clustering
+        print("Clustering Started.")
         c_metrics, c_dfs = text_summarization.clustering(text=textlist_preprocessed,
                                      n_clusters=nclusters, random_state=RANDOM_STATE)
         print("✅Clustering Finished.")
         # 성능이 제일 좋은 임베딩 모델과 클러스터링 알고리즘 선택
         best_model, best_algo = text_summarization.best_model_n_algo(c_metrics)
-        del c_metrics # 더이상 불필요한 변수
+        # del c_metrics # 더이상 불필요한 변수
         # cluster label 재정렬
         c_renew = text_summarization.renew_cluster_byorder(total_dict=c_dfs,
                                                            best=(best_model,best_algo))
-        del c_dfs # 더이상 불필요한 변수
+        # del c_dfs # 더이상 불필요한 변수
 
         # 클러스터별로 텍스트 묶기
         c_dict = dict(zip(list(range(nclusters)),['' for _ in range(nclusters)]))
@@ -466,12 +475,13 @@ Instructions:
                  "content": f'"""{ctext}"""'
                 }
             ]
-            summarizations.append(gpt.get_chat_completion(msg, model='gpt-4o-mini'))
+            summarizations.append(gpt.get_chat_completion(msg, model='gpt-4o-mini', temperature=1))
         
         output_filepath = os.path.join(output_dir, file)
-        with open(output_filepath,'w') as f:
+        with open(output_filepath,'w', encoding='utf-8') as f:
             f.write(sub_team_index)
             for s in summarizations:
+                f.write('\n')
                 f.write(s)
         print(f"📢 {file} finished in {time.time()-start_time:0.1f} seconds")
     # end for

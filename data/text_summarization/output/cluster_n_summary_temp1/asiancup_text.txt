@@ -1,0 +1,54 @@
+<subject>자연어처리 모델을 이용한 클린스만 감독에 대한 감성 분석</subject>
+<team>송용호, 서윤, 임채현, 임형수, 김시연</team>
+<index>주제 선정 배경, 데이터 수집 기준, 데이터 수집- 웹크롤링, 전처리 및 EDA 분석, 모델링, 결과 분석 및 시각화, 결론</index>
+<main>주제 선정 배경</main>
+<subtitle>[자연어 처리(NLP)]</subtitle>
+<content>자연어 처리 기술을 활용하여 클린스만호의 감성을 분석하는 연구가 필요하다는 배경이 있음.</content>
+
+<subtitle>[토너먼트 별 감성 분석]</subtitle>
+<content>각 토너먼트마다 클린스만호의 감정을 심층적으로 분석하여 팬들의 반응을 이해하기 위한 필요성이 강조됨.</content>
+
+<subtitle>[결과 분석 및 시각화]</subtitle>
+<content>분석 결과를 시각적으로 표현하여 감성 변화를 더욱 명확하게 확인할 수 있도록 하는 접근이 중요함.</content>
+<main> 데이터 수집 기준</main>
+<subtitle>경기 날짜 기준 데이터 수집</subtitle>
+<content>경기 날짜를 기준으로 데이터 수집을 진행하며, 조별리그와 16강, 8강, 4강 전후의 날짜 구간을 명확히 설정하여 각각의 기간에 따른 여론 및 감성 분석을 시행하는 것이 중요하다.</content>
+
+<subtitle>여론 분석</subtitle>
+<content>경기 결과에 따라 여론을 분석하고, 특히 4강 시점을 기점으로 부정적인 여론이 증가함을 확인하였다. 이를 통해 축구협회의 위기 대응을 위한 통찰력을 제공할 수 있다.</content>
+
+<subtitle>감성 분석 및 대응 전략</subtitle>
+<content>감성 분석을 통해 트렌드를 파악하고 위기 상황에 신속히 대처할 수 있는 능력을 갖출 수 있으며, 분석 결과는 실제 의사결정에 중요한 참고자료가 된다.</content>
+<main> 데이터 수집- 웹크롤링</main>
+<subtitle>[데이터수집기준]</subtitle>
+<content>여론 이슈와 관련된 데이터 수집 기준을 정하며, 클린스만 경질 전후의 여론 이슈 기간을 설정하였다.</content>
+
+<subtitle>[크롤링-crawler함수]</subtitle>
+<content>네이버 뉴스에서 데이터 수집을 위해 크롤러 함수를 사용하여 HTML 콘텐츠를 가져오고, Beautiful Soup을 활용하여 뉴스 제목과 링크를 추출하는 방법을 설명하였다.</content>
+
+<subtitle>[웹 크롤링 - Crawler함수]</subtitle>
+<content>데이터 수집 후 불필요한 정보를 제거하고 본문을 정제하기 위한 데이터 클렌징 방법을 구성하였다.</content>
+<main> 전처리 및 EDA 분석</main>
+<subtitle>날짜 정제화 함수</subtitle>
+<content>뉴스의 날짜 형식을 정제하기 위해 정규 표현식을 이용한 함수가 정의되어 있으며, 지난 뉴스와 최근 뉴스에 대해 각각 다른 패턴을 적용하여 날짜 데이터를 처리하고 있습니다.</content>
+
+<subtitle>감성 분석</subtitle>
+<content>감성 분석은 비정형 데이터인 텍스트에서 주관적인 인상과 감정을 추출하는 과정으로, 세 가지 접근법(감성 단어 사전 기반, 문법 구조 기반, 기계 학습 기반)이 사용됩니다.</content>
+<main> 모델링</main>
+<subtitle>내용 정제화 과정</subtitle>
+<content>웹 크롤링을 통해 수집한 데이터를 정제하기 위해 세 가지 단계의 내용을 제거하는 과정을 설명한다. 첫 번째 정제는 <dl> 태그와 </dd> 태그 사이의 내용을 제거하고, 두 번째 정제는 <u class="relation_Ist"> 태그와 </dd> 태그 사이의 내용을 제거한 후 불필요한 공백을 없애는 과정을 포함하며, 세 번째 정제 단계에서는 HTML 태그를 모두 제거하여 최종적인 깨끗한 데이터를 확보한다.</content>
+
+<subtitle>결과 분석 및 시각화</subtitle>
+<content>정제된 데이터를 기반으로 결과를 분석하고 시각화하는 과정을 설명하고 있다. 이는 최종 데이터의 품질을 높이고, 보다 유의미한 인사이트를 도출하기 위한 중요한 단계이다.</content>
+<main> 결과 분석 및 시각화</main>
+<subtitle>전처리 및 분석 결과 EDA</subtitle>
+<content>전처리 단계와 탐색적 데이터 분석(EDA)을 통해 데이터의 인사이트를 파악하고, 데이터의 특성을 이해하는 과정이 포함된다.</content>
+
+<subtitle>모델링</subtitle>
+<content>Hugging Face의 amphOra/KorFinASC-XLM-RoBERTa 모델을 활용하여 금융 분야의 감성 분석을 수행하였다. 이 모델은 한국어와 영어 텍스트에 대해 효과적인 감성 분석을 지원하는 XLM 기반 모델이다.</content>
+<main> 결론</main>
+<subtitle>모델링</subtitle>
+<content>모델링 과정은 시스템을 이해하고 분석하는 데 필수적인 첫 단계로, 다양한 변수와 그 상호작용을 설정하는 데 중점을 둡니다.</content>
+
+<subtitle>결과분적 및 시각회</subtitle>
+<content>결과 분석과 시각화는 데이터의 인사이트를 제공하여 의사결정을 지원하며, 이를 통해 모델의 성능을 평가하고 개선할 수 있습니다.</content>
