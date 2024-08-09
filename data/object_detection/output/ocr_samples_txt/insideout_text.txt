@@ -1,0 +1,184 @@
+<p.01>
+ InSDe 00
+ CV 1조
+ CE SEGEMENTATION & EMOTION CLASSIFICAT!
+ 김재원 김채원 문승민 이서현 황영서
+<p.02>
+ GONTENTS
+ O1 주제 선정 배경
+ 02 모델 구축 과정
+ 03 결과 분석
+ 04 의의 및 한계점
+<p.03>
+ 배경 01 주제선정
+ [아이디어]
+ 인간의 감정 인식에 대한 연구는 널리 이루어졌으나 애니메이션 캐릭터의 감정 인식에 대한 연구는 제한적
+ [기존 연구]
+ 애니메이션 중에서도 감정을 다루는 영화의 캐릭터 감정을 분석해보는 건 어떨까? 어떤 캐릭터가 가장 다양한 감정을 가질까?
+ JOY" 기쁨이 는 항상 기뿔까?
+ SADNESS 슬픔이 는 항상 슬플까?
+ ANGER 버럭이 는 항상 화날까?
+<p.04>
+ 주제선정 배경 01
+ 참고 논문
+ 8113개의 'TOm nd Jerry' 이미지 총 4개의 감정 레이블 Happy Angry Sad Surprise 캐릭터 탐지와 face Segmentation를 위해 MasK R-CNN 모델 활용 캐릭터의 감정 분류를 위해 VGG16 InceptionV3 ResNet-50 MobileNetV2 모델 성능 비교
+<p.05>
+ 모델 구축 과정 02
+ 2 라벨링
+ 감정 Classificatior 을위한 전처리
+ NStance Segmenta tion을 위한 Character Labeling Roboflow 활용
+ MasK OpenCV 활용 Contour Face Opencv 활용 CrOp
+ 데이터 수집 1
+ Segmentation
+ 5 라벨링
+ 6 모델 구현
+ 프레임 추출 OpencV 활용 Ima ge Filtering
+ Y이oV8 모델 구현하여 NStance Segmentation
+ Emotion Labeling Roboflow 활용
+ ResNet18 34 50 152 DenseNet VGGNet16 19 7가지 모델을 구현하여 전이 학습 및 성능 평가
+<p.06>
+ 모델 구축 과정 02
+ ANGER
+ JOY
+ NSTANCE CHARACTER SEGMENTATION WITH YOLOV8
+ SADNESS
+<p.07>
+ 모델 구축 과정 02
+ 데이터 수집
+ 영화 원본
+ 이미지 8000장
+ 사용하여 4프레임 단위로 이미지 추출 OpenCv를
+ 관련 없는 이미지 삭제
+<p.08>
+ 모델 구축 과정 02
+ 라벨링
+ 컴퓨터 비전Computer Vision 기술을 이용해 다양한 애플리케이션을 만들 있도록 지원해주는 서비스 수 :다양한 데이터셋을 지원하고 Open 있다는 특징 데이터 전처리 증강 훈련 배포를 지원하는 다양한 Tools 제공
+ 3000장의 이미지 + annotation
+ Resize 00 640x640
+ Augmentation Rotate Crop Blur
+<p.09>
+ 모델 구축 과정 02
+ e gmewtatiov
+ You Only Look Once: 이미지 전체를 한번만 봄 통합된 모델 사용:한 모델만을 사용해 과정들을한번에 진행 객체 학습 -> 주변정보까지 background error 훈련단계에서보지못한 새로운 이미지에 대해서도 검출 정확도
+ 6300장의 이미지로 모델 학습 YOLOv8
+ 생성 bounding box mask + Segmentation
+<p.10>
+ 모델 구축 과정 02
+ YOLO Object mask 학습 결과
+ F1점수 커브
+ 정밀도-리콜 커브
+ 혼동 행렬
+ 정밀도 커브
+ 리콜 커브
+<p.11>
+ 모델 구축 02 과정
+ ANGER
+ SA [D
+ HAPPY
+ Classification motion
+ Using transfer [earnino
+ NEUTRAL
+ SURPRISED
+ With ResNet DenseNet VGGNet
+<p.12>
+ 모델 구축 과정 02
+ CONTOUR MASK FACE EXTRACTION W[TH| OPENCV
+ FACE CROP DISPLAY FULLY FILLED W MASKS W[TH| OPENCV
+ YOLOV8 가중치 파일 활용하여
+<p.13>
+ 모델 구축 과정 02
+ EMOTION LABELING WITH ROBOfLOW
+<p.14>
+ 모델 구축 과정 02
+ CNN 모델을 이용한 TRANSFER LEARNING
+ TRANSFER EARNING
+ 사전학습 모델의 파라미터나 구조를 일부 변형해서 사용
+ FINE-TUNE NETWORK WEIGHTS
+ PRE TRAINED CNN
+ EMOTION CLASSIfICATION
+ 작동
+ 상위계층만 재훈련 faces 맞게 Masked 에 상위계층을 재훈련하여 전이학습을 수행 dataset Hyper Parameter batch _Size Iearning rate epoch Method Augmentation 고급 특정 조건 변환 조합 변환 조합 기본 조합 autoaugmentation Optimizer & Scheduler Adam ROnPlateau MultistepLR CosineAnnealingLR SGD Re ducel CosineAnnealingWarmRestarts &
+ 성능향상
+<p.15>
+ 모델 구축 과정 02
+ RESNET
+ 기울기 소실 문제를 해결하기 위해 '잔여연결' :이라는 개념을 도입한 덥러녕 모델 로 '이 구조를 통해 더 깊은 데트워크를 학습할 수 있다
+ DENSENET
+ VGGNE!
+ 생성된 마스크를 '기쁨' '화남' '무표정' '슬픔' '놀람' 의 범주로 분류 사전 훈련 테스트한 후-가장 성능을 발휘하는 모델 선트 CNN모델을 좋은 -
+<p.16>
+ 모델 구축 과정 02
+ 3OSe MOde
+ Hyperparameter
+ 4 Iransfer Learning & Mode| Archite Cture
+ batch Size 32 Epoch 30
+ 2 Methoo Augmntation
+ ResNet5O
+ OutOagumentatiOr
+ 3 & Sche duler Optimizer
+ SGD & :StepLR
+ <Test Set>
+ Average IOsS: O9520 Accuracy: 7333%
+<p.17>
+ 모델 구축 과정 02
+ 2 Method Augmentation
+ Op timizin9 Ne ur al Ne t-w Or k
+ Outoagumentation bose MOdel
+ 사용자가 직접 정의[Albumentation
+ 1 Hyperparameter batch 8:2 16 Size- 1] 332 base mOdel 4 64 - epoch 30
+<p.18>
+ 모델 구축 02 과정
+ Opt im izin9 Neura! - Network
+ 3 Optimizer & Schedul
+ Mode! base Scheduler StepLRCoptimizer step size-7 gamma=01 - A dam & ReduceLROnPa teau 2 SGD With Momentum & StepLR 3 SGD With Momentum & MultistepLR 4 AdamW & CosineAnnealingLR 5 SGD With Momentum & CosineAnnealingW armRestartS 6 A'damW & StepLR
+<p.19>
+ 모델 구축 과정 02
+ 4 Transfer Learning & Mo de Archite Cture
+ Op timizin9 Neura Ne twork
+ 전체 모델 Fine- Tuning FC 레이어에 Dropout 적용 Advanced
+ ResNet50 Best Score: 76:98%
+ Valdatoin Accuracy
+ F1점수 커브
+ 정밀도 커브
+ 리콜 커브
+<p.20>
+ 모델 구축 과정 02
+ 4 Transfer Learning & Model Architecture
+ Op t imizin g Yeura! Ne t work -
+ 전체 모델 Fine- Tuning 깊은 FC 레이어 추가
+ VGG16 Best Score: /439%
+ Valdatoin Accurac>
+ F1 점수 커브
+ 정밀도 커브
+ 리콜 커브
+<p.21>
+ 모델 구축 과정 02
+ 4 Transfer Learning & Model Architecture
+ Op t im izin g Yeura! | Ne twork
+ 전체 모델 Fine- Tuning DenseNet 분류기를 더 복잡한 구조로 교체
+ DenseNet169 Best Score: 7579%
+ mode! 1odel5 densenet16! Cpretrained-True todevice = for in Pafram nOde] features Parameters[] Param requires_grad = TrLe model Classifier SequentialC = In Linear Cmodel Classifierin features 512로 nRellG InDropoutCe5 nLinear512 256 In ReLVC nnDropoutCe4 hLinear[256 5 ]to[device
+ <최종 모델 선정> ResNet5O
+ Valdatoin Accuracy
+ F1 점수 커브
+ 정밀도 커브
+ 리콜 커브
+<p.22>
+ 결과 03 분석
+ 캐릭터에 따른 감정 차이가 유의미해 보임 감정이 가장 다양했던 캐릭터는 기쁨이
+<p.23>
+ 03 결과 분석
+ 캐릭터에 따른 감정 분석 성능 평가
+<p.24>
+ 의의 및 한계점 04
+ 사람에 국한하지 않고 애니메이션 캐릭터에 대한 감정 분석 진행 감정과 애니메이션을 연관시킨 추천 시스템을 구축하거나 관련 산업의 발달에서도 유의미한 분석 애니메이션 일러스트
+ 의의
+ 감정 시 라벨링 주관적인 요소가 불가피하게 포함됨 이로써 생기는 데이터의 일관성 부족이 모델의 성능에 영향을 미쳤을 것으로 생각함
+ 한계점
+<p.25>
+ D:ank V00
+ 영서
+ 서현
+ 승민
+ 재원
+ 채원

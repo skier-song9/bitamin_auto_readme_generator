@@ -1,0 +1,178 @@
+<p.01>
+ 에너지 프로슈머의 행동양식 예측하기
+ Predict Energy Behavior Of Prosumers 1조 박지원 박정훈 박초은
+<p.02>
+ 목차
+ 01 분석 개요 에너지 프로슈머란? 데이터 소개 분석 방향성 소개
+ 02 변수 선택 상관분석 & 요인분석 파생변수 도출
+ 03 모델링 모델 및 평가지표 소개 초기 모델 수정된 모델 & 변수 중요도 최종 결과
+<p.03>
+ 01
+ 분석개요
+<p.04>
+ 에너지 프로슈머란?
+ 에너지의 생산과 소비의 역할을 동시에 하는 주체
+ 주거용 경우 태양광 패널 프로슈머의 소규모 배터리 저 장소 등을 주로 사용하고 기업 프로슈머의 경우 풍력 발 전 태양열 어레이와 같은 보다 대규모의 분산 에너지 자 원DER을 사용하는 것이 일반적이다
+<p.05>
+ 에너지 중요한 이유 프로슈머가
+ 에너지 프로슈머의 수가 증가함에 따라 에너지 생산과 소비 간 불균형 이 심화되고 있다
+ 에너지 자원의 비효율적 이용률이 증가함에 따라 프로슈머 운영 구조에 대한 신뢰와 지속가능성 이 저하된다
+ 프로슈머의 행동양식을 파악하여 소비와 생산에 영향을 주는 요소를 밝 힌다면 친환경 에너지 사용을 독려할 수 있다
+<p.06>
+ 데이터 소개
+ 에스토니아 내 일정 기간 기후 데이터 에너지 소비 비용 태양광 에너지 사용률 등을 바탕으로 에너지 프로슈머의 전력 생산소비량을 예측한다
+ traincsV
+ ClientcsV
+ electricity_pricescs
+ gas_pricescsv
+ forecast Weathercsv
+<p.07>
+ 데이터 소개 train CSV
+ is_consumption 소비인지 생산인지 datetime 에스토니아 기준 1h 단위 시간표 data block _id 같은 forecast time을 공유 하는 데이터에 대한 식별자 row_id 각 행에 대한 식별자 prediction_unit_id County is business product_type 조합에 따른 식별자
+ is_consumption 소비인지 생산인지
+ product_type 프로슈머 계약 타입 {0: Combined" 1: "Fixed" 2: General Service 3: Spot"}
+ target County business product_type 조합에 따른 실제 시간 당생 산및 소비 사용량
+ prediction_unit_id County business product_type 조합에 따른 식별자
+<p.08>
+ 데이터 소개 Client CSV
+ eic_count EICthe identifier european Code의 집계된 수
+ product_type 프로슈머 계약 타입 {0: Combined" 1: "Fixed" 2: Genera! Service 3: Spot"}
+ installed Capacity 설치된 태양광 판넬의 kWh 기준 에너지 수용량
+ datetime 에스토니아 기준 1h 단위 시간표
+ data _block _id 같은 forecast time을 공유하는 데이터에 대한 식별자
+<p.09>
+ 데이터 소개 forecast WeathercsV
+ Origin datetime 날씨 예보가 발생된 시간 hours ahead 예측한 날씨의 시각과 날씨 예보 발생 시각 간 차이 1시간 간격으로 측정된 기온 Lemperature 1시간 간격으로 측정된 이슬점 dewpoint Cloudcover 구름에 의해 하늘이 가려진 각 고도의 비율 [low/mid/high total]로 구분
+ Origin datetime 날씨 예보가 발생된 시간
+ 10_metre_[u/v] Wind 동쪽 Component 혹은 북쪽에서 부는 바람을 1시간 간격으로 측 정한 초속 기록 forecast datetime Origin datetime어 hours_ahead만큼의 시간을 더한 시각 Snowfall 시간의 따른 미터 단위 적설량 data_block_id 같은 forecast time을 공유 하는 데이터에 대한 식별자
+ 10 metre [u/~] wind 동쪽 Component 혹은 북쪽에서 부는 바람을 1시간 간격으로 측 정한 초속 기록
+ hours ahead 예측한 날씨의 시각과 날씨 예보 발생 시각 간 차이
+ forecast datetime Origin datetime에 hours ahead만큼의 시간을 더한 시각 Snowfall 시간의 따른 미터 단위 적설량 data block_id 같은 forecast time을 공유 하는 데이터에 대한 식별자
+<p.10>
+ 데이터 소개 forecast weathercsV - 2
+ Surface_solar_radiation downwards 직간접적으로 지면에 도달하는 태양 복사 에 너지의 양 Wh:m스2/h 기준
+ total_precipitation 시간 당 미터 단위의 적 설량과 강수량을 합친 기록
+ direct Solar_radiation 직접적으로 지면 에 도달하는 태양 복사 에너지의 양 Wh:m스2/h 기준
+ [latitude/longitude 날씨 예측이 이루어진 위도경도 상의 좌표
+<p.11>
+ 데이터 소개 electricity_pricescsv
+ Origin date 당일 전기 가격의 날짜
+ forecast date 예측 전기 가격이 적용되어야 하는 날짜
+ 메가와트시 당 시장에 출 euros_per_mwh 시된 당일 전기 가격
+ data block _id 같은 forecast time을 공유 하는 데이터에 대한 식별자
+<p.12>
+ 데이터 소개 gas_pricescsV
+ Origin date 당일 가스 가격의 날짜
+ forecast date 예측 가스 가격이 적용되어야 하는 날짜
+ 메가와트시 당 mwh 시장에 출 euros_-per 시된 당일 가스 가격
+ data block _id 같은 forecast time을 공유 하는 데이터에 대한 식별자
+<p.13>
+ 분석 방향성 소개
+ 상관분석 & 요인분석
+ 파생변수 도출
+ 변수 중요도 파악
+ 최종 모델링 XGBoOst
+<p.14>
+ 02
+ 변수선택
+<p.15>
+ 상관분석
+ 정밀하고 효율적인 모델 활용을 위해 총 50여개의 features 중 유의미한 변수를 선별하고자 한다
+ Larget Iatitude Iongitude hour5 Ahead temperature Gewpoint Cloudcover high Goudcover oW Eloudcover _mid Eloudcover total 10 metre _u_Wind - Component 10 metre Wind CorTporent data block_id direct 5olar Tadiation 5urface 50lar Tadiation downwards Snowfall total precipitation
+ 변수를 비롯한 모든 target features어 대하여 상관분석 진행
+ 대체로 타겟과의 상관계수가 낮은 양상 우측 히트맬은 상관분석의 일부
+ 보다 정확한 feature 간 관계성 파악을 위해 추가 요인분석 시행
+<p.16>
+ 요인분석?
+ 여러 변수 간 상관관계를 고려하여 저변에 내제된 중요 요인또는 인자을 추출하는 분석방법론
+ PCA와 마찬가지로 변수의 차원을 줄일 수 있다는 점은 유사하나 기존 변수의 조합으 로 새로운 주성분을 도출하는 PCA와 달리 요인 분석은 기존 변수에 영향을 끼치는 내 제된 공통 요인을 파악한다는 점에서 차이가 있다
+<p.17>
+ 요인분석
+ 요인또는 인자들의 eigen value를 가장 높은 값부터 차례로 시각화 한 Scree Plot 을 이용해 적절한 요인의 개수를 찾는다
+ 우측 그래프는 forecast Weather를 바탕 으로 실시한 자료
+ 곡선의 기울기가 완만해지는 시점을 설명 분산이 증가하지 않는 유의미하거 지점으로 보고 이에 해당하는 factors의 수를 적절한 요인의 개수로 채택한다
+<p.18>
+ 요인분석
+ 앞서 본 plot을 바탕으로 대략 요인의 Scree 개수를 5로 지정하여 분석한 요인 적재량의 결과는 우측과 같다
+ 각요인에 대해 설명력이 높은 변수들을 바 탕으로 중요한 features는 우측과 같이 묶 을수있다
+<p.19>
+ 2 파생변수 도출 traincsv
+ hour day month dayofweek
+ 시간 월 날짜 요일
+ sin hour Cos hour sin month sin_day Cos_day Cos_month Sin_dayofweek COs_dayofweek 불쾌지수
+ 시간 변수의 Fourier feature transform
+ {O:" not holiday 1: holiday"} 3/18 6/2 9/4 11/23 기점으로 구분한 계절
+ target target mean County_std
+ dayofweek+hour hour month Countytis_business 별 target의 평균 및 표준편차
+<p.20>
+ 2 파생변수 도출- forecast _weathercsv
+ RH 상대습도 Tw 습구온도 THi 불쾌지수 apparent temperature
+ Cloud Cloud_s stdX mean dsr dsr_std mean X SSr SSr Std mean_x
+ Cloudcover direct_solar_radiation Surface_ solar _radiation_downwards으 평균 및 표준 편차지역성 반영 County별
+ Cloud_std_y Cloudr mean dsr_mean_y dsr_std_y SSr mean_Y Ssr_std _y
+ Cloudcover direct_solar_radiation Surface_solar_radiation_downwards의 month별 평균및 County별 표준편차 지역요소 및 계절요소 반영
+<p.21>
+ 03
+ 모델링
+<p.22>
+ 모델 및 평가지표 소개
+ 매1 MAE- 1 Y-I
+ Gradient 약자로 Extreme Boosting의 boost 알고리즘에 대해 병렬 학습 gradient 을 구현한 모델이다 Boosting 앙상블 모델 로 순차적 학습을 통해 오답에 집중하고 후순 위 모델을 학습할 수 있도록 하였다
+ Mean Error Absolute
+ Tl:데이터 개수 Yi:번째 데이터의 예측 값 ::1번째 데이터의 실제 값
+<p.23>
+ 초기 모델
+ 정보손실을 최소화함과 더불어 사전에 파악하지 못한 변수 간 관계를 밝히고자 거의 모든 변수를 활용하여 모델 피팅을 수행하였다 business 별 구분은 최종 모델에 반영하였다 consumption과
+ the Of MAE mean 5589738235473633
+<p.24>
+ 수정된 모델 1 데이터 분리
+ consumption과 business에 따라 총 4가지 데이터로 분리하여 모델 피팅 및 평가
+ business에 따라 총 4가지 데이터로 분리하여
+ The Coh: 0 the bus: 0
+<p.25>
+ 수정된 모델 1 데이터 분리
+ business에 따라 총 4가지 분리하여 모델 피팅 및 평가 Consumption과 데이터로
+ business에 따라 총 4가지 데이터로 분리하야 consumption과
+ The CON: 1 the bus: 0
+ The Con: 1 the bus:
+<p.26>
+ 모델-2 수정된 하이퍼 튜닝 파라미터
+ Random Search 파라미터 최적화 기법을 활용하여 각 4개의 데이터에 대해 최적화 수행 가장 성능이 좋은 하이퍼 파라미터는 아래와 같다
+ Lonsum ptior
+<p.27>
+ 모델 3 수정된 변수 제거
+ 경우 오차가 높아 SHAP 변수중요도를 바탕으로 변수 제거를 추가로 수행하였다
+ is_consumption 인 경우 최적화만으로도 우수한 성능을 확인할 수 있다 그러나 파라미터 인 = 0 1 경우 오차가 높아 SHAP 변수중요도를 바탕으로 변수 제거를 추가로 수행하였다
+ Splite date = 2022-01-01
+ Econsumption & business
+ 제거한 변수: 'cos hour' 'sin hour' snowfall' season' ssrd std_x' 'total_precipitation' 'hour' 'dsr_std_y' Cloudcover mid' 'sin_month' sin dayofweek' 'hour Std' county isbusi std' county isbusi mean
+ 25 50 75 100 125 150 175 200 meanlISHAP Value| average impact Oh model Output magnitude
+<p.28>
+ 모델 3 수정된 변수 제거
+ 경우 최적화만으로도 우수한 성능을 확인할 수 is_consumption =0 인 파라미터 있다 그러나1 인 오차가 높아 SHAP 변수중요도를 경우 바탕으로 변수 제거를 추가로 수행하였다
+ Splite date = 2022-01-01
+ Econsumption & business
+ the Of MAE mean 8152 894156
+ the Of MAE mean 89 4156
+ 제거한 변수: 'cos hour' 'sin hour' Snowfall' season' ssrd std_x' total_precipitation' 'hour' 'dsr_std_y' Cloudcover mid' sin month' 'sin dayofweek' 'hour std' county isbusi std' county isbusi mean'
+<p.29>
+ 모델 3 수정된 변수 제거
+ 경우 오차가 높아 SHAP 변수중요도를 바탕으로 변수 제거를 추가로 수행하였다
+ iS 인 경우 파라미터 0 최적화만으로도 우수한 성능을 확인할 수 있다 Consumption =
+ is_consumption =0 인 경우 파라미터 최적화만으로도 우수한 성능을 확인할 수 있다 그러나1 인 경우 오차가 높아 SHAP 변수중요도를 바탕으로 변수 제거를 추가로 수행하였다
+ Splite date = 2022-01-01 Is_business =0& Is Consumption Econsumption & non-business
+ apparent temperature
+ installed Capacity
+ temperature
+ 제거한 변수: COS hour' 'sin _hour' ssrd std _*' surface _solar_radiation downwards 'direct_solar_radiation' county _isbusi std' 'hour_std'
+ mean!SHAF Valuel average Impact O model Output magnitud
+<p.30>
+ 모델 3 수정된 변수 제거
+ is_consumption 인 경우 파라미터 최적화만으로도 우수한 성능을 확인할 수 있다 그러나 인 0 1 경우 오차가 높아 SHAP 변수중요도를 바탕으로 변수 제거를 추가로 수행하였다
+ Splite date = 2022-01-01 Is_business = 0 & Is Consumption - Econsumption & non-business
+ 제거한 변수: COs hour' 'sin_hour' ssrd std_x' surface Solar _radiation downwards' direct Solar _radiation' County isbusi std' 'hour_std'
+<p.31>
+ 최종 결과
+ 4개의 MAE 평균 25 4941
+<p.32>
+ 감사합니다
