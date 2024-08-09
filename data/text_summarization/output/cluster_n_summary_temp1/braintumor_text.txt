@@ -1,57 +1,45 @@
 <subject>데이터 증강 BRAIN 및 TUMOR</subject>
 <team>김고은, 김채연, 김희원, 이예령, 이승우</team>
 <index>주제 선정 이유, RESNET, 원본데이터 설명 및 한계, 구현 RESNET, 결과 비교, 결론 및 아쉬운 점</index>
-<main>주제 선정 이유</main>
-<subtitle>원본 예측 TEST DATA</subtitle>
-<content>RESNET 구조를 학습하고 이를 BRAIN TUMOR DATA에 적용하기 위해 주제를 선정하였다.</content>
+<main>주제 선정 이유</main>  
+<subtitle>RESNET 학습의 필요성</subtitle>  
+<content>RESNET 구조를 연구하여 뇌종양 데이터에 적용하는 과정에서 해당 모델의 학습이 중요하다는 점이 강조된다.</content>  
 
-<subtitle>DATA의 개수 부족</subtitle>
-<content>데이터 개수가 적어 AUGMENTATION을 통해 새로운 데이터를 생성함으로써 모델의 성능을 높이기 위해 주제를 선정하였다.</content>
+<subtitle>데이터 부족 문제</subtitle>  
+<content>데이터 개수가 적어 데이터 증강(AUGMENTATION)을 통해 새로운 데이터를 생성하여 학습의 효용성을 높이려는 노력이 필요하다.</content>  
 
-<subtitle>모델 구현 및 학습</subtitle>
-<content>RESNET-18과 RESNET-50 모델을 직접 구현하고 학습하여 성능을 비교하기 위해 이 주제를 선정하였다.</content>
-
-<subtitle>원본 DATA 성능 평가</subtitle>
-<content>원본 DATA의 성능이 동일했지만 데이터 개수가 적어 모델 성능 평가에 부적절하다는 이유로 주제를 설정하였다.</content>
-
-<subtitle>증강 DATA 성능 비교</subtitle>
-<content>증강 데이터에서 RESNET-50의 성능이 우수함을 확인하여 주제의 필요성을 더욱 실감하였다.</content>
+<subtitle>모델 비교 및 성능 평가</subtitle>  
+<content>RESNET-18과 RESNET-50 모델을 구현하여 학습을 진행한 결과, 원본 데이터에서는 모델 성능의 판단이 어려웠고, 증강 데이터에서는 RESNET-50의 성능이 더 우수하다는 점이 나타났다.</content>
 <main> RESNET</main>
-<subtitle>[Training Issues]</subtitle>
-<content>모델의 정확도가 낮은 이유는 데이터 부족 때문이며, 훈련 데이터에 할당할 수 있는 데이터 수가 여전히 부족하다는 점이 지적되고 있습니다.</content>
+<subtitle>[RESNET 개요]</subtitle>
+<content>RESNET은 깊은 신경망 구조로, 훈련 시 더 높은 정확도를 달성할 수 있도록 설계되었으나, 데이터 부족으로 인해 모델의 성능이 제한됨.</content>
 
-<subtitle>[Data Argumentation]</subtitle>
-<content>데이터의 수를 늘리기 위해 데이터 증강 방법론이 필요하다는 점이 강조되고 있습니다.</content>
+<subtitle>[훈련 데이터 문제]</subtitle>
+<content>훈련 데이터의 수가 부족하여 모델 정확도가 낮아졌으며, 이는 RESNET의 성능 향상에 직접적인 영향을 미쳤음.</content>
+
+<subtitle>[데이터 증강 필요성]</subtitle>
+<content>훈련 데이터 수를 증가시키기 위해 데이터 증강 방법론을 적용하는 것이 필요하여, 데이터 부족 문제를 해결할 수 있는 방안이 요구됨.</content>
 <main> 원본데이터 설명 및 한계</main>
 <subtitle>원본데이터</subtitle>
-<content>원본데이터는 RESNET 18 및 50을 기반으로 하여 머신러닝 모델을 구현하기 위해 사용되는 데이터이다.</content>
+<content>원본데이터는 ResNet 18 및 ResNet 50 알고리즘을 적용하여 처리되는 이미지 데이터이다.</content>
 
 <subtitle>원본데이터 한계</subtitle>
-<content>원본데이터는 이미지의 다양성과 복잡성에서 한계를 가지고 있어, 이미지 증강 및 컨투어 기법을 사용하여 성능을 개선해야 한다.</content>
+<content>원본데이터에는 여러 한계가 존재하며, 이미지 증강 및 컨투어 확장을 통해 이 한계를 극복하려는 노력이 필요하다.</content>
 <main> 구현 RESNET</main>
 <subtitle>[원본데이터 설명]</subtitle>
-<content>총 253개의 원본 데이터를 포함하며, YES와 NO로 구분된 클래스가 있다.</content>
-
-<subtitle>[원본데이터 한계]</subtitle>
-<content>이미지 증강과 컨투어 처리의 한계가 존재하여 결과에 영향을 미칠 수 있다.</content>
-
-<subtitle>[Count of Classes in each set]</subtitle>
-<content>각 데이터 세트 내 클래스 수에 대한 정보가 포함되어 있다.</content>
+<content>원본 데이터는 총 253개로 구성되어 있으며, 데이터 증강 및 컨투어에 대한 설명이 포함되어 있다.</content>
 
 <subtitle>[RESNET 50]</subtitle>
-<content>ResNet-50 모델을 사용하여 성능을 평가하며, 증강 데이터에서의 정확도와 손실을 분석한다.</content>
+<content>ResNet-50에 대한 성능이 강조되며, 증강 데이터를 기반으로 한 모델의 정확도와 손실도 다루어졌다.</content>
 
-<subtitle>[증강 데이터 성능 시각화 RESNET -18]</subtitle>
-<content>ResNet-18 모델을 통해 증강 데이터의 성능을 시각화하여 성능 개선 가능성을 보여준다.</content>
-
-<subtitle>[증강 데이터 성능 시각화 RESNET-50]</subtitle>
-<content>ResNet-50 모델에 대한 증강 데이터의 성능을 시각화하여 이전 모델과의 비교를 통해 성능 차이를 명확히 한다.</content>
+<subtitle>[증강 데이터 성능 시각화]</subtitle>
+<content>ResNet-18 및 ResNet-50의 성능 시각화가 진행되었으며, 다양한 증강 데이터에 대한 결과가 제시되었다.</content>
 <main> 결과 비교</main>
-<subtitle>원본 데이터 성능</subtitle>
-<content>ResNet-18과 ResNet-50의 성능을 비교한 결과, ResNet-18은 원본 데이터를 처리할 때 특정 성능 향상을 보였으며, 두 모델 간의 정확도와 손실에 대한 차이가 관찰되었다.</content>
+<subtitle>원본 데이터 성능 시각회</subtitle>
+<content>ResNet-18과 ResNet-50의 성능을 비교한 결과, 두 모델 모두 원본 데이터에서의 정확도와 손실이 다르게 나타났다. ResNet-50이 더 높은 성능을 기록한 것으로 분석된다.</content>
 <main> 결론 및 아쉬운 점</main>
 <subtitle>결론</subtitle>
-<content>RESNET-50 모델의 성능이 시각적으로 확인되었으며, 모델이 다양한 이미지 분류 작업에서 효과적임을 입증했다.</content>
+<content>RESNET-50의 성능 시각화 결과, 모델이 이미지 인식 작업에서 우수한 성능을 보였음이 확인되었다.</content>
 
 <subtitle>아쉬운 점</subtitle>
-<content>모델의 복잡성과 학습 데이터의 제한으로 인해 일부 이미지 분류에서 성능 저하가 발생할 수 있다는 점이 아쉬운 부분이다.</content>
+<content>성능 시각화 과정에서 데이터의 일부 정보가 누락되어 있어, 전체적인 성능 평가에 한계가 있었던 점이 아쉬움으로 남는다.</content>

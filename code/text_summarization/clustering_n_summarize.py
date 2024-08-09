@@ -382,6 +382,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--input') # ocr_samples_txt 전달하기
     parser.add_argument('--output') # cluster_n_summary 전달하기
+    parser.add_argument('--temperature')
     # 인자 파싱
     args = parser.parse_args()
 
@@ -475,7 +476,7 @@ Instructions:
                  "content": f'"""{ctext}"""'
                 }
             ]
-            summarizations.append(gpt.get_chat_completion(msg, model='gpt-4o-mini', temperature=1))
+            summarizations.append(gpt.get_chat_completion(msg, model='gpt-4o-mini', temperature=int(args.temperature)))
         
         output_filepath = os.path.join(output_dir, file)
         with open(output_filepath,'w', encoding='utf-8') as f:

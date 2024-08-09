@@ -1,0 +1,42 @@
+<subject>시각장애인을 위한 음성 안내 카메라 서비스</subject>
+<team>김지원, 박석우, 박소언, 배성윤</team>
+<index>서비스 목표, 플로우 및 기능설명, 한계점</index>
+<main>서비스 목표</main>
+<subtitle>시각장애인 이용자 지원</subtitle>
+<content>시각장애인이 사진을 촬영할 때 음성 안내를 통해 보다 수월하게 촬영할 수 있도록 지원하는 서비스 목표를 설정하고 있다.</content>
+
+<subtitle>구체적 위치 안내</subtitle>
+<content>서비스는 객체의 구체적인 위치 정보를 제공하여 시각장애인이 주변 환경을 인식하고 사진을 촬영하는 데 도움을 준다.</content>
+
+<subtitle>프로젝트 목표</subtitle>
+<content>프로젝트는 객체 탐지 모델의 정확도를 향상시키고, 실시간 추론 속도를 개선하며, 탐지된 객체를 적절한 시기에 음성으로 안내하기 위한 TTS 알고리즘을 최적화하는 것을 목표로 한다.</content>
+
+<subtitle>음성 안내 기능</subtitle>
+<content>음성 안내를 통해 시각장애인이 사진을 더욱 정확하고 효율적으로 촬영할 수 있도록 하여 자율성과 사회적 참여를 증진시키는 데 기여한다.</content
+<main> 플로우 및 기능설명</main>
+<subtitle>서비스 시연 영상 주제 선정 배경</subtitle>
+<content>서비스 시연 영상의 주제 선정은 사용자의 요구와 기술적 가능성을 고려하여 이루어졌다.</content>
+
+<subtitle>데이터 수집</subtitle>
+<content>데이터 수집 단계에서는 다양한 얼굴 이미지를 확보하여 모델 훈련에 필요한 충분한 데이터를 준비한다.</content>
+
+<subtitle>얼굴 탐지 모델 훈련 과정</subtitle>
+<content>얼굴 탐지 모델 훈련 과정은 수집된 데이터를 기반으로 알고리즘을 학습시켜 얼굴 인식의 정확도를 높이는 단계이다.</content>
+
+<subtitle>객체 탐지 모델 선정</subtitle>
+<content>객체 탐지 모델 선정은 다양한 알고리즘 중에서 최적의 성능을 발휘할 수 있는 모델을 선택하는 과정이다.</content>
+
+<subtitle>음성 안내 알고리즘</subtitle>
+<content>음성 안내 알고리즘은 사용자에게 필요한 정보를 음성으로 제공하여 인터페이스의 접근성을 높이는 기능을 수행한다.</content>
+
+<subtitle>한계점</subtitle>
+<content>시스템의 한계점은 데이터의 다양성 부족이나 알고리즘의 정확도 문제 등으로 인해 발생할 수 있는 오류를 포함한다.</content>
+<main> 한계점</main>
+<subtitle>훈련 과정의 한계</subtitle>
+<content>훈련 과정에서 YOLO 모델의 성능 비교가 이루어졌으나, 최적의 하이퍼 파라미터 튜닝이 부족하여 성능이 제한적일 수 있다.</content>
+
+<subtitle>조명 환경의 영향</subtitle>
+<content>조명 환경에서의 성능 향상을 위해 데이터 증강 라이브러리를 사용했지만, 여전히 다양한 조명 조건에서의 인식 능력이 제한적일 수 있다.</content>
+
+<subtitle>추론 속도의 최적화</subtitle>
+<content>추론 속도를 최적화하기 위해 가중치를 조정했으나, 여전히 실시간 처리에 있어 한계가 존재할 수 있다.</content>
