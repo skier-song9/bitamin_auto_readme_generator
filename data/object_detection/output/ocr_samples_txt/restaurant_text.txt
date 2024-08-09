@@ -1,0 +1,139 @@
+<p.01>
+ 나
+ 나용자의 순차적 고려한 레시피 기반 음식 & 식당 추천 선호도를
+ 김태호12기> 이철민13기 김아진13기 김윤영13기
+ 추천시스템 1조
+<p.02>
+ Ndex
+ & 프로젝트 소가
+ 모델 SASREC
+ 사용 데이터
+ 식당 추천 알고리즘
+ 모델 설명 & 성능 비교 C
+ + 향후 발전방향
+<p.03>
+ 나천[1는
+ 교환학생 시 가장 힘든 이유 중 하나인 입맛에 맞지 않는 음식! 사용자의 입맛에 맞는 그 나라의 음식을 추천하고 그 음식을 파는 식당을 추천해드립니다
+ 입맛에 맞는 음식 추천
+ 그 음식을 파는 식당 추천
+ 기존 먹었던 음식을 기반으로 오늘의 음식 추천
+ 피자를 파는 음식점 추천
+<p.04>
+ 사용리진록
+ Foodcom
+  Yelpcom _
+ _id id Rating 컬럼 활용 User recipe
+ Name Dishes 컬럼 활용 Restaurant Popular
+ 모델의 출력=유저가 좋아할 SASREC 음식과 유사한 음식을 파는 식당 추천
+ 특정 유저가 다음에 먹을 음식 추천
+<p.05>
+ 사용리니지록
+ Foodcom Dataset
+ Yelpcom Dataset
+<p.06>
+ 모델
+<p.07>
+ 1 NEURAL GoLLabOratiVE FiLTErING
+ Neura! Net 기반의 Filtering 모델 Collabrative 사용자와 아이템 간의 상호 작용을 예측하는데 활용되며 주로 추천 시스템에서 사용된다
+ Neural Collaborative Filtering framework
+ 기존의 협업 발전 필터링Collaborative Filtering을
+ 선형적인 Matrix Factorization으 한계점을 극복하고 User와 Item의 관계를 보다 복잡하게 모델링 가능
+ 주로 사용자와 아이템 간의 상호작용을 나타내는 평가 행렬을 입력으로 받는다
+ 평가 행렬은 사용자의 아이템 평가나 구매 여부를 나타 내며 이를 통해 사용자가 아이템을 어떻게 평가할지 예측하는 것이 목표이다
+ 모델은 이 평가 행렬을 바탕으로 신경망을 학습시 NCF 키며 사용자와 아이템 간의 상호작용을 예측하고 이를 통해 개인화된 추천을 제공한다
+<p.08>
+ 2 FACtOr zAtuoN MACHUNIE
+ Machine은 SVM과 MF와 같은 Factorization Factorization Model의 장점을 결합한 모델
+ Feature 사이의 가능한 모든 interaction을 모델링한다 Vector
+ A의 대한 User Moive <Transformer>어 rating 예상하기
+ STEP
+ Wars>에 대한 A&B rating1 4로 정반대의 <Star 선호도를 가진다
+ STEP N
+ B가 <Star & <Transformer> rating4 5를 Wars> 가지므로 비슷한 선호도를 가진다
+ 결론 A의 <Transformer>의 선호도은 A의 <Star Wars>의 선호도와 유사할 것이다
+<p.09>
+ 3 WiDE & Deep
+ 2016년에 Wide & Deep 구글이 발표한 추천랭킹 알고리즘
+ izC 에 특 화돈 Vid e도 그덜 과 G 틀 특호 된 덜 을 결 합 하 ti 여 마든 Oli tio 이 알고 리 즘 이 다 n On r 22 10 - ee 도
+ 특화된 모델 Memorization어 Wide
+ 특화된 모델 Generalization에 Deep
+ 설치한 앱과 열람한 앱 간의 통해 표현 Cross-product를 nteraction
+ 앱을 동일한 임베딩 공간에 표현 A B C
+ 모든 앱의 Combination을 구하여 모든 경우를 <> 학습한다 이때 0이 되는 pair는 학습이 불가하다
+ > 없던 관계도 같은 임베딩 공간에 표현이 되어 pair가 학습이 가능해진다 하지만 잘 등장하지 않는 combination의 경우 다른 User에게서 거의 등장하지 않기에 학습이 잘 안된다
+<p.10>
+ } S L /E S EC 0 EN A 2E T 66 M M EN D AT 1 N
+ 순차 추천을 위한 모델 Sequential 기존의 추천 시스템은 Recommendation 사용자의 반면 SASReC은 사용자의 상호작용 시권스를 보다 잘 모델링하고자 고안되었다
+ +추 천을 위 한도 델 기존 의 추천 시스 템 은사 S 이 이고 도 용지 의 이전 상로 작용 기 록을 고 펴하 enti ECCG dat On 순차 Ha 29U mn Yen = 바 요기 L이 사 자요 그 | 라 더E 그자 교 디 DL
+ 유저가 시청한 영화와 그 순서에 대한 정보
+ 1 Embedding Layer
+ Embedding Layer 모델의 인풋 형식과 동일하게 Input의 삽입 형태 맞춰주기
+ 모델의 인풋 형식과 동일하게 Input의 삽입 형태 맞춰주기
+ Self-Attention Layer 영화의 순서에서 어떤 순서가 중요한지 파악하기
+ 영화의 순서에서 어떤 순서가 중요한지 파악하기
+ Point-wise FFN
+ User-ltem Interaction와 Attention Score를 통해 학습 진행
+ Prediction Layer 예측=추천 결과 반환
+<p.11>
+ 모델 성능
+ 모델 정의 NCF
+ FM 모델 정의
+<p.12>
+ -델 :교
+ 모델 정의 WIDE&DEEP
+ 모델 정의 SASReC
+<p.13>
+ -델 성능 -
+ 랭킹 성능 평가 지표로 관련성이 높은 문서가 상위에 추천되는지 측정 NDCGO1O 전체 사용자 수 대비 Hit적중한 사용자 수를 측정 HRO1O
+ 성능이 가장 좋은 구현 SASReC으로 추천시스템
+<p.14>
+ SASrec을 활욤인 추천시스컴
+<p.15>
+ 모델 구현 SASREC 수조시스템
+ 모델 사용 이유 SASREC 수
+ Self-Attention을 활용한 시권스 모델링을 통해 사용자의 선호도 및 그 변화를 모델이 잘 포착해냈기 때문이다
+ 또한 추천에 활용한 데이터으 매우 Sparsity가 001732로 희소한데 SASRec으 학습 가능한 Embedding 덕분에 높 은 성능을 보였다
+ 따라서 최종 모델로 SASRec을 사용했고 SASRec의 결과로 음식점 추천까지 진행예정이다
+ 데이터를 SASREC 모델에 돌려 USER ID가 FOODCOM 선호할 RECIPE ID 출력
+<p.16>
+ 본격적인 취천 시념
+<p.17>
+ 식당 추천 알과리즈 구현
+ 구현 과정
+ 각 이름 1 FOODCOM 데이터와 YELPCOM 데이터의 음식의 을 TF IDF 벤터로 변환한다
+ 2 데이터를 활용한 SASREC 모델의 출력 결과 FOODCOM 음 식 이름와 YELPCOM 데이터 속 각 식당의 유명 음식들 간의 유사도를 Cosine 계산한다
+ 가장 높은 유사도를 가진 식당을 3 Cosine 출력한다
+<p.18>
+ 식당 추천 예시
+ User 1842
+ 추천 식당
+ 먹은 음식
+ Kimchi Pancake Pork Belly Kimchi Stew Brisket Dwenjang Stew
+ Atti
+ Kimchi TakToritang Korean Beef Bulgogi In Luttuce Wraps Kimchi Jjigde Grandma's Rainy Day Kimchi Noodle Soup
+ 추천 결과 SASReC
+ Kimchi Pancake
+<p.19>
+ 식당 추천 예시
+ User 19073
+ 추천 식당
+ Rubirosa
+ 먹은 음식
+ Small Sausage And Broccoli Rabe Pizza Caprese Cheese PizzaSmal! Sausage And Broccoli Rabe Pizza Caprese Cheese Pizza
+ P2ZA ROLL-UPS KITTENCAL'S TALIAN MELT-IN-YOUR-MOUTH MEATBALLS OLIVE GARDEN FETTUCCINE ALFREDO MY FAMILY'S FAVORITE SLOPPY JOES P2ZA HUT STYLE 이22A PEPPERED BUFFALO RANCHI SHRIMP P2ZA
+ 추천 결과 SASReC
+ KCHICAGO STYLE DEEP DSH SAUSAGE PzZA
+<p.20>
+ 향후 발전 방향
+ 적용 가능한 지역 확대
+ &
+ 현재는 음식점 데이터에 한정 이후 다양한 지역의 식당을 추가하여 사용 지역을 확대한다 뉴욕
+ b
+ 음식점 추천 시 대신 사전훈련된 단어 벤터 사용 tf-idf
+ 기존에는 tf-idf만을 활용해 유사도를 계산 같은 사전 훈련된 단어 벤터를 Word2Vec과 사용한
+ C
+ 더 많은 유저 필요
+<p.21>
+ 가자합니다
+<p.22>
+ O&A
