@@ -1,16 +1,15 @@
-<main>서비스 배경 및기획</main>
-<sub>문제 상황</sub> <content>거짓말탐지기의 신뢰성 문제와 언어적 요소를 고려하지 않는 기존 탐지 방법의 한계.</content>
-<sub>서비스 제안</sub> <content>언어적 접근을 통한 실시간 거짓말 탐지 및 유형 분류 필요성.</content>
-<sub>사용 예시</sub> <content>AI assistant가 수사관의 심문을 도와 실시간으로 거짓말 유형을 태깅.</content>
-<sub>실무 파이프라인</sub> <content>RAG, LLM, Speech To Text 등 기술적 요소를 활용한 실시간 데이터 처리 및 분석.</content>
+<main>서비스 배경 및 기획 서비스</main>
+<sub>문제 상황</sub> <content>거짓말탐지기 검사 결과로 억울한 옥살이를 한 사례가 있으며, 거짓말탐지기의 신뢰성에 대한 의문이 제기됨. 현재 거짓말탐지기는 생리적 반응을 측정하지만 긴장, 감정 상태 등에 영향을 받아 오류가 발생할 수 있으며, 언어적 요소를 고려하지 않음.</content>
+<sub>서비스 제안 및 사용 예시</sub> <content>AI assistant가 심문 과정에서 피의자의 거짓말 유형을 실시간으로 태깅하여 심문관이 효과적으로 질문 전략을 조정할 수 있게 함. 예시로는 "Blurry? Can you try to remember any other details about that day?"와 같은 질문이 있음.</content>
+<sub>실무 파이프라인</sub> <content>RAG, LLM with RAG & PEFT, DB Vector Store, Augment Knowledge & Context, Speech to Text, Tokenize & Encode, Fine-tuned LLM을 포함한 파이프라인 구성.</content>
 
 <main>모델 구축 과정</main>
-<sub>STT 구현</sub> <content>사용자 음성을 텍스트로 변환하고, Google Cloud Speech-to-Text API를 활용해 화자 구분.</content>
-<sub>데이터 구축</sub> <content>수사관-피의자 신문기록을 기반으로 한 데이터셋 생성, SCAN 기법을 적용한 거짓말 신호 유형 태깅.</content>
-<sub>Synthetic Data Generation</sub> <content>GPT와 LangChain을 활용해 모순되는 문장 및 거짓말 신호를 포함하는 데이터 생성.</content>
-<sub>Fine Tuning</sub> <content>LLaMA-2-7b-chat-hf 모델을 미세 조정하고, Colab 환경에서 학습 수행.</content>
-<sub>RAG</sub> <content>사건 기록을 기반으로 KBI 검출, LangChain을 통해 사건 기록을 벡터 스토어에 저장 후 검색 기반으로 KBI를 감지.</content>
+<sub>STT 구현</sub> <content>DB Vector Store, Augment Knowledge & Context, Speech to Text, Tokenize & Encode 단계를 거쳐 사용자 음성을 텍스트로 변환. Google Cloud의 Speech to Text API를 사용하여 개별 화자를 구분하고 스크립트 형태의 문자열을 반환함.</content>
+<sub>데이터 구축</sub> <content>수사관-피의자 신문 기록 데이터셋 생성을 위해 Open AI API를 활용하여 직접 Train Dataset을 구축. SCAN 기법을 기반으로 한 거짓말 신호 유형 포함.</content>
+<sub>Synthetic Data Generation</sub> <content>GPT 모델을 활용하여 모순되는 문장과 거짓말 신호를 포함하는 피의자 신문 기록 데이터 생성. LangChain의 Synthetic data generator 및 Pydantic을 활용한 데이터 타입 validation 기능 제공.</content>
+<sub>Fine Tuning</sub> <content>LLaMA-2-7b-chat-hf 모델을 선택하여 미세 조정 진행. 로컬 및 클라우드 환경에서의 학습 시간과 비용을 비교하여 Colab에서 학습하기로 결정. autotrain-advanced 패키지를 활용하여 fine tuning 진행.</content>
+<sub>RAG</sub> <content>사건 기록을 통해 KBI 검출. LangChain을 활용하여 RAG 구현, 사건 기록을 Documents Loader를 통해 불러오고 Chroma 벤터 스토어에 저장하여 검색 기반 KBI 검출.</content>
 
 <main>결론 및 제언</main>
-<sub>프로젝트 의의</sub> <content>LLM을 활용한 거짓말 탐지 기술의 가능성 제시, 실시간 심문 지원 및 수사 효율성 증대.</content>
-<sub>추가 지향점</sub> <content>더 큰 모델(LLaMA-2 70b)을 활용한 성능 향상 및 지속적인 데이터 업데이트와 모델 개선 필요성.</content>
+<sub>프로젝트 의의</sub> <content>프로토타입 개발을 통해 LLM을 활용한 거짓말 탐지 기술의 가능성을 제시. 수사 효율성을 증대하고 실시간 심문 지원 가능. 기존 생체신호 기반 거짓말탐지기와 달리 심문 대화 도중 문장 단위의 거짓말 탐지 가능.</content>
+<sub>추가 지향점</sub> <content>LLaMA2 70b나 GPT-4 모델 사용 시 성능 향상 기대. 다른 LLM 사용 및 실제 경찰청 데이터 활용을 통해 각 질문과 답변을 즉각적으로 처리할 수 있는 모델로 발전시킬 계획.</content>

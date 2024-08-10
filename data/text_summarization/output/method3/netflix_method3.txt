@@ -1,23 +1,23 @@
 <main>INTRODUCTION</main>
-<sub>프로젝트 배경</sub> <content>뉴스가 주가 변동에 미치는 영향을 탐구하고, 뉴스 감성분석 및 토픽 모델링을 사용하여 주가를 예측. 장기적인 추세를 고려한 주가 예측 모델 구현.</content>
-<sub>프로젝트 목표</sub> <content>뉴스 데이터를 활용한 주가 예측 모델의 최적화 및 파라미터 선정. LSTM, GRU, Transformer 모델을 비교하여 최적의 모델 판별.</content>
-<sub>데이터 수집</sub> <content>FinanceDataReader 라이브러리를 통해 2018년 1월 2일부터 2023년 12월 29일까지 NETFLIX, 핀터레스트, 메타플랫폼스, 스포티파이의 주가 데이터 수집. Stock News API를 통해 같은 기간의 NETFLIX 뉴스 데이터 수집.</content>
+<sub>Background of topic selection</sub> <content>주가 변동에 대한 뉴스의 영향을 탐구하고 뉴스 감성분석 및 토픽 모델링을 활용하여 주가 예측에 적용하고자 함 한 기업을 대상으로 예측하며 기존 프로젝트보다 예측 일수와 시퀀스 길이를 늘려 장기적인 추세를 고려한 결과를 얻고자 함.</content>
+<sub>Brief Project Introduction</sub> <content>뉴스 데이터를 활용한 주가 예측 모델의 최적화 및 효율적인 파라미터 선정 LSTM GRU Transformer 모델을 비교하여 장기적인 추세 예측에 효과적인 모델 판별.</content>
+<sub>Data collection</sub> <content>FinanceDataReader를 사용하여 2018년 1월 2일부터 2023년 12월 29일까지의 NETFLIX 주가 데이터를 수집 동일 기간의 핀터레스트 메타플렛폼스 스포티파이 주가 데이터도 수집 Stock News API를 활용하여 NETFLIX 관련 뉴스 데이터를 수집하고 FinBERT와 BERTopic을 사용하여 감성분석과 토픽모델링 시도.</content>
 
 <main>DATA PREPROCESSING</main>
-<sub>파생 변수 생성</sub> <content>변화율, 이동 평균 등 다양한 파생 변수 생성. 2018년 데이터를 추가로 수집하여 변수 생성에 활용.</content>
-<sub>기술 분석 지표 추가</sub> <content>Bollinger Bands, Keltner Channel, Moving Average 등 37개의 기술 분석 지표 추가.</content>
-<sub>유사 주가 데이터 추가</sub> <content>핀터레스트, 메타플랫폼스, 스포티파이의 종가를 추가하여 분석.</content>
-<sub>다중공선성 제거</sub> <content>주가 변화 관련 기본 지표 유지, 상관관계 높은 보조 지표 제거.</content>
-<sub>뉴스 주제 및 감성 파생 변수 생성</sub> <content>뉴스 토픽과 감성을 레이블 인코딩 및 원핫 인코딩하여 과거 뉴스 데이터의 영향을 고려.</content>
-<sub>최종 데이터셋</sub> <content>주식 데이터 셋(1257*38), 전체 데이터 셋(1257*59).</content>
+<sub>Make derived Variable</sub> <content>변화율과 이동 평균을 포함한 파생변수 생성 2018년 데이터를 추가로 수집해 파생변수 생성에 활용.</content>
+<sub>Technical Analysis Library</sub> <content>금융 시계열 데이터의 기술 분석을 위해 다양한 지표를 추가 Bollinger Bands Keltner Channel Accumulation/Distribution Index Moving Average 등 37개 지표를 선정.</content>
+<sub>Peer Analysis</sub> <content>유사한 사업을 영위하는 기업(핀터레스트 메타플렛폼스 스포티파이)의 종가를 feature로 추가 PINS의 상장 이전 결측값을 최초 상장일의 종가로 대체.</content>
+<sub>Remove multicollinearity</sub> <content>주가 변화와 관련된 기본 지표들을 유지하고 상관관계가 높은 보조 지표들을 제거.</content>
+<sub>Make derived variable for News Topics & Sentiment</sub> <content>뉴스의 영향을 측정하기 위해 Label Encoding OneHot Encoding Moving Average를 사용하여 파생변수 생성.</content>
 
 <main>MODELING</main>
-<sub>시계열 모델</sub> <content>시간에 따른 데이터 패턴을 분석하여 미래 값을 예측. Sequence Length 60, Predict Size 10 설정.</content>
-<sub>모델 정의</sub> <content>LSTM, GRU, Transformer 모델 사용. 각 모델의 특징과 예측 방식 설명.</content>
-<sub>모델 비교</sub> <content>CLOSE vs 1d_ROC, 뉴스 포함 vs 미포함, LSTM vs GRU vs Transformer 모델 비교.</content>
+<sub>Time Series</sub> <content>시간에 따른 데이터 패턴을 분석하여 미래 값을 예측 Sequence Length와 Predict Size를 설정하여 고정된 Window Size로 모델에 입력.</content>
+<sub>Modeling</sub> <content>LSTM GRU Transformer 모델을 정의하고 비교 LSTM은 기존 주가 예측 모델로서 주로 사용되며 GRU는 LSTM의 복잡성을 간단화 Transformer는 NLP에서 좋은 성능을 보여 주가 예측에 적용.</content>
+<sub>Model Comparison</sub> <content>Close 종가와 1d-ROC 중 예측 타겟 선정 뉴스 데이터 포함 여부에 따른 예측 성능 비교 LSTM GRU Transformer 모델 간 성능 비교.</content>
 
 <main>CONCLUSIONS AND LIMITATIONS</main>
-<sub>평가 기준</sub> <content>RMSE 사용, Close와 1dLROC 중 1dLROC가 더 유의미한 예측 결과 제공.</content>
-<sub>모델 결과</sub> <content>LSTM, GRU, Transformer 모델의 RMSE 비교. LSTM의 평균 손실값이 가장 작고, Transformer의 손실값이 가장 큼.</content>
-<sub>최적 파라미터</sub> <content>LSTM - stock-only 데이터셋, seq 30, batch 64, 평균 오차율 1.85%. GRU - total 데이터셋, seq 30, batch 128, 평균 오차율 1.66%. Transformer - total 데이터셋, seq 30, batch 64, 평균 오차율 1.62%.</content>
-<sub>한계점</sub> <content>금융 시장의 예측 어려움, 모델 성능 평가의 어려움, 주가 예측에서 뉴스 감성분석의 한계.</content>
+<sub>Evaluation</sub> <content>예측 평가 기준으로 RMSE를 선택 Close 종가와 1d-ROC 중 ROC로 예측하는 것이 추세 반영에 유리함을 확인.</content>
+<sub>Model Result</sub> <content>LSTM GRU Transformer 모델 각각의 RMSE 비교 LSTM의 평균 RMSE가 가장 작고 Transformer의 평균 RMSE가 가장 큼.</content>
+<sub>Compare each parameter</sub> <content>Sequence_size와 Batch_size는 값이 작을수록 유의미한 결과를 나타내며 Model Size에서는 LSTM과 Transformer는 64 GRU는 128에서 유의미한 결과를 보임.</content>
+<sub>Best parameter for each model</sub> <content>LSTM 모델은 stock-only 데이터셋 GRU와 Transformer 모델은 total 데이터셋에서 최적의 파라미터 조합을 선정.</content>
+<sub>Limitations</sub> <content>금융 시장의 예측 어려움 예측 그래프 확인의 시간 소요 뉴스 토픽과 감성분석의 정확도 문제 주식 시장의 5% 오차에 대한 신중한 검토 필요.</content>
