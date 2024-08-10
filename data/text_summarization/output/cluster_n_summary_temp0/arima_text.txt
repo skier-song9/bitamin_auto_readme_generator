@@ -1,0 +1,72 @@
+<subject>2024년도 1학기 비타민 프로젝트 발표: SARIMA와 ARIMA 모델 비교를 통한 미세먼지 분석</subject>
+<team>김채연, 김아진, 문승민, 서윤, 허범현</team>
+<index>프로젝트 배경 소개, 시계열 모델 스터디, ARIMA & SARIMA, 사용 데이터셋, 시계열 데이터 분석의 전처리, ARIMA SARIMA 적용과 비교, 분석결과, 프로젝트 인사이트 공유</index>
+<main>프로젝트 배경 소개</main>
+<subtitle>포용적 기후정책 아이디어 공모전</subtitle>
+<content>이 프로젝트는 포용적 기후정책을 위한 아이디어를 공모하는 행사로, 기후 변화에 대한 대응 방안을 모색하고자 한다.</content>
+
+<subtitle>지정한 1군 발암물질 미세먼지</subtitle>
+<content>WHO에 따르면, 대기오염으로 인한 조기사망자는 2010년 36명에서 2060년에는 10만명당 107명으로 증가할 것으로 예상되며, 이는 미세먼지의 심각성을 강조한다.</content>
+
+<subtitle>미세먼지 예측 및 분석</subtitle>
+<content>프로젝트는 기존의 미세먼지 추세를 분석하고 예측하기 위해 시계열 분석을 활용하여 미래의 미세먼지 상황을 계획하고자 한다.</content>
+<main> 시계열 모델 스터디</main>
+<subtitle>[데이터분석]</subtitle>
+<content>시계열 데이터 분석을 위한 전처리 과정이 설명되며, 대기환경지수와 관련된 다양한 데이터셋이 사용된다.</content>
+
+<subtitle>[시계열 데이터 분석의 전처리]</subtitle>
+<content>데이터 전처리 과정에서는 필요 없는 칼럼을 제거하고, '년'과 '월'을 추출하여 새로운 컬럼을 추가하며, 2002년부터 2023년까지의 데이터만 필터링한다.</content>
+
+<subtitle>[데이터 그룹화]</subtitle>
+<content>'년'과 '월'별로 데이터를 그룹화하여 각 그룹의 평균 미세먼지 농도를 계산하고, 초미세먼지를 제거한 후 미세먼지 데이터만을 분석에 이용한다.</content>
+<main> ARIMA & SARIMA</main>
+<subtitle>ARIMA 모델</subtitle>
+<content>ARIMA 모델은 자기회귀(AR), 차분(I), 이동평균(MA) 요소로 구성되며, 비정상 시계열 데이터를 정규화하기 위해 차분을 수행하는 횟수를 나타내는 차수(p, d, q)를 포함한다.</content>
+
+<subtitle>SARIMA 모델</subtitle>
+<content>SARIMA 모델은 ARIMA 모델에 계절성을 추가한 것으로, 계절적 패턴을 고려하여 시계열 데이터를 분석하는 데 사용된다.</content>
+<main> 사용 데이터셋</main>
+<subtitle>미세먼지 농도 데이터</subtitle>
+<content>미세먼지 농도 데이터는 시계열 분석을 위해 사용되며, 월별 변화와 함께 추세, 계절성, 잔차를 분석하여 시각화된다. 초기에는 높은 값을 보이다가 점차 감소하는 추세와 매년 특정 월에 주기적으로 변동하는 계절성을 나타낸다.</content>
+<main> 시계열 데이터 분석의 전처리</main>
+<subtitle>시계열데이터 플롯 및 정상성 테스트</subtitle>
+<content>시계열 데이터를 시각화하고 정상성 검정을 수행하여 비정상적인 시계열 데이터임을 확인하였다. 검정 결과, p-value가 0.17로 0.05보다 커 비정상적인 것으로 판단되며, 정상적으로 변환이 필요하다.</content>
+
+<subtitle>차분을 통한 정상성 확보</subtitle>
+<content>비정상적인 시계열 데이터를 차분하여 정상성을 확보하였다. 차분 후의 검정 결과, p-value가 0.000으로 0.05보다 작아 정상적인 시계열 데이터로 변환되었음을 확인하였다.</content>
+<main> ARIMA SARIMA 적용과 비교</main>
+<subtitle>시계열 모델 적용</subtitle>
+<content>ARIMA와 SARIMA 모델을 각각 적용하여 최적의 파라미터를 탐색하고, 이를 통해 미래값을 예측하고 시각화하는 과정을 설명한다.</content>
+
+<subtitle>ARIMA</subtitle>
+<content>ARIMA 모델은 최적 파라미터를 탐색하여 모델을 적합시키고, 이를 기반으로 미래값을 예측 및 시각화하는 방법을 사용한다.</content>
+
+<subtitle>SARIMA</subtitle>
+<content>SARIMA 모델은 ARIMA 모델에 계절성을 추가하여 데이터에 적합시키고, 이를 통해 미래값을 예측하고 시각화하는 과정을 포함한다.</content>
+
+<subtitle>분석 결과</subtitle>
+<content>ARIMA와 SARIMA 모델의 분석 결과, 대부분의 파라미터가 통계적으로 유의미하며, 잔차는 독립적이지만 정규성을 따르지 않고 이분산성이 있어 불확실성을 증가시킬 수 있다.</content>
+<main> 분석결과</main>
+<subtitle>장기 추세</subtitle>
+<content>서울시의 미세먼지 농도는 전반적으로 감소하는 추세를 보이며, 이는 대기 질 개선을 위한 정책과 환경 규제의 효과로 해석된다.</content>
+
+<subtitle>계절성</subtitle>
+<content>미세먼지 농도는 겨울철과 봄철에 주기적으로 높아지는 경향이 있으며, 이는 난방 연료 사용 증가와 황사 등 계절적 요인과 관련이 있다.</content>
+
+<subtitle>미래 예측</subtitle>
+<content>2024년의 예측에 따르면 미세먼지 농도는 현재의 감소 추세를 유지할 것으로 보이며, 단기 변동성은 지속될 것으로 예상된다.</content>
+
+<subtitle>정책적 시사점</subtitle>
+<content>미세먼지 농도의 계절적 변동성을 고려하여 대기 질 관리를 위한 지속적인 정책적 노력이 필요하며, 특정 시기에 맞춘 대기 오염 저감 대책을 강화해야 한다.</content>
+<main> 프로젝트 인사이트 공유</main>
+<subtitle>프로젝트 개요</subtitle>
+<content>프로젝트의 목적과 목표를 명확히 하고, 팀원들이 이해할 수 있도록 간단하게 설명한다.</content>
+
+<subtitle>주요 성과</subtitle>
+<content>프로젝트 진행 중 달성한 주요 성과와 결과를 정리하여 팀원들과 공유한다.</content>
+
+<subtitle>문제점 및 해결 방안</subtitle>
+<content>프로젝트 진행 중 발생한 문제점과 이를 해결하기 위한 방안을 논의한다.</content>
+
+<subtitle>향후 계획</subtitle>
+<content>프로젝트의 다음 단계와 향후 계획을 수립하여 팀원들에게 안내한다.</content>

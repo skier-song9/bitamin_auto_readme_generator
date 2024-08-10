@@ -1,0 +1,36 @@
+<subject>도배 하자 질의 응답 처리 및 LLM 개발에 관한 프로젝트</subject>
+<team>구준회, 김지원, 박서진, 신진섭, 엄성원</team>
+<index>프로젝트 배경, EDA, Text Augmentation, Modeling & Inference, 보완할 점 & 추후계획</index>
+<main>프로젝트 배경</main>
+<subtitle>[목표]</subtitle>
+<content>자연어를 처리하여 언어모델에 학습시키고, 특정 TASK에 적합한 TEXT를 생성하는 원리를 이해하는 것이 이 프로젝트의 목표이다.</content>
+<main> EDA</main>
+<subtitle>[Overall Progress]</subtitle>
+<content>전반적인 진행 상황은 NLP 도메인에 대한 이해와 Transformer 모델을 활용한 질의 응답 시스템 개발을 포함하며, 공모전 목표에 대한 명확한 이해가 필요하다.</content>
+
+<subtitle>[Step 3]</subtitle>
+<content>3단계에서는 언어 모델 개발 및 추론 과정이 포함되어 있으며, 이는 EDA의 중요한 부분으로 데이터 분석 및 모델링에 대한 심층적인 이해를 요구한다.</content>
+<main> Text Augmentation</main>
+<subtitle>Text Augmentation의 정의</subtitle>
+<content>Text Augmentation은 질문과 답변 세트를 토큰화하여 입력으로 사용하는 방법으로, 다양한 질문을 생성하고 전문적인 답변을 제공하는 데 활용된다.</content>
+
+<subtitle>데이터 수집 및 활용</subtitle>
+<content>실용적인 Train 데이터 키워드를 기반으로 다양한 질문을 생성하기 위해 웹사이트와 앱에서 자료를 크롤링하고, 사람들이 자주 묻는 질문을 탐색한다.</content>
+
+<subtitle>ChatGPT 활용</subtitle>
+<content>ChatGPT를 이용하여 특정 질문에 대한 전문적인 답변을 생성하며, 예를 들어 도배업계 전문가가 일반인을 대상으로 질문에 대한 답변을 200글자 내로 제공하는 방식이다.</content>
+<main> Modeling & Inference</main>
+<subtitle>Modeling Fine Tuning</subtitle>
+<content>모델링 파인 튜닝은 사전 학습된 모델을 소규모의 특정 데이터 세트에 대해 추가로 학습시켜 특정 작업이나 도메인에서 성능을 향상시키는 과정이다.</content>
+
+<subtitle>Modeling LORA PEFT</subtitle>
+<content>LoRA PEFT는 적은 매개변수 학습으로 새로운 문제를 효과적으로 해결하는 기법으로, 대부분의 매개변수 가중치를 유지하면서 일부만 미세조정하여 훈련 비용과 컴퓨팅 리소스를 절약한다.</content>
+
+<subtitle>Inference</subtitle>
+<content>파인 튜닝된 모델은 주어진 질문에 대한 구체적인 답변을 생성하기 위해 입력에 지시사항을 부여하며, 학습된 정보를 바탕으로 자세한 답변을 제공한다.</content>
+<main> 보완할 점 & 추후계획</main>
+<subtitle>한정된 GPU 자원</subtitle>
+<content>Kaggle Notebook에서 Colab T4의 16GB RAM을 사용하고 있어 GPU 자원이 제한적이다. 이로 인해 모델 훈련 및 실행에 어려움이 있을 수 있다.</content>
+
+<subtitle>파라미터 수가 큰 모델</subtitle>
+<content>한국어 데이터로 사전훈련된 모델이 아니더라도 파라미터 수가 큰 모델을 사용하면 높은 성능을 기대할 수 있다. 이는 향후 모델 선택 시 중요한 고려사항이 될 것이다.</content>

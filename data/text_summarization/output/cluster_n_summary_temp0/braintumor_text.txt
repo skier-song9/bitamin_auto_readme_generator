@@ -1,0 +1,57 @@
+<subject>데이터 증강 BRAIN 및 TUMOR</subject>
+<team>김고은, 김채연, 김희원, 이예령, 이승우</team>
+<index>주제 선정 이유, RESNET, 원본데이터 설명 및 한계, 구현 RESNET, 결과 비교, 결론 및 아쉬운 점</index>
+<main>주제 선정 이유</main>
+<subtitle>RESNET 학습을 통한 BRAIN TUMOR DATA 적용</subtitle>
+<content>RESNET 구조를 연구하여 뇌종양 데이터에 적용하기 위해 주제를 선정하였다.</content>
+
+<subtitle>데이터 증강 필요성</subtitle>
+<content>데이터의 개수가 적어 데이터 증강을 통해 새로운 데이터를 생성하는 것이 필요하다고 판단하였다.</content>
+
+<subtitle>모델 구현 및 학습</subtitle>
+<content>RESNET-18과 RESNET-50 모델을 직접 구현하여 학습을 진행하였다.</content>
+
+<subtitle>모델 성능 평가</subtitle>
+<content>원본 데이터에서는 두 모델의 성능이 같았으나, 데이터 수가 적어 성능 판단이 부적절하다는 결론을 내렸다.</content>
+
+<subtitle>증강 데이터 성능 비교</subtitle>
+<content>증강된 데이터에서는 RESNET-50의 성능이 더 우수하다는 결과를 얻었다.</content>
+<main> RESNET</main>
+<subtitle>[Training Issues]</subtitle>
+<content>모델의 정확도가 낮은 이유는 데이터 부족 때문이며, 훈련 데이터에 할당할 수 있는 데이터 수가 여전히 부족하다는 점이 지적되었다.</content>
+
+<subtitle>[Data Augmentation]</subtitle>
+<content>데이터 수를 늘리기 위해 데이터 증강 방법론이 필요하다는 주장이 제기되었다.</content>
+<main> 원본데이터 설명 및 한계</main>
+<subtitle>원본데이터</subtitle>
+<content>원본데이터는 RESNET 18 및 RESNET 50 모델을 사용하여 처리되며, 데이터 전처리 및 증강을 통해 성능을 향상시키는 과정이 포함된다.</content>
+
+<subtitle>원본데이터 한계</subtitle>
+<content>원본데이터는 이미지 증강 및 컨투어 처리의 한계가 있으며, 이러한 한계는 모델의 예측 성능에 영향을 미칠 수 있다.</content>
+<main> 구현 RESNET</main>
+<subtitle>[원본데이터 설명]</subtitle>
+<content>총 253개의 원본 데이터가 있으며, 이 데이터는 이미지 증강 및 컨투어와 관련이 있다.</content>
+
+<subtitle>[원본데이터 한계]</subtitle>
+<content>원본 데이터의 한계는 명시되어 있지 않지만, 이미지 증강을 통해 성능을 개선할 수 있는 가능성이 있다.</content>
+
+<subtitle>[Count of Classes in each set]</subtitle>
+<content>각 데이터 세트의 클래스 수에 대한 구체적인 정보는 제공되지 않았다.</content>
+
+<subtitle>[RESNET 50]</subtitle>
+<content>ResNet-50 모델을 사용하여 데이터의 성능을 평가하고 있으며, 증강 데이터에 대한 정확도와 손실을 분석하고 있다.</content>
+
+<subtitle>[증강 데이터 성능 시각화 RESNET -18]</subtitle>
+<content>ResNet-18 모델을 사용하여 증강 데이터의 성능을 시각화하고 있다.</content>
+
+<subtitle>[증강 데이터 성능 시각화 RESNET-50]</subtitle>
+<content>ResNet-50 모델을 통해 증강 데이터의 성능을 시각화하고 있으며, 이를 통해 모델의 효과를 분석하고 있다.</content>
+<main> 결과 비교</main>
+<subtitle>원본 데이터 성능 시각회</subtitle>
+<content>ResNet-18과 ResNet-50의 성능을 비교한 결과, 원본 데이터에서 두 모델의 정확도와 손실이 시각적으로 나타났다. ResNet-50이 ResNet-18보다 더 나은 성능을 보였다.</content>
+<main> 결론 및 아쉬운 점</main>
+<subtitle>결론</subtitle>
+<content>RESNET-50 모델의 성능이 시각화된 결과는 모델이 다양한 이미지 인식 작업에서 높은 정확도를 보임을 나타낸다.</content>
+
+<subtitle>아쉬운 점</subtitle>
+<content>모델의 복잡성과 계산 비용이 높아 실제 적용 시 효율성 문제를 야기할 수 있으며, 특정 데이터셋에 대한 일반화 능력이 부족할 수 있다.</content>

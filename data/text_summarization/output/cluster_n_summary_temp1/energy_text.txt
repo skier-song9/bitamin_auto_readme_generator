@@ -1,0 +1,39 @@
+<subject>에너지 프로슈머의 행동양식 예측하기</subject>
+<team>박지원, 박정훈, 박초은</team>
+<index>분석 개요, 에너지 프로슈머란?, 변수 선택, 모델링</index>
+<main>분석 개요</main>
+<subtitle>데이터 소개</subtitle>
+<content>에스토니아의 기후 데이터와 에너지 소비 정보를 통해 에너지 프로슈머의 전력 생산과 소비량을 예측하는 내용을 다룬다. 여러 종류의 기후 변수와 에너지 관련 데이터가 사용된다.</content>
+
+<subtitle>변수선택</subtitle>
+<content>정확한 모델 생성을 위해 50개의 특성 중 유의미한 변수를 선정하며, 상관분석과 요인분석을 통해 변수 간의 관계를 파악한다. 특성 간 낮은 상관계수를 보이는 경우, 추가 분석을 통해 요인 수를 결정한다.</content>
+
+<subtitle>모델링</subtitle>
+<content>모델 최적화를 위해 SHAP 변수 중요도를 기반으로 변수를 제거하는 과정을 진행한다. 소비 및 비즈니스 관련 데이터를 대상으로 하며, 최적화된 성능을 바탕으로 불필요한 변수를 지속적으로 제거하여 모델 효율성을 개선한다.</content>
+<main> 에너지 프로슈머란?</main>
+<subtitle>[에너지 프로슈머의 정의]</subtitle>
+<content>에너지 프로슈머는 에너지를 생산하고 소비하는 역할을 동시에 수행하는 주체로, 주거용에서는 태양광 패널과 소규모 배터리가 주로 사용되며, 기업에서는 풍력 발전이나 태양열 어레이와 같은 대규모 분산 에너지 자원을 활용한다.</content>
+
+<subtitle>[프로슈머의 중요성과 문제]</subtitle>
+<content>프로슈머의 수가 증가함에 따라 에너지 생산과 소비의 불균형이 심화되고, 자원의 비효율적 이용률이 증가하며, 운영 구조에 대한 신뢰와 지속 가능성이 저하되는 문제가 발생하고 있다.</content>
+
+<subtitle>[프로슈머 행동 분석]</subtitle>
+<content>프로슈머의 행동양식을 파악하여 소비와 생산에 영향을 주는 요소를 밝히면 친환경 에너지 사용을 촉진할 수 있는 기회가 된다.</content>
+
+<subtitle>[분석 방법론]</subtitle>
+<content>상관분석, 요인분석을 통해 변수의 중요도를 파악하고, 최종적으로 XGBoost 모델을 사용하는 방향으로 분석이 진행된다.</content>
+
+<subtitle>[모델 및 평가지표]</subtitle>
+<content>Extreme Gradient Boosting(XGBoost) 모델을 사용하여 오답에 집중하고 순차적 학습을 가능하게 하며, MAE(Mean Absolute Error)를 통해 성능을 평가한다.</content>
+
+<subtitle>[모델 수정 및 최적화]</subtitle>
+<content>데이터를 비즈니스별로 분리하여 각 그룹에 맞는 모델을 피팅하고, Random Search 기법으로 하이퍼파라미터 최적화를 수행하여 성능을 향상시켰다.</content>
+<main> 변수 선택</main>
+<subtitle>데이터 소개</subtitle>
+<content>데이터는 소비와 생산을 구분짓는 'is_consumption', 계약 타입을 나타내는 'product_type', 그리고 특정 조합을 식별하는 'prediction_unit_id'와 같은 여러 변수를 포함하고 있다.</content>
+
+<subtitle>요인분석</subtitle>
+<content>요인 분석을 통해 다섯 개의 주요 요인을 설정하고, 이에 대한 설명력이 높은 변수를 식별하여 중요한 특성(features)을 해석하였다.</content>
+<main> 모델링</main>
+<subtitle>[수정된 모델 1 데이터 분리]</subtitle>
+<content>모델 피팅 및 평가를 위해 소비(consumption)와 사업(business)에 따라 총 4가지 데이터로 나누어진다. 이를 통해 비즈니스별로 데이터가 분리되어 분석된다.</content>

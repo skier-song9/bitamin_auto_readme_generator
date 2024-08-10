@@ -1,0 +1,42 @@
+<subject>CE SEGMENTATION & EMOTION CLASSIFICATION</subject>
+<team>김재원, 김채원, 문승민, 이서현, 황영서</team>
+<index>주제 선정 배경, 모델 구축 과정, 결과 분석, 의의 및 한계점</index>
+<main>주제 선정 배경</main>
+<subtitle>[아이디어]</subtitle>
+<content>인간의 감정 인식에 대한 연구는 활발히 진행되고 있지만, 애니메이션 캐릭터의 감정 인식에 대한 연구는 부족하다. 애니메이션 영화에서 다양한 감정을 가진 캐릭터를 분석하는 것이 주제 선정의 배경이 된다.</content>
+
+<subtitle>[기존 연구]</subtitle>
+<content>애니메이션 캐릭터의 감정을 분석하기 위해 '기쁨', '슬픔', '화남' 등의 감정을 가진 캐릭터를 대상으로 연구를 진행할 필요성이 제기되었다. 이를 통해 각 캐릭터가 표현하는 감정의 다양성을 탐구하고자 한다.</content>
+
+<subtitle>[참고 논문]</subtitle>
+<content>연구에서는 'Tom and Jerry'의 8113개 이미지를 활용하여 4개의 감정 레이블을 설정하고, 다양한 딥러닝 모델(VGG16, InceptionV3 등)을 비교하여 캐릭터의 감정을 분류하는 방법을 제안하고 있다.</content>
+<main> 모델 구축 과정</main>
+<subtitle>[라벨링]</subtitle>
+<content>감정 분류기를 위한 전처리 과정으로 NStance 세그멘테이션을 위한 캐릭터 라벨링과 Roboflow 및 OpenCV를 활용한 데이터 수집 및 라벨링이 포함된다.</content>
+
+<subtitle>[모델 구현]</subtitle>
+<content>YoloV8 모델을 사용하여 NStance 세그멘테이션을 수행하고, Emotion Labeling을 위해 Roboflow를 활용하며, ResNet, DenseNet, VGGNet 등 7가지 모델을 구현하여 전이 학습 및 성능 평가를 진행한다.</content>
+
+<subtitle>[Transfer Learning 및 모델 아키텍처]</subtitle>
+<content>사전학습 모델의 파라미터를 변형하여 사용하고, 상위 계층만 재훈련하여 전이 학습을 수행하며, DenseNet 분류기를 더 복잡한 구조로 교체하여 성능을 향상시킨다.</content>
+
+<subtitle>[최종 모델 선정]</subtitle>
+<content>최종적으로 ResNet50 모델을 선정하고, 검증 정확도와 F1 점수, 정밀도 및 리콜 곡선을 통해 모델의 성능을 평가한다.</content>
+
+<subtitle>[의의 및 한계점]</subtitle>
+<content>애니메이션 캐릭터에 대한 감정 분석을 통해 추천 시스템 구축 및 관련 산업 발전에 기여할 수 있으나, 감정 라벨링의 주관성으로 인해 데이터 일관성이 부족하여 모델 성능에 영향을 미쳤을 것으로 보인다.</content>
+<main> 결과 분석</main>
+<subtitle>YOLO Object mask 학습 결과</subtitle>
+<content>YOLO 모델의 학습 결과로 F1 점수 커브, 정밀도-리콜 커브, 혼동 행렬, 정밀도 커브, 리콜 커브가 생성되었으며, 이는 모델의 성능을 평가하는 데 중요한 지표로 활용된다.</content>
+
+<subtitle>모델 구축 과정</subtitle>
+<content>모델 구축 과정에서는 8000장의 영화 이미지를 사용하여 4프레임 단위로 이미지를 추출하고, OpenCV를 통해 관련 없는 이미지를 삭제하여 데이터의 품질을 높였다.</content>
+
+<subtitle>Classification motion</subtitle>
+<content>전이 학습을 활용하여 ANGER, SADNESS, HAPPY, NEUTRAL, SURPRISED와 같은 감정 분류를 위한 모델을 구축하였으며, ResNet, DenseNet, VGGNet 등의 다양한 네트워크 구조를 사용하였다.</content>
+<main> 의의 및 한계점</main>
+<subtitle>감정 차이의 유의미성</subtitle>
+<content>캐릭터에 따른 감정 차이가 유의미하게 나타났으며, 특히 기쁨의 감정이 가장 다양하게 표현된 캐릭터가 있었다는 점에서 감정 분석의 중요성을 강조한다.</content>
+
+<subtitle>성능 평가</subtitle>
+<content>각 캐릭터에 대한 감정 분석 성능이 평가되었으며, 이는 모델의 정확성과 신뢰성을 높이는 데 기여할 수 있다.</content>

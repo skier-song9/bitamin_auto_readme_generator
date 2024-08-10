@@ -1,0 +1,45 @@
+<subject>비타민 12 & 13기 학기 프로젝트의 피쳐 중요도를 통한 KOSPI 지수 예측 분석</subject>
+<team>None</team>
+<index>비타민 학기 프로젝트 최종 발표 목차, LEVEL 2 모델 소개 XGB LSTM GRU, EVEL 3 피쳐 중요도 분석 Attention SHAP, LEVEL 4 결과 비교 및 결론</index>
+<main>비타민 학기 프로젝트 최종 발표 목차</main>
+<subtitle>피쳐 중요도 분석을 통한 KOSPI 지수 예측</subtitle>
+<content>KOSPI 지수 예측을 위해 피쳐 중요도 분석을 실시하였으며, XGBLSTM과 GRU 모델을 사용하여 종가 및 변화율 데이터를 기반으로 하이퍼 파라미터 튜닝을 진행하였다.</content>
+
+<subtitle>모델고개</subtitle>
+<content>XGBLSTM과 GRU 모델을 구축하였고, 각각의 하이퍼 파라미터 튜닝 결과를 통해 모델의 성능을 평가하였다. 종가 데이터와 변화율 데이터를 이용한 모델의 성능 개선이 확인되었다.</content>
+
+<subtitle>하이퍼 파라미터 튜닝 결과</subtitle>
+<content>종가 데이터의 하이퍼 파라미터 튜닝 결과는 learning rate=0.05, depth=5, n_estimators=200으로 accuracy가 0.5518로 나타났으며, 변화율 데이터는 learning rate=0.05, depth=5, n_estimators=100으로 accuracy가 0.6098로 개선되었다.</content>
+
+<subtitle>피쳐 간 상호작용 확인</subtitle>
+<content>SHAP 값을 통해 피쳐 간의 상호작용을 분석한 결과, 피쳐 간의 상호작용 정도는 미미하다는 결론을 도출하였다.</content>
+
+<subtitle>결론</subtitle>
+<content>피쳐 중요도 분석을 통해 KOSPI 지수 예측 모델의 성능을 비교하였으며, XGBoost와 GRU 간의 성능 차이를 확인하였다.</content>
+<main> LEVEL 2 모델 소개 XGB LSTM GRU</main>
+<subtitle>ESTM 구축</subtitle>
+<content>두 개의 LSTM 레이어를 사용하고 각 레이어 후에 드롭아웃을 추가하여 과적합을 방지하며, EarlyStopping 콜백을 통해 가장 좋은 가중치를 복원하는 방법을 설명합니다.</content>
+
+<subtitle>GRU 구축</subtitle>
+<content>두 개의 GRU 레이어를 사용하고 각 레이어 후에 드롭아웃을 추가하여 과적합을 방지하며, EarlyStopping 콜백을 통해 가장 좋은 가중치를 복원하는 방법을 설명합니다.</content>
+
+<subtitle>결과 비교</subtitle>
+<content>XGBoost 모델이 가장 우수한 성능을 보여주며, 변화율 데이터를 사용했을 때 성능이 향상된 것으로 나타났습니다. 변화율 데이터는 종가 데이터보다 더 유의미한 패턴과 트렌드를 제공하여 모델의 예측 정확도를 높이고 노이즈를 줄이는 데 효과적입니다.</content>
+<main> EVEL 3 피쳐 중요도 분석 Attention SHAP</main>
+<subtitle>데이터 전처리</subtitle>
+<content>데이터프레임 병합 및 결측치 처리를 통해 데이터의 일관성을 유지하고, 슬라이딩 윈도우 기법을 사용하여 시간적 순서를 고려한 데이터 예측을 가능하게 하였다.</content>
+
+<subtitle>Attention 모델 정의</subtitle>
+<content>Transformer 블록을 포함한 모델을 정의하고, 각 레이어에서 Attention 가중치를 추출하여 모델의 성능을 향상시키는 방법을 설명하였다.</content>
+
+<subtitle>SHAP 변수 중요도 분석</subtitle>
+<content>SHAP 분석을 통해 상위 피쳐만을 사용하여 모델링한 결과, 적은 수의 피쳐로도 원래 모델 성능을 유지할 수 있음을 보여주었다.</content>
+
+<subtitle>결과 비교</subtitle>
+<content>Xgboost와 LSTM 모델의 성능을 비교한 결과, 변수 중요도 계수를 적용한 데이터셋에서 Xgboost가 우수한 성능을 보였으며, 변수 중요도가 양수인 경우 LSTM이 더 나은 성능을 나타내었다.</content>
+<main> LEVEL 4 결과 비교 및 결론</main>
+<subtitle>결과 비교</subtitle>
+<content>XGBoost가 가장 우수한 성능을 보였으며, LSTM과 GRU는 변수 중요도를 적용한 데이터셋에서 성능이 약간 향상되었다. 반면, XGBoost는 어텐션 결과를 적용한 후 성능이 약간 감소했는데, 이는 트리 기반 모델이 순차적 피쳐 관계를 고려하는 데 한계가 있기 때문으로 추정된다.</content>
+
+<subtitle>결론</subtitle>
+<content>변화율 데이터가 종가 데이터보다 더 정확한 성능을 보이며, 주가 예측에서는 변화율 데이터를 사용하는 것이 바람직하다. 또한, 변수 중요도 분석을 통해 RNN 계열 모델의 예측 성능을 향상시킬 수 있으며, 적은 피쳐로도 모델 성능을 유지할 수 있는 가능성을 제시한다.</content>

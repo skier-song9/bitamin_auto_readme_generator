@@ -1,0 +1,63 @@
+<subject>기반 거짓말 LLM 탐지기 피의자 신문 언어적 접근</subject>
+<team>조민호, 박소연, 박준형, 박세준</team>
+<index>비타민 11기 겨울 컨퍼런스, 서비스 배경 및 기획, 문제 상황, 결론 및 제언</index>
+<main>비타민 11기 겨울 컨퍼런스</main>
+<subtitle>서비스 배경 및 기획 문제 상황</subtitle>
+<content>거짓말탐지기 검사의 신뢰성이 문제로 부각되며, 한 피해자는 해당 검사를 받았으나 거짓 반응이 나와 재판에 넘겨졌다. 무죄로 판결받기까지 많은 대가를 치러야 했고, 이에 따라 거짓말 탐지기의 정확성이 의문시되고 있다.</content>
+
+<subtitle>비언어적 생체 신호의 오인</subtitle>
+<content>거짓말 탐지기가 긴장이나 감정 상태에 따라 오류가 발생할 수 있어 결과의 신뢰성이 떨어지며, 거짓말은 언어적 요소를 고려하지 않고 비언어적 생체 신호만을 기반으로 판단된다.</content>
+
+<subtitle>모델 구축 과정 데이터 구축</subtitle>
+<content>거짓말 탐지를 위한 데이터 구축에서 피의자의 발화가 거짓말 신호를 포함해야 하며, 대화 형식의 심문기록과 여러 신호 유형을 SCAN 기법을 통해 분석할 예정이다.</content>
+
+<subtitle>모델 구축 과정 Fine Tuning</subtitle>
+<content>최소한의 비용으로 최대한의 학습을 위해 LLaMA-2-7b-chat-hf 모델이 선정되었으며, 모델의 경량화를 통해 학습 과정이 진행될 예정이다.</content>
+
+<subtitle>모델 구축 과정 RAG</subtitle>
+<content>LangChain을 활용하여 사건 기록을 작성하고 KBI 검출을 위한 문서를 임베딩하여 검색 기반으로 검출 작업을 진행할 예정이다.</content>
+
+<subtitle>종합</subtitle>
+<content>비타민 11기 겨울 컨퍼런스에서는 거짓말 탐지기 검사의 실효성을 검토하고, 데이터와 모델 구성의 다양한 접근 방식을 통해 정확한 탐지 방법을 모색하고 있다.</content>
+<main> 서비스 배경 및 기획</main>
+<subtitle>[문제 상황]</subtitle>
+<content>피의자 신문 과정에서 언어적 접근을 통한 실시간 거짓말 탐지와 거짓말 유형 분류의 필요성이 대두되고 있으며, 단순 이분법적 분류와 시간적 비효율성을 해결해야 함이 강조됨.</content>
+
+<subtitle>[RAG 기술]</subtitle>
+<content>RAG(Retrieval Augmented Generation) 기술은 외부 정보를 데이터베이스에서 검색하여 생성 AI 모델의 정확성과 신뢰성을 높이는 방법으로, 사전 훈련된 대형 언어모델의 단점을 보완하고 최신 정보를 반영할 수 있는 장점이 있음.</content>
+
+<subtitle>[모델 구축 과정]</subtitle>
+<content>음성을 입력받아 텍스트로 변환하는 과정과 음성 파일의 화자 구분을 통해 데이터를 수집하며, 학습을 위한 데이터셋 생성을 위한 전처리 과정을 포함함. 또한, 합성 데이터 생성과 미세 조정을 통해 효과적인 모델을 구축하려는 노력이 필요함.</content>
+<main> 문제 상황</main>
+<subtitle>필요 데이터와 문제점</subtitle>
+<content>신문기록은 보안문제로 민간인에게 공개되지 않으며, 비슷한 형태의 데이터셋이 존재하지 않아 필요한 데이터 확보에 문제가 있다. 대부분의 레퍼런스가 영어로 되어 있어 한국어 기반의 데이터셋 구축이 필수적이다.</content>
+
+<subtitle>모델 구축 과정 데이터 구축</subtitle>
+<content>Contradiction Detection을 위해 서로 모순되는 두 문장을 나열한 데이터셋을 활용하여 피의자의 발화 중 모순되는 문장들을 생성하는 과정을 거친다.</content>
+
+<subtitle>결론 및 제언</subtitle>
+<content>프로토타입 개발을 통해 LLM을 활용한 거짓말 탐지 기술의 가능성을 제시하고 있으며, 실시간 심문 지원을 통해 수사 효율성을 높이는 방향으로 나아가고 있다. 기존 생체신호 기반 모델과 달리 대화 중 문장 단위의 거짓말 탐지가 가능하다.</content>
+<main> 결론 및 제언</main>
+<subtitle>모델 구축 과정</subtitle>
+<content>모델 구축 과정에서는 음성인식 시스템(STT)의 구현이 중요한 역할을 하며, 신뢰성과 정확성을 높이기 위해 데이터 수집과 처리 과정이 필수적이다.</content>
+
+<subtitle>비타민 11기 겨울 컨퍼런스</subtitle>
+<content>컨퍼런스는 최신 기술과 트렌드를 공유하는 플랫폼으로, 참가자들이 서로의 경험을 나누고 네트워킹을 통해 시너지를 낼 수 있는 기회를 제공한다.</content>
+
+<subtitle>DB Vector Store</subtitle>
+<content>DB Vector Store는 데이터 검색과 관리의 효율성을 높이며, 학습된 모델이 더욱 효과적으로 지식을 활용할 수 있도록 지원한다.</content>
+
+<subtitle>Augment knowledge & Context</subtitle>
+<content>지식 강화 및 맥락 추가는 인공지능의 성능을 향상시키고, 사용자 경험을 개선하기 위해 필수적으로 고려되어야 한다.</content>
+
+<subtitle>Speech To Text</subtitle>
+<content>음성을 텍스트로 변환하는 과정이 사용자의 편의성을 높이며, 다양한 응용 프로그램에서 활용될 수 있는 가능성이 크다.</content>
+
+<subtitle>Tokenize & Encode</subtitle>
+<content>토큰화 및 인코딩 과정은 데이터 전처리에 있어 필수적이며, 모델의 입력을 최적화하는데 중요한 역할을 한다.</content>
+
+<subtitle>사용자의 음성을 텍스트로 변환</subtitle>
+<content>음성 데이터를 정확하게 텍스트로 변환하는 기술은 사용자와 AI의 상호작용을 끊임없이 향상시키는 열쇠가 된다.</content>
+
+<subtitle>Prompt Engineering</subtitle>
+<content>프롬프트 엔지니어링은 모델의 응답 품질을 높이기 위한 전략으로, 최적의 질문과 입력 형식을 설계하는 것이 중요하다.</content>

@@ -1,0 +1,60 @@
+<subject>LLM 기반 거짓말 탐지기와 피의자 신문에 대한 언어적 접근</subject>
+<team>조민호, 박소연, 박준형, 박세준</team>
+<index>비타민 11기 겨울 컨퍼런스, 서비스 배경 및 기획, 문제 상황, 결론 및 제언</index>
+<main>비타민 11기 겨울 컨퍼런스</main>
+<subtitle>서비스 배경 및 기획 문제 상황</subtitle>
+<content>비타민 11기 겨울 컨퍼런스에서는 거짓말탐지기 검사의 신뢰성 문제를 다루며, 피의자의 신문 과정에서 언어적 접근을 통한 실시간 거짓말 탐지 및 유형 분류의 필요성을 강조하였다.</content>
+
+<subtitle>서비스 제안 및 사용 예시</subtitle>
+<content>AI 어시스턴트를 활용하여 수사관이 피의자의 거짓말 유형을 이해하고, 실시간으로 질문 전략을 조정함으로써 진실에 가까워질 수 있도록 돕는 방안을 제안하였다.</content>
+
+<subtitle>모델 구축 과정</subtitle>
+<content>모델 구축을 위해 필요한 데이터와 문제점을 분석하고, Open AI API를 활용하여 직접 데이터셋을 구축하기로 결정하였다. 데이터는 피의자의 발화에서 거짓말 신호를 포함해야 하며, 대화 형식의 심문 기록이 필요하다.</content>
+
+<subtitle>결론 및 제언</subtitle>
+<content>프로젝트의 의의는 LLM을 활용한 거짓말 탐지 기술의 가능성을 제시하고, 수사 효율성을 증대시키며, 실시간 심문 지원을 통해 진실을 효과적으로 추적할 수 있도록 하는 것이다. 추가적으로, 성능 향상을 위해 다양한 LLM을 활용할 계획이다.</content>
+<main> 서비스 배경 및 기획</main>
+<subtitle>문제 상황</subtitle>
+<content>현재 거짓말 탐지기는 비언어적 생체 신호에 의존하고 있으며, 언어적 요소를 고려하지 않아 정확성이 떨어진다. 거짓말은 개인의 심리 상태와 상황에 따라 복합적으로 이루어지기 때문에, 기존 방법의 한계가 명확하다.</content>
+
+<subtitle>실무 파이프라인</subtitle>
+<content>모델 구축 과정은 사용자의 음성을 텍스트로 변환하고, 이를 기반으로 데이터셋을 생성하여 학습하는 구조로 이루어진다. 다양한 기술을 활용하여 음성 인식 및 데이터 전처리를 진행한다.</content>
+
+<subtitle>데이터 구축</subtitle>
+<content>학습을 위한 데이터셋은 Synthetic Data Generation을 통해 생성되며, 모순된 문장과 거짓말 신호를 포함한 피의자 신문 기록 데이터가 포함된다. 이를 위해 다양한 프롬프트 기법이 사용된다.</content>
+
+<subtitle>Fine Tuning</subtitle>
+<content>모델 학습을 위해 경량화된 LLaMA-2-7b-chat-hf 모델을 선택하고, 로컬 환경과 클라우드 환경을 비교하여 최적의 학습 환경을 결정한다. Fine tuning 과정에서 성능 평가를 위해 다른 모델의 결과와 비교하는 방식을 사용한다.</content>
+<main> 문제 상황</main>
+<subtitle>RAG 기술의 필요성</subtitle>
+<content>사전 훈련된 대형 언어모델의 단점을 보완하고 최신 정보를 반영할 수 있는 RAG 기술이 필요하다. 이를 통해 생성 AI 모델의 정확성과 신뢰성을 높이고, 할루시네이션 가능성을 줄일 수 있다.</content>
+
+<subtitle>모델 훈련 비용 절감</subtitle>
+<content>RAG는 적은 매개변수 학습으로도 새로운 문제를 효과적으로 해결할 수 있는 파인튜닝 기법을 사용하여 모델 훈련 시 필요한 GPU 시간과 비용을 크게 절감할 수 있다.</content>
+
+<subtitle>KBI 검출 사례</subtitle>
+<content>모델이 사건 당일의 복장과 장소에 대한 불일치를 보이며, Lakeside의 downtown인 Pine Street을 모른다고 응답한 사례가 KBI 검출의 중요한 문제 상황으로 나타났다. 이는 용의자의 신뢰성을 의심하게 만드는 요소로 작용한다.</content>
+<main> 결론 및 제언</main>
+<subtitle>모델 구축 과정</subtitle>
+<content>모델 구축 과정에서는 데이터의 품질과 양이 중요하며, 이를 통해 모델의 성능을 극대화할 수 있다.</content>
+
+<subtitle>Fine Tuning</subtitle>
+<content>Fine Tuning 과정은 기존 모델을 특정 작업에 맞게 조정하여 성능을 향상시키는 중요한 단계로, 적절한 데이터셋 선택이 필수적이다.</content>
+
+<subtitle>비타민 11기 겨울 컨퍼런스</subtitle>
+<content>비타민 11기 겨울 컨퍼런스에서는 최신 기술과 연구 결과를 공유하며, 참가자 간의 네트워킹 기회를 제공하여 지식의 확장을 도모한다.</content>
+
+<subtitle>Augment Knowledge & Context</subtitle>
+<content>지식과 맥락을 증강하는 것은 모델의 이해도를 높이고, 다양한 상황에서의 응답 품질을 개선하는 데 기여한다.</content>
+
+<subtitle>Speech To Text</subtitle>
+<content>음성을 텍스트로 변환하는 기술은 사용자 경험을 향상시키고, 다양한 응용 프로그램에서의 활용 가능성을 넓힌다.</content>
+
+<subtitle>Tokenize & Encode</subtitle>
+<content>토큰화 및 인코딩 과정은 입력 데이터를 모델이 이해할 수 있는 형태로 변환하여, 학습 및 추론의 효율성을 높인다.</content>
+
+<subtitle>Fine-tuned LLM</subtitle>
+<content>Fine-tuned LLM은 특정 도메인에 최적화된 모델로, 실제 응용에서 높은 성능을 발휘할 수 있도록 설계된다.</content>
+
+<subtitle>Ilama N 모델 미세 조정</subtitle>
+<content>Ilama N 모델의 미세 조정은 특정 데이터셋에 맞춰 모델의 성능을 극대화하는 과정으로, 지속적인 개선이 필요하다.</content>

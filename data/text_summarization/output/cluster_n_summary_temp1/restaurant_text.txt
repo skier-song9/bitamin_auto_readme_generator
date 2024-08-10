@@ -1,0 +1,51 @@
+<subject>나용자의 순차적 고려한 레시피 기반 음식 & 식당 추천 선호도</subject>
+<team>김태호, 이철민, 김아진, 김윤영</team>
+<index>프로젝트 소개, 모델 SASREC, 사용 데이터, 식당 추천 알고리즘, 모델 설명 & 성능 비교, 향후 발전 방향</index>
+<main>프로젝트 소개</main>
+<subtitle>입맛에 맞는 음식 추천</subtitle>
+<content>사용자의 입맛에 맞는 음식을 추천하고, 해당 음식을 파는 식당을 제안하는 시스템을 소개한다.</content>
+
+<subtitle>Neural Collaborative Filtering</subtitle>
+<content>Neural Net 기반의 Filtering 모델은 사용자와 아이템 간의 상호 작용을 예측하여 개인화된 추천을 제공하며, 기존 협업 필터링의 한계를 극복하고 복잡한 관계를 모델링할 수 있다.</content>
+
+<subtitle>순차 추천을 위한 모델</subtitle>
+<content>SASReC은 사용자의 상호작용 시퀀스를 효과적으로 모델링하여 과거의 상호작용 기록을 바탕으로 영화 추천에 최적화된 시스템이다.</content>
+
+<subtitle>모델 성능</subtitle>
+<content>추천 시스템의 성능은 랭킹 성능 평가 지표를 통해 측정되며, SASReC 모델이 가장 우수한 성능을 보인다.</content>
+<main> 모델 SASREC</main>
+<subtitle>[모델 출력]</subtitle>
+<content>SASREC 모델은 사용자가 좋아할 음식과 유사한 음식을 제공하는 식당 추천을 목표로 하며, 특정 유저에게 다음에 먹을 음식을 추천하는 기능이 있다.</content>
+
+<subtitle>[Wide & Deep 모델]</subtitle>
+<content>Wide & Deep 모델은 2016년에 구글에 의해 발표된 추천 알고리즘으로, 메모리제이션과 일반화의 두 가지 특화된 모델을 결합하여 사용자 경험을 개선한다.</content>
+
+<subtitle>[식당 추천 예시]</subtitle>
+<content>예를 들어, 사용자 19073은 Rubirosa와 같은 추천 식당을 받으며, 그가 먹은 음식 리스트에 기반하여 유사한 메뉴의 식당이 추천된다.</content>
+
+<subtitle>[향후 발전 방향]</subtitle>
+<content>SASREC의 향후 발전 방향으로는 적용 가능한 지역을 확장하고, tf-idf 외에도 Word2Vec과 같은 사전 훈련된 단어 벤터를 활용하여 추천의 정확성을 높일 계획이다.</content>
+<main> 사용 데이터</main>
+<subtitle>Foodcom Dataset</subtitle>
+<content>Foodcom 데이터는 음식 이름과 식당에 대한 정보를 포함하며, TF-IDF 벡터로 변환되어 사용된다. 이를 통해 추천 시스템에서 유사한 음식들을 찾아내는 데 활용된다.</content>
+
+<subtitle>Yelpcom Dataset</subtitle>
+<content>Yelpcom 데이터 역시 음식과 식당 정보로 구성되어 있으며, SASREC 모델을 통해 추천 시스템에 사용된다. 이 데이터셋에서 유명한 음식들 간의 유사도를 계산하여 최적의 추천을 제공한다.</content>
+
+<subtitle>모델 성능</subtitle>
+<content>SASREC 모델의 출력 결과를 통해 Foodcom 및 Yelpcom 데이터에서 높은 유사도를 가진 음식들을 추천할 수 있으며, 이는 Cosine 유사도 계산에 기반한다.</content>
+
+<subtitle>추천 식당 예시</subtitle>
+<content>예를 들어, 사용자가 Kimchi Pancake와 Pork Belly 등을 먹었다면, SASREC 모델은 유사한 음식을 기반으로 Kimchi Pancake를 추천하는 방식으로 작동한다.</content>
+<main> 식당 추천 알고리즘</main>
+<subtitle>[모델]</subtitle>
+<content>식당 추천 알고리즘의 모델은 사용자의 선호도를 파악하고, 다양한 데이터를 분석하여 최적의 식당을 추천하는 시스템이다. 이 모델은 머신 러닝 기법을 활용해 지속적으로 개선된다.</content>
+<main> 모델 설명 & 성능 비교</main>
+<subtitle>모델 설명</subtitle>
+<content>FACtOr zAtuoN MACHINE은 SVM과 MF의 장점을 결합하여 Feature 간의 모든 가능한 상호작용을 모델링하는 시스템입니다. 이를 통해 사용자 영화에 대한 평점을 예측하며, 사용자의 선호도 변화를 효과적으로 반영합니다.</content>
+
+<subtitle>성능 비교</subtitle>
+<content>SASRec은 Self-Attention을 사용하여 사용자 선호도를 잘 포착하고, 매우 희소한 추천 데이터에서도 높은 성능을 보였습니다. 최종적으로 SASRec을 추천 모델로 선택하여 음식점 추천을 시도할 예정입니다.</content>
+<main> 향후 발전 방향</main>
+<subtitle>[가자합니다]</subtitle>
+<content>가자 사업의 향후 발전 방향은 지속 가능한 성장과 혁신을 통해 시장 점유율을 확대하고, 고객 중심의 서비스를 강화하는 것을 목표로 한다.</content>
