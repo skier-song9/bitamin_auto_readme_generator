@@ -1,0 +1,74 @@
+<main>INTRODUCTION</main>
+<sub>Background of topic selection</sub>
+<content>이 프로젝트는 뉴스가 주가 변동에 미치는 영향을 탐구하고, 이를 활용해 주가를 예측하는 것을 목표로 한다. 뉴스 감성분석과 토픽 모델링을 통해 특정 기업의 주가를 예측하며, 기존 프로젝트보다 더 긴 예측 기간을 고려해 장기적인 추세도 반영하고자 한다. 또한, 단순한 평행 이동 형태의 예측 문제를 해결하고자 한다.</content>
+<sub>Brief Project Introduction</sub>
+<content>목표는 뉴스 데이터를 활용해 주가 예측 모델을 최적화하고 효율적인 파라미터를 선정하는 것이다. 주요 내용은 LSTM, GRU, Transformer 모델의 장기 추세 예측 성능을 비교하고, 실험을 통해 모델 파라미터를 튜닝하는 것이다. 또한 뉴스 감성분석과 토픽모델링이 주가 예측에 얼마나 유용한지 검토하며, 실험 결과 평가에 필요한 지표를 선정한다. 개발 환경으로는 Colab을 사용한다.</content>
+<sub>Data collection</sub>
+<content>1. 주가 데이터: 
+   - FinanceDataReader 라이브러리를 사용해 2018년 1월 2일부터 2023년 12월 29일까지 NETFLIX, 핀터레스트, 메타플렛폼스, 스포티파이의 주가 데이터를 수집.
+
+2. 뉴스 데이터:
+   - Stock News Ap를 통해 같은 기간 동안 NETFLIX 관련 뉴스 데이터를 수집.
+   - 웹 스크래핑 후 FinBERT와 BERTopic을 활용해 감성 분석과 토픽 모델링을 시도.
+   - 시계열 예측과 데이터셋의 정확도를 높이기 위해 Ap를 사용.</content>
+
+<main>DATA PREPROCESSING</main>
+<sub>Make derived Variable</sub>
+<content>변화율(Roc), 이동 평균(MA), 단순 이동 평균(SMA), 12OMA 등의 파생변수를 생성할 때, 이전 시점을 포함한 rolling 변수가 사용되어 첫 시점은 NaN이 된다. 2018년 데이터를 추가 수집하여 이러한 파생변수 생성을 보완한다.</content>
+<sub>Add indicators</sub>
+<content>금융 시계열 데이터 분석 라이브러리에서는 시가, 마감, 고가, 저가, 거래량에 대한 다양한 기술 분석 지표를 제공합니다. 주요 지표로는 Bollinger Bands, Keltner Channel, Directional Movement Index, Accumulation/Distribution Index, Triple Exponential Moving Average, On-Balance Volume, Donchian Channel, Commodity Channel Index, Force Index, Detrended Price Oscillator, Ease of Movement, Ulcer Index, Know Sure Thing, Volume-Price Trend, Simple Moving Average, Schaff Trend Cycle, Negative Volume Index, Exponential Moving Average, Relative Strength Index, Volume-Weighted Average Price, Weighted Moving Average, Stochastic RSI, Average True Range, Moving Average Convergence Divergence, Ultimate Oscillator, Money Flow Index, 및 Average Directional Index가 있습니다. 한국투자증권 MTS는 이들 중 37개 지표를 지원합니다.</content>
+<sub>Peer Analysis</sub>
+<content>Netflix와 유사한 사업을 하는 기업의 종가 데이터를 feature로 추가하고, PINS는 2019년 4월 22일 상장하여 상장 이전 결측값은 상장일 종가 2499$로 대체한다.</content>
+<sub>Remove multicollinearity</sub>
+<content>기본 지표(Open, Close, High, Low, SMA 등)는 유지하고, 주가 변화 관련 보조 지표(VMAP, BHB, BLB 등) 중 상관관계가 높은 지표는 제외합니다. 또한, FB, PINS, SPOT 등의 Peer 주식은 유지합니다.</content>
+<sub>Make derived variable for News Topics & Sentiment</sub>
+<content>내용 요약:
+- 주제: 라벨 인코딩, SMA(6OMA, 12OMA)
+- 감정 분석: 원-핫 인코딩, 5MM, 6OMM, 12OMM
+- 당일 뉴스는 당일 주가에 큰 영향을 미치지 않으므로 과거 뉴스의 영향력을 측정하기 위해 이동 평균 이동 모드를 추가함.</content>
+<sub>Dataset</sub>
+<content>- stockOnly-df: 1257행 38열
+- total-df: 1257행 59열</content>
+
+<main>MODELING</main>
+<sub>Time Series</sub>
+<content>시간에 따른 데이터 패턴 분석을 통해 미래 값을 예측하는 모델은, 연속된 데이터 수(W)를 입력받아 예측할 미래 데이터 길이(K)를 출력합니다. 이 모델의 고정된 윈도우 크기는 W+K입니다.</content>
+<sub>Modeling</sub>
+<content>1. 시퀀스 데이터 준비:
+   - 시퀀스 길이: 60, 예측 크기: 10
+   - 60개의 시퀀스 데이터와 10개의 예측 데이터를 사용
+
+2. 모델 정의:
+   - LSTM: 주가 예측에서 일반적으로 사용되며, 시퀀스 길이와 예측 크기를 다르게 설정하여 실험
+   - GRU: LSTM의 단순화된 버전으로 문제점을 극복
+   - Transformer: NLP에서 좋은 성능을 보이며, 주가 예측에서도 유의미한 결과를 검증하기 위해 선택
+
+3. 모델 비교:
+   - 예측 대상: 'CLOSE' vs 'ID-ROC'
+   - 데이터 포함 여부: 주가 데이터만 사용 vs 전체 데이터 사용
+   - 모델 비교: LSTM vs GRU vs Transformer</content>
+
+<main>CONCLUSIONS AND LIMITATIONS</main>
+<sub>Evaluation</sub>
+<content>- 예측 평가 기준: MSE 대신 RMSE 사용.
+- 예측 타겟 변수: Close 종가와 1dLROC 일일 등락 중 선택.
+- 뉴스 데이터의 유의미성: StockOnly-df와 total Df 비교.
+- 예측 모델 비교: LSTM, GRU, Transformer 중 가장 효과적인 모델 선택.</content>
+<sub>Select target variable</sub>
+<content>다음은 요약된 내용입니다:
+
+- 두 가지 데이터셋(stockOnly-df, total-df)과 설정(LSTM 모델, 시퀀스 크기 60, 배치 크기 8, 모델 크기 64)을 사용하여 주가 예측을 진행.
+- Close 값을 직접 예측하는 것보다 ROC를 이용한 예측이 추세를 더 잘 반영함.
+- 시계열 예측의 신뢰성을 높이기 위해 ROC를 예측 타겟으로 확정함.</content>
+<sub>Model Result</sub>
+<content>LSTM, GRU, Transformer 모두 RMSE를 손실 함수로 사용함.</content>
+<sub>Compare each parameter</sub>
+<content>LSTM 모델의 평균 loss 값이 가장 작고, transformer 모델이 가장 큽니다. GRU 모델은 주식 데이터만 사용했을 때, LSTM과 transformer 모델은 뉴스 데이터를 포함했을 때 평균 loss 값이 더 작습니다. Sequence_size와 Batch-size가 작을수록 유의미한 결과를 보이며, Model Size에서는 LSTM과 Transformer는 64에서, GRU는 128에서 유의미한 결과를 보입니다.</content>
+<sub>Best parameter for each model</sub>
+<content>모델별 최적 파라미터 조합을 50번 반복하여 평균값을 기반으로 경향성과 오차율을 분석한 결과:
+
+- LSTM (stock-only 데이터셋): seq 30, batch 8, model 64, 평균 오차율 185%
+- GRU (total 데이터셋): seq 30, batch 8, model 128, 평균 오차율 166%
+- Transformer (total 데이터셋): seq 30, batch 8, model 64, 평균 오차율 162%</content>
+<sub>Limitations</sub>
+<content>금융 시장에서는 예측이 어려워 모델 성능을 평가하기 위해 일일이 예측 그래프를 확인해야 하며, 실험 결과를 비교하는데 시간이 많이 소요된다. 뉴스 Topic NLP로 감성분석과 토픽모델링을 시도했으나 시퀀스 길이 문제와 정확도 한계로 Ap를 사용했다. 일반적으로 5% 오차는 좋은 평가를 받지만, 주식 시장에서는 큰 손실 또는 이익을 초래할 수 있어 5% 이하의 오차라도 신중한 검토가 필요하다.</content>
