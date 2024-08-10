@@ -1,22 +1,28 @@
+<subject>독자와 웹툰 간 로그데이터를 활용한 웹툰 추천 시스템</subject>
+<team>강나영, 김나현, 엄성원, 이철민</team>
+<index>프로젝트 소개, 프로젝트 배경, 프로젝트 목표, 데이터 수집 및 전처리, 데이터 소스 설명, 모델 선택 및 학습, 모델 비교, 최종 모델 선정, 웹툰 추천 시스템 구현, 기존 사용자, 신규 사용자, 결론 및 향후 과제, 프로젝트 요약 및 의의, 한계점 및 향후 과제</index>
+
 <main>프로젝트 소개</main>
-<sub>프로젝트 배경</sub> <content>정제된 '대량의 데이터'를 사용하여 모델 선택 범위를 넓히고자 함. 사용자의 데이터를 효과적으로 사용할 수 있는 주제를 선정하고, 직관적으로 추천 시스템의 작동을 확인할 수 있도록 국내 최신 데이터를 활용.</content>
-<sub>프로젝트 목표</sub> <content>사용자 데이터와 웹툰 데이터를 이용해 개인화된 추천 시스템을 개발. 사용자가 흥미를 느낄 만한 웹툰을 정확히 추천하고, 사용자와 아이템의 interaction 데이터에 맞는 알고리즘을 탐색 및 적용.</content>
+<sub>프로젝트 배경</sub> <content>정제된 '대량의 데이터'를 사용하여 모델 선택 범위를 넓히고자 함. 사용자의 데이터를 효과적으로 사용할 수 있는 주제 선정. 최신 국내 데이터를 활용하여 직관적인 추천 시스템 작동을 확인.</content> <page>3</page>
+<sub>프로젝트 목표</sub> <content>사용자 데이터와 웹툰 데이터를 이용해 개인화된 추천 시스템 개발. 사용자가 흥미를 느낄 만한 웹툰을 정확히 추천. 사용자와 아이템의 interaction 데이터에 맞는 알고리즘 탐색 및 적용.</content> <page>3</page>
 
 <main>데이터 수집 및 전처리</main>
-<sub>데이터 소스 설명</sub> <content>Webtoon_Customers.csv, Webtoon_articles.csv, Webtoon_interaction_train.csv 등의 데이터를 사용. 다양한 데이터 소스를 통해 웹툰과 사용자 간의 interaction 데이터를 수집.</content>
-<sub>데이터 전처리</sub> <content>649만 개의 데이터 중 100개 이상 평가한 유저만 남기고 정제. 피봇 테이블 형식으로 데이터를 생성하여 분석에 적합한 형태로 변환.</content>
+<sub>데이터 소스 설명</sub> <content>Webtoon_Customers.csv, Webtoon_articles.csv, Webtoon_interaction_train.csv 등의 데이터를 사용하여 데이터 수집.</content> <page>4</page>
+<sub>데이터 전처리</sub> <content>649만 개의 데이터 중 100개 이상 평가한 유저만 남김. 피봇 테이블 형식의 데이터 생성.</content> <page>5</page>
 
 <main>모델 선택 및 학습</main>
-<sub>Filtering 모델 CF</sub> <content>사용자 유사도를 측정하는 User-Based와 아이템 간 유사도를 측정하는 Item-Based로 나뉨. 데이터 크기와 사용자 정보에 따라 적합한 모델 선택.</content>
-<sub>NCF 모델</sub> <content>사용자와 아이템을 embedding vector로 표현하고, 복잡한 비선형 학습을 통해 아이템을 추천. Long tail Data Sparsity 문제 존재.</content>
-<sub>SVD 모델</sub> <content>사용자-아이템 행렬을 세 개의 행렬로 분해하여 latent factors를 추출. 차원 축소를 통해 계산 효율성을 증가시키나 큰 데이터셋에서 계산 비용이 높아질 수 있음.</content>
-<sub>ALS 모델</sub> <content>교대 최소 제곱법을 이용해 대규모 데이터셋에 적합한 행렬 분해 기법. Implicit feedback 형태의 데이터를 활용하여 모델 성능을 최적화.</content>
-<sub>최종 모델 선정</sub> <content>ALS 모델을 최종 선택. Implicit feedback 데이터를 사용해 대규모 데이터셋에서 높은 성능을 나타냄. RMSE 수치 0.01</content>
+<sub>CF (Collaborative Filtering) 모델</sub> <content>사용자 간 유사도를 측정하는 User-Based와 아이템 간 유사도를 측정하는 Item-Based로 나뉘며, 직관적인 결과를 제공하지만 Cold Start Problem과 계산량이 많아 효율성이 떨어짐.</content> <page>7</page>
+<sub>NCF (Neural Collaborative Filtering) 모델</sub> <content>사용자와 아이템을 embedding vector로 표현하고 상호작용을 바탕으로 학습하는 방식. 비선형 학습과 신경망을 이용하여 복잡한 상호작용을 학습함.</content> <page>9</page>
+<sub>SVD (Singular Value Decomposition) 모델</sub> <content>사용자-아이템 행렬을 세 개의 행렬로 분해하여 잠재적 특성을 추출하는 방식으로, 차원 축소를 통해 계산 효율성을 높임.</content> <page>11</page>
+<sub>ALS (Alternating Least Squares) 모델</sub> <content>행렬 분해 기법 중 하나로, 대규모 데이터셋에 적합하며 손실 함수 최적화와 정규화를 통해 잠재 요인을 학습함.</content> <page>14</page>
+
+<main>최종 모델 선정</main>
+<sub>ALS 모델 선정 이유</sub> <content>Implicit Feedback의 형태로 수집된 데이터의 문제점을 해결하며, 대규모 데이터에 적합하고 RMSE 수치가 낮아 최적의 성능을 보임.</content> <page>15</page>
 
 <main>웹툰 추천 시스템 구현</main>
-<sub>기존 사용자</sub> <content>USER_ID 100001344의 웹툰 추천 결과 제공. 이전에 봤던 웹툰과 유사한 스토리와 장르의 웹툰을 추천. RMSE 0.010001713</content>
-<sub>신규 사용자</sub> <content>USER_ID 123456의 웹툰 추천 결과 제공. 좋아하는 웹툰 3개를 입력받아 유사한 웹툰을 추천. RMSE 0.010001718</content>
+<sub>기존 사용자</sub> <content>USER_ID 100001344 사용자가 이전에 봤던 웹툰을 바탕으로 추천. RMSE: 0.10001713.</content> <page>18</page>
+<sub>신규 사용자</sub> <content>USER_ID 123456이 좋아하는 웹툰 3개를 입력하여 추천. RMSE: 0.10001718.</content> <page>19</page>
 
 <main>결론 및 향후 과제</main>
-<sub>프로젝트 요약 및 의의</sub> <content>여러 가지 추천 알고리즘을 비교 분석하여 최적의 모델을 선택함으로써 사용자에게 더 나은 추천을 제공. Implicit feedback을 사용하여 ALS 모델을 구축해 최상의 결과 도출.</content>
-<sub>향후 과제</sub> <content>Explicit feedback 데이터를 수집해 모델 성능을 향상시키고, genre 컬럼을 활용하여 모델을 개선. Cold Start 문제 해결을 위해 신규 사용자에 대한 추천 시스템 개선 필요.</content>
+<sub>프로젝트 요약 및 의의</sub> <content>CF, NCF, SVD, ALS 등의 추천 알고리즘 모델을 구축하고 비교 분석하여 최적의 모델을 선택함. Implicit feedback을 사용하여 ALS 모델을 구축하고 최상의 결과 도출. 사용자 만족도와 플랫폼 이용률을 증가시킬 수 있음.</content> <page>20</page>
+<sub>한계점 및 향후 과제</sub> <content>정제된 데이터 사용으로 인해 사용자의 선호도를 정확히 파악하기 어려움. 신규 사용자에 대한 추천에는 Cold Start Problem이 존재. 향후 명시적 데이터 수집과 genre 컬럼을 활용하여 모델 개선 필요.</content> <page>21</page>
