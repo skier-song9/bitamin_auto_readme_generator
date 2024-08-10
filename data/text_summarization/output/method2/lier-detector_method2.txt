@@ -1,0 +1,258 @@
+<nan>기반 거짓말 LLM 탐지기 피의자 신문 언어적 접근</nan>
+<subject>비타민 11기겨울 컨퍼런스 - LLM 기반 거짓말 탐지기</subject>
+<subject>피의자 신문 언어적 접근</subject>
+<team>팀원 조민호 박소연 박준형 박세준</team>
+
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<index>배경 및 기획 서비스</index>
+<index>서비스 배경 및기획| 모델 구축 과정 결론 및 제언</index>
+
+<main>서비스 배경 및기획 문제 상황</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>피해자 얼굴도 모른 '11개월 옥살이</sub>
+<content>거짓말탐지기 폴리그래프 과연 신뢰해도 괜찮을까?
+ 실제 고소를 당해 수사를 받게 되자 자신의 억울함을 호소하면서 담당 수사관에게 먼저 거짓말탐지기 검사를 요청했으나 공교롭게도 거짓말탐지기 검사결과 '거짓 반응이나와 재판에 넘겨진 사례가 큰 있었다 그는 불행 중 다행으로 재판 과정에서 새로운 증거가 발견돼 무죄가 선고됐다 거짓말탐지기 검사가 매우 정확하다는 주변 사람의 조언을 듣고 먼저 거짓말탐지기 조사를 요청했는데 오히려 그것이 족쇄가돼 이를 풀기까지 너무나도 많은 대가를 치러야 했다</content>
+
+<main>서비스 배경 및기획 문제 상황</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>비언어적 생체 신호의 오인</sub>
+<sub>거짓말의 복잡성</sub>
+<sub>언어적 요소의 무시</sub>
+<content>생리적 반응을 측정하는 거짓말 탐지기는 긴장 감정 상태 신체 상태 등에 의해 오류가 발생할 수 있어 결과의 정확성을 보장할 수 없음
+ 거짓말은 개인의 상황 심리 상태 등 다양한 요소에 의해 영향을 받아 복합적으로 이루어지는 행위
+ 현재 거짓말 탐지기는 발화 내용의 모순 언어적 특징 문맥의 미묘한 변화 등 언어적 요소를 전혀 고려하지 못하고 있음
+ "기존 거짓말 탐지 방법 중 대부분은 비언어적 생체 신호를 기반으로 하며 거짓말 탐지를 위한 언어적 접근은 미비한 상황이다"</content>
+
+<main>서비스 배경 및 기획 문제 상황</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>단순 이분법적 분류</sub>
+<sub>시간적 비효율성</sub>
+<sub>상황에 따른 생체 신호 왜곡</sub>
+<content>"피의자 신문 과정에서 언어적 접근을 통한 실시간 거짓말 탐지 및 거짓말 유형 분류가 필요하다</content>
+
+<main>서비스 배경 및 기획 서비스 제안 및 사용 예시</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>저는 수사관의 심문을 돕는 AI assistant 입니다</sub>
+<content>심문관은 피의자의 거짓말 유형을 이해하여 실시간으로 질문 전략을 조청함으로써 보다 효과적으로 진실에 가까워질수 있음
+ Q: Blurry? Can you try to remember any other details about that day? A: <NF> Well Sarah said it Was very hot and humid that day</NF>
+ 거짓말 유형이 태깅된 심문기록 예시]</content>
+
+<main>서비스 배경 및 기획 실무 파이프라인</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>RAG</sub>
+<sub>LLM With RAG & PEFT</sub>
+<sub>DB Vector Store</sub>
+<sub>Augment Knowledge & Context</sub>
+<sub>Speech To Text</sub>
+<sub>Tokenize & Encode</sub>
+<sub>Fine-tuned LLM</sub>
+
+<main>RAG Retrieval Augmented Generation</main>
+<content>사용자의 질문에 답변할 때 외부 정보를 쌓은 데이터베이스에서 필요한 정보를 검색할 수 있도록 하여 생성 AI 모델의 정확성과 신뢰성을 향상시키는 기술
+ WHY RAG?
+ 사전 훈련된 대형 언어모델(LM)의 단점을 보완할 수 있음 최신 정보 반영가능 할루시네이션 가능성이 낮아짐
+ 사전 훈련된 대형 언어모델(LLM)의 단점을 보완할 수 있음</content>
+
+<main>모델 구축 과정</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<index>모델 구축 과정</index>
+<sub>STT 구현</sub>
+<sub>DB Vector Store</sub>
+<sub>Augment knowledge & Context</sub>
+<sub>Speech To Text</sub>
+<sub>Tokenize & Encode</sub>
+<content>사용자의 음성을 텍스트로 변환
+ Prompt Engineering</content>
+
+<main>모델 구축 과정</main>
+<sub>STT 구현</sub>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>Get audio from User</sub>
+<content>사용자 음성을 입력받는 get_audio 함수 정의
+ ffmpeg 패키지 활용 사용자 음성을 Wav 파일로 저장
+ N Convert to text
+ 파일을 텍스트로 변환 Wav
+ Google cloud 의 speech to text API 활용 Speaker diarization을 통해 하나의 Wav file에서 개별 화자 구분 화자 간의 발화를 구분한 Script 형태의 문자열 반환
+ Get audio from User Convert to text
+ Google cloud 의 speech to text API 활용 Speaker diarization을 통해 하나의 Wav file에서 개별 화자 구분 화자 간의 발화를 구분한 Script 형태의 문자열 반환
+ Get audio from User Convert to text</content>
+
+<main>모델 구축 과정 데이터 구축</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>Augment Knowledge & Context</sub>
+<sub>Speech To Text</sub>
+<sub>Tokenize & Encode</sub>
+<sub>학습을 위한 데이터셋 생성 및 전처리</sub>
+
+<main>모델 구축 과정 데이터 구축</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>데이터 형식예시</sub>
+<sub>필요 데이터와 문제점</sub>
+<content>필요 데이터 수사관- 피의자 신문기록
+ 문제점
+ 신문기록은 보안문제로 민간인에게 공개되지 않음 비슷한 형태의 데이터셋이 존재하지 않음 대부분의 레퍼런스들이 영어 레퍼런스
+ OpenAI API를 활용하여 직접 Train Dataset을 구축하기로 결정함</content>
+
+<main>모델 구축 과정 데이터 구축</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>데이터가 갖춰야 할 조건</sub>
+<content>피의자의 발화에는 거짓말 신호가 포함되어야 함
+ 거짓말 신호는 오직 피의자의 발화에서만 발생
+ 대화 형식의 심문기록: 수사관-피의자
+ SCAN 기법 기반 거짓말 신호 유형
+ 1 대화 내용 불일치: 모순되는 두 문장을 차례로 말하기
+ 2 혐의에 대한 미약한 부인: 범인으로 의심함에도 강력하게 부인하지 않음
+ 3 모호한 표현 사용: '누군가 어떤 것' 언젠가' 등 모호한 용어를 사용
+ 4 기억 못함: 사건과 관련된 중요한 정보를 기억하지 못하는 척함
+ 5 인칭 오류: 피의자가 사건을 1인칭 시점 외 다른 인칭으로 사건을 기술</content>
+
+<main>모델 구축 과정 데이터 구축</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>SCAN Scientific Content Analysis 기법</sub>
+<content>진술 증거의 신빙성을 측정하는 기법 중 하나</content>
+
+<main>모델 구축 과정 데이터 구축</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>Contradiction Detection</sub>
+<sub>세부 내역</sub>
+<content>Whether the two Sentences are Contradictory?
+ About Dataset
+ Contradiction Detection Data
+ 서로 모순되는 Sentence A와 B를 나열한 데이터셋으로 이를 활용하여 피의자의 발화 중 모순되는 문장들을 생성함</content>
+
+<main>모델 구축 과정 데이터 구축</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>Synthetic Data Generation</sub>
+<sub>Prompt Construction</sub>
+<sub>Awesome ChatGPT Prompts</sub>
+<content>GPT에게 데이터 생성을 요청하기 위한 prompt 작성
+ awesome-chatgpt-prompt를 레퍼런스로 활용
+ Few shot 기법 사용하여 두 개의 예시를 제공 prompt 두 개의 모순되는 문장인 A와 B를 함께 제공
+ awesome-chatgpt-prompt를 레퍼런스로 활용
+ Be my Sponsor and your logo Will be here and promptschat!
+ The ChatGPT model is a large language model trained by OpenAI
+ I want you to act as a Synthetic data generator
+ Persona 부여 GPT 모델의 역할 명시
+ Delimiter Prompt 맥락을 명확히 함
+ Rules 거짓말 신호의 유형과 그 의미를 서술함
+ Prompt Construction Data Generator
+ Preprocessing
+ Delimiter Prompt 맥락을 명확히 함
+ Below are examples of the synthetic data 때 A
+ Examples Few shot prompting 레퍼런스를 제공
+ Examples Few shot prompting 레퍼런스를 제공</content>
+
+<main>모델 구축 과정 데이터 구축</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>Synthetic Data Generation</sub>
+<sub>Data Generation</sub>
+<sub>LangChain의 Synthetic data 활용</sub>
+<content>generator Pydantic을 활용한 데이터 타입 validation 기능을 제공
+ GPT-35-Turbo 모델을 활용 모순되는 두 문장인 A와 B와 거짓말 신호들을 포함하는 피의자 신문 기록 데이터 생성
+ Preprocessing
+ Ilama 2 모델을 미세 조정하기 위한 포멧으로 전처리
+ Alpaca format LLM 모델에게 요청할 Query와 그에 적절한 답을 함께 제공 최종적으로 1700개의 가상 피의자 신문 데이터 생성
+ Prompt Construction Data Generation Preprocessing</content>
+
+<main>모델 구축 과정 데이터 구축</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>Synthetic Data Generation</sub>
+<sub>Generated train data</sub>
+<content>you to find lying signals from Want given conversation script I'll give you Conversation Script between an investigator and a that contains lying signals You find that reveals lying signals and tag the with the Suspect must a sentence sentence signal type Be sure that all lying signals
+ Input
+ Response
+ investigator: Why would you say that? do not need to be sure because I'm Suspect: confident in my innocence
+ Prompt Construction Data Generator Preprocessing
+ Suspect: was just doing some work on my computer investigator: Can you be more specific about the work you were doing? suspect: can't remember exactly what I was working on investigator: Are you sure you were at home that night?
+ Prompt Construction Data Generator Preprocessing</content>
+
+<main>모델 구축 과정 Fine Tuning</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>Augment Knowledge & Context</sub>
+<sub>Speech To Text</sub>
+<sub>Tokenize & Encode</sub>
+<sub>Fine-tuned LLM</sub>
+<sub>Ilama 모델 미세 조정</sub>
+
+<main>모델 구축 과정 Fine Tuning</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>다양한 Large Model 중 현재 여건에서 활용가능한 모델을 탐색함</sub>
+<sub>Lama-2-7b-chat-hf</sub>
+<content>다양한 LLM들 중에서 현재 여건에서 최대한 적은 비용으로 최대한 많은 학습을 진행할 수 있는 경량화된 모델을 위주로 선발함
+ Meta에서 개발한 Open Source LLM 매개변수 규모에 따라 7B 13B 70B 세 가지 모델이 제공됨 가장 경량화된 모델인 7B 모델을 선정
+ 매개변수가 가장 적은 LLaMA-2-7b-chat-hf 모델을 LLaMA 2 모델들 중 활용하기로 결정함</content>
+
+<main>모델 구축 과정 Fine Tuning</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>모델 학습을 위한 로컬 환경과 클라우드 환경 비교</sub>
+<content>기본 16GB 고용량 RAM 사용 시 약 50GB 고용량 RAM 사용 시 충분한 RAM 크기 확보 가능
+ 100 컴퓨팅 단위 당 999 달러 학습 시간은 훨씬 더 적게 걸리나 Colab Pro+를 사용하더라도 Background 실행은 최대 24시간
+ 로컬에서 2 inference 테스트 결과 막대한 시간 소요로 인해 Ilama Colab에서 학습하기로 결정</content>
+
+<main>모델 구축 과정 Fine Tuning</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>Fine Tuning Via PEFT</sub>
+<sub>Fine Tuning</sub>
+<content>autotrain-advanced 패키지 활용
+ autotrain-advanced 패키지 활용 CLI로 fine tuning을 진행할 수 있게 함 Epoch 15 batch size 2로 학습한 모델의 성능이 loss 값 0.05로
+ https://huggingface.co/DominoPizza/ft400-first
+ Inference
+ generate text prompt max Length=2000 generated sequences = text generation_pipeline prompt do_sample=True top_k=10 num_return_sequences-1 eos token_id=tokenizer eos_token_id max Length=max Length return generated sequences [0] generated text
+ 미세 조정된 모델 로드 후 Inference 진행
+ 미세 조정된 모델에 추가적인 prompt engineering을 수행 인력의 한계로 Test Set을 구축하지 못해 성능 평가는 타 모델의 Output과 결과를 비교하는 방식으로 진행</content>
+
+<main>모델 구축 과정 Fine Tuning</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>Chat GPT 35</sub>
+<sub>Output Comparison</sub>
+<content>Fine Tuned Ilama 2
+ Suspect: Well can't deny that people might have seen me but wasn't involved in any criminal activities might have been near the area but
+ Suspect: Well can't deny that people might have seen me but wasn't involved in any criminal activities might have been near the area but
+ Suspect: Uh you know might have bumped into someone on the way home and we talked about something It's all bit foggy Can't remember the exact details
+ Suspect: There were people arguing on the street Someone said it was about a stolen car</content>
+
+<main>모델 구축 과정 Fine Tuning</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>Augment Knowledge & Context</sub>
+<sub>RAG 모델을 이용한 KBI 검출</sub>
+<sub>Tokenize & Encode</sub>
+<sub>Fine-tuned LLM</sub>
+
+<main>모델 구축 과정 RAG</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>Create Investigation Record</sub>
+<content>Date of Incident: January 31 2024
+ Time Of Incident: Approximately 9:45 PM
+ Location of Incident: 752 Pine Street Downtown Lakeside
+ Type of Incident: Armed Robbery
+ Suspect Information
+ Name: John Doe
+ DOB: July 14 1989
+ Address: 198 Westwood Lane Lakeside
+ Physical Description: Approximately 6'0" 185 lbs brown hair
+ Clothing Description at Time of Incident: Black hoodie dark
+ Victim Information
+ KB를 검출하기 위한 사건 기록 제작
+ KBI Knowledge Based Inconsistency란? 기존에 알려진 타당한 사실에 위배되는 진술
+ 용의자가 사건에 대해 확인된 사실에 위배되는 진술을 하는지 대조하기 위해 "Base Knowledge 로서의 사건 기록 제작
+ RAG With LangChain
+ LangChain을 활용하여 RAG 구현
+ 사건 기록을 Documents Loader를 통해 불러옴 문서의 내용을 임베딩한 뒤 Chroma 벡터 스토어에 저장 사용자의 Query에 검색 기반으로 KBI 검출</content>
+
+<main>모델 구축 과정 RAG</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>Investigation Record</sub>
+<sub>Final Output</sub>
+<content>Output
+ investigator: Let's talk about the night of January 31st. Were you in the vicinity of 752 Pine Street?
+ suspect: I can't say I remember anything special about Pine Street. Isn't that in the northern part of Lakeside?
+ investigator: It's actually downtown where the robbery happened. We have CCTV footage showing someone matching your description.
+ suspect: I was wearing a red jacket that night, not a black hoodie.
+ investigator: A witness described someone fitting your description arguing with her.
+ suspect: Maybe there was some disagreement, but who can say what it was about?
+ Lakeside에 거주하고 있음에도 불구하고 Lakeside의 downtown인 Pine Street을 모른다고 응답한 KBI 검출 사건 당일 검은 후드티를 입었으나 빨간 자켓을 입었다고 응답한 KBI 검출</content>
+
+<main>결론 및 제언</main>
+<nan>비타민 11기 겨울 컨퍼런스</nan>
+<sub>프로젝트 의의</sub>
+<content>프로토타입 개발을 통한 LLM
