@@ -1,0 +1,54 @@
+<subject>BITAmin 생성모델조, CartOOnGAN, GAN 이란?, CartoonGAN, Dataset, CartoonGAN 변형, Experiment</subject>
+<team>용호, 영서</team>
+<index>GAN 이란?, CartoonGAN, Dataset, CartoonGAN 변형, Experiment</index>
+<main>GAN 이란?</main>
+<sub>GAN의 정의</sub>
+<content>GAN(Generative Adversarial Network)은 생성적 적대 신경망으로, 두 개의 신경망(생성자와 판별자)이 서로 경쟁하며 학습하는 구조를 가지고 있다.</content>
+
+<sub>데이터셋</sub>
+<content>GAN의 학습을 위해 다양한 데이터셋이 사용되며, 예시로 '원피스' 영화 시리즈의 데이터가 포함되어 있다. 이 데이터셋은 약 11시간 30분 분량의 영상에서 9728장의 이미지를 추출하여 사용한다.</content>
+
+<sub>이미지 처리 기술</sub>
+<content>GAN의 이미지 생성 과정에서 Edge Smoothing, Canny Edge 검출, dilation, Gaussian blur 등의 이미지 처리 기술이 적용되어, 생성된 이미지의 품질을 향상시킨다.</content>
+
+<sub>변형된 GAN</sub>
+<content>CartoonGAN과 같은 변형된 GAN 모델이 존재하며, 이는 특정 스타일의 이미지를 생성하는 데 특화되어 있다.</content>
+<main> CartoonGAN</main>
+<sub>[GAN이란?]</sub>
+<content>GAN은 적대적 훈련을 통해 생성기(Generator)와 감별기(Discriminator)가 서로 경쟁하며 진짜 같은 이미지를 생성하는 모델이다.</content>
+
+<sub>[손실함수]</sub>
+<content>GAN의 손실함수는 Generator와 Discriminator 간의 경쟁을 통해 진짜 같은 이미지를 생성하도록 학습하며, 단순히 손실 함수를 최소화하는 것이 목표가 아니다.</content>
+
+<sub>[실제 사조]</sub>
+<content>실제 만화 이미지와 생성된 이미지 간의 고수준 특징 차이를 최소화하여 원본 이미지의 내용과 구조를 유지하면서 스타일 변환을 수행한다.</content>
+
+<sub>[Experimient Train]</sub>
+<content>훈련 과정에서 Discriminator는 만화 이미지와 생성된 이미지를 구분하도록 학습하며, Generator는 실제 이미지를 기반으로 만화 이미지를 생성하도록 훈련된다.</content>
+<main> Dataset</main>
+<sub>Training Step</sub>
+<content>학습 단계에서는 메러를 최소화하기 위해 다양한 방법을 사용하여 모델을 훈련시킵니다.</content>
+
+<sub>CartoonGAN</sub>
+<content>CartoonGAN은 만화 스타일의 이미지를 생성하기 위한 GAN 아키텍처로, 데이터셋을 통해 훈련됩니다.</content>
+
+<sub>Architecture</sub>
+<content>아키텍처는 데이터셋의 특성을 반영하여 설계되며, 효과적인 학습을 위해 최적화됩니다.</content>
+
+<sub>Training Step</sub>
+<content>훈련 단계에서는 모델의 성능을 향상시키기 위해 반복적인 학습 과정을 거칩니다.</content>
+<main> CartoonGAN 변형</main>
+<sub>변형 CartoonGAN ResNet Block</sub>
+<content>Generator에 사용되는 ResNet Block에서 batch normalization과 residual connection 이후에 ReLU가 적용되는 구조로 변형되었다.</content>
+
+<sub>CartoonGAN Generator Upsampling</sub>
+<content>Generator에서 blurring과 batch normalization을 사용하여 upsampling 과정에서 발생할 수 있는 checkerboard 문제를 해결하고, 더 빠르고 안정적인 학습을 가능하게 한다.</content>
+<main> Experiment</main>
+<sub>Content Loss VGG19 -> VGG16 변경</sub>
+<content>Content Loss를 VGG19에서 VGG16으로 변경하고, VGG16의 24번째 레이어까지만 사용하여 feature extractor로 활용함으로써 비용을 줄이고 저수준의 feature를 효과적으로 추출하였다.</content>
+
+<sub>Experiment Train</sub>
+<content>Generator를 사전 훈련(pretrained)하여 실제 이미지의 내용을 유지하기 위해 10 epochs 동안 학습하였으며, 배치 크기는 16, AdamW 옵티마이저를 사용하여 학습률과 기타 파라미터를 설정하였다.</content>
+
+<sub>Experiment Results</sub>
+<content>실험 결과에 대한 구체적인 내용은 언급되지 않았으나, 전반적으로 실험의 성공적인 진행을 나타내는 것으로 보인다.</content>

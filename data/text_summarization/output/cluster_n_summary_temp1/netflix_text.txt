@@ -2,35 +2,35 @@
 <team>송규헌, 권도영, 이태경, 김서윤, 한진솔</team>
 <index>INTRODUCTION, DATA PREPROCESSING, MODELING, CONCLUSIONS AND LIMITATIONS</index>
 <main>INTRODUCTION</main>
-<subtitle>프로젝트 개요</subtitle>
-<content>2024 BITAmin 겨울 연합프로젝트는 NETFLIX, 핀터레스트, 메타플렛폼스, 스포티파이의 주가 데이터를 2018년 1월 2일부터 2023년 12월 29일까지 수집하여 시계열 분석을 진행하는 프로젝트이다.</content>
+<sub>프로젝트 개요</sub>
+<content>2024 BITAmin 겨울 연합프로젝트의 목적은 NETFLIX, 핀터레스트, 스포티파이의 주가 데이터를 수집하고, 이를 통해 시계열 분석 및 예측 모델을 개발하는 것이다.</content>
 
-<subtitle>데이터 수집 방법</subtitle>
-<content>주가 데이터는 FinanceDataReader 라이브러리를 통해 수집하였고, 관련 뉴스 데이터는 Stock News API를 활용하여 수집하였다. 이후 뉴스 데이터에서 감성 분석 및 토픽 모델링을 시도하였지만, 주가 예측의 정확도를 높이기 위해 데이터셋의 질을 향상시키는 데 초점을 맞추었다.</content>
+<sub>데이터 수집 방법</sub>
+<content>주가 데이터는 FinanceDataReader 라이브러리를 사용해 2018년 1월 2일부터 2023년 12월 29일까지 수집되었고, 뉴스 데이터는 Stock News API를 활용하여 같은 기간의 NETFLIX 관련 뉴스가 웹 스크래핑 방식으로 수집되었다.</content>
+
+<sub>데이터 분석 기법</sub>
+<content>수집된 뉴스 데이터는 FinBERT와 BERTopic을 통해 감성 분석과 토픽 모델링이 시도되었으며, 시계열 예측의 정확도를 높이기 위해 뉴스 데이터를 포함하여 분석할 계획이다.</content>
 <main> DATA PREPROCESSING</main>
-<subtitle>[Indicators Selection]</subtitle>
-<content>주가 예측에 필요한 37개 지표를 선정하였으며, 지표들은 주가의 변화와 관련된 변동을 분석하는 데 사용된다.</content>
+<sub>지표 추가</sub>
+<content>주가 예측을 위해 37개 기술 지표를 선정하였으며, 주요 지표로는 볼린저 밴드, 켈트너 채널, 상대 강도 지수(RSI) 등이 포함된다.</content>
 
-<subtitle>[Remove Multicollinearity]</subtitle>
-<content>상관관계가 높은 지표들을 제외하여 데이터의 다중공선성을 제거하고 주가 예측의 정확성을 높인다.</content>
+<sub>다중공선성 제거</sub>
+<content>주가 변화와 관련된 주요 지표인 종가, 고가, 저가 등을 유지하고, 상관관계가 낮은 보조 지표들을 삭제하여 모델의 성능을 향상시키고자 한다.</content>
 
-<subtitle>[Derived Variables for News Topics & Sentiment]</subtitle>
-<content>뉴스 주제와 감성을 라벨 인코딩 및 원-핫 인코딩을 통해 변형하며, 과거 뉴스가 주가에 미치는 영향을 분석하기 위해 이동 평균값을 추가한다.</content>
+<sub>뉴스 주제 및 감성 변수 생성</sub>
+<content>뉴스의 주제와 감성을 변수로 활용하기 위해 레이블 인코딩 및 원-핫 인코딩 기법을 적용하였으며, 과거 뉴스의 영향을 측정하기 위한 이동 평균 기법을 추가하였다.</content>
 <main> MODELING</main>
-<subtitle>Modeling Step 3: Model Comparison</subtitle>
-<content>모델 비교 단계에서는 'CLOSE'와 'ID-ROC'를 타겟으로 설정하여 다양한 모델을 평가하는 방법론을 설명하고 있다.</content>
+<sub>Modeling Step 3: Model Comparison</sub>
+<content>모델 비교 단계에서 'CLOSE'와 'ID-ROC'를 타겟으로 설정하고 비교 분석을 수행하여 적절한 모델을 선택합니다.</content>
 
-<subtitle>Model Result: LSTM</subtitle>
-<content>LSTM 모델의 결과는 RMSE 지표로 평가되었으며, 이 값은 모델의 성능을 나타낸다.</content>
+<sub>Model Result</sub>
+<content>각 모델의 결과로 LSTM, GRU, Transformer의 RMSE 값을 제시하며, 이를 통해 모델의 성능을 평가합니다.</content>
 
-<subtitle>Model Result: GRU</subtitle>
-<content>GRU 모델 또한 RMSE 기준으로 성능이 측정되며, 이전 모델들과의 비교를 통해 효과성을 분석한다.</content>
-
-<subtitle>Model Result: Transformer</subtitle>
-<content>Transformer 모델의 결과도 RMSE로 평가되었으며, 다른 모델들과의 통합적인 성과 평가가 이루어진다.</content>
-
-<subtitle>Best parameter for each model</subtitle>
-<content>각 모델(LSTM, GRU, Transformer)의 최상의 파라미터가 제시 되어, 모델 성능 최적화에 기여하는 요소를 밝혀준다.</content>
+<sub>Best parameter for each model</sub>
+<content>각 모델에 대한 최적의 파라미터를 제시하여 LSTM, GRU, Transformer 모델의 성능을 최적화하는 데 필요한 정보로 활용합니다.</content>
 <main> CONCLUSIONS AND LIMITATIONS</main>
-<subtitle>예측 평가기준</subtitle>
-<content>시계열 모델의 손실 함수로 MSE 대신 RMSE를 선택하였으며, Close 종가와 1일 등락률을 예측하는 변수로 고려하였다. 또한, 뉴스 데이터가 예측에 유의미한 영향을 미치는지 여부와 LSTM, GRU, Transformer 모델 중 어떤 것이 가장 예측에 효과적인지 논의하였다.</content>
+<sub>예측 평가기준</sub>
+<content>시계열 모델의 손실함수로 MSE를 사용했으나 값이 너무 커서 RMSE를 선택하였으며, 종가 예측을 위한 적합한 변수를 찾고 뉴스 데이터가 예측에 미치는 영향을 분석하였다.</content>
+
+<sub>모델 비교</sub>
+<content>LSTM, GRU, Transformer 모델 간의 예측 효과성을 평가하여 어떤 모델이 가장 효과적인지를 검토하였다.</content>

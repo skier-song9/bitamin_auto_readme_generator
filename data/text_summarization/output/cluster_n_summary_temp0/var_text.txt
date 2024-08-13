@@ -1,0 +1,45 @@
+<subject>모델을 이용한 VAR 포트폴리오의 수익률 예측과 측정 Value at Risk</subject>
+<team>송휘종, 이수정, 강춘우, 김나현, 이형석</team>
+<index>Timeline, Introduction to Time Series Analysis, Value at Risk & Conclusion, Discussion</index>
+<main>Timeline</main>
+<sub>주제 모델을 이용한 VAR 포트폴리오의 수익률 예측</sub>
+<content>VAR 포트폴리오의 수익률 예측은 시계열 모델을 활용하여 과거 데이터의 선형 조합을 통해 미래의 수익률을 예측하는 방법론을 설명한다.</content>
+
+<sub>자기 회귀 모델</sub>
+<content>자기 회귀 모델은 현재의 값이 이전 값들에 의존하는 구조로, 과거의 데이터를 기반으로 관심 있는 변수를 예측하는 데 사용된다.</content>
+
+<sub>백터 자기회귀 모델</sub>
+<content>백터 자기회귀 모델은 다변량 시계열 예측에 사용되며, 서로 영향을 주는 여러 변수의 미래 값을 과거 값으로부터 예측하는 방법이다.</content>
+
+<sub>변수 수집 및 선정</sub>
+<content>변수 수집 과정에서는 현대차와 관련된 다양한 경제 지표와 주가, 판매량 등을 선정하여 분석에 활용하였다.</content>
+
+<sub>결론 및 한계점</sub>
+<content>결론적으로, VAR 모델은 정확한 수익률 예측보다는 추세 예측에 의의가 있으며, 모델의 한계로는 실제 금융 시장과의 차이가 존재하고, 적절한 모델 선택을 위한 객관적인 지표가 필요하다는 점이 강조된다.</content>
+<main> Introduction to Time Series Analysis</main>
+<sub>그랜처-인과관계 검정</sub>
+<content>그랜처-인과관계 검정은 변수들의 상호 연관성을 검정하는 방법으로, 귀무가설이 기각되면 해당 변수가 예측에 인자로 사용될 수 있음을 의미한다.</content>
+
+<sub>VAR 모델링</sub>
+<content>VAR 모델링은 여러 시계열 변수를 동시에 고려하여 예측하는 방법으로, 다양한 지연(lag) 값을 가진 모델들이 선정되어 사용된다.</content>
+
+<sub>상관계수 행렬</sub>
+<content>상관계수 행렬은 시계열 데이터 간의 상관관계를 나타내며, 변수들 간의 관계를 분석하는 데 중요한 역할을 한다.</content>
+<main> Value at Risk & Conclusion</main>
+<sub>Value at Risk 측정 지표</sub>
+<content>Value at Risk(VaR)는 특정 시점에서 발생할 수 있는 최대 손실을 측정하는 지표로, 다양한 방법론(예: RiskMetrics, Time Series Approach, Block Maxima, Peaks Over Threshold)을 통해 계산된다.</content>
+
+<sub>포트폴리오의 VaR</sub>
+<content>포트폴리오의 VaR는 각 종목의 가중치와 상관계수를 고려하여 계산되며, 모든 가중치의 합은 1이 되어야 하고, 각 가중치는 최소 0.05 이상이어야 한다.</content>
+
+<sub>결론</sub>
+<content>Value at Risk는 투자 포트폴리오의 위험을 정량적으로 평가하는 중요한 도구로, 이를 통해 투자자는 잠재적인 손실을 사전에 인지하고 관리할 수 있다.</content>
+<main> Discussion</main>
+<sub>[종목선정]</sub>
+<content>종목선정 과정에서 셀트리온, 현대차, SK이노베이션 등 주요 기업들이 분석되었으며, 분석 기간은 2013년 1월부터 2022년 12월까지로 설정되었다.</content>
+
+<sub>[변수 수집 및 선정]</sub>
+<content>변수 수집 과정에서는 삼성증권을 통해 재고순환지표, 경제심리지수, 수출입 물가비율 등 다양한 경제 지표가 선정되었으며, 각 기업별로 필요한 변수들이 추가적으로 수집되었다.</content>
+
+<sub>[예측 모델링]</sub>
+<content>VAR 모델링을 이용하여 수익률 예측이 이루어졌으며, 예측값과 실젯값의 비교를 통해 모델의 정확성을 평가하였다.</content>
