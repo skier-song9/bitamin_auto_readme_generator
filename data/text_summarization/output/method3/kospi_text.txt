@@ -1,0 +1,19 @@
+<subject>비타민 12 & 13기 학기 프로젝트 피쳐 중요도 통한 분석을 지수 예측 KOSP2O</subject>
+<team>데이터고개</team>
+<index>LEVEL 2 모델 소개 XGB LSTM GRU, LEVEL 3 피쳐 중요도 분석 Attention SHAP, LEVEL 4 결과 비교 및 결론</index>
+
+<main>LEVEL 2 모델 소개 XGB LSTM GRU</main>
+<sub>데이터 전처리</sub> <content>데이터프레임 병합과 날짜 조정 후 결측치 처리.</content> <page>5</page>
+<sub>XGBoost</sub> <content>그래디언트 부스팅 기법을 사용한 이진분류 모델. 하이퍼파라미터 튜닝 결과로 종가 데이터에서 0.5518, 변화율 데이터에서 0.6098의 정확도를 보임.</content> <page>7</page>
+<sub>슬라이딩 윈도우 방법론</sub> <content>과거 데이터를 기반으로 미래를 예측하는 방법론. 윈도우 크기만큼 데이터의 피쳐가 증가함.</content> <page>8</page>
+<sub>LSTM</sub> <content>긴 시간 동안 RNN의 메모리를 유지하며 시계열 데이터의 중요한 패턴과 추세를 학습. 두 개의 LSTM 레이어와 드롭아웃을 사용하여 과적합 방지.</content> <page>11</page>
+<sub>GRU</sub> <content>LSTM과 유사한 게이트 메커니즘을 통해 중요한 정보를 유지하고 불필요한 정보를 제거. 두 개의 GRU 레이어와 드롭아웃을 사용하여 과적합 방지.</content> <page>13</page>
+
+<main>LEVEL 3 피쳐 중요도 분석 Attention SHAP</main>
+<sub>Attention</sub> <content>중요한 부분에 더 집중하는 기술로, 시계열 데이터에서 특정 시간 단계의 중요한 정보에 집중할 수 있음.</content> <page>16</page>
+<sub>SHAP</sub> <content>게임이론에 기반한 모델 출력 설명 접근법. 피쳐 중요도를 시각화하고 상위 피쳐만 사용한 모델링 결과, 성능이 비슷하게 유지됨. 종가 데이터에서 원래 모델 성능 0.5518, 300개의 피쳐만 사용한 결과 성능 0.52. 변화율 데이터에서 원래 모델 성능 0.6098, 5개의 피쳐만 사용한 결과 성능 0.5925.</content> <page>19</page>
+
+<main>LEVEL 4 결과 비교 및 결론</main>
+<sub>결과 비교</sub> <content>XGBoost가 가장 우수한 성능을 보였으며, 변화율 데이터를 사용하여 성능이 향상됨. LSTM과 GRU는 Attention 적용 시 성능이 증가, XGBoost는 약간 감소.</content> <page>26</page>
+<sub>변수 중요도 적용 방법에 따른 성능 비교</sub> <content>XGBoost와 LSTM이 각각 우수한 성능을 보임. 변수 중요도 계수를 적용한 데이터세트에서는 XGBoost가, 양수인 계수만 적용한 데이터세트에서는 LSTM이 우수한 성능을 보임.</content> <page>28</page>
+<sub>결론</sub> <content>변화율 데이터가 종가 데이터보다 예측 성능이 우수하며, Attention 매커니즘을 통해 변수 중요도 가중치를 얻어 RNN 계열 모델의 정확도를 올릴 수 있음. 변수 중요도 분석을 통해 적은 피쳐만으로도 모델의 성능을 유지 가능.</content> <page>29</page>

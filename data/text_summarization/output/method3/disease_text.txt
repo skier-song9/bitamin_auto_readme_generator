@@ -1,0 +1,27 @@
+<subject>안저 데이터를 이용한 질병 분류</subject>
+<team>권도영, 권민지, 김서윤, 김채원, 박서진</team>
+<index>주제 및 배경, 데이터 소개 및 EDA, 전처리, 모델링, 결과</index>
+
+<main>주제 및 배경</main>
+<sub>프로젝트 배경</sub> <content>안저사진을 분석하여 망막질환 및 자폐스펙트럼장애를 판독하는 AI 모델 개발.</content> <page>3</page>
+<sub>안저 데이터</sub> <content>낮은 침습성, 짧은 검사 시간, 고해상도 이미지 확보 가능, 다양한 질병 진단 가능성.</content> <page>5</page>
+
+<main>데이터 소개 및 EDA</main>
+<sub>데이터 소가</sub> <content>Kaggle의 OCULAR DISEASE RECOGNITION 데이터베이스 사용.</content> <page>6</page>
+<sub>EDA</sub> <content>19개의 라벨을 포함할 것인지, 클래스 불균형 문제, 라벨 간의 개수 차이.</content> <page>7</page>
+
+<main>전처리</main>
+<sub>전처리</sub> <content>19개의 라벨 중 TOP 5 라벨 선정, DIAGNOSES 컬럼 생성.</content> <page>8</page>
+<sub>이미지 클래스 불균형</sub> <content>데이터 증강 필요, FASTAI, AUTO AUGMENT, ALBUMENTATION, GAN 사용 시도.</content> <page>11</page>
+
+<main>모델링</main>
+<sub>모델링</sub> <content>이미지 분류 모델 및 클래스별 데이터 불균형 해소를 위한 이미지 증강 방법 선정.</content> <page>14</page>
+<sub>Resnet18</sub> <content>경량화된 ResNet18로 이미지 분류, 기울기 소실 문제 해결.</content> <page>15</page>
+<sub>Densenet</sub> <content>Dense Block과 Transition Layer로 정보 흐름 극대화, 소실 문제 완화.</content> <page>16</page>
+<sub>VGG16</sub> <content>3X3 필터 사용, 기울기 소실 문제 해결, 작은 필터로 뛰어난 성능.</content> <page>17</page>
+<sub>VGG19</sub> <content>VGG16의 확장된 버전, 더 깊은 네트워크 구조.</content> <page>18</page>
+
+<main>결과</main>
+<sub>모델링 결과</sub> <content>이미지 분류 모델 및 데이터 불균형 해소를 위한 이미지 증강 방법 선정.</content> <page>19</page>
+<sub>이미지 증강 방법</sub> <content>AUTOAUGMENT, FASTAI AUGMENTATION, ALBUMENTATIONS 성능 비교.</content> <page>21</page>
+<sub>한계 및 의의</sub> <content>GAN의 실패, 모델 부류 정확도 문제, 이미지 데이터 전처리 방법 학습 및 모델 성능 비교.</content> <page>22</page>

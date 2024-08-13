@@ -1,0 +1,23 @@
+<subject>도배 하자 질의 응답 처리 한솔데코 시즌 2 Al 경진대회 알고리즘 언어 - LLM MLOps OA - Cosine Similarity 도배하자 질의응답 LLM 개발</subject>
+<team>구준회, 김지원, 박서진, 신진섭, 엄성원</team>
+<index>프로젝트 배경, EDA, Text Augmentation, Modeling & Inference, 보완할 점 & 추후계획</index>
+
+<main>프로젝트 배경</main>
+<sub>Project Backgrounc</sub> <content>자연어 처리를 통해 언어모델을 학습시키고 특정 TASK에 적합한 TEXT를 생성하는 원리를 이해하는 것이 목표임</content> <page>3</page>
+<sub>Overall Progress</sub> <content>NLP 도메인 이해, Transformer 및 도배 하자 질의 응답 논문 공부, 공모전 목표에 대한 이해와 언어모델 개발 및 추론 과정 포함</content> <page>4</page>
+
+<main>EDA</main>
+<sub>Train Data</sub> <content>주최 측이 제공한 train 데이터는 id, 2개의 질문, 질문의 카테고리, 답변 5개의 column으로 구성되며, 질문과 답변 Set로 토큰화하여 input으로 입력됨</content> <page>5</page>
+
+<main>Text Augmentation</main>
+<sub>Crawling & Prompt Engineering</sub> <content>실용적 데이터를 위한 다양한 자료와 논문을 참고하여 train 데이터를 증강. ChatGPT를 이용해 전문적인 답변을 생성함</content> <page>8</page>
+<sub>최종 train dataset</sub> <content>기존 644 QA Sets에서 증강 이후 8319 QA Sets로 증가</content> <page>9</page>
+
+<main>Modeling & Inference</main>
+<sub>Issues</sub> <content>한정된 GPU 자원 문제와 한국어 데이터로 사전훈련된 모델의 성능 기대 어려움</content> <page>10</page>
+<sub>Fine Tuning</sub> <content>사전 학습된 모델을 소규모 데이터 세트에 추가 학습하여 특정 작업 성능을 향상시키는 프로세스</content> <page>11</page>
+<sub>LORA PEFT</sub> <content>적은 매개변수 학습만으로 성능을 향상시키는 fine-tuning 기법으로, 훈련 비용과 컴퓨팅 리소스를 절약함</content> <page>12</page>
+<sub>Inference</sub> <content>Fine-tuned 모델이 학습된 정보를 바탕으로 구체적이고 자세한 답변을 생성하며, 주어진 질문에 대한 답을 정확히 출력함</content> <page>13</page>
+
+<main>보완할 점 & 추후계획</main>
+<sub>Gradio</sub> <content>EOD에서의 활용 계획</content> <page>15</page>

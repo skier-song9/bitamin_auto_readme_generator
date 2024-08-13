@@ -1,0 +1,27 @@
+<subject>데이터 증강 BRAIN 및 TUMOR |% 한 아 ㅋ 치 홀 R E S 성 - 동 등 비 교 -</subject>
+<team>김고은, 김채연, 김희원, 이예령, 이승우</team>
+<index>주제 선정 이유, RESNET, 원본데이터 설명 및 한계, 구현 RESNET, 결과 비교, 결론 및 아쉬운 점</index>
+
+<main>주제 선정 이유</main>
+<sub>주제 선정 이유</sub> <content>데이터 증강을 통한 BRAIN 및 TUMOR 분석.</content> <page>1</page>
+
+<main>RESNET</main>
+<sub>RESNET</sub> <content>RESNET의 개념과 학습 과정 설명.</content> <page>4</page>
+<sub>ROADMAP</sub> <content>데이터 전처리 및 증강, RESNET 18/50 구현, 결과 비교 단계를 포함한 프로젝트 로드맵.</content> <page>5</page>
+
+<main>원본데이터 설명 및 한계</main>
+<sub>원본데이터 설명</sub> <content>원본 데이터의 총 수량과 분포 설명.</content> <page>6</page>
+<sub>원본데이터 한계</sub> <content>이미지 증강 및 컨투어의 필요성 언급, 클래스별 데이터 분포 설명.</content> <page>7</page>
+
+<main>구현 RESNET</main>
+<sub>RESNET 18</sub> <content>RESNET 18 모델 구현 및 성능 평가 설명.</content> <page>10</page>
+<sub>RESNET 50</sub> <content>RESNET 50 모델 구현 및 성능 평가 설명.</content> <page>11</page>
+<sub>원본 데이터 예측</sub> <content>원본 데이터 예측 성능 평가 결과.</content> <page>12</page>
+
+<main>결과 비교</main>
+<sub>원본 데이터 성능 시각화</sub> <content>원본 데이터로 학습한 RESNET-18과 RESNET-50의 성능 시각화.</content> <page>14</page>
+<sub>증강 데이터 성능 시각화</sub> <content>증강 데이터를 사용한 RESNET-18과 RESNET-50의 성능 시각화.</content> <page>18</page>
+
+<main>결론 및 아쉬운 점</main>
+<sub>결론</sub> <content>RESNET 구조를 학습하여 BRAIN TUMOR 데이터에 적용한 결과와 데이터 증강의 필요성 언급.</content> <page>20</page>
+<sub>보완점</sub> <content>데이터 부족으로 인한 모델 정확도 저하와 데이터 증강의 필요성 제시.</content> <page>21</page>

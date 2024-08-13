@@ -1,0 +1,22 @@
+<subject>Predict Energy Behavior Of Prosumers</subject>
+<team>박지원, 박정훈, 박초은</team>
+<index>01 분석 개요, 02 변수 선택, 03 모델링</index>
+
+<main>01 분석 개요</main>
+<sub>에너지 프로슈머란?</sub> <content>에너지의 생산과 소비 역할을 동시에 하는 주체로, 주거용과 기업용의 차이를 설명.</content> <page>4</page>
+<sub>에너지 중요한 이유 프로슈머가</sub> <content>프로슈머의 증가로 인한 에너지 불균형과 비효율적 이용률 문제를 해결하기 위해 행동양식을 파악해야 함.</content> <page>5</page>
+<sub>데이터 소개</sub> <content>에스토니아의 기후 데이터, 에너지 소비와 비용, 태양광 에너지 사용률 등을 포함하여 다양한 CSV 파일로 구성된 데이터셋.</content> <page>6</page>
+<sub>분석 방향성 소개</sub> <content>상관분석, 요인분석, 파생변수 도출, 변수 중요도 파악, 최종 모델링(XGBoost).</content> <page>13</page>
+
+<main>02 변수 선택</main>
+<sub>상관분석</sub> <content>총 50여 개의 features 중에서 유의미한 변수를 선별하며, 타겟과의 상관계수가 낮은 변수들을 추가 요인분석으로 더 정확히 파악.</content> <page>15</page>
+<sub>요인분석</sub> <content>변수 간 상관관계를 고려하여 중요 요인을 추출하고, Scree Plot을 통해 적절한 요인의 개수를 찾음.</content> <page>16</page>
+<sub>파생변수 도출</sub> <content>Fourier feature transform을 활용하여 시간, 월, 날짜, 요일 등 다양한 파생변수를 생성.</content> <page>19</page>
+
+<main>03 모델링</main>
+<sub>모델 및 평가지표 소개</sub> <content>Extreme Gradient Boosting 앙상블 모델 사용, MAE(Mean Absolute Error)로 평가.</content> <page>22</page>
+<sub>초기 모델</sub> <content>정보 손실 최소화를 위해 거의 모든 변수를 활용하여 모델 피팅.</content> <page>23</page>
+<sub>수정된 모델 1 데이터 분리</sub> <content>소비 및 사업 유형에 따라 총 4가지 데이터로 분리하여 모델 피팅 및 평가.</content> <page>24</page>
+<sub>수정된 모델 2 하이퍼 튜닝 파라미터</sub> <content>Random Search 기법을 활용하여 최적의 하이퍼 파라미터 찾아 적용.</content> <page>26</page>
+<sub>수정된 모델 3 변수 제거</sub> <content>SHAP 변수 중요도를 바탕으로 성능이 낮은 변수를 제거하여 모델 성능을 향상.</content> <page>27</page>
+<sub>최종 결과</sub> <content>4개의 MAE 평균 25.4941 확인.</content> <page>31</page>

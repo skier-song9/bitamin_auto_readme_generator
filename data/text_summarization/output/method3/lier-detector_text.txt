@@ -1,0 +1,20 @@
+<subject>LLM 기반 거짓말 탐지기 피의자 신문 언어적 접근</subject>
+<team>조민호, 박소연, 박준형, 박세준</team>
+<index>서비스 배경 및기획, 모델 구축 과정, 결론 및 제언</index>
+
+<main>서비스 배경 및기획</main>
+<sub>문제 상황</sub> <content>거짓말탐지기의 신뢰성 문제와 비언어적 생체 신호의 오인, 언어적 요소의 무시 등으로 인해 발생하는 오류. 거짓말 탐지의 복잡성과 이분법적 분류, 생체 신호 왜곡 등의 문제점을 해결하기 위한 새로운 접근 필요성.</content> <page>3</page>
+<sub>서비스 제안 및 사용 예시</sub> <content>심문관이 피의자의 거짓말 유형을 이해하여 실시간으로 질문 전략을 조정하는 AI 어시스턴트 제안. 거짓말 유형이 태깅된 심문 기록 예시 제공.</content> <page>6</page>
+<sub>실무 파이프라인</sub> <content>RAG, LLM With RAG & PEFT, DB Vector Store, Speech To Text, Tokenize & Encode, Fine-tuned LLM 등의 기술을 활용한 실무 파이프라인 설명.</content> <page>7</page>
+
+<main>모델 구축 과정</main>
+<sub>RAG</sub> <content>사용자의 질문에 답변할 때 외부 정보를 검색하여 생성 AI 모델의 정확성과 신뢰성을 향상시키는 기술. 최신 정보 반영 가능성과 할루시네이션 가능성 감소.</content> <page>8</page>
+<sub>STT 구현</sub> <content>사용자의 음성을 텍스트로 변환하는 STT 구현 과정. Google Cloud의 Speech-to-Text API 활용.</content> <page>11</page>
+<sub>데이터 구축</sub> <content>학습을 위한 데이터셋 생성 및 전처리. 피의자 신문기록 데이터 구축, SCAN 기법 기반 거짓말 신호 유형 포함.</content> <page>13</page>
+<sub>Synthetic Data Generation</sub> <content>GPT-35-Turbo 모델을 활용하여 모순되는 두 문장과 거짓말 신호를 포함하는 피의자 신문 기록 데이터 생성.</content> <page>18</page>
+<sub>Fine Tuning</sub> <content>LLaMA-2-7b-chat-hf 모델을 미세 조정하여 성능 향상. 로컬 및 클라우드 환경 비교 후 Colab에서 학습 진행.</content> <page>20</page>
+<sub>RAG 모델을 이용한 KBI 검출</sub> <content>사건 기록을 기반으로 KBI 검출. LangChain을 활용하여 사건 기록을 검색하고 KBI를 검출하는 과정.</content> <page>26</page>
+
+<main>결론 및 제언</main>
+<sub>프로젝트 의의</sub> <content>LLM을 활용한 거짓말 탐지 기술의 가능성을 제시하고 수사 효율성을 높이며 실시간 심문 지원. 문장 단위의 거짓말 탐지와 복합적 분석을 통해 심문 과정에서 진실을 효과적으로 추적할 수 있음.</content> <page>29</page>
+<sub>추가 지향점</sub> <content>Iama2 70b/ GPT-4 모델 등을 활용한 향후 발전 방향 제시.</content> <page>30</page>

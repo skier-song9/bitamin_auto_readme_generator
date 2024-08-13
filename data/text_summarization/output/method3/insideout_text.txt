@@ -1,0 +1,27 @@
+<subject>CE SEGEMENTATION & EMOTION CLASSIFICAT!</subject>
+<team>김재원, 김채원, 문승민, 이서현, 황영서</team>
+<index>주제 선정 배경, 모델 구축 과정, 결과 분석, 의의 및 한계점</index>
+
+<main>주제 선정 배경</main>
+<sub>아이디어</sub> <content>인간의 감정 인식 연구는 많지만 애니메이션 캐릭터의 감정 인식 연구는 제한적이며, 영화 속 감정을 다루는 애니메이션 캐릭터의 감정 분석을 수행</content> <page>3</page>
+<sub>참고 논문</sub> <content>'Tom and Jerry' 이미지 8113개를 사용하여 4개의 감정 레이블로 분류, 여러 모델 성능 비교</content> <page>4</page>
+
+<main>모델 구축 과정</main>
+<sub>라벨링</sub> <content>감정 분류를 위한 데이터 전처리, Roboflow와 OpenCV를 활용한 캐릭터 라벨링 및 감정 레이블링</content> <page>5</page>
+<sub>데이터 수집</sub> <content>영화 원본에서 8000장의 이미지를 4프레임 단위로 추출하고 관련 없는 이미지를 삭제</content> <page>7</page>
+<sub>라벨링</sub> <content>다양한 데이터셋을 지원하는 컴퓨터 비전 기술로 이미지 및 어노테이션 3000장 생성, 이미지 크기 조정 및 데이터 증강</content> <page>8</page>
+<sub>Segmentation</sub> <content>YOLOv8 모델을 활용하여 6300장의 이미지에서 bounding box와 mask 생성</content> <page>9</page>
+<sub>YOLO Object 학습 결과</sub> <content>F1 점수 커브, 정밀도-리콜 커브, 혼동 행렬 등 성능 평가 제공</content> <page>10</page>
+<sub>감정 분류</sub> <content>ResNet, DenseNet, VGGNet을 활용한 전이 학습으로 감정 분류 수행</content> <page>11</page>
+<sub>얼굴 추출</sub> <content>OpenCV를 이용한 얼굴 추출 및 마스크 적용</content> <page>12</page>
+<sub>전이 학습</sub> <content>사전학습된 CNN 모델을 사용하여 감정 분류 수행, 다양한 하이퍼파라미터 및 데이터 증강 기법 적용</content> <page>14</page>
+<sub>ResNet</sub> <content>기울기 소실 문제를 해결한 잔여 연결 개념 도입, 다양한 감정 범주로 분류</content> <page>15</page>
+<sub>모델 성능</sub> <content>ResNet50 최종 모델 선택, 검증 정확도 76.98%, F1 점수 및 정밀도 커브 제공</content> <page>19</page>
+
+<main>결과 분석</main>
+<sub>감정 차이</sub> <content>캐릭터에 따른 감정 차이가 유의미하며, 가장 다양한 감정을 가진 캐릭터는 '기쁨이'</content> <page>22</page>
+<sub>성능 평가</sub> <content>캐릭터별 감정 분석 성능 평가</content> <page>23</page>
+
+<main>의의 및 한계점</main>
+<sub>의의</sub> <content>애니메이션 캐릭터 감정 분석을 통한 관련 산업 발전 및 추천 시스템 구축 가능성</content> <page>24</page>
+<sub>한계점</sub> <content>감정 라벨링 시 주관적 요소로 인한 데이터 일관성 부족이 모델 성능에 영향</content> <page>24</page>

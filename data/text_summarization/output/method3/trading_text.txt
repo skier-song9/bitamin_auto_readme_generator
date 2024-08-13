@@ -1,0 +1,25 @@
+<subject>시계열 예측과 트레이딩 수익 극대화 강화학습을 활용한 시스템</subject>
+<team>송규헌, 송휘종, 서영우, 이태경, 정유진, 정준우</team>
+<index>주제, 데이터수집및 전처리, 모델 평가및 선정, 시스템 트레이딩, 결과</index>
+
+<main>주제</main>
+<sub>시계열 예측과 트레이딩 수익 극대화</sub> <content>강화학습을 활용하여 시스템 트레이딩을 실행하며, 기존 금융 딥러닝의 문제점인 노이즈와 데이터 부족, 과적합을 해결하기 위한 방안 제시.</content> <page>3</page>
+
+<main>데이터수집및 전처리</main>
+<sub>데이터 수집</sub> <content>국내 주식 데이터를 IFinance Data를 통해 2017-01-01부터 현재까지 수집. 수집 항목은 종가.</content> <page>5</page>
+<sub>데이터 처리</sub> <content>RSI와 Sharpe Ratio를 계산하여 데이터 전처리 수행.</content> <page>7</page>
+
+<main>모델 평가및 선정</main>
+<sub>시계열 모델</sub> <content>LSTM 모델을 사용하여 장기 의존성 문제를 해결하고 오랜 기간의 데이터를 반영.</content> <page>8</page>
+<sub>Dlinear 모델</sub> <content>Transformer 기반의 모델로, 선형 예측과 시간적 정보 손실 방지 기능을 갖춤.</content> <page>9</page>
+<sub>평가 기법</sub> <content>MAE(평균 절대 오차)와 MSE(평균 제곱 오차)를 사용하여 모델 평가. LSTM의 MAE는 37084, MSE는 150189이며, LSTF의 MAE는 00811, MSE는 00348.</content> <page>10</page>
+
+<main>시스템 트레이딩</main>
+<sub>데이터 수집</sub> <content>대신증권 API를 이용해 최대 20만 개의 분봉 데이터를 수집, 15000개의 분봉 데이터를 학습에 사용.</content> <page>11</page>
+<sub>데이터 전처리</sub> <content>이동 평균, 스토캐스틱 오실레이터, 볼린저 밴드 등을 사용해 데이터 전처리 수행.</content> <page>12</page>
+<sub>강화학습 모델</sub> <content>A2C(Advantage Actor-Critic) 알고리즘을 사용하여 매수, 매도, 관망 등의 행동을 신경망으로 결정하고 학습.</content> <page>14</page>
+<sub>트레이딩 테스트</sub> <content>A2C CNN 모델을 사용해 11분 단위로 매수, 매도, 관망 예측. 한국투자증권 API를 통해 주문.</content> <page>16</page>
+<sub>backtrading</sub> <content>특정 주식 포트폴리오에 대해 과거 데이터를 이용한 백테스팅 실행.</content> <page>17</page>
+
+<main>결과</main>
+<sub>시스템 트레이딩 결과</sub> <content>트레이딩 성과 및 한계점에 대한 분석. 과적합 문제와 관련된 사항 언급.</content> <page>18-19</page>

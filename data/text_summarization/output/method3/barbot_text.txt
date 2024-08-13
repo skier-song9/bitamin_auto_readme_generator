@@ -1,0 +1,53 @@
+<subject>추천 챗못 칵테일 "BarBot"</subject>
+<team>이선경, 강춘우, 이예령, 임채현, 조성빈</team>
+<index>프로젝트 타임라인, 주제 선정 배경, 칵테일 추천 챗못, 칵테일 데이터, 사용자 선호 데이터, 데이터셋 전처리, 선호 칵테일 존재, 아이템 기반 협업필터링, LLM과 RAG, 모델에 사용된 데이터, 모델 프로세스, 결과-추천 기능, 결과-챗못 기능</index>
+
+<main>주제 선정 배경</main>
+<sub>주제 선택 이유</sub> <content>추천 시스템 입문자들로 구성되어 흥미 위주의 주제를 선택함.</content> <page>1</page>
+<sub>칵테일 소비 배경</sub> <content>칵테일 소비가 증가했지만 다양한 재료와 맛으로 인해 선택이 어려움.</content> <page>1</page>
+<sub>모델 구현 목표</sub> <content>소비자가 쉽게 원하는 칵테일을 선택할 수 있도록 도와주는 모델을 구현함.</content> <page>1</page>
+<sub>챗봇 구축 목표</sub> <content>칵테일을 추천하고 관련 정보를 제공하는 챗봇을 구축함.</content> <page>1</page>
+
+<main>칵테일 추천 챗봇</main>
+<sub>모델 구현</sub> <content>재료, 선호하는 칵테일과 맛을 기반으로 칵테일을 추천하는 모델을 구현함.</content> <page>1</page>
+<sub>BarBot</sub> <content>추천 칵테일의 기본 정보 및 제조 방법을 알려주는 챗봇 "BarBot"을 구현함.</content> <page>1</page>
+
+<main>칵테일 데이터</main>
+<sub>데이터 수집</sub> <content>크롤링을 통해 칵테일명, 재료, 재료 비율, 도수에 대한 데이터를 확보함.</content> <page>1</page>
+<sub>전처리 필요성</sub> <content>칵테일별 데이터가 분리되어 있어 전처리가 필요함.</content> <page>1</page>
+
+<main>사용자 선호 데이터</main>
+<sub>설문조사</sub> <content>구글폼으로 칵테일 선호도, 재료, 맛, 도수를 질문하여 80개의 사용자 선호 데이터를 확보함.</content> <page>1</page>
+
+<main>데이터셋 전처리</main>
+<sub>맛 분류</sub> <content>재료에 따라 맛을 분류하고 BERT 모델을 사용해 맛을 매핑함.</content> <page>1</page>
+<sub>맛점수 매기기</sub> <content>재료 비율에 따른 맛점수를 매기고 최종 데이터셋을 구축함.</content> <page>1</page>
+
+<main>선호 칵테일 존재</main>
+<sub>유사도 계산</sub> <content>유클리드 유사도를 활용해 도수 유사도를 계산하고, 코사인 유사도로 맛과 재료 유사도를 결합하여 최종 점수를 도출함.</content> <page>1</page>
+<sub>상위 추천</sub> <content>가장 유사한 상위 3개의 칵테일을 추천함.</content> <page>1</page>
+<sub>도수 및 맛 추천</sub> <content>사용자 선호 도수와 맛을 기반으로 칵테일을 추천함.</content> <page>1</page>
+
+<main>아이템 기반 협업필터링</main>
+<sub>협업필터링 설명</sub> <content>사용자 집단별 추천에서 나이, 성별 등을 고려하지 않고 취향을 기반으로 추천함.</content> <page>1</page>
+<sub>아이템 기반 적용</sub> <content>칵테일 자체에 초점을 맞춘 아이템 기반 협업필터링을 적용함.</content> <page>1</page>
+<sub>최종 추천 결과</sub> <content>사용자의 선호도에 따른 추천 칵테일 리스트를 제시함.</content> <page>1</page>
+
+<main>LLM과 RAG</main>
+<sub>LLM 설명</sub> <content>대량의 텍스트 데이터를 학습하여 언어를 이해하고 생성하는 능력을 갖춘 생성형 AI 모델임.</content> <page>1</page>
+<sub>LLM 한계점</sub> <content>할루시네이션과 최신 지식 반영의 한계가 있음.</content> <page>1</page>
+<sub>RAG 활용</sub> <content>외부 데이터를 활용해 최신 정보 업데이트가 용이하고 할루시네이션을 줄이는 방식으로 LLM의 한계를 극복함.</content> <page>1</page>
+
+<main>모델에 사용된 데이터</main>
+<sub>RAG 데이터</sub> <content>칵테일의 기본 정보, 관련 용어의 개념 등 다양한 데이터를 사용함.</content> <page>1</page>
+
+<main>모델 프로세스</main>
+<sub>RAG 설정</sub> <content>양자화를 통해 모델의 메모리 사용량을 최적화하고 사전 훈련된 한국어 언어 모델을 적용함.</content> <page>1</page>
+<sub>문서 임베딩</sub> <content>PDF 문서를 임베딩하여 텍스트를 벡터로 변환하고 유사도 검색을 수행함.</content> <page>1</page>
+<sub>답변 생성</sub> <content>질문과 관련된 근거를 바탕으로 답변을 생성함.</content> <page>1</page>
+
+<main>결과-추천 기능</main>
+<sub>추천 칵테일</sub> <content>사용자에게 추천하는 칵테일 리스트를 제공하고 추가 질문이 가능함.</content> <page>1</page>
+
+<main>결과-챗봇 기능</main>
+<sub>정보 제공</sub> <content>칵테일의 유래, 알코올 도수, 재료 및 제조 방법에 대한 정보를 제공함.</content> <page>1</page>

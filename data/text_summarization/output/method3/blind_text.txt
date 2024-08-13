@@ -1,0 +1,35 @@
+<subject>시각장애인을 위한 음성 안내 카메라 서비스</subject>
+<team>김지원, 박석우, 박소언, 배성윤</team>
+<index>서비스 시연 영상, 주제 선정 배경, 플로우 및 기능설명, 데이터 수집, 얼굴 탐지 모델 훈련 과정, 객체 탐지 모델 선정, 음성 안내 알고리즘, 한계점</index>
+
+<main>서비스 시연 영상</main>
+<sub>전면카메라</sub> <content>시연 영상 링크 제공.</content> <page>2</page>
+<sub>후면카메라</sub> <content>시연 영상 링크 제공.</content> <page>2</page>
+
+<main>서비스 목표</main>
+<sub>시각장애인 서비스</sub> <content>구체적 위치 안내를 통해 시각장애인이 사진을 더 쉽게 촬영할 수 있도록 지원.</content> <page>4</page>
+<sub>프로젝트 목표</sub> <content>one-stage 얼굴 탐지 모델의 정확도 향상, 실시간 추론 속도 개선, TTS 알고리즘 최적화로 사진 촬영의 자율성과 사회적 참여 향상.</content> <page>4</page>
+
+<main>플로우 및 기능설명</main>
+<sub>텍스트 음성 변환 (TTS)</sub> <content>화면에 잡히는 얼굴의 위치와 방향을 인식하여 TTS로 안내. 최대 3개의 객체 인식 및 안내.</content> <page>5</page>
+
+<main>데이터 수집</main>
+<sub>얼굴 Data Set</sub> <content>수집된 얼굴 데이터에 관한 설명.</content> <page>6</page>
+
+<main>얼굴 탐지 모델 훈련 과정</main>
+<sub>전면카메라</sub> <content>Mobilenet+SSD와 YOLO 비교 후 RetinaNet fine-tunning 계획. 실제로는 YOLOv8n와 YOLOv8s 비교.</content> <page>7</page>
+<sub>비교 결과</sub> <content>mAP50과 mAP50-95의 겹침 범위에서 평가하여 세부적인 정확도를 고려.</content> <page>7</page>
+
+<main>객체 탐지 모델 선정</main>
+<sub>후면카메라</sub> <content>추론 속도 최적화 위해 YOLOV3n 가중치 사용. 조명 환경에서 성능 향상 위한 albumentation 라이브러리 사용.</content> <page>10</page>
+
+<main>음성 안내 알고리즘</main>
+<sub>전면카메라</sub> <content>실시간으로 움직이는 객체에 대한 음성 안내 시점 결정.</content> <page>11</page>
+
+<main>한계점</main>
+<sub>변동사항 반영</sub> <content>음성 안내 도중 변동사항 반영 불가.</content> <page>16</page>
+<sub>안내되는 비율 수치</sub> <content>시각 장애인에게 불편할 수 있음.</content> <page>16</page>
+<sub>Pyttsx3 모듈</sub> <content>음성 재생 도중 중단 불가.</content> <page>16</page>
+<sub>사용자의 움직임 감지 실패</sub> <content>입력 정보 변경 시 안내 중단 실패.</content> <page>16</page>
+<sub>카메라 프레임 규격</sub> <content>웹캠의 프레임 규격 기준으로 모델 학습 및 테스트.</content> <page>16</page>
+<sub>객체 Label의 한정성</sub> <content>탐지한 물체의 Label 한정으로 정확한 분류 어려움.</content> <page>16</page>
