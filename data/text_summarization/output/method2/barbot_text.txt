@@ -1,0 +1,66 @@
+<subject>추천 챗못 칵테일 "BarBot"</subject>
+<team>이선경</team> 
+<team>강춘우</team> 
+<team>이예령</team> 
+<team>임채현</team> 
+<team>조성빈</team>
+
+<index>프로젝트 타임라인 1</index>
+
+<main>주제 선정 배경</main>
+<content>추천 시스템 입문자들로 구성되어 흥미 위주의 주제 선택, 칵테일 소비가 증가했지만 사람들은 칵테일 종류를 잘 알지 못하는 경우가 많음, 다른 주류에 비해 다양한 재료와 맛을 가지고 있어 선택하기 더 어려움, 소비자가 쉽게 원하는 칵테일을 선택할 수 있도록 도와주는 모델 구현을 목표, 칵테일을 추천하고 관련 정보를 챗못 알려주는 구축</content> <page>4</page>
+
+<main>칵테일 추천 챗못</main>
+<content>칵테일의 재료, 선호하는 칵테일과 맛을 기반으로 칵테일을 추천해주는 모델 구현, 위 모델을 기반으로 칵테일을 추천해주고 추천 칵테일의 기본 정보 및 제조 방법을 알려주는 챗봇인 구현 "BarBot"</content> <page>5</page>
+
+<main>칵테일 데이터</main>
+<content>크롤링하여 데이터 저장, 칵테일명 재료 재료 비율 도수에 대한 데이터 확보, 칵테일별 데이터가 분리되어 있어 전처리 필요</content> <page>6</page>
+
+<main>사용자 선호 데이터</main>
+<content>칵테일 선호 설문조사 실시 구글폼으로 선호 칵테일 재료 맛 도수를 질문, 80개의 사용자 선호 데이터 확보</content> <page>7</page>
+
+<main>데이터셋 전처리</main>
+<sub>재료에 따라 맛 분류하기</sub> <content>각각의 유가들이 개의 재언 10 | 재 45 료를 분류해 줄 자연어가로 필함 4 E 모델 사용! =>BERT, 대표적인 재료들을 이용해 Bert 모델을 학습시키고 재료마다 맛 분류를 진행</content> <page>8</page>
+<sub>재료 비율에 따른 맛점수 매기기</sub> <content>재료마다 맛 매핑한 데이터셋 구축, 분류 결과 -> 꽤정 정확한 결과가 나옴</content> <page>9</page>
+<sub>재료 비율에 따른 맛점수 매기기</sub> <content>재료 별 맛점수, 칵테일의 재료비율, 최종 데이터셋</content> <page>10</page>
+
+<main>선호 칵테일 존재</main>
+<content>유클리드 유사도를 활용하여 도수 유사도 계산 후 반전, 코사인 맛과 재료 계산 유사도로 유사도 스케일링 결합하여 최종 후 점수 도출</content> <page>11</page>
+<sub>선호 칵테일 존재</sub> <content>입력한 칵테일이 데이터베이스어 존재하는지 확인, 코사인 유사도와 호환되게 스케일 및 점수 변환, 가장 유사한 상위 3개의 칵테일 반환</content> <page>12</page>
+<sub>선호 칵테일 존재</sub> <content>가장 유사한 상위 3개 칵테일 1번 gin and tonic 2번 Club pegu 3번 salty dog, 가장 유사한 상위 3개의 칵테일 출력 gimlet과</content> <page>13</page>
+<sub>선호 칵테일 존재</sub> <content>도수: 사용자가 고른 선호 도수의 앞뒤 구간만 추천</content> <page>14</page>
+<sub>선호 칵테일 존재</sub> <content>맛: 칵테일 별로 가장 대표적인 맛두 가지를 추출</content> <page>15</page>
+<sub>선호 칵테일 존재</sub> <content>맛: 사용자가 고른 맛이 칵테일을 대표하는 두 가지 맛에 해당되는 경우 추천</content> <page>16</page>
+<sub>선호 칵테일 존재</sub> <content>재료: 사용자가 고른 재료의 유사도와 칵테일 재료 유사도 비교 유사도를 통해 가장 유사도 높은 칵테일을 추천 Cosine</content> <page>17</page>
+
+<main>아이템 기반 협업필터링</main>
+<content>선호하는 맛 재료 도수에 따른 유사 칵테일 리스트, 선호 칵테일 경우를 이용해 응답한 아이템 기반 협업필터링 알고리즘 적용</content> <page>18</page>
+<sub>아이템 기반 협업필터링</sub> <content>협업필터링, 사용자 집단별 추천에서의 변수: 나이 성별 인구통계학적 등이 아닌 사용자의 취향을 고려한 추천시스템 개발, 특정 아이템에 대해 비슷한 취향을 가진 사람들은 다른 아이템 또한 비슷한 취향을 가질 것이라고 가정, 특정 사용자와 취향이 비슷한 집단, 유사 집단의 취향을 기반으로 아이템 추천</content> <page>19</page>
+<sub>아이템 기반 협업필터링</sub> <content>사용자 기반 VS 아이템 기반: 사용자 기반은 취향이 비슷한 집단을 알아내고 집단에 속한 사용자들이 공통적으로 좋게 평가한 아이템을 추천, 사용자 간의 유사도, 아이템 기반은 평가 바탕으로 아이템 간의 유사도를 계산해서 사용자의 패턴을 특정 아이템에 대한 예측 계산, 사용자가 직접 칵테일에 대한 평가를 매긴 데이터가 없으므로 '칵테일 자체'에 초점을 맞춘 아이템 기반 협업필터링 적용</content> <page>20</page>
+<sub>아이템 기반 협업필터링</sub> <content>기본 설정은 3개 없으면 3개 이하로 나올 수 있을, 추천 알고리즘 최종 결과: User Index User_ingredients User_ flavor User_alchols, 추천 칵테일 리스트: gin and tonic, adam Coffee, Sunrise, Swedish, espresso martini, adam Sunrise daiquiri, spritz Veneziano Spritz irish Coffee, irish Coffee kamikaze Iemon drop, espresso martini, Irish Coffee black Fussian</content> <page>21</page>
+
+<main>LLM과 RAG</main>
+<sub>LLM Large Language Model이란?</sub> <content>인공지능이 대량의 텍스트 데이터를 학습하여 언어를 이해하고 생성하는 능력을 갖춘 생성형 Al 모델 ex ChatGPT, 기존 LLM의 한계점: 할루시네이션 - LLM이 사실이 아닌 그: 션: 정보를 사실인 것처럼 제시하는 현상, 모델이 학습을 마친 시점 이후에 발생한 사건이나 최신의 지식을 반영하는 데 한계가 있음</content> <page>22</page>
+<sub>LLM과 RAG</sub> <content>RAG를 활용한 한계 극복 방안 LLM: 정보를 데이터베이스에 저장하고 사용자의 질문에 맞게 검색하여 LLM을 통해 답변을 전달, 외부 데이터를 활용하여 답변을 생성하기 때문에 할루시네이션 적고 최신 정보 업데이트 용이, 정보가 업데이트 돼도 RAG에 입력한 외부 문서만 수정하면 되며 추가적인 모델 파인튜닝이 불필요함</content> <page>23</page>
+
+<main>모델에 사용된 데이터</main>
+<sub>RAG</sub> <content>칵테일 기본 정보: 알코올 도수, 칵테일 재료, 제조 방법 - 쿨러Cooler; 술 설탕 레몬또는 라임 주스를 넣고 진저에일을 채운다, 사워Sour 레몬이나 라임을 사용한 상큼한 맛의 칵테일이다, 데이지Daisy 큐라소와 레몬/라임을 사용한다, 크러스타Crusta 큐라소와 레몬/라임 그외의 리큐르를 사용한다</content> <page>24</page>
+
+<main>모델 프로세스</main>
+<sub>RAG</sub> <content>양자화를 설정하여 모델의 메모리 사용량을 최적화하고 사전 훈련된 한국어 언어 모델 적용 Ko-PlatYi-6B에, 입력 데이터를 토큰화 생성된 텍스트의 다양성을 조절하기 위해 특정 값 설정 언어 모델과 프롬프트를 연결해 자연스러운 대화 흐름을 생성 LangChain</content> <page>25</page>
+<sub>RAG</sub> <content>PDF 문서를 임베딩하여 텍스트를 벡터로 변환하고 이 벡터들을 기반으로 유사도 검색을 효율적으로 수행할 수 있는 FAISS 데이터베이스를 생성</content> <page>26</page>
+<sub>RAG</sub> <content>질문과 관련된 근거를 유사도를 기준으로 FAISS 데이터베이스에서 검색 후 출력한 뒤 가장 근접한 근거를 토대로 답변을 구성, 후만 콜린스의 재료는 데킬라 레몬 주스 설탐 시럽 초다수</content> <page>27</page>
+
+<main>모델 프로세스</main>
+<sub>추천기능</sub> <content>챗못기능: 기본정보 받기, 설명 및 유래, 추천칵테일의 설명 및 유래를 제공, 설문조사를 통해 선호 칵테일 재료 맛에 대한 정보 받기, 선호 칵테일과 유사한 칵테일 추천, 기본정보: 추천칵테일의 알코올 도수 및 재료명 제공, 추천 리스트 추출: 아이템 기반 협업필터링을 통해 3개의 칵테일 추천 리스트를 추출, 재료 비율 및 제조 방법: 추천칵테일의 재료 비율 및 제조 방법 설명</content> <page>28</page>
+
+<main>모델 파이프라인</main>
+<sub>RAG</sub> <content>칵테일의 유래, 재료, 제조 방법 등 질의응답 가능</content> <page>29</page>
+
+<main>결과-추천 기능</main>
+<sub>선호 칵테일</sub> <content>추천 칵테일 리스트: 사용자에게 추천하는 칵테일은 kahl La I'm i Ik' t ir i sh Cof fee' adam Sunr i se'입니다, 칵테일에 관한 정보[유래 제조방법 등]를 알고 싶다면 챗봇에 질문해보세요, 추가 질문 가능</content> <page>30</page>
+
+<main>결과-챗못 기능</main>
+<sub>칵테일 유래</sub> <content>주어진 근거: 제조 방법은 아이리시 위스키와 커피를 Ir ish Cof fee 의 섞는후 "설탕을 넣고 휘필크림를 올려 제</content> <page>31</page>
+<sub>알코올 도수</sub> <content>알코올 도수</content> <page>32</page>
+<sub>재료 및 제조 방법</sub> <content>재료 및 제조 방법, kahl La |k의 제조 방법을 알려줘</content> <page>33</page>

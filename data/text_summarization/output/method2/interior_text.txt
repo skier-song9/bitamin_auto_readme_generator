@@ -1,0 +1,37 @@
+<subject>도배 하자 질의 응답 처리 한솔데코 시즌 2 AI 경진대회 알고리즘 언어 - LLM MLOps OA - Cosine Similarity</subject>
+<team>구준회 김지원 박서진 신진섭 엄성원</team>
+<index>Contents</index>
+<index>01 프로젝트 배경</index>
+<index>02 EDA</index>
+<index>03 Text Augmentation</index>
+<index>04 Modeling & Inference</index>
+<index>05 보완할 점 & 추후계획</index>
+
+<main>도배하자 질의응답 LLM 개발</main>
+<sub>ChatGPT</sub> <content>[목표] 자연어를 처리하여 언어모델에 학습시키고 특정 TASK에 적합한 TEXT를 생성하는 원리를 이해한다</content> <page>3</page>
+
+<main>Overall Progress</main>
+<content>Step Step N Step 3 이해 NLP 도메인 Transformer 및 도배 하자 질의 응답 논문 공부 공모전 목표에 대한 이해 언어모델 개발 및 추론</content> <page>4</page>
+
+<main>EDA</main>
+<content>주최 측 Train Data id 질문 2개 질문의 카테고리 답변 5개의 column으로 이루어져 있음 질문 답변 Set로 토큰화해서 input으로 입력 | train data의 예시</content> <page>5</page>
+
+<main>Text Augmentation</main>
+<sub>Crawling & Prompt Engineering</sub> <content>논문 및 자료 실용적 Train 데이터 키워드 1 레퍼런스 앱 웹 사이트 3 기반 2 다양한 종류의 질문 생성 전문성 있는 질문 소스 탐색 사람들이 자주 묻는 질문적 실용적 키워드 탐색 ChatGPT를 이용하여 질문에 대한 답변을 생성 Ex 너는 도배업계에서 일하는 전문가야 일반인을 대상으로 {질문}에 대한 전문적인 답변 5가지를 200글자 내로 생성해줘 {질문}</content> <page>8</page>
+
+<main>최종 train dataset</main>
+<content>기존 644 *2*5- 6440 QA rows Sets 증강 이후 8319 QA Sets</content> <page>9</page>
+
+<main>Issues</main>
+<content>1 한정된 GPU 자원 Kaggle Notebook Colab T4 RAM 16GB 사용 2 파라미터 수가 큰 모델이면 한국어 데이터로 사전훈련된 모델이 아니더라도 높은 성능을 기대할 수 있지만</content> <page>10</page>
+
+<main>Modeling</main>
+<sub>Fine Tuning</sub> <content>SFT Prompt LLM에 instruction을 주어 특정 task에 알맞는 대답을 형성하는 것 Fine Tuning 사전 학습된 모델을 소규모의 특정 데이터 세트에 대해 추가로 학습시켜 특정 작업이나 도메인에서 기능을 개선하고 성능을 향상시키는 프로세스 generic task Specific</content> <page>11</page>
+<sub>Modeling</sub> <content>LORA PEFT: 적은 매개변수 학습만으로 빠른 시간에 새로운 문제를 효과적으로 해결하는 fine-tuning 기법 LoRA PEFT 방법론 중 하나로 대부분의 매개변수 가중치는 원래대로 유지하되 일부만 미세조정하는 방식을 사용함 이렇게 함으로써 훈련 비용과 컴퓨팅 리소스를 절약하면서도 특정 작업의 성능을 향상시킬 수 있다 PEFT Parameter Efficient Fine-Tuning 허깅페이스에 제공하는 라이브러리를 활용 Query 가중치에 대해 LoORA 적용</content> <page>12</page>
+
+<main>Inference</main>
+<sub>Base model</sub> <content>무의미한 동어 반복 식의 Text Generation 학습된 정보를 바탕으로 자세한 답변을 생성하나 주어진 질문에 대한 답을 하지 않음</content> <page>13</page>
+<sub>Fine-tuned model</sub> <content>Fine-tuned model W/t instruction 학습된 정보를 바탕으로 구체적인 답변을 생성 | 주어진 질문에 대한 답을 하도록 input에 INSTRUCTION 부여 As-IS QUESTION TO-BE 주어진 질문에 대한 답을출력 질문: {QUESTION} 답: 학습된 정보를 바탕으로 자세한 답변을 생성하며 주어진 질문에 대한 답장점을 함</content> <page>13</page>
+
+<main>Gradio</main>
+<content>EOD</content> <page>15</page>

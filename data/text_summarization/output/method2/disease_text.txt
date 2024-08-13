@@ -1,0 +1,31 @@
+<subject>안저 데이터를 이용한 질병 분류</subject>
+<team>CV 권도영</team>
+<team>1조 권민지 김서윤 김채원 박서진</team>
+<index>Co ntEntS</index>
+
+<main>프로젝트 배경</main>
+<content>"안저사진 10만장 분석 망막질환 판독하는 A개발" 안저검사 망막 사진으로 예측 자폐스펠트럼장애 하는 모델 개발 Al 마마거사로 마서코파벼</content> <page>3</page>
+<content>안저 가메라 로 촬양 한 안 저영상 에서는 망막 에 분포 하고 있는 10 막혈곤 과 황본 시신 |경유도 등을 관찰 할수 다 - 촬영 한 결고 를 통 해 해부 부학적 조직으 특징 을 면밀 히 1분 석하여 각종 망막질 환의 여부를 판단 가능</content> <page>4</page>
+<content>안저 데이터</content> <page>5</page>
+
+<main>데이터 소가</main>
+<content>kaggle</content> <page>6</page>
+
+<main>EDA</main>
+<content>19개의 라벨을 다 포함할 것인가?</content> <page>7</page>
+
+<main>전처리</main>
+<content>19개의 라벨을 다 포함할 것인가?</content> <page>8</page>
+
+<main>모델링</main>
+<content>1단계: 이미지 분류 모델 선정</content> <page>14</page>
+
+<main>모델링 결과</main>
+<content>1단계: 이미지 분류 모델 선정 결과</content> <page>19</page>
+
+<main>자동으로 데이터 증강 방법을 탐색 AUTOAUGMENT</main>
+<content>특정 않을 데이터셋에 최적화되지 수 있고 최적의 방법을 찾는 데 많은 시간이 소요되어 학습 성능이 낮아짐</content> <page>21</page>
+
+<main>한계 및 의의 프로젝트</main>
+<sub>한계</sub> <content>GAN을 통해 특정 래스의 데0 |터 수가 현 저히 적은 마리 근제를 해결 하고자 하였 지만 생성돈 이미지의 궐리티가 낮아 데이트 불균형 문 제를 해소ㅎ 는 데에 활용 용하지 못했 음 모델의 부류 정확도 를 높이기 아 |해 여러 하 고i 조정과 험을 DenseN et 이퍼파라미 충분 시도하지 못했던 주 ]이 아쉬움</content> <page>22</page>
+<sub>의의</sub> <content>Kag e에서 프로젝트 와 관련돈 대관 여러 드를 살 펴보며 0 미지 데 이터의 전 처리 방 법을 코 공부 할수있 었음 분류 네트 델을 시도 해보며 각모델 이미지 |스크를 지원하는 여러 러닝 워크 모 이 성능을 비교 및 하여 모델을 선정할 있었 평가 최적 의 이미 수 음</content> <page>22</page>

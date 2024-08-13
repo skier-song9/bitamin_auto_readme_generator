@@ -1,0 +1,51 @@
+<subject>O1 주제 선정 배경</subject>
+<team>김재원 김채원 문승민 이서현 황영서</team>
+<index>주제 선정 배경</index>
+
+<main>[아이디어]</main>
+<sub>연구 배경</sub> <content>인간의 감정 인식에 대한 연구는 널리 이루어졌으나 애니메이션 캐릭터의 감정 인식에 대한 연구는 제한적</content> <page>1</page>
+
+<main>[기존 연구]</main>
+<sub>캐릭터 감정 분석</sub> <content>애니메이션 중에서도 감정을 다루는 영화의 캐릭터 감정을 분석해보는 건 어떨까? 어떤 캐릭터가 가장 다양한 감정을 가질까? JOY 기쁨이 는 항상 기쁠까? SADNESS 슬픔이 는 항상 슬플까? ANGER 버럭이 는 항상 화날까?</content> <page>1</page>
+
+<sub>참고 논문</sub> <content>8113개의 'Tom and Jerry' 이미지와 총 4개의 감정 레이블 Happy, Angry, Sad, Surprise로 캐릭터 탐지와 face Segmentation을 위해 MasK R-CNN 모델 활용. VGG16, InceptionV3, ResNet-50, MobileNetV2 모델 성능 비교.</content> <page>1</page>
+
+<subject>02 모델 구축 과정</subject>
+<team>김재원 김채원 문승민 이서현 황영서</team>
+<index>모델 구축 과정</index>
+
+<main>[모델 구축]</main>
+<sub>라벨링 및 전처리</sub> <content>감정 Classification을 위한 전처리와 Character Labeling을 Roboflow 활용, OpenCV를 이용한 프레임 추출, 이미지 필터링, YOLOv8 모델 구현, ResNet18, 34, 50, 152, DenseNet, VGGNet16, 19 모델 구현 및 성능 평가.</content> <page>1</page>
+
+<sub>데이터 수집</sub> <content>영화 원본 이미지 8000장을 사용하여 4프레임 단위로 이미지 추출, 관련 없는 이미지 삭제.</content> <page>1</page>
+
+<sub>라벨링</sub> <content>컴퓨터 비전 기술을 이용해 다양한 애플리케이션을 만들도록 지원해주는 서비스로 다양한 데이터셋을 지원하고 Open, 데이터 전처리, 증강, 훈련, 배포를 지원하는 다양한 Tools 제공. 3000장의 이미지 + annotation, Resize 640x640, Augmentation (Rotate, Crop, Blur).</content> <page>1</page>
+
+<sub>Segmentation</sub> <content>You Only Look Once: 이미지 전체를 한번만 봄, 통합된 모델 사용: 한 모델만을 사용해 과정들을 한번에 진행, 객체 학습 -> 주변정보까지. 6300장의 이미지로 모델 학습 YOLOv8, bounding box mask + Segmentation 생성.</content> <page>1</page>
+
+<sub>YOLO Object mask 학습 결과</sub> <content>F1점수 커브, 정밀도-리콜 커브, 혼동 행렬, 정밀도 커브, 리콜 커브.</content> <page>1</page>
+
+<sub>Classification motion</sub> <content>Using transfer learning, NEUTRAL, SURPRISED, ResNet, DenseNet, VGGNet 활용.</content> <page>1</page>
+
+<sub>CONTOUR MASK FACE EXTRACTION WITH OPENCV</sub> <content>FACE CROP DISPLAY FULLY FILLED WITH MASKS WITH OPENCV, YOLOV8 가중치 파일 활용.</content> <page>1</page>
+
+<sub>EMOTION LABELING WITH ROBOFLOW</sub> <content>Emotion Labeling을 위한 Roboflow 활용.</content> <page>1</page>
+
+<sub>CNN 모델을 이용한 TRANSFER LEARNING</sub> <content>TRANSFER LEARNING: 사전학습 모델의 파라미터나 구조를 일부 변형해서 사용. FINE-TUNE NETWORK WEIGHTS, PRE TRAINED CNN, EMOTION CLASSIFICATION 작동. 상위계층만 재훈련하여 전이학습 수행. Hyper Parameter (batch Size, learning rate, epoch, Method Augmentation) 고급 변환 조합, Optimizer & Scheduler (Adam, ReduceLROnPlateau, MultistepLR, CosineAnnealingLR, SGD, CosineAnnealingWarmRestarts) 성능향상.</content> <page>1</page>
+
+<sub>RESNET</sub> <content>기울기 소실 문제를 해결하기 위해 '잔여연결' 개념 도입. DENSENET, VGGNET 생성된 마스크를 '기쁨', '화남', '무표정', '슬픔', '놀람' 범주로 분류. 사전 훈련 테스트 후 가장 성능을 발휘하는 모델 선택.</content> <page>1</page>
+
+<sub>기타 모델 및 성능</sub> <content>Hyperparameter, Transfer Learning & Model Architecture, batch Size 32, Epoch 30, Method Augmentation, ResNet50, OutOagumentation, Scheduler Optimizer (SGD, StepLR). Test Set 결과: Average Loss: 0.9520, Accuracy: 73.33%.</content> <page>1</page>
+
+<sub>모델 최적화</sub> <content>Optimizer & Scheduler (Adam, ReduceLROnPlateau, StepLR, CosineAnnealingLR, SGD with Momentum) 활용. 전체 모델 Fine-Tuning, FC 레이어 Dropout 적용, Advanced ResNet50 Best Score: 76.98%, Validation Accuracy.</content> <page>1</page>
+
+<sub>최종 모델 선정</sub> <content>ResNet50, DenseNet169, VGG16 모델 성능 비교 후 최종 선정. Validation Accuracy, F1 점수 커브, 정밀도 커브, 리콜 커브.</content> <page>1</page>
+
+<subject>03 결과 분석</subject>
+<team>김재원 김채원 문승민 이서현 황영서</team>
+<index>결과 분석</index>
+
+<main>[결과 분석]</main>
+<sub>캐릭터 감정 분석 성능 평가</sub> <content>캐릭터에 따른 감정 차이가 유의미해 보임. 감정이 가장 다양했던 캐릭터는 기쁨이.</content> <page>1</page>
+
+<sub>의의 및 한계점</sub> <content>사람에 국한하지 않고 애니메이션 캐릭터에 대한 감정 분석 진행. 감정과 애니메이션을 연관시킨 추천 시스템 구축 가능성. 감정 라벨링의 주관적 요소가 데이터 일관성에 영향을 미쳐 모델 성능에 한계가 있을 수 있음.</content> <page>1</page>
