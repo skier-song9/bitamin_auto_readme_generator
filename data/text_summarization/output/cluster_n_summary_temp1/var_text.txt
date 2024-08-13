@@ -1,0 +1,36 @@
+<subject>모델을 이용한 VAR 포트폴리오의 수익률 예측과 측정 Value at Risk</subject>
+<team>송휘종, 이수정, 강춘우, 김나현, 이형석</team>
+<index>Timeline, Introduction to Time Series Analysis, Value at Risk & Conclusion, Discussion</index>
+<main>Timeline</main>
+<sub>자기 회귀 모델 및 VAR 모델 설명</sub>
+<content>자기 회귀 모델은 현재 값이 과거 값의 선형 조합에 의존하는 모델이며, VAR 모델은 여러 시계열 변수가 서로 영향을 미치는 다변량 예측에 사용된다.</content>
+
+<sub>변수 수집 및 선정</sub>
+<content>주요 변수로 현대차, 코스피, 경제심리지수, 테슬라 주가 등 다양한 경제지표가 포함되며, 이러한 변수들은 서로의 영향을 고려하여 수익률 예측에 활용된다.</content>
+
+<sub>결론 및 한계점</sub>
+<content>결과적으로 VAR 모델은 오히려 정확한 수익률 예측보다 추세 예측에 더 의의가 있으며, 단순한 구조로 인해 금융 시장의 실제와 차이가 존재할 수 있음을 지적한다.</content>
+<main> Introduction to Time Series Analysis</main>
+<sub>그랜처-인과관계 검정</sub>
+<content>그랜처-인과관계 검정은 변수들 간의 상관관계를 분석하여 특정 변수가 다른 변수의 예측에 영향을 미치는지를 판단하는 방법이다. 귀무가설이 기각되면 인과관계가 존재한다고 본다.</content>
+
+<sub>VAR 모델링</sub>
+<content>VAR 모델링은 여러 시계열 변수를 동시에 분석하는 기법으로, 특정 모델을 선정하는 데 있어 다양한 시차를 고려하여 최적의 모델을 선택한다. 이 과정에서 여러 가지 설정을 통해 가장 적합한 VAR 모델을 구성할 수 있다.</content>
+
+<sub>상관계수 행렬</sub>
+<content>상관계수 행렬은 변수들 간의 선형관계를 수치적으로 표현하며, 시간에 따라 변하는 데이터의 패턴을 이해하는 데 도움을 준다.</content>
+<main> Value at Risk & Conclusion</main>
+<sub>Value at Risk 측정 지표</sub>
+<content>Value at Risk(VaR)는 특정 시점에서 예상되는 최대 손실 금액을 측정하는 지표로, 여러 방법론이 존재하며, RiskMetrics 접근법과 Block Maxima, Peaks Over Threshold의 방법을 사용할 수 있다.</content>
+
+<sub>Value at Risk의 계산</sub>
+<content>VaR 계산 시, 포트폴리오의 가중치와 종목별 VaR 값을 고려하여 수익률을 기반으로 손실을 최소화하는 방향으로 설정해야 하며, 모든 가중치의 합은 1이어야 한다.</content>
+
+<sub>결론</sub>
+<content>VaR는 투자 포트폴리오의 위험을 정량적으로 평가하는 중요한 도구이며, 이를 통해 손실을 관리하고 투자 결정을 내리는 데 필수적인 역할을 할 수 있다.</content>
+<main> Discussion</main>
+<sub>[종목 및 변수 선정]</sub>
+<content>분석에 포함된 종목은 셀트리온, 현대차, SK이노베이션이며, 다양한 경제 변수를 수집하여 이들의 성과에 영향을 미치는 요인을 분석하였다.</content>
+
+<sub>[수익률 예측 모델링]</sub>
+<content>VAR 모델링을 활용하여 각 기업의 수익률을 예측하였고, 예측값과 실젯값의 비교를 통해 예측의 정확성을 평가하였다.</content>

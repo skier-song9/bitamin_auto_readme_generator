@@ -1,0 +1,39 @@
+<subject>BITAmin 생성모델조, CartOOnGAN, GAN 이란?, CartoonGAN, Dataset, CartoonGAN 변형, Experiment</subject>
+<team>용호, 영서</team>
+<index>GAN 이란?, CartoonGAN, Dataset, CartoonGAN 변형, Experiment</index>
+<main>GAN 이란?</main>
+<sub>GAN의 정의</sub>
+<content>GAN(Generative Adversarial Network)은 생성적 적대 신경망으로, 두 개의 신경망(생성자와 판별자)이 서로 경쟁하면서 학습하여 새로운 데이터를 생성하는 기법입니다.</content>
+
+<sub>데이터셋</sub>
+<content>GAN은 다양한 데이터셋을 사용하여 학습하며, 예를 들어 애니메이션 영화 데이터와 실제 이미지 데이터가 포함됩니다. 특정 영화에 대한 정보도 예시로 제시되었습니다.</content>
+
+<sub>처리 과정</sub>
+<content>데이터셋의 이미지는 엣지 감지 및 스무딩 과정을 통해 전처리되며, 이를 통해 GAN의 성능을 향상시킬 수 있습니다. Cartoon 이미지와 실제 이미지의 조합도 GAN의 변형에 사용됩니다.</content>
+<main> CartoonGAN</main>
+<sub>[GAN이란?]</sub>
+<content>GAN은 적대적 훈련의 형태로, 생성기(Generator)와 감별기(Discriminator) 간의 경쟁을 통해 사실적인 이미지를 생성하는 모델이다. 생성기는 진짜 같은 이미지를 생성하는 것을 목표로 하며, 감별기는 진짜 이미지를 위조된 이미지와 구별하하기 위해 학습한다.</content>
+
+<sub>[손실함수]</sub>
+<content>GAN의 손실 함수는 생성기와 감별기의 경쟁을 통해 정의된다. 생성기는 감별기를 속이기 위해 진짜 사진을 입력받아 만화 이미지로 변환하며, 이 과정에서 생성된 이미지와 실제 이미지 간의 고수준 특징 차이를 최소화하도록 학습된다.</content>
+
+<sub>[실험 및 훈련 과정]</sub>
+<content>CartoonGAN의 훈련 과정은 감별기와 생성기를 함께 훈련시키는 방식으로 진행된다. 감별기는 만화 이미지와 실제 이미지 간의 판별을 통해 더욱 정교해지며, 생성기는 최종적으로 진짜 같은 만화 이미지를 생성하는 데 초점을 맞춘다.</content>
+<main> Dataset</main>
+<sub>[Extracted Subtitle]</sub>
+<content>제공된 텍스트에서는 'Dataset'에 관련된 내용이 포함되어 있지 않습니다. 텍스트의 다른 섹션은 메러를 최소화하도록 학습하는 단계와 CartoonGAN 아키텍처에 관한 설명으로 되어 있습니다.</content>
+<main> CartoonGAN 변형</main>
+<sub>변형 CartoonGAN ResNet Block</sub>
+<content>Generator에서 사용되는 ResNet Block은 배치 정규화와 잔차 연결 후에 ReLU가 적용되는 구조로 개선되었습니다.</content>
+
+<sub>CartoonGAN Generator Upsampling</sub>
+<content>Generator의 업샘플링 과정에서 블러링을 통해 체크보드 문제를 해결하고, 인스턴스 정규화 대신 배치 정규화를 사용하여 빠르고 안정적인 학습을 가능하게 했습니다.</content>
+<main> Experiment</main>
+<sub>Content Loss VGG19 -> VGG16 변경</sub>
+<content>VGG19에서 VGG16으로 Content Loss를 변경하고, VGG16의 24번째 레이어까지만 사용하는 방식으로 저비용으로 계산이 가능한 Content Loss를 추출하였다.</content>
+
+<sub>Experiment Train</sub>
+<content>제너레이터가 실제 이미지의 내용을 유지하기 위해 사전 훈련을 하였으며, 10개의 에포크와 배치 사이즈 16으로 AdamW 옵티마이저를 사용하였다.</content>
+
+<sub>Experiment Results</sub>
+<content>실험 결과에 대한 세부 사항은 제공되지 않았으나, 결과에 대한 표현이 포함되어 있다.</content>

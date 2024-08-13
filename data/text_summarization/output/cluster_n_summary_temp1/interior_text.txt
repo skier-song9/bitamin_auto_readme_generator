@@ -2,29 +2,39 @@
 <team>구준회, 김지원, 박서진, 신진섭, 엄성원</team>
 <index>프로젝트 배경, EDA, Text Augmentation, Modeling & Inference, 보완할 점 & 추후계획</index>
 <main>프로젝트 배경</main>
-<subtitle>[목표]</subtitle>
-<content>자연어를 처리하고 언어모델에 학습시켜, 특정 작업에 적합한 텍스트를 생성하는 방법론을 이해하는 것이 프로젝트의 주요 목표이다.</content>
+<sub>[목표]</sub>
+<content>자연어를 처리하여 언어모델에 학습시키고, 특정 작업에 적합한 텍스트를 생성하는 원리를 이해하는 것이 목표이다.</content>
 <main> EDA</main>
-<subtitle>[Overall Progress]</subtitle>
-<content>전반적인 진행 상황으로, NLP 도메인에 대한 이해와 함께 Transformer 모델 및 질의 응답에 관한 논문을 학습하고 있으며, 공모전 목표를 이해하고 언어 모델 개발 및 추론을 진행 중입니다.</content>
+<sub>Overall Progress</sub>
+<content>EDA의 전반적인 진행 상태를 다루며, 단계별로 NLP 도메인에 대한 이해와 Transformer 모델의 개념을 습득하고, 질의응답 관련 논문을 학습하며, 학습 목표와 언어 모델 개발에 대해 설명한다.</content>
+<sub>Step Step N</sub>
+<content>각 단계에서 NLP 도메인에 대한 접근과 Transformer 모델의 적용을 통해 자신이 진행해야 할 과제와 목표를 명확히 하고, 언어 모델의 개발 및 추론 방법을 탐색한다.</content>
+<sub>Step 3 이해</sub>
+<content>EDA의 세 번째 단계에서는 언어 모델의 기능과 질의 응답 영역에서의 활용 가능성을 집중적으로 분석하고 개발 방향을 설정한다.</content>
 <main> Text Augmentation</main>
-<subtitle>Text Augmentation 방법</subtitle>
-<content>Text Augmentation은 다양한 질문을 생성하고, 사람들의 자주 묻는 질문을 탐색하는 과정이다. 이를 통해 전문적인 답변을 만들기 위해 ChatGPT를 이용하여 주어진 질문에 대한 정확하고 신뢰성 있는 응답을 생성할 수 있다.</content>
+<sub>Text Augmentation 개요</sub>
+<content>텍스트 증강은 질문과 답변 데이터를 활용하여 더욱 다양하고 유용한 트레이닝 데이터를 생성하는 과정이다. 이를 통해 모델의 성능 향상이 기대된다.</content>
 
-<subtitle>기술적 접근</subtitle>
-<content>트레인 데이터는 질문과 답변 쌍의 세트로 구성되며, 이를 토큰화하여 입력값으로 사용한다. 웹사이트와 응용 프로그램을 통해 키워드를 기반으로 자료를 탐색하고, 문서 및 레퍼런스를 활용하여 실용적인 질문을 도출한다.</content>
+<sub>토큰화 및 입력 처리</sub>
+<content>질문과 답변 세트를 토큰화하여 입력 데이터로 변환하는 방법을 설명하고 있다. 이는 모델이 텍스트를 효과적으로 이해하고 처리할 수 있게 한다.</content>
+
+<sub>질문 생성 방법</sub>
+<content>전문성을 갖춘 질문 소스를 탐색하고 자주 묻는 질문을 바탕으로 다양한 질문을 생성하는 방법을 제시한다. 이는 실용적인 키워드 탐색을 강조한다.</content>
+
+<sub>ChatGPT 활용</sub>
+<content>ChatGPT를 이용하여 특정 질문에 대한 전문적인 답변을 생성하는 예시를 제공한다. 예를 들어, 도배업계의 전문가에게 일반인을 위한 200글자 내의 답변을 요청하는 방식이다.</content>
 <main> Modeling & Inference</main>
-<subtitle>Modeling Fine Tuning</subtitle>
-<content>모델링 파인 튜닝은 사전 학습된 모델을 소규모 특정 데이터로 추가 학습하여 특정 작업이나 도메인에서 기능을 개선하고 성능을 향상시키는 과정이다.</content>
+<sub>Modeling Fine Tuning</sub>
+<content>Fine Tuning은 사전 학습된 모델을 소규모의 특정 데이터 세트에 대해 추가로 학습시켜 특정 작업이나 도메인에서 기능을 개선하고 성능을 향상시키는 과정이다.</content>
 
-<subtitle>Modeling LORA PEFT</subtitle>
-<content>LoRA PEFT는 적은 매개변수만 조정하여도 새로운 문제를 효과적으로 해결할 수 있도록 하는 파인 튜닝 기법으로, 대부분의 매개변수 가중치는 원래 유지하면서 일부만 미세 조정하여 훈련 비용과 컴퓨팅 리소스를 절약한다.</content>
+<sub>Modeling LORA PEFT</sub>
+<content>LoRA PEFT는 적은 매개변수 학습으로 빠르게 새로운 문제를 해결하는 기법으로, 대부분의 매개변수를 유지하면서 일부만 미세 조정해 훈련 비용과 컴퓨팅 리소스를 절약하면서 성능을 향상시킨다.</content>
 
-<subtitle>Inference</subtitle>
-<content>모델은 학습된 정보를 바탕으로 구체적인 답변을 생성하며, 입력에 지침을 부여함으로써 주어진 질문에 대한 답변을 제공한다. 파인 튜닝된 모델은 무의미한 동어 반복 대신 질문에 대한 해당 답변을 생성하도록 설계되었다.</content>
+<sub>Inference</sub>
+<content>Fine-tuned 모델은 주어진 질문에 대한 구체적인 답변을 생성할 수 있도록 instruction을 부여받아 학습된 정보를 바탕으로 자세한 답변을 생성한다.</content>
 <main> 보완할 점 & 추후계획</main>
-<subtitle>[한정된 GPU 자원 문제]</subtitle>
-<content>현재 Kaggle Notebook과 Colab T4의 16GB RAM을 사용할 때 GPU 자원의 한정이 문제점으로 지적된다.</content>
+<sub>한정된 GPU 자원</sub>
+<content>현재 사용 중인 Kaggle Notebook의 Colab T4는 RAM이 16GB로 제한되어 있어 GPU 자원이 부족한 문제를 해결해야 한다.</content>
 
-<subtitle>[파라미터 수가 큰 모델의 성능]</subtitle>
-<content>한국어 데이터로 사전훈련되지 않은 모델이라도 파라미터 수가 큰 경우 높은 성능을 기대할 수 있어, 이를 고려한 모델 개발이 필요하다.</content>
+<sub>모델 성능 향상</sub>
+<content>파라미터 수가 큰 모델을 활용하여 한국어 데이터로 사전훈련된 모델이 아니더라도 성능을 개선할 수 있는 방안을 모색할 계획이다.</content>

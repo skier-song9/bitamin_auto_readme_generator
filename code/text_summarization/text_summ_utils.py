@@ -23,16 +23,14 @@ from sklearn.manifold import TSNE
 from sklearn.cluster import SpectralClustering,KMeans
 from sklearn.metrics import silhouette_samples, silhouette_score, calinski_harabasz_score
 from sklearn.metrics.pairwise import cosine_similarity
-from sentence_transformers import SentenceTransformer
-from transformers import AutoTokenizer, AutoModel, CanineTokenizer, CanineModel
-
 import warnings
 warnings.filterwarnings("ignore")
 
 ROOT = 'bitamin_auto_readme_generator'
+root_absdir = os.getcwd().split(ROOT)[0]+ROOT
 RANDOM_STATE = 142
 PAGE_PATTERN = '<p.\d*>'
-OPENAI_API_FILEPATH = "../assets/openai_api_key.json"
+OPENAI_API_FILEPATH = os.path.join(root_absdir,'code','assets','openai_api_key.json')
 
 def split_by_pages(filepath, encoding='utf-8'):
     """
@@ -80,9 +78,9 @@ def extract_text_between_tag(text, tag):
 def extract_index_page(textlist, table_of_contents, threshold = 0.35):
     '''
     textlist : 첫 5개 문장만 전달한다.
-    table_of_contents : 추출한 목차를 전달
+    table_of_contents : 추출한 목차리스트를 전달
 
-    return : textlist에서 목차에 해당하는 문장의 index를 반환 -> page로 해석할 거면 1을 더해줘야 함.
+    return : textlist에서 목차에 해당하는 문장의 index를 반환
     '''
     toc = ', '.join(table_of_contents)
     results = np.array([])
@@ -113,7 +111,7 @@ def remove_xml_tags(text, tag):
     # <와 > 사이에 있는 내용을 제거합니다.
     # 정규 표현식 패턴: <[^>]+>.*?</[^>]+>
     return re.sub(rf'<{tag}>.*?</{tag}>', '', text)
-
+    
 class GPT():
     __classname__ = "OpenAI"
     api_key = ''
@@ -123,6 +121,84 @@ class GPT():
             ak = json.load(f)
         self.api_key = ak['OPENAI_API_KEY']
         self.client = OpenAI(api_key=self.api_key)
+        self.EVALUATION_PROMPT_TEMPLATE = """
+You will be given one summary written for a project presentation document.
+Your task is to rate the summary on one metric.
+Please make sure you read and understand these instructions very carefully. 
+Please keep this document open while reviewing, and refer to it as needed.
+
+This summary contains <subject>, <index>, <main>, <sub>, <content> tags as components.
+- <subject> : Title of document
+- <index> : Table of contents of document
+- <main> : Each item in the table of contents
+- <sub> : Subtopic under the <main> tag
+- <content> : Summary of the <sub> tag
+
+Evaluation Criteria:
+
+{criteria}
+
+Evaluation Steps:
+
+{steps}
+
+Source Text:
+
+{document}
+
+Summary:
+
+{summary}
+
+Evaluation Form : 'INTEGER SCORE ONLY'
+
+"""
+# - {metric_name}
+        self.RELEVANCY_SCORE_CRITERIA = """
+Relevance(1-5) -  assesses how well the summary captures the important content from the source. \
+The summary should include only important information, which refers to details related to the contents within the <index> tag from the source document. \
+Penalize summaries which contains redundancies or overlooks critical points.
+"""
+        self.RELEVANCY_SCORE_STEPS = """
+1. Carefully read both the summary and the source document.
+2. Identify the document structure based on its alignment with the <subject>, <index>, <main>, <sub>, and <content> tags.
+3. Compare the summary to the source document and verify that each <content> tag accurately addresses its corresponding <sub> tag.
+4. Assess how many redundancies it contains or has overlooked critical points.
+5. Assign a relevance score from 1 to 5 based on the Evaluation Criteria. (1 is the lowest score and 5 is the highest score)
+"""
+        self.COHERENCE_SCORE_CRITERIA = """
+Coherence(1-5) - evaluates the overall quality of sentence structure and organization. \
+We align this dimension with the DUC quality question of structure and coherence \
+whereby "the summary should be well-structured and well-organized. The summary should not just be a heap of related information, but should build from sentence to a coherent body of information about a topic." \
+The summary should follow a logical structure according to the hierarchy of the <main>, <sub>, and <content> tags.
+"""
+        self.COHERENCE_SCORE_STEPS = """
+1. Carefully read both the summary and the source document.
+2. Identify the document structure based on its alignment with the <subject>, <index>, <main>, <sub>, and <content> tags.
+3. Compare the summary to the source document and check if the summary covers the main topic and key points of the article, and if it presents them in a clear and logical order.
+4. Ensure that the summary is organized logically, reflecting the hierarchy of <main>, <sub>, and <content> tags.
+5. Assign a coherence score from 1 to 5 based on the Evaluation Criteria. (1 is the lowest score and 5 is the highest score)
+"""
+        self.CONSISTENCY_SCORE_CRITERIA = """
+Consistency(1-5) - the factual alignment between the source text and the summary. \
+A factually consistent summary contains only statements that are entailed by the source text. \
+"""
+        self.CONSISTENCY_SCORE_STEPS = """
+1. Carefully read the source text and identify the key content relevant to the text.
+2. Compare the summary to the source text, checking for any factual errors or discrepancies.
+3.The summary should avoid combining or reinterpreting details in a way that creates content not present in the original text, ensuring that all information is accurate and truthful.
+4. Assign a consistency score from 1 to 5 based on the Evaluation Criteria. (1 is the lowest score and 5 is the highest score)
+"""
+        self.FLUENCY_SCORE_CRITERIA = """
+Fluency(1-3): the quality of the summary in terms of grammar, spelling, punctuation, word choice, and sentence structure.
+1: Poor. The summary has many errors that make it hard to understand or sound unnatural.
+2: Fair. The summary has some errors that affect the clarity or smoothness of the text, but the main points are still comprehensible.
+3: Good. The summary has few or no errors and is easy to read and follow.
+"""
+        self.FLUENCY_SCORE_STEPS = """
+1. Read the summary and evaluate its fluency based on the given criteria. 
+2. Assign a fluency score from 1 to 3 based on the Evaluation Criteria. (1 is the lowest score and 3 is the highest score)
+"""
         
     def get_chat_completion(self, msg, model='gpt-4o-mini', temperature = 0):
         response = self.client.chat.completions.create(
@@ -131,6 +207,7 @@ class GPT():
             temperature = temperature
         )
         return response.choices[0].message.content
+        # return response
 
     def get_embedding(self, sentence, model="text-embedding-3-small"):
        '''
@@ -141,6 +218,66 @@ class GPT():
        '''
        return self.client.embeddings.create(input = sentence, model=model).data[0].embedding
 
+    def get_geval_score(
+        self, document: str, summary: str, model: str = 'gpt-4o-mini', n_sampling: int = 20
+    ):
+        '''
+        document : 원본 문서
+        summary : 요약 텍스트
+
+        return : 요약 텍스트에 대한 relevance, coherence, consistency, fluency G-EVAL 점수
+        '''
+        evaluation_metrics = {
+            "Relevance": (self.RELEVANCY_SCORE_CRITERIA, self.RELEVANCY_SCORE_STEPS),
+            "Coherence": (self.COHERENCE_SCORE_CRITERIA, self.COHERENCE_SCORE_STEPS),
+            "Consistency": (self.CONSISTENCY_SCORE_CRITERIA, self.CONSISTENCY_SCORE_STEPS),
+            "Fluency": (self.FLUENCY_SCORE_CRITERIA, self.FLUENCY_SCORE_STEPS)
+        }
+        scores = []
+        for evaluation_type, (criteria, steps) in evaluation_metrics.items():
+            prompt = self.EVALUATION_PROMPT_TEMPLATE.format(
+                criteria=criteria,
+                steps=steps,
+                metric_name=evaluation_type,
+                document=document,
+                summary=summary
+            )
+            response = self.client.chat.completions.create(
+                model=model,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=1,
+                max_tokens=5,
+                top_p=1,
+                frequency_penalty=0,
+                presence_penalty=0,
+                n = n_sampling
+            )
+            # 논문에서는 GPT-4의 parameter를 다음과 같이 설정 : n = 20, temperature = 1, top_p = 1
+            score = 0
+
+            # manually sampling
+            # for sample in range(n_sampling):
+            #     res = response.choices[0].message.content.strip()
+            #     print(res)
+            #     numlist = extract_numbers_from_string(res)
+            #     if len(numlist) == 0 : # 점수가 안 나오는 error인 경우
+            #         n_sampling -= 1 # 정규화를 위한 n_sampling 1 줄여주기
+            #         continue
+            #     score += int(numlist[0])
+
+            # when using n parameter
+            for res in response.choices:
+                res = res.message.content.strip()
+                # print(res)
+                numlist = extract_numbers_from_string(res)
+                if len(numlist) == 0 : # 점수가 안 나오는 error인 경우
+                    n_sampling -= 1 # 정규화를 위한 n_sampling 1 줄여주기
+                    continue
+                score += int(numlist[0])
+            score = score / (n_sampling if n_sampling != 0 else 1)
+            scores.append(score)
+            # scores.append(int(response.choices[0].message.content.strip()))
+        return scores
 
 class TextSummerizer():
     model_dict = dict()
@@ -294,7 +431,6 @@ class TextSummerizer():
         print("--Token Embedding Methods--")
         for tokenizer, model in self.model_dict['token']:
             model_name = model.__classname__
-            print(model_name)
             if model_name == 'Canine-C':
                 token = tokenizer(erase_tag(text,'p.\d*'), padding='longest', truncation=True, return_tensors='pt')
             else: # ConvBERT
@@ -327,9 +463,7 @@ class TextSummerizer():
             spectral = SpectralClustering(n_clusters=n_clusters, affinity='nearest_neighbors',
                                  random_state=random_state)
             kmeans.fit(text_embeddings)
-            print('kmeans fin')
             spectral.fit(text_embeddings)
-            print('spectral fin')
             # 평가지표 계산
             new_row = pd.DataFrame(data=[[
                 model_name, # model name
@@ -351,7 +485,7 @@ class TextSummerizer():
     
             # garbage collection
             # gc.collect()
-        print("clustering end.")
+    
         return total_metrics, total_dict
 
     def best_model_n_algo(self, metrics_df):
@@ -393,122 +527,3 @@ class TextSummerizer():
         renew_c = list(range(cnum))
         df['new_cluster'] = df[best_algo].apply(lambda x:renew_c[checklist.index(x)])
         return df
-
-
-if __name__ == '__main__':
-    # 매개변수 받기
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--input') # ocr_samples_txt 전달하기
-    parser.add_argument('--output') # cluster_n_summary 전달하기
-    parser.add_argument('--temperature', default = 0)
-    # 인자 파싱
-    args = parser.parse_args()
-
-    root_absdir = os.getcwd().split(ROOT)[0]+ROOT
-    input_dir = os.path.join(root_absdir,'data','object_detection','output',args.input)
-    output_dir = os.path.join(root_absdir,'data','text_summarization','output',args.output)
-
-    # start logic
-    gpt = GPT(api_filepath=OPENAI_API_FILEPATH)
-    text_summarization = TextSummerizer(gpt_client=gpt)
-    
-    for file in os.listdir(input_dir):
-        print(file,"work started.")
-        start_time = time.time()
-        filepath = os.path.join(input_dir, file)
-        # load text
-        textlist = split_by_pages(filepath=filepath, encoding='utf-8')
-        # 첫 5페이지, 마지막 3페이지로부터 "주제, 팀원, 목차" 추출하기
-        msg = [
-            {"role": "system", 
-             "content": """Refer to the document provided between the triple quotes. This document is a text conversion of a PDF file and is structured into passages separated by '\n'. Each passage corresponds to a different textbox in the PDF. Note that repeated passages are considered redundant and should be ignored in your response.
-
-Perform the following tasks:
-1. **Identify the main subject of the document**: Select the passage that best represents the overall theme or topic of the document. If multiple passages are selected, combine them together.
-2. **Extract names of individuals**: Identify and list all names mentioned in the document, separated by commas.
-3. **Extract the table of contents (index)**: Identify and list the contents or sections of the document, separated by commas.
-
-Respond in the following format:
-<subject>Result of Task 1</subject>
-<team>Result of Task 2</team>
-<index>Result of Task 3</index>
-
-If any result is unclear or not found, indicate it as None.
-             """
-            },
-            {"role": "user", 
-             "content": f'"""{" ".join(textlist[:5]) + " ".join(textlist[-3:])}"""'
-            }
-        ]
-        sub_team_index = gpt.get_chat_completion(msg, model='gpt-4o-mini')
-        # 목차 개수 추출 -> 목차 개수를 cluster 개수로 설정
-        table_of_contents = extract_text_between_tag(sub_team_index,'index')[0].split(',')
-        nclusters = len(table_of_contents) 
-        # 목차 이후의 페이지만 클러스터링하기
-        _, index_page = extract_index_page(textlist[:5], table_of_contents, threshold=0.35)
-        textlist = textlist[index_page+1:] # 목차 페이지 이후부터 클러스터링
-        # 텍스트에서 page tag와 \n 문자열을 제거
-        textlist_preprocessed = [text.replace('\n',' ') for text in erase_tag(textlist,'p.\d*')]
-        # clustering
-        print("Clustering Started.")
-        c_metrics, c_dfs = text_summarization.clustering(text=textlist_preprocessed,
-                                     n_clusters=nclusters, random_state=RANDOM_STATE)
-        print("✅Clustering Finished.")
-        # 성능이 제일 좋은 임베딩 모델과 클러스터링 알고리즘 선택
-        best_model, best_algo = text_summarization.best_model_n_algo(c_metrics)
-        print(f"best model: {best_model}, best algorithm: {best_algo}")
-        # del c_metrics # 더이상 불필요한 변수
-        # cluster label 재정렬
-        c_renew = text_summarization.renew_cluster_byorder(total_dict=c_dfs,
-                                                           best=(best_model,best_algo))
-        # del c_dfs # 더이상 불필요한 변수
-
-        # 클러스터별로 텍스트 묶기
-        c_dict = dict(zip(list(range(nclusters)),['' for _ in range(nclusters)]))
-        for idx in c_renew.index:
-            new_cluster = c_renew.iloc[idx]['new_cluster']
-            c_dict[new_cluster] += c_renew.iloc[idx]['text']
-
-        # 클러스터별로 텍스트 요약
-        i = 0
-        summarizations = []
-        for key in range(nclusters): # 목차에 해당하는 cluster만 요약함.
-            table_of_content = table_of_contents[i]
-            i += 1
-            ctext = c_dict[key]
-            msg = [
-                {"role": "system", 
-                 "content": f"""Your task is to 'Summarize' the given text which is in triple quote with a focus on the key points related to '{table_of_content}'. Extract and summarize the content for each relevant subtitle. Answer in Korean and follow the format provided below.
-
-<main>{table_of_content}</main>
-<sub>[Extracted Subtitle]</sub>
-<content>Summary of the content under this subtitle</content>
-
-Instructions:
-1. Identify and extract subtitles from the text that relate to '{table_of_content}'.
-2. Summarize the content under each subtitle within one or two sentences, focusing on the most important details and main ideas.
-3. Provide your summary in Korean, maintaining clarity and coherence.
-4. Use the specified format for organizing your response.
-                """
-                },
-                {"role": "user", 
-                 "content": f'"""{ctext}"""'
-                }
-            ]
-            summarizations.append(gpt.get_chat_completion(msg, model='gpt-4o-mini', temperature=int(args.temperature)))
-            print(key,'summarize finished.')
-        
-        output_filepath = os.path.join(output_dir, file)
-        with open(output_filepath,'w', encoding='utf-8') as f:
-            f.write(sub_team_index)
-            for s in summarizations:
-                f.write('\n')
-                f.write(s)
-        print(f"📢 {file} finished in {time.time()-start_time:0.1f} seconds")
-    # end for
-    
-
-    
-    
-    
-    

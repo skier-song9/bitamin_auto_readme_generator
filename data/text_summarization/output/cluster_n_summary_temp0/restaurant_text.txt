@@ -2,62 +2,65 @@
 <team>김태호, 이철민, 김아진, 김윤영</team>
 <index>프로젝트 소개, 모델 SASREC, 사용 데이터, 식당 추천 알고리즘, 모델 설명 & 성능 비교, 향후 발전 방향</index>
 <main>프로젝트 소개</main>
-<subtitle>입맛에 맞는 음식 추천</subtitle>
-<content>사용자의 입맛에 맞는 음식을 추천하여 교환학생들이 겪는 음식 문제를 해결하는 프로젝트입니다.</content>
+<sub>입맛에 맞는 음식 추천</sub>
+<content>사용자의 입맛에 맞는 그 나라의 음식을 추천하는 서비스입니다.</content>
 
-<subtitle>식당 추천</subtitle>
-<content>추천된 음식을 제공하는 식당을 안내하여 사용자가 쉽게 접근할 수 있도록 돕습니다.</content>
+<sub>그 음식을 파는 식당 추천</sub>
+<content>추천된 음식을 판매하는 식당을 안내하여 사용자가 쉽게 찾을 수 있도록 돕습니다.</content>
 
-<subtitle>기존 음식 기반 추천</subtitle>
-<content>사용자가 이전에 먹었던 음식을 바탕으로 오늘의 음식을 추천하는 시스템을 구축합니다.</content>
+<sub>기존 먹었던 음식을 기반으로 오늘의 음식 추천</sub>
+<content>사용자가 이전에 먹었던 음식을 바탕으로 오늘의 음식을 추천하는 기능을 제공합니다.</content>
 
-<subtitle>모델의 출력</subtitle>
-<content>SASREC 모델을 활용하여 사용자가 좋아할 유사한 음식을 제공하는 식당을 추천합니다.</content>
-
-<subtitle>사용 데이터</subtitle>
-<content>Foodcom과 Yelpcom 데이터셋을 사용하여 사용자 맞춤형 추천을 진행합니다.</content>
+<sub>피자를 파는 음식점 추천</sub>
+<content>특히 피자를 판매하는 음식점을 추천하여 사용자가 선호하는 음식을 쉽게 찾을 수 있도록 합니다.</content>
 <main> 모델 SASREC</main>
-<subtitle>[모델 정의]</subtitle>
-<content>SASREC은 사용자 행동 데이터를 기반으로 한 추천 시스템 모델로, 사용자의 이전 행동을 분석하여 개인화된 추천을 제공하는 데 중점을 둡니다.</content>
+<sub>[모델 구현]</sub>
+<content>SASREC 모델은 사용자의 선호도와 그 변화를 효과적으로 포착하기 위해 Self-Attention을 활용한 시퀀스 모델링을 사용하여 구현되었다.</content>
 
-<subtitle>[모델 성능]</subtitle>
-<content>SASREC 모델은 다양한 음식 추천 예시를 통해 높은 추천 정확도를 보여주며, 사용자 맞춤형 추천의 효과성을 입증합니다.</content>
+<sub>[모델 사용 이유]</sub>
+<content>SASREC은 추천에 사용된 데이터의 희소성에도 불구하고 학습 가능한 Embedding 덕분에 높은 성능을 보였으며, 최종 모델로 선택되었다.</content>
 
-<subtitle>[추천 식당 예시]</subtitle>
-<content>사용자 1842와 19073의 추천 식당 예시를 통해 SASREC 모델이 어떻게 사용자의 선호도를 반영하여 적절한 식당을 추천하는지를 보여줍니다.</content>
+<sub>[추천 시스템]</sub>
+<content>SASREC 모델을 통해 특정 유저가 선호할 음식과 유사한 음식을 제공하는 식당 추천이 가능하며, 예시로 User 1842에게 김치전과 같은 음식을 추천하였다.</content>
 <main> 사용 데이터</main>
-<subtitle>Neural Collaborative Filtering</subtitle>
-<content>사용자와 아이템 간의 상호작용을 예측하기 위해 평가 행렬을 입력으로 받아 신경망을 학습시키며, 이를 통해 개인화된 추천을 제공하는 모델이다.</content>
+<sub>[모델]</sub>
+<content>모델은 특정 작업을 수행하기 위해 설계된 시스템이나 알고리즘을 의미하며, 사용 데이터에 따라 성능이 달라질 수 있다.</content>
 
-<subtitle>Sequential Recommendation Model (SASRec)</subtitle>
-<content>SASRec 모델은 사용자의 상호작용 시퀀스를 잘 모델링하여 추천의 정확성을 높이며, 희소한 데이터에서도 높은 성능을 발휘한다.</content>
+<sub>[모델 성능]</sub>
+<content>모델 성능은 사용 데이터의 품질과 양에 크게 의존하며, 적절한 데이터가 제공될 때 최상의 결과를 낼 수 있다.</content>
 
-<subtitle>Implementation of Restaurant Recommendation</subtitle>
-<content>FOODCOM과 YELPCOM 데이터를 TF-IDF 벡터로 변환한 후, SASRec 모델을 통해 추천 결과를 도출하고, 유사도를 계산하여 가장 적합한 식당을 추천한다.</content>
+<sub>[모델 정의]</sub>
+<content>모델 정의는 사용 데이터의 특성과 요구 사항에 맞춰 설정되며, 이를 통해 모델의 목적과 기능이 명확해진다.</content>
+
+<sub>[NCF]</sub>
+<content>NCF(Neural Collaborative Filtering)는 사용 데이터의 상호작용을 기반으로 추천 시스템을 구축하는 방법론으로, 사용자와 아이템 간의 관계를 학습한다.</content>
+
+<sub>[FM 모델 정의]</sub>
+<content>FM(Factorization Machine) 모델은 사용 데이터의 다양한 특성을 고려하여 예측을 수행하는 기법으로, 특히 희소한 데이터에서 효과적이다.</content>
 <main> 식당 추천 알고리즘</main>
-<subtitle>[모델 설명]</subtitle>
-<content>식당 추천 알고리즘은 SVM과 Factorization Model의 장점을 결합하여 사용자와 음식 간의 상호작용을 모델링하는 방식으로 작동한다.</content>
+<sub>Neural Collaborative Filtering</sub>
+<content>Neural Net 기반의 협업 필터링 모델로, 사용자와 아이템 간의 상호작용을 예측하여 개인화된 추천을 제공한다. 기존의 선형적인 Matrix Factorization의 한계를 극복하고 복잡한 관계를 모델링할 수 있다.</content>
 
-<subtitle>[선호도 예측]</subtitle>
-<content>사용자의 선호도를 예측하기 위해, 서로 다른 음식에 대한 사용자 평점을 비교하여 유사한 선호도를 가진 음식을 추천한다.</content>
+<sub>Factorization Machine</sub>
+<content>Factorization Machine은 SVM과 Matrix Factorization의 장점을 결합하여 Feature 간의 모든 상호작용을 모델링한다. 이를 통해 사용자와 아이템의 선호도를 예측할 수 있다.</content>
 
-<subtitle>[성능 평가]</subtitle>
-<content>추천 시스템의 성능은 NDCG와 Hit Ratio와 같은 지표를 통해 평가되며, 관련성이 높은 추천이 상위에 위치하는지를 측정한다.</content>
+<sub>Wide & Deep</sub>
+<content>구글이 발표한 Wide & Deep 알고리즘은 특화된 모델과 일반화된 모델을 결합하여 추천 성능을 향상시킨다. 앱 간의 상호작용을 학습하여 다양한 조합의 추천을 가능하게 한다.</content>
 
-<subtitle>[최고 성능 구현]</subtitle>
-<content>SASReC이 가장 우수한 성능을 보이는 추천 시스템으로 언급되며, 이를 통해 효과적인 추천이 가능하다.</content>
+<sub>Sequential Recommendation</sub>
+<content>SASReC 모델은 사용자의 상호작용 시퀀스를 잘 모델링하여 추천의 정확성을 높인다. 영화 시청 순서와 중요성을 파악하여 보다 정교한 추천 결과를 제공한다.</content>
 <main> 모델 설명 & 성능 비교</main>
-<subtitle>Wide & Deep 모델 설명</subtitle>
-<content>Wide & Deep 모델은 구글이 2016년에 발표한 추천 알고리즘으로, Memorization과 Generalization을 결합하여 앱 간의 상호작용을 학습한다. 이 모델은 모든 앱의 조합을 학습하여 임베딩 공간에서 표현할 수 있도록 설계되었다.</content>
+<sub>모델 성능</sub>
+<content>추천 시스템의 성능은 NDCG와 Hit Ratio를 통해 평가되며, SASReC 모델이 가장 우수한 성능을 보인다.</content>
 
-<subtitle>성능 비교</subtitle>
-<content>Wide & Deep 모델은 잘 등장하지 않는 조합의 경우 학습이 어려운 반면, 새로운 관계를 임베딩 공간에 표현함으로써 학습 가능성을 높인다. 그러나 드물게 등장하는 조합은 다른 사용자에게서도 거의 나타나지 않아 학습이 원활하지 않을 수 있다.</content>
+<sub>구현 과정</sub>
+<content>FOODCOM과 YELPCOM 데이터를 TF-IDF 벡터로 변환한 후, SASREC 모델을 활용하여 식당 간의 유사도를 Cosine 유사도로 계산하여 추천 결과를 도출한다.</content>
+
+<sub>추천 결과 예시</sub>
+<content>사용자 19073에게 Rubirosa와 같은 추천 식당이 제시되며, 추천된 음식 목록이 포함된다.</content>
+
+<sub>향후 발전 방향</sub>
+<content>추천 시스템의 적용 지역을 확대하고, 사전 훈련된 단어 벡터를 활용하여 유사도 계산의 정확성을 높일 계획이다.</content>
 <main> 향후 발전 방향</main>
-<subtitle>적용 가능한 지역 확대</subtitle>
-<content>현재 음식점 데이터에 한정된 서비스를 다양한 지역의 식당으로 확대하여 사용 지역을 넓힐 계획이다.</content>
-
-<subtitle>음식점 추천 시 대신 사전훈련된 단어 벤터 사용</subtitle>
-<content>기존의 tf-idf 방식 외에 Word2Vec과 같은 사전 훈련된 단어 벤터를 활용하여 음식점의 유사도를 계산할 예정이다.</content>
-
-<subtitle>더 많은 유저 필요</subtitle>
-<content>서비스의 발전을 위해 더 많은 사용자 기반이 필요하다는 점이 강조된다.</content>
+<sub>[본격적인 취천 시념]</sub>
+<content>본격적인 취천 시념은 향후 발전 방향을 설정하는 중요한 단계로, 이를 통해 조직의 목표와 비전을 명확히 하고 지속 가능한 성장을 도모할 수 있다.</content>
