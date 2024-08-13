@@ -1,0 +1,29 @@
+<subject>애니메이션 캐릭터 감정 인식</subject>
+<team>김하나, 이준호</team>
+<index>애니메이션 캐릭터 감정 인식 연구>
+
+<main>주제 선정 배경</main>
+<sub>아이디어</sub> <content>인간의 감정 인식은 널리 연구되었으나 애니메이션 캐릭터의 감정 인식 연구는 제한적임.</content> <page>3</page>
+<sub>기존 연구</sub> <content>애니메이션 영화 캐릭터의 감정을 분석하는 연구. 예: "JOY" 기쁨, "SADNESS" 슬픔, "ANGER" 버럭이 등.</content> <page>3</page>
+<sub>참고 논문</sub> <content>'Tom and Jerry' 이미지 8113개와 4개의 감정 레이블을 사용하여 Mask R-CNN 모델로 캐릭터 탐지와 face Segmentation 수행. VGG16, InceptionV3, ResNet-50, MobileNetV2 모델로 감정 분류 성능 비교.</content> <page>4</page>
+
+<main>모델 구축 과정</main>
+<sub>라벨링</sub> <content>감정 분류 전처리 및 Character Labeling, Roboflow 활용.</content> <page>5</page>
+<sub>데이터 수집</sub> <content>영화 원본에서 8000장 이미지 추출, 관련 없는 이미지 삭제.</content> <page>7</page>
+<sub>라벨링</sub> <content>3000장 이미지와 annotation, Resize(640x640), Augmentation (Rotate, Crop, Blur).</content> <page>8</page>
+<sub>모델 구현</sub> <content>YOLOv8 모델로 인스턴스 분할, ResNet, DenseNet, VGGNet 모델로 전이 학습 및 성능 평가.</content> <page>5</page>
+<sub>YOLO Object mask 학습 결과</sub> <content>F1점수 커브, 정밀도-리콜 커브, 혼동 행렬, 정밀도 커브, 리콜 커브.</content> <page>10</page>
+<sub>Classification 모델 학습</sub> <content>ResNet, DenseNet, VGGNet을 사용해 감정 분류 수행.</content> <page>11</page>
+<sub>YOLOv8 가중치 파일 활용</sub> <content>OpenCV를 활용한 Contour Mask face extraction 및 face crop.</content> <page>12</page>
+<sub>EMOTION LABELING</sub> <content>Roboflow를 활용한 감정 라벨링.</content> <page>13</page>
+<sub>CNN 모델을 이용한 TRANSFER LEARNING</sub> <content>사전학습 모델의 일부 파라미터 변형과 상위계층 재훈련으로 전이학습 수행. Hyper Parameter와 Augmentation, Optimizer & Scheduler 활용.</content> <page>14</page>
+<sub>RESNET, DENSENET, VGGNET</sub> <content>마스크를 '기쁨', '화남', '무표정', '슬픔', '놀람'으로 분류. 성능 최적 모델 선정.</content> <page>15</page>
+<sub>최종 모델</sub> <content>ResNet50: Validation Accuracy 76.98%, F1점수 커브, 정밀도 커브, 리콜 커브.</content> <page>19</page>
+
+<main>결과 분석</main>
+<sub>감정 차이 분석</sub> <content>캐릭터에 따른 감정 차이가 유의미함.</content> <page>22</page>
+<sub>감정 분석 성능 평가</sub> <content>캐릭터에 따른 감정 분석 성능 평가.</content> <page>23</page>
+
+<main>의의 및 한계점</main>
+<sub>의의</sub> <content>애니메이션 캐릭터 감정 분석으로 감정과 애니메이션 연관 추천 시스템 구축 가능.</content> <page>24</page>
+<sub>한계점</sub> <content>감정 라벨링에 주관적 요소 포함으로 데이터 일관성 부족이 모델 성능에 영향 미침.</content> <page>24</page>

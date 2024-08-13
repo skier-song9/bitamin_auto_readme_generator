@@ -1,0 +1,24 @@
+<subject>망막질환 판독 AI</subject>
+<team>천근아, 최항녕, 강현구, 박유랑, 김재한, 홍재성</team>
+<index>안저영상 분석 프로젝트</index>
+
+<main>주제 및 배경</main>
+<sub>프로젝트 배경</sub> <content>연세대 연구팀이 안저검사 망막 사진을 통해 자폐스펠트럼장애를 예측하는 모델을 개발하였으며, 이는 자폐스펠트럼장애의 선별 및 중증도 예측에 활용될 수 있습니다. 해당 연구는 국제학술지 'JAMA Network Open'에 게재되었습니다.</content> <page>3</page>
+<sub>프로젝트 배경</sub> <content>안저카메라로 촬영한 안저영상은 망막의 해부학적 조직을 분석하여 다양한 망막질환을 판단할 수 있습니다.</content> <page>4</page>
+<sub>프로젝트 배경</sub> <content>안저 데이터는 낮은 침습성과 짧은 검사 시간으로 다양한 기관에서 통합 분석이 용이하며, OCT 기술로 고해상도 이미지 데이터를 얻을 수 있습니다.</content> <page>5</page>
+
+<main>데이터 소개 및 EDA</main>
+<sub>데이터 소개</sub> <content>Kaggle의 ODIR 데이터는 5000명의 환자 안저 사진과 의사 진단 키워드로 구성된 안과 데이터베이스입니다.</content> <page>6</page>
+<sub>EDA</sub> <content>19개의 라벨 중 노멀(N)과 당뇨병(D) 라벨의 개수가 압도적으로 많아 데이터 클래스 불균형 문제가 있습니다.</content> <page>7</page>
+
+<main>전처리</main>
+<sub>전처리</sub> <content>TOP 5 질병 라벨을 선정하여 전처리를 진행하였으며, 데이터 클래스 불균형을 해결하기 위해 이미지 증강을 적용하였습니다.</content> <page>8</page>
+<sub>전처리</sub> <content>이미지 클래스 불균형을 해결하기 위해 다양한 이미지 증강 기법을 사용하였으며, 최적의 방법으로 증강하였습니다.</content> <page>9</page>
+<sub>전처리</sub> <content>FASTAI와 ALBUMENTATION 라이브러리를 이용해 여러 이미지 증강 기법을 적용하였으며, GAN을 통해 데이터 증강을 시도하였으나 실패하였습니다.</content> <page>10</page>
+
+<main>모델링</main>
+<sub>모델링</sub> <content>이미지 분류 모델로 ResNet18, DenseNet, VGG16, VGG19 등을 사용하였으며, 각 모델의 특성을 활용하여 최적의 성능을 도출하려 하였습니다.</content> <page>14</page>
+
+<main>결과</main>
+<sub>모델링 결과</sub> <content>자동 데이터 증강 방법인 AUTOAUGMENT의 최적화에는 많은 시간이 소요되었으며, ALBUMENTATION이 상대적으로 성능이 낮았습니다.</content> <page>21</page>
+<sub>한계 및 의의</sub> <content>GAN을 통해 데이터 불균형 문제를 해결하려 했으나 실패하였고, 다양한 모델을 시도하며 이미지 분류 성능을 비교 및 평가하였습니다.</content> <page>22</page>

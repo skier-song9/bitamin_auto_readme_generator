@@ -1,0 +1,50 @@
+<subject>칵테일 추천 시스템</subject>
+<team>김철수, 박영희</team>
+<index>칵테일 추천 프로젝트</index>
+
+<main>주제 선정 배경</main>
+<sub>주제 선정 배경</sub> <content>추천 시스템 입문자들이 흥미 위주의 주제로 선택. 칵테일 소비가 증가했지만 종류를 잘 모르는 경우가 많아 소비자가 쉽게 칵테일을 선택할 수 있도록 도와주는 모델을 구현하고자 함.</content> <page>4</page>
+
+<main>칵테일 추천 챗봇</main>
+<sub>칵테일 추천 챗봇</sub> <content>칵테일의 재료와 맛 등을 기반으로 칵테일을 추천하고, 추천한 칵테일의 정보와 제조 방법을 알려주는 "BarBot" 챗봇 구현.</content> <page>5</page>
+
+<main>칵테일 데이터</main>
+<sub>칵테일 데이터</sub> <content>칵테일명, 재료, 재료 비율, 도수 데이터를 크롤링하여 저장하고 전처리 필요.</content> <page>6</page>
+
+<main>사용자 선호 데이터</main>
+<sub>사용자 선호 데이터</sub> <content>구글폼 설문조사를 통해 80개의 사용자 선호 데이터를 확보하여 선호 칵테일, 재료, 맛, 도수 등을 질문.</content> <page>7</page>
+
+<main>데이터셋 전처리</main>
+<sub>재료에 따라 맛 분류하기</sub> <content>BERT 모델을 사용해 대표적인 재료들을 학습시키고 재료마다 맛을 분류.</content> <page>8</page>
+<sub>재료 비율에 따른 맛점수 매기기</sub> <content>재료별 맛점수와 칵테일의 재료 비율을 매핑하여 최종 데이터셋을 구축.</content> <page>9</page>
+
+<main>선호 칵테일 존재</main>
+<sub>도수 유사도 계산</sub> <content>유클리드 유사도를 활용하여 도수 유사도 계산 후 반전, 최종 점수 도출.</content> <page>11</page>
+<sub>가장 유사한 상위 3개의 칵테일</sub> <content>가장 유사한 상위 3개의 칵테일을 코사인 유사도를 통해 추천.</content> <page>12</page>
+<sub>도수에 따른 추천</sub> <content>선호 도수의 앞뒤 구간만 추천.</content> <page>14</page>
+<sub>맛에 따른 추천</sub> <content>대표적인 두 가지 맛에 해당되는 경우 추천.</content> <page>15</page>
+<sub>재료에 따른 추천</sub> <content>재료의 유사도를 비교하여 가장 유사한 칵테일을 추천.</content> <page>17</page>
+
+<main>아이템 기반 협업필터링</main>
+<sub>아이템 기반 협업필터링</sub> <content>선호하는 맛, 재료, 도수에 따른 유사 칵테일 리스트를 생성하여 추천.</content> <page>18</page>
+<sub>사용자 기반 VS 아이템 기반</sub> <content>사용자 기반: 취향이 비슷한 집단을 통해 아이템 추천. 아이템 기반: 평가 바탕으로 아이템 간 유사도 계산. 칵테일 자체에 초점을 맞춘 아이템 기반 협업필터링 적용.</content> <page>20</page>
+<sub>추천 알고리즘 최종 결과</sub> <content>추천 결과: gin and tonic, adam Coffee, Sunrise Swedish 등.</content> <page>21</page>
+
+<main>LLM과 RAG</main>
+<sub>LLM Large Language Model이란?</sub> <content>대량의 텍스트 데이터를 학습하여 언어를 이해하고 생성하는 AI 모델. ex) ChatGPT. 기존 LLM의 한계점: 할루시네이션, 최신 지식 반영의 한계.</content> <page>22</page>
+<sub>RAG를 활용한 한계 극복 방안</sub> <content>외부 데이터를 활용하여 최신 정보 업데이트 용이, 할루시네이션 감소.</content> <page>23</page>
+
+<main>모델에 사용된 데이터</main>
+<sub>모델에 사용된 데이터</sub> <content>칵테일의 기본 정보와 관련 용어의 개념을 포함.</content> <page>24</page>
+
+<main>모델 프로세스</main>
+<sub>양자화 설정</sub> <content>양자화를 통해 모델의 메모리 사용량 최적화 및 한국어 언어 모델 적용.</content> <page>25</page>
+<sub>PDF 문서 임베딩</sub> <content>PDF 문서를 벡터로 변환하여 유사도 검색을 효율적으로 수행하는 FAISS 데이터베이스 생성.</content> <page>26</page>
+<sub>질문과 관련된 근거 검색</sub> <content>질문과 관련된 근거를 FAISS 데이터베이스에서 검색 후 답변 구성.</content> <page>27</page>
+
+<main>결과-추천 기능</main>
+<sub>결과-추천 기능</sub> <content>선호 칵테일과 추천 칵테일 리스트 제공. 칵테일 정보 제공 가능.</content> <page>30</page>
+
+<main>결과-챗봇 기능</main>
+<sub>알코올 도수</sub> <content>아이리시 위스키와 커피를 섞고 휘핑크림을 얹어 제조.</content> <page>31</page>
+<sub>재료 및 제조 방법</sub> <content>kahl La의 제조 방법 제공.</content> <page>33</page>
