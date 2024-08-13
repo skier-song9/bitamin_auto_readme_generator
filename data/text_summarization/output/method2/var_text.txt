@@ -1,0 +1,35 @@
+<subject>의과 모델을 이용한 VAR 포트폴리오 수익 예측</subject>
+<team>송휘종, 이수정, 강춘우, 김나현, 이형석</team>
+<index>목차</index>
+
+<main>Introduction to TS</main>
+<sub>자기 회귀 (Auto-Regressive) 모델</sub> <content>Auto-Regressive 모델은 현재의 값이 이전의 값들에 의존하는 시계열 모델로, 과거 값의 선형 조합을 이용하여 변수를 예측합니다.</content> <page>6</page>
+<sub>백터 자기회귀 모델 (Vector Auto-Regressive)</sub> <content>다변량 시계열 예측에서 사용되는 VAR 모델은 서로 다른 변수들이 서로 영향을 주는 경우에 각 변수의 미래값을 전체 시계열 변수의 과거값으로부터 예측합니다.</content> <page>7</page>
+<sub>정상성</sub> <content>정상성의 정의와 관련된 테스트 방법들로는 Augmented Dicky-Fuller (ADF) 테스트와 Phillips-Perron (PP) 테스트가 있습니다.</content> <page>8</page>
+<sub>그랜저-인과관계 검정</sub> <content>변수들의 상호 연관성을 검정하며, 귀무가설을 기각하면 해당 변수를 예측 인자로 사용합니다.</content> <page>9</page>
+
+<main>Analysis</main>
+<sub>종목선정</sub> <content>선정된 종목은 셀트리온 (068270), 현대차 (005380), SK이노베이션 (096770)이며, 분석 기간은 2013년 1월부터 2022년 12월까지입니다.</content> <page>11</page>
+<sub>변수 수집 및 선정</sub> <content>각 종목별로 다양한 경제 지표와 주가 데이터를 수집하였습니다. 예를 들어, 셀트리온의 경우 재고순환지표, 경제심리지수, 기계류 수출지수 등을 수집하였고, SK이노베이션의 경우 국제유가, CRB 지수 등을 수집했습니다.</content> <page>12</page>
+
+<main>VAR모델링</main>
+<sub>선정한 모델 VAR Iag=11</sub> <content>VAR 모델을 이용하여 각 변수들의 미래값을 예측하였습니다.</content> <page>17</page>
+<sub>선정한 모델 AR ag=12</sub> <content>AR 모델을 이용한 시계열 예측을 수행하였습니다.</content> <page>18</page>
+<sub>선정한 모델 AR ag=9</sub> <content>AR 모델을 다른 래그 설정으로 적용하여 예측하였습니다.</content> <page>19</page>
+<sub>선정한 모델 VAR Iag=5</sub> <content>VAR 모델을 다섯 번째 래그 설정으로 적용하여 예측을 진행하였습니다.</content> <page>21</page>
+<sub>이용한 수익률 예측 VAR모델링을</sub> <content>VAR 모델을 이용한 예측값과 실젯값을 비교하였습니다. 기준은 2023년 1월입니다.</content> <page>22</page>
+
+<main>Value at Risk</main>
+<sub>측정 지표</sub> <content>Value at Risk (VaR)를 주요 측정 지표로 사용했습니다.</content> <page>24</page>
+<sub>측정 방법</sub> <content>RiskMetrics, TimeSeries Approach, Block Maxima, Peaks Over Threshold 방법을 사용하여 VaR을 측정했습니다.</content> <page>25</page>
+<sub>BiskMetrics</sub> <content>RiskMetrics 방법을 사용하여 특정 시점에서의 손실을 예측하였습니다.</content> <page>26</page>
+
+<main>포트폴리오의 Value at Risk</main>
+<sub>상관계수 및 가중치</sub> <content>상관계수 행렬과 종목별 가중치를 고려하여 VaR을 계산했습니다. 모든 가중치의 합은 1이고, 각 가중치의 최소값과 최대값이 설정되었습니다.</content> <page>29</page>
+
+<main>포트폴리오의 수익률과 VaR</main>
+<sub>수익률</sub> <content>포트폴리오의 예상 수익률을 계산하였습니다.</content> <page>32</page>
+<sub>VaR</sub> <content>포트폴리오의 VaR을 계산하여 위험을 평가하였습니다.</content> <page>32</page>
+
+<main>결론 및 한계점</main>
+<content>정확한 수익률 예측보다는 추세 예측에 초점을 두었으며, 분산 투자를 통해 위험을 낮춘다는 포트폴리오 이론을 확인했습니다. 한계점으로는 VAR 모델의 단순함과 실제 금융 시장과의 차이가 있으며, 적절한 모델 선택을 위한 객관적인 지표가 필요합니다.</content> <page>33</page>

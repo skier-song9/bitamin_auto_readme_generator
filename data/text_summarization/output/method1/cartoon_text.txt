@@ -1,0 +1,21 @@
+<subject>CartoonGAN Project</subject>
+<team>Research Team</team>
+<index>README Summaries</index>
+
+<main>CartoonGAN</main>
+<sub>Architecture</sub> <content>Architecture details of CartoonGAN are introduced.</content> <page>8</page>
+<sub>Loss function</sub> <content>Loss function details are provided, including CGD, Ccon, and Ladv. The use of VGG network features for minimizing differences between generated and original images is explained.</content> <page>9</page>
+
+<main>Dataset</main>
+<sub>Dataset</sub> <content>Details about the dataset used: 8 One Piece movies with a total duration of approximately 11h 30m, resulting in 9728 extracted frames. Data preprocessing steps include center cropping, edge detection with CannyEdge (threshold 150-500), dilation operations, and Gaussian blur (kernel 5x5) for edge smoothing. The dataset consists of 9728 smoothed cartoon images and 10000 real images.</content> <page>11</page>
+
+<main>CartoonGAN 변형</main>
+<sub>변형 CartoonGAN</sub> <content>Introduction to changes in CartoonGAN.</content> <page>13</page>
+<sub>변형 CartoonGAN ResNet Block</sub> <content>Details on the modified ResNet Block used in the Generator, where batch normalization and residual connection are followed by ReLU.</content> <page>14</page>
+<sub>변형 CartoonGAN Generator Upsampling</sub> <content>Changes in Generator Upsampling include using blurring to solve checkerboard artifacts and switching from instance normalization to batch normalization for faster and more stable training.</content> <page>15</page>
+<sub>CartOonGAN 변형 Content Loss</sub> <content>Content Loss is changed from VGG19 to VGG16, using only up to the 24th layer for feature extraction, making the computation less costly and suitable for low-level feature extraction.</content> <page>16</page>
+
+<main>Experiment</main>
+<sub>Experiment Train</sub> <content>Pretraining of Generator to maintain the content of real images. Training parameters: epochs 10, batch size 16, Optimizer AdamW, learning rate 0.0001, beta1 0.5, beta2 0.999, weight decay 0.0001, and Content Loss as the base loss.</content> <page>18</page>
+<sub>Experiment Train</sub> <content>Training details for Discriminator and Generator: Discriminator is trained to classify images correctly, while Generator is trained to produce images that Discriminator classifies as real. Training parameters: epochs 10, batch size 16, Optimizer AdamW, learning rate 0.000015, beta1 0.5, beta2 0.999, weight decay 0.00001, with loss functions including Adversarial Loss, BCEWithLogitsLoss, and Content Loss.</content> <page>19</page>
+<sub>Experiment Results</sub> <content>Results of the experiments are documented.</content> <page>20</page>

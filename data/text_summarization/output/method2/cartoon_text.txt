@@ -1,0 +1,31 @@
+<subject>BITAmin 생성모델조</subject>
+<subject>CartOOnGAN</subject>
+<team>재원 선장 용호 항해사 영서 항해사</team>
+<index>CONTENTS</index>
+
+<main>GAN 이란?</main>
+<content>GAN의 훈련 과정은 적대적 훈련adversarial training 위조 지폐범과 경찰 관계와 유사. 위조 지폐범 감별사Discriminator를 Generator: 속 이기 위해 더 정교한 위조 지폐이미지생성 감별사 Discriminator: 진짜 지폐와 위조 지폐를 구 분하기 위해 더 정확하게 학습. GAN의 최종 목표는 Generator가 Discriminator를 완 전히 속여서 진짜 같은 이미지를 생성하는 것.</content> <page>4</page>
+<sub>손실함수</sub> <content>Generator와 Discriminator 간의 경쟁을 통해 Generator가 Discriminator를 속여 진짜 같은 이미지를 생성하도록 학습. GAN의 학습 목표는 단순히 손실 함수를 최소화하는 것이 아님. ED = --Ec~pdata [log Dc] -- Ez~pz log1 DGE]]].</content> <page>5</page>
+<sub>Training Step</sub> <content>메러를 최소화하도록 학습.</content> <page>6</page>
+
+<main>CartoonGAN</main>
+<sub>Architecture</sub> <page>8</page>
+<sub>Loss function</sub> <content>CGD CadG D WEcon G D - | Ccon G D - Ep~Sdata [IIV GGrGP?] VGGiPDIli] P 진. Ladu G D Ec~Sdata [log Dc?]] = - | Eej~Sdata [og1 De]] 9 Ep~Sdat a | [og1 Dgpe]] [p. Glpi는 G가 실제 사진 pi를 입력으로 받아 생성한 만화 이미지. `VGGI는 네트워크의 특정 레이어 1에서 추출한 피처 VGG 에11은 정규화norm 의미 두 피처 간의 절대 차이의 합을 [1 계산 를 네트워크의 피처 맺을 사용하여 생성된 이미지와 입력 VGG 이미지 간의 고수준 특징의 차이를 최소화 이미지가 원본 이미지의 중요한 내용과 구조를 유지하면서 스타일 변환. 실제 사조 첫번째항: 실제 만화 이미지 ci에 대해 D가 진짜라고 예측한 로그확률의기대값 즉 실제 만화 이미지를 정확히 진짜로 분류하도록 판별기를 학습시키는 역할. 옛지가제거된 만화 이미지 ej에 대해 D가 가짜라고 예측한 로그 확률의 기대값 즉 옛지가 제거된 이미지를 가짜로 정확히 분류하도록 판별기를 학습시키는 역할. 세 번째 항 실제사진pk를 생성기 G를 통해 생성된 이미지 Glpk에 대해 판별기D가 가짜라고 예측한 로그확률의기대값 생성된 이미지를 가짜로 정확히 분류하도록 판별기를 학습시키는 역할.</content> <page>9</page>
+
+<main>Dataset</main>
+<sub>Dataset</sub> <content>1 Movie 1: One Piece: The Movie 50m 2 Movie 2: One Piece: Clockwork sland Adventrue 55m 3 Movie 3: One Piece: Chopper Kingdom 이f Strange Animal Island 55m 4 Movie 8: One Piece: Adventure In Alabasta 90m 5 Movie 9: One Piece: Episode of Chopper Plus 113m 6 Movie 10: One Piece: Strong World 115m 7 Movie 12: One Piece: Filmz 107m 8 Movie 14: One Piece: Stampede 101m 약 11h 30m 9728장 추출 & Center Crop Scenedetect 063 약 11h 30m Edge Smoothing CannyEdge threshold 150- 500로 Edge 검 출 검출된 가장자리에 대해 dilation팽창 연산 Gaussian blur kernel 5x5 를 적용하여 Edge 부분 Smoothing Cartoon9728장 Cartoon 9728장 smooth Real image 10000장.</content> <page>11</page>
+
+<main>Training Step</main>
+<page>12</page>
+
+<main>변형 CartoonGAN</main>
+<sub>변형 CartoonGAN ResNet Block</sub> <content>Generator에 사용되는 ResNet Block에서 batchnoramalization 과 residual connection 이후에 ReLU가 적용되는 구조로.</content> <page>14</page>
+<sub>변형 CartoonGAN Generator Upsampling</sub> <content>Generator 에서 blurring 과 batch 사용 Upsampling normalization 1 blurring 을 해줌으로써 upsampling과정에서 발생할 수 있는 checkerboard 문제 해결 artifacts 2 instance 대신 normalization batch normalization을 사용함으로써 더 빠른 학습과 안정적인 training 가능하게끔 함.</content> <page>15</page>
+<sub>CartOonGAN 변형 Content Loss</sub> <content>에서 Content Loss VGG19 -> VGG16 로 변경하고 VGG16 의 24번째 Iayer 까지만 가져와서 feature extractor로 사용 V9g19 보다 COst 가 더 적고 V9g16이 computional 초기 24개 Iayer만 사용함으로써 Iow Ievel의 feature를 추출하여 계산에 적합 Content Loss.</content> <page>16</page>
+
+<main>Experiment</main>
+<sub>Experiment Train</sub> <content>Pretrain Generator Real image 의 content 를 유지하기 위해서 Generator를 함 pretrained epochs 10 batch size 16 Optimizer AdamW learning 0001 beta1 05 beta2 0999 rate weight decay 0001 Ioss Content Loss base Ioss [1 Ioss L_conreal _images generated_images.</content> <page>18</page>
+<sub>Experiment Train Presentation</sub> <content>Discriminator & Generator train 1 Discriminator image에 대하여 1 image 0 cartoon edge 0 나오게 train 시킴 cartoon generate smooth Generator image 를 Discriminator 에 나온 결과가 1이 되도록 real image 의 를 유지하도록 train 시킴 2 generator + content epochs 10 batch Size 16 Optimizer AdamW learning rate 000015 beta1 05 beta2 0999 weight decay 00001 Ioss Discriminator AdversarialLoss base Ioss BCEWithLogitsLOss Generator BCE_IoSS Content Loss + base Ioss :[1 Ioss.</content> <page>19</page>
+
+<main>Experiment Results</main>
+<page>20</page>

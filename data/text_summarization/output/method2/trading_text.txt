@@ -1,0 +1,50 @@
+<subject>BTAMIN PROJECT</subject>
+<team>시계열 3조 송규헌 송휘종 서영우 이태경 정유진 정준우</team>
+<index>목차</index>
+
+<main>[주제]</main>
+<sub>시계열 예측과 트레이딩 수익 극대화 강화학습을 활용한시스템</sub> <content>기존 금융 딥러닝의 실패 요인은 노이즈가 심하고 데이터 수가 부족하며 과적합 문제가 있다는 점입니다. 해결 방안으로는 Time Series Forecasting을 통해 다음 일주일 동안 큰 종가 변화율이 예상되는 종목을 예측하고, Reinforcement Learning을 사용하여 분 단위 거래를 학습하여 단타매매를 실행합니다.</content> <page>3</page>
+
+<main>[WorkFlow]</main>
+<content>Day Candle Stoch Data, LETF, Stock Code, 크레온 API, Airute Candle EtoC 등이 사용됩니다.</content> <page>4</page>
+
+<main>[종목선정 데이터 수집 및 전처리]</main>
+<content>국내 주식 데이터는 IFinance Data를 통해 2017년 1월 1일부터 현재까지의 데이터를 수집하였으며, 주요 수집 항목은 종가와 KOSP입니다.</content> <page>5</page>
+<content>데이터 전처리 과정에서 L09 Transform과 RSI, Sharpe Ratio를 계산합니다. RSI는 상대강도지수로, Sharpe Ratio는 투자 포트폴리오의 기대 수익률과 무위험 수익률을 기준으로 합니다.</content> <page>6</page>
+
+<main>[시계열 모델]</main>
+<content>Long Short-Term Memory(LSTM) 모델은 RNN의 장기 의존성 문제를 해결하여 오랜 기간의 데이터를 반영할 수 있습니다. Dlinear LSTF-linear 모델은 Transformer 구조로 선형 예측을 하며, 시간적 정보 손실을 방지합니다.</content> <page>8</page>
+
+<main>[모델 평가 및 선정]</main>
+<sub>평가 기법</sub> <content>평가 기법으로 MAE와 MSE를 사용합니다. LSTM에 대한 MAE는 37084이고 MSE는 150189이며, LSTF에 대한 MAE는 00811이고 MSE는 00348입니다.</content> <page>10</page>
+
+<main>[시스템 수집] 트레이딩 데이터</main>
+<content>대신증권 API를 이용하여 최대 20만 개의 분봉 데이터를 수집하고 학습에 사용합니다.</content> <page>11</page>
+
+<main>[시스템 트레이딩 데이터 전처리</main>
+<content>종가와 거래량의 5, 10, 20, 60, 120 이동 평균, 스토케스틱 오실레이터, 상대강도지수, 볼린저밴드, 이동평균수렴확산, AROON 등을 사용하여 데이터 전처리를 수행합니다.</content> <page>12</page>
+
+<main>[시스템 강화학습 모델 트레이딩</main>
+<sub>강화학습이란?</sub> <content>강화학습은 환경에서의 행동을 통해 보상 또는 벌칙을 받아 반복 학습하는 머신러닝의 한 종류입니다. 주식투자에서는 매수, 매도, 관망 등의 행동을 판단하는 문제에 적용됩니다.</content> <page>14</page>
+
+<main>[시스템 트레이딩 강화학습 모델]</main>
+<sub>강화학습 A2C Advantage Critic 알고리즘</sub> <content>A2C 알고리즘에서는 Actor가 정책 경사 방법을 사용해 행동을 결정하고, Critic은 Q-러닝 모델을 사용해 행동의 가치를 평가합니다. Advantage를 통해 보상과 정책 가치 함수의 차이를 이용해 정책을 업데이트합니다.</content> <page>15</page>
+
+<main>[시스템 화면] 트레이딩 테스트</main>
+<content>학습 모델로 a2c cnn 120dim 15000개 분봉 데이터를 300epochs 동안 학습합니다. 한국투자증권 API를 사용하여 1분 단위로 매수, 매도, 관망 예측을 하며 Confidence에 따라 주문 수량을 결정합니다.</content> <page>16</page>
+
+<main>[시스템 트레이딩 backtrading</main>
+<sub>001470 삼부토건</sub>
+<sub>002690 동일제강</sub>
+<sub>포트폴리오 가치</sub>
+<sub>267260 HD현대일렉트르</sub>
+<sub>002870 신풍</sub>
+<sub>011000 진원생명과학</sub> <page>17</page>
+
+<main>[시스템 결과] 트레이딩</main>
+<page>18</page>
+
+<main>[시스템 트레이딩 한계점</main>
+<content>훈련 과정에서의 과적합 문제가 발생합니다. 예를 들어, [001470] RL:a2c 모델에서 과적합 문제가 확인되었습니다.</content> <page>19</page>
+
+<content>감사합니다! 질문이 있으신가요?</content> <page>20</page>
