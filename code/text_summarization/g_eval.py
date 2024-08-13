@@ -32,9 +32,10 @@ if __name__ == '__main__':
         document = erase_tag(document, 'p.\d*')
         # document = document.replace('\n','')
         summary = ''.join(summary)
-        for tag in ['subject','team','index']:
-            summary = remove_xml_tags(summary, tag)
-        summary = erase_tag(summary,'[^>]+')  
+        # for tag in ['subject','team','index']:
+        #     summary = remove_xml_tags(summary, tag)
+        # summary = erase_tag(summary,'[^>]+')  
+        summary = remove_xml_tags(summary, 'page')
 
         # Evaluate
         rel, coh, cons, flu =gpt.get_geval_score(document, summary, model='gpt-4o-mini')
