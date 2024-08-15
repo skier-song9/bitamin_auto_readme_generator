@@ -16,7 +16,7 @@ model.to(device)
 
 # Set directory
 # 원하는 pdf의 이미지가 담겨있는 폴더명으로 바꾸기
-folder_name = 'webtoon-rec'
+folder_name = 'netflix'
 image_dir =  os.path.join(current_dir, '..','..','data','object_detection','input',folder_name)
 textbox_save_dir = os.path.join(current_dir, '..','..','data','object_detection','output',folder_name,'textbox')
 image_save_dir = os.path.join(current_dir, '..','..','data','object_detection','output',folder_name,'image')
@@ -25,7 +25,7 @@ image_save_dir = os.path.join(current_dir, '..','..','data','object_detection','
 for filename in os.listdir(image_dir):
    if filename.endswith('.jpg'):
     image_path = os.path.join(image_dir,filename)
-    result = model.predict(image_path, conf=0.5)[0] #cf level 조정 가능
+    result = model.predict(image_path, conf=0.65)[0] #cf level 조정 가능
 
     boxes = []
     for box in result.boxes:
