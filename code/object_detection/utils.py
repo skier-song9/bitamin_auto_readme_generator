@@ -33,7 +33,6 @@ def save_cropped_image(image_path, save_dir, class_id, cords,idx):
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
     parts = os.path.normpath(image_path).split(os.sep)
-    base_filename = f"{parts[-2]}_{os.path.splitext(parts[-1])[0]}"
-    filename = f"{class_id}_{base_filename}_{idx}.jpg"
+    filename = f"{os.path.splitext(parts[-1])[0]}_{idx}.jpg"
     save_path = os.path.join(save_dir, filename)
     cv2.imwrite(save_path, cropped_image)
