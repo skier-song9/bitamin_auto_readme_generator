@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8" />
+        <title>ProjectMe.md - Auto Readme Generator</title>
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/editormd.css" />   
+        <link rel="shortcut icon" href="images/orange.ico" type="image/x-icon" />
+        <style>      
+            .editormd-preview-theme-dark {
+                color: #777;
+                background:#2C2827;
+            }
+            
+            .editormd-preview-theme-dark .editormd-toc-menu > .markdown-toc {
+                background:#fff;
+                border:none;
+            }
+            
+            .editormd-preview-theme-dark .editormd-toc-menu > .markdown-toc h1{
+                border-color:#ddd;
+            }
+            
+            .editormd-preview-theme-dark .markdown-body h1,
+            .editormd-preview-theme-dark .markdown-body h2,
+            .editormd-preview-theme-dark .markdown-body hr {
+                border-color: #222;
+            }
+            
+            .editormd-preview-theme-dark .editormd-preview-container  blockquote {
+                color: #555;
+                border-color: #333;
+                background: #222;
+                padding: 0.5em;
+            }
+            
+            .editormd-preview-theme-dark .editormd-preview-container abbr {
+                background:#ff9900;
+                color: #fff;
+                padding: 1px 3px;
+                border-radius: 3px; 
+            }
+            
+            .editormd-preview-theme-dark .editormd-preview-container code {
+                background: #5A9600;
+                color: #fff;
+                border: none;
+                padding: 1px 3px;
+                border-radius: 3px; 
+            }
+            
+            .editormd-preview-theme-dark .editormd-preview-container table {
+                border: none;
+            }
+            
+            .editormd-preview-theme-dark .editormd-preview-container .fa-emoji {
+                color: #B4BF42;
+            }
+            
+            .editormd-preview-theme-dark .editormd-preview-container .katex {
+                color: #FEC93F;
+            }
+            
+            .editormd-preview-theme-dark [class*=editormd-logo] {
+                color: #2196F3;
+            }
+            
+            .editormd-preview-theme-dark .sequence-diagram text {
+                fill: #fff;
+            }
+            
+            .editormd-preview-theme-dark .sequence-diagram rect, 
+            .editormd-preview-theme-dark .sequence-diagram path {
+                color:#fff;
+                fill : #64D1CB;
+                stroke : #64D1CB;
+            }
+            
+            .editormd-preview-theme-dark .flowchart rect, 
+            .editormd-preview-theme-dark .flowchart path {
+                stroke : #A6C6FF;
+            }
+            
+            .editormd-preview-theme-dark .flowchart rect {
+                fill: #A6C6FF;
+            }
+            
+            .editormd-preview-theme-dark .flowchart text {
+                fill: #5879B4;
+            }
+
+            #test-editormd {
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            .menu-bar-container {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                overflow-x: hidden; /* 가로 스크롤 활성화 */
+                margin-bottom: 10px;
+            }
+
+            .menu-bar {
+                background-color: rgb(248, 248, 248);
+                width: 90%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border-radius: 5px;
+                display: inline-block;
+                overflow-x: auto; /* menu-bar 내에서 가로 스크롤 활성화 */
+                white-space: nowrap; /* 이미지 가로로 나열 */
+            }
+
+            .image-gallery {
+                display: inline-block;
+            }
+
+            .image-gallery img {
+                width: 250px;
+                height: 150px;
+                margin-right: 5px; /* 이미지 간 간격 */
+                object-fit: contain; /* 원본 비율 유지하며 빈 공간 흰색 채우기 */
+                background-color: white; /* 빈 공간 흰색 배경 */
+            }
+            
+            .menu-bar button {
+                margin-right: 5px;
+            }
+
+            #layout {
+                background-color: rgba(255,255,255,1);
+            }
+        
+
+        </style>     
+    </head>
+    <body>
+        <div id="layout">
+            <header style="display:flex; justify-content: space-between;">
+                <h1 style="color: black; display: block;">
+                    🍊BITAMin Auto-Project-ReadMe-Generator
+                </h1>
+            </header>
+
+            <div class="menu-bar-container">
+                <div class="menu-bar">
+                    <div class="image-gallery">
+                        <!-- <img src="workspace/images/image_netflix-stock_04_4.jpg" alt="img1">
+                        <img src="workspace/images/image_netflix-stock_05_4.jpg" alt="img2">
+                        <img src="workspace/images/image_netflix-stock_07_4.jpg" alt="img3">
+                        <img src="workspace/images/image_netflix-stock_08_4.jpg" alt="img4">
+                        <img src="workspace/images/image_netflix-stock_09_3.jpg" alt="img5">
+                        <img src="workspace/images/image_netflix-stock_09_4.jpg" alt="img6">
+                        <img src="workspace/images/image_netflix-stock_09_5.jpg" alt="img7">
+                        <img src="workspace/images/image_netflix-stock_11_4.jpg" alt="img8">
+                        <img src="workspace/images/image_netflix-stock_12_4.jpg" alt="img9">
+                        <img src="workspace/images/image_netflix-stock_14_5.jpg" alt="img10">
+                        <img src="workspace/images/image_netflix-stock_15_3.jpg" alt="img11"> -->
+                    </div>
+                    <!-- <div class="btns">
+                        <button id="light-dark">dark mode</button>
+                        <button id="goto-line-btn">Goto line 90</button>
+                        <button id="show-btn">Show editor</button>
+                        <button id="hide-btn">Hide editor</button>
+                        <button id="get-md-btn">Get Markdown</button>
+                        <button id="get-html-btn">Get HTML</button>
+                        <button id="watch-btn">Watch</button>
+                        <button id="unwatch-btn">Unwatch</button>
+                        <button id="preview-btn">Preview HTML (Press Shift + ESC cancel)</button>
+                        <button id="fullscreen-btn">Fullscreen (Press ESC cancel)</button>
+                        <button id="show-toolbar-btn">Show toolbar</button>
+                        <button id="close-toolbar-btn">Hide toolbar</button>
+                        <button id="toc-menu-btn">ToC Dropdown menu</button>
+                        <button id="toc-default-btn">ToC default</button>
+                    </div> -->
+                </div>
+            </div>
+            <div class="menu-bar-container">
+                <p>
+                    <select id="editormd-theme-select">
+                        <option selected="selected" value="">select Editor.md themes</option>
+                    </select>
+                    <select id="editor-area-theme-select">
+                        <option selected="selected" value="">select editor area themes</option>
+                    </select>
+                    <select id="preview-area-theme-select">
+                        <option selected="selected" value="">select preview area themes</option>
+                    </select>
+                </p>
+            </div>
+            <div id="your-readme">
+                <textarea style="display:block;"></textarea>
+            </div>
+        </div>
+        <script src="js/jquery.min.js"></script>
+        <script src="editormd.js"></script>
+        <!-- English -->
+        <script src="languages/en.js"></script>
+        <script type="text/javascript">
+            var yourReadme;
+
+            $(function() { //factory function               
+
+                /////////////////////////////////////////////////////
+                // Markdown 편집기를 불러온다.
+                yourReadme = editormd("your-readme",{
+                    width       : "90%",
+                    height      : () => window.innerHeight * 0.75,
+                    path        : 'lib/',
+                    theme       : (localStorage.theme) ? localStorage.theme : "default",
+                    previewTheme: (localStorage.previewTheme) ? localStorage.previewTheme : "default",
+                    editorTheme : (localStorage.editorTheme) ? localStorage.editorTheme : "default"
+                });
+
+                /////////////////////////////////////////////////////
+                // workspace에서 README.md 파일을 읽어 your-readme아래의 textarea에 내용을 채운다.
+                $.ajax({
+                    url: './workspace/README.md',
+                    dataType: 'text',
+                    success: function(data) {
+                        // "your-readme" id를 가진 div 태그 내의 textarea 요소를 찾는다.
+                        let yourReadmeTextarea = document.querySelector('#your-readme textarea');
+                        
+                        // 읽은 텍스트를 textarea 요소의 innerText로 입력한다.
+                        yourReadmeTextarea.value = data;
+                    },
+                    error: function() {
+                        console.error('README.md 파일을 불러오는 데 실패했습니다.');
+                    }
+                });
+
+                /////////////////////////////////////////////////////
+                // workspace/images 내의 이미지들을 불러와 menu-bar에 가로로 표시하는 함수.
+                $.ajax({
+                    url: './workspace/images',
+                    success: function(data) {
+                        $(data).find('a').each(function() {
+                            var filename = $(this).attr('href');
+                            
+                            // Check if the file is an image
+                            if (filename.match(/\.(jpg|jpeg|png|gif|bmp|webp)$/i)) {
+                                var altText = filename.substring(0, filename.lastIndexOf('.')); // Remove extension
+                                let tarr = altText.split('/')
+                                var imgTag = '<img id="'+ tarr[tarr.length-1] +'" src="' + filename + '" alt="' + altText + '">';
+                                $('.image-gallery').append(imgTag);
+                            }
+                        });
+                    }
+                });
+
+                /////////////////////////////////////////////////////
+                // Image Drag & Drop 기능
+                var draggedImageId = "";
+                // 마우스 이벤트에서 커서 위치를 계산하는 함수
+                function getCursorPositionFromMouseEvent(event, textarea) {
+                    var text = textarea.value;
+                    var x = event.originalEvent.clientX;
+                    var y = event.originalEvent.clientY;
+
+                    // Textarea의 경계 영역을 가져옵니다.
+                    var textareaRect = textarea.getBoundingClientRect();
+
+                    // 텍스트 내에서 x, y 좌표에 가장 가까운 위치를 찾습니다.
+                    var approxPos = Math.floor((y - textareaRect.top) / textarea.clientHeight * text.length);
+                    
+                    // 대략적인 위치에서부터 정확한 위치를 찾기 위해 이동합니다.
+                    for (var pos = approxPos; pos < text.length && pos >= 0; pos++) {
+                        var span = document.createElement("span");
+                        span.style.position = "absolute";
+                        span.style.visibility = "hidden";
+                        document.body.appendChild(span);
+                        
+                        // 텍스트의 특정 위치에 있는 텍스트를 span에 넣습니다.
+                        span.textContent = text.substring(0, pos);
+                        
+                        // span의 크기를 계산합니다.
+                        var spanRect = span.getBoundingClientRect();
+                        
+                        // 커서 위치를 조정합니다.
+                        if (spanRect.left > x || spanRect.top > y) {
+                            document.body.removeChild(span);
+                            return pos;
+                        }
+
+                        document.body.removeChild(span);
+                    }
+                    return text.length; // 끝까지 찾지 못하면 텍스트의 끝으로 설정합니다.
+                }
+                // Drag start event: Save the dragged image's id
+                $(document).on('dragstart', '.image-gallery img', function(e) {
+                    draggedImageId = $(this).attr('id');
+                    console.log(draggedImageId)
+                    e.originalEvent.dataTransfer.setData('text/plain', draggedImageId); // This ensures some data is transferred during the drag.
+                });
+
+                // Drag over event: Necessary to allow a drop event
+                $('#your-readme > div.CodeMirror.cm-s-default.CodeMirror-wrap > div.CodeMirror-scroll > div.CodeMirror-sizer > div').on('dragover', function(e) {
+                    e.preventDefault(); // Allow dropping
+                    var textarea = this;
+                    let cursorPosition = getCursorPositionFromMouseEvent(e, textarea);
+                    console.log(cursorPosition)
+
+                    // 커서를 계산된 위치로 이동시킵니다.
+                    textarea.setSelectionRange(cursorPosition, cursorPosition);
+                });
+
+                // Drop event: Insert the image ID at the cursor position
+                $('#your-readme > div.CodeMirror.cm-s-default.CodeMirror-wrap > div.CodeMirror-scroll > div.CodeMirror-sizer > div').on('drop', function(e) {
+                    console.log('drop event')
+                    e.preventDefault();
+
+                    // Get the dropped text (image id)
+                    var imageId = e.originalEvent.dataTransfer.getData('text/plain');
+                    console.log('drop',imageId)
+
+                    // Find the cursor position and insert the image ID
+                    let cursorPos = this.selectionStart;
+                    let textAreaTxt = $(this).val();
+                    let textBefore = textAreaTxt.substring(0, cursorPos);
+                    let textAfter = textAreaTxt.substring(cursorPos, textAreaTxt.length);
+                    console.log(cursorPos + ", " + textAreaTxt)
+
+                    $(this).val(textBefore + imageId + textAfter);
+                });
+
+                
+                $("#goto-line-btn").bind("click", function(){
+                    yourReadme.gotoLine(90);
+                });
+                
+                $("#show-btn").bind('click', function(){
+                    yourReadme.show();
+                });
+                
+                $("#hide-btn").bind('click', function(){
+                    yourReadme.hide();
+                });
+                
+                $("#get-md-btn").bind('click', function(){
+                    alert(yourReadme.getMarkdown());
+                });
+                
+                $("#get-html-btn").bind('click', function() {
+                    alert(yourReadme.getHTML());
+                });                
+                
+                $("#watch-btn").bind('click', function() {
+                    yourReadme.watch();
+                });                 
+                
+                $("#unwatch-btn").bind('click', function() {
+                    yourReadme.unwatch();
+                });              
+                
+                $("#preview-btn").bind('click', function() {
+                    yourReadme.previewing();
+                });
+                
+                $("#fullscreen-btn").bind('click', function() {
+                    yourReadme.fullscreen();
+                });
+                
+                $("#show-toolbar-btn").bind('click', function() {
+                    yourReadme.showToolbar();
+                });
+                
+                $("#close-toolbar-btn").bind('click', function() {
+                    yourReadme.hideToolbar();
+                });
+                
+                $("#toc-menu-btn").click(function(){
+                    yourReadme.config({
+                        tocDropdown   : true,
+                        tocTitle      : "目录 Table of Contents",
+                    });
+                });
+                
+                $("#toc-default-btn").click(function() {
+                    yourReadme.config("tocDropdown", false);
+                });
+
+                /////////////////////////////////////////////////////
+                // Markdown 편집기의 테마를 변경하는 select element를 위한 함수.
+                function themeSelectAll(id, editormd, lsKey, callback){
+                    var select = $("#"+id);
+
+                };
+                function themeSelect(id, themes, lsKey, callback)
+                {
+                    var select = $("#" + id);
+                    
+                    for (var i = 0, len = themes.length; i < len; i ++)
+                    {                    
+                        var theme    = themes[i];
+                        var selected = (localStorage[lsKey] == theme) ? " selected=\"selected\"" : "";
+                        
+                        select.append("<option value=\"" + theme + "\"" + selected + ">" + theme + "</option>");
+                    }
+                    
+                    select.bind("change", function(){
+                        var theme = $(this).val();
+                        
+                        if (theme === "")
+                        {
+                            alert("theme == \"\"");
+                            return false;
+                        }
+                        
+                        console.log("lsKey =>", lsKey, theme);
+                        
+                        localStorage[lsKey] = theme;
+                        callback(select, theme);
+                    }); 
+                    
+                    return select;
+                };
+
+                themeSelect("editormd-theme-select", editormd.themes, "theme", function($this, theme) {
+                    yourReadme.setTheme(theme);
+                });
+                
+                themeSelect("editor-area-theme-select", editormd.editorThemes, "editorTheme", function($this, theme) {
+                    yourReadme.setCodeMirrorTheme(theme); 
+                    // or yourReadme.setEditorTheme(theme);
+                });
+                
+                themeSelect("preview-area-theme-select", editormd.previewThemes, "previewTheme", function($this, theme) {
+                    yourReadme.setPreviewTheme(theme);
+                });      
+            });
+        </script>
+    </body>
+</html>
