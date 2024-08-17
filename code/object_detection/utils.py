@@ -1,5 +1,4 @@
 from collections import defaultdict
-import os
 import cv2
 
 # bounding box 정렬 함수
@@ -25,14 +24,9 @@ def sort_by_y_x(boxes):
     
     return sorted_data
 
-# textbox/image bounding box 크롭 + 이미지 저장 함수
-def save_cropped_image(image_path, save_dir, class_id, cords,idx):
+# textbox/image bounding box 크롭 함수
+def crop_image(image_path, class_id, cords):
     image = cv2.imread(image_path)
     x1, y1, x2, y2 = map(int, cords)
     cropped_image = image[y1:y2, x1:x2]
-    if not os.path.exists(save_dir):
-        os.makedirs(save_dir)
-    parts = os.path.normpath(image_path).split(os.sep)
-    filename = f"{os.path.splitext(parts[-1])[0]}_{idx}.jpg"
-    save_path = os.path.join(save_dir, filename)
-    cv2.imwrite(save_path, cropped_image)
+    return cropped_image
