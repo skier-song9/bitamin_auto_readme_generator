@@ -4115,7 +4115,8 @@
             callback();
         };
 
-        css.href   = fileName + ".css";
+//        css.href   = fileName + ".css";
+        css.href = window.location.origin + "/webapp/" + fileName + ".css";
 
         if(into === "head") {
             document.getElementsByTagName("head")[0].appendChild(css);
@@ -4145,8 +4146,9 @@
         script        = document.createElement("script");
         script.id     = fileName.replace(/[\./]+/g, "-");
         script.type   = "text/javascript";        
-        script.src    = fileName + ".js";
-        
+//        script.src    = fileName + ".js";
+        script.src = window.location.origin + "/webapp/" + fileName + ".js";
+
         if (editormd.isIE8) 
         {            
             script.onreadystatechange = function() {
