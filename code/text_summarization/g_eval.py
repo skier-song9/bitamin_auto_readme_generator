@@ -30,16 +30,18 @@ if __name__ == '__main__':
         # preprocess
         document = ''.join(document)
         document = erase_tag(document, 'p.\d*')
-        # document = document.replace('\n','')
+        len_document = len(document.replace('\n',' '))
         summary = ''.join(summary)
-        for tag in ['subject','team','index']:
-            summary = remove_xml_tags(summary, tag)
-        summary = erase_tag(summary,'[^>]+')  
+        # for tag in ['subject','team','index']:
+        #     summary = remove_xml_tags(summary, tag)
+        # summary = erase_tag(summary,'[^>]+')  
+        summary = remove_xml_tags(summary, 'page')
+        len_summary = len(erase_tag(summary,'[^>]+'))
 
         # Evaluate
         rel, coh, cons, flu =gpt.get_geval_score(document, summary, model='gpt-4o-mini')
     
-        new_row = pd.DataFrame(data=[[filename.replace('.txt',''),rel,coh,cons,flu,round(len(summary)/len(document)*100,2)]],
+        new_row = pd.DataFrame(data=[[filename.replace('.txt',''),rel,coh,cons,flu,round(len_summary/len_document*100,2)]],
                               columns=scores_df.columns)
         scores_df = pd.concat([scores_df, new_row], axis=0)
 

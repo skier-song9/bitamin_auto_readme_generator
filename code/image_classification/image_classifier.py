@@ -100,20 +100,22 @@ class Image_Classifier:
             transforms.ToTensor()
         ])
     
-    def predict(self, pdf_name, save = False):
+    def predict(self, image_dirpath, save = False):
         '''
-        pdf_name : image classification을 진행할 프로젝트의 이름 -> 함수 내부에서 root/data/object_detection/output/프로젝트이름으로 결합하여 사용함.
+        # pdf_name : image classification을 진행할 프로젝트의 이름 -> 함수 내부에서 root/data/object_detection/output/프로젝트이름으로 결합하여 사용함.
+        image_dirpath : 이미지가 저장되어 있는 Flask 서버의 디렉토리 경로를 전달 >> 바로 사용 가능
         save : True면 classification 결과를 data/image_classification/output에 저장함.
 
         return : 
             - result_df : 추론 결과를 저장한 데이터프레임
             - len(img_filenames) : 추론한 이미지 개수를 반환
         '''
-        img_abspath = os.path.join(self.root_absdir,'data','object_detection','output',pdf_name,'image')
-        img_filenames = os.listdir(img_abspath) # for loading images
+        # img_abspath = os.path.join(self.root_absdir,'data','object_detection','output',pdf_name,'image')
+        img_filenames = os.listdir(image_dirpath) # for loading images
 
         # Set dataset
-        dataset = ImageDataset(img_abspath, img_filenames, transform = self.transform_infer)
+        # dataset = ImageDataset(img_abspath, img_filenames, transform = self.transform_infer)
+        dataset = ImageDataset(image_dirpath, img_filenames, transform = self.transform_infer)
         dataloader = DataLoader(dataset, batch_size = len(img_filenames), shuffle=False)
         
         self.model.to(self.device).eval()
@@ -127,7 +129,7 @@ class Image_Classifier:
                     result = outputs[i].cpu().numpy()
                     class_name = CLASS_NAMES[np.argmax(result)]
                     probs = softmax(result).tolist()
-                    fname = paths[i].split(os.sep)[-1].replace('.','_')
+                    fname = paths[i].split(os.sep)[-1] # .replace('.','_')
                     results.append([fname, class_name]+probs)
         result_df = pd.DataFrame(data=results, columns=['filename','class']+CLASS_NAMES)
         ### [이미지 파일 이름, 예측 클래스, 예측 클래스에 대한 각 확률값] 을 컬럼으로 저장.
@@ -135,7 +137,7 @@ class Image_Classifier:
         if save:
             output_dir = os.path.join(self.root_absdir,'data','image_classification','output')
             lt = time.localtime()
-            save_path = os.path.join(output_dir,f"{pdf_name}_{lt.tm_mon}{lt.tm_mday}_{lt.tm_hour}{lt.tm_min}.csv")
+            save_path = os.path.join(output_dir,f"{image_dirpath.split(os.sep)[-1]}_{lt.tm_mon}{lt.tm_mday}_{lt.tm_hour}{lt.tm_min}.csv")
             
             result_df.to_csv(save_path,index=False)
 

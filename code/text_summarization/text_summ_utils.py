@@ -218,6 +218,26 @@ Fluency(1-3): the quality of the summary in terms of grammar, spelling, punctuat
        '''
        return self.client.embeddings.create(input = sentence, model=model).data[0].embedding
 
+    def score_function(self, scores: list):
+        """
+        scores : 20번 샘플링한 score 리스트 전달
+        weighted summation 계산
+        """
+        # Check if the list is empty
+        if not scores:
+            return 0
+        # Calculate the frequency of each score
+        score_counts = {i: 0 for i in set(scores)}  # Initialize counts for scores 0 to 5
+        for score in scores:
+            score_counts[score] += 1
+        # Calculate the total number of scores
+        total_scores = len(scores)
+        # Calculate probabilities (weights) for each score
+        probabilities = {score: count / total_scores for score, count in score_counts.items()}
+        # Calculate the weighted average (weighted sum)
+        weighted_sum = sum(score * probabilities[score] for score in set(scores))
+        return weighted_sum
+
     def get_geval_score(
         self, document: str, summary: str, model: str = 'gpt-4o-mini', n_sampling: int = 20
     ):
@@ -253,7 +273,8 @@ Fluency(1-3): the quality of the summary in terms of grammar, spelling, punctuat
                 n = n_sampling
             )
             # 논문에서는 GPT-4의 parameter를 다음과 같이 설정 : n = 20, temperature = 1, top_p = 1
-            score = 0
+            # score = 0
+            score_list = []
 
             # manually sampling
             # for sample in range(n_sampling):
@@ -271,12 +292,14 @@ Fluency(1-3): the quality of the summary in terms of grammar, spelling, punctuat
                 # print(res)
                 numlist = extract_numbers_from_string(res)
                 if len(numlist) == 0 : # 점수가 안 나오는 error인 경우
-                    n_sampling -= 1 # 정규화를 위한 n_sampling 1 줄여주기
+                    # n_sampling -= 1 # 정규화를 위한 n_sampling 1 줄여주기
+                    score_list.append(0)
                     continue
-                score += int(numlist[0])
-            score = score / (n_sampling if n_sampling != 0 else 1)
+                # score += int(numlist[0])
+                score_list.append(int(numlist[0]))
+            # score = score / (n_sampling if n_sampling != 0 else 1)
+            score = self.score_function(score_list)
             scores.append(score)
-            # scores.append(int(response.choices[0].message.content.strip()))
         return scores
 
 class TextSummerizer():

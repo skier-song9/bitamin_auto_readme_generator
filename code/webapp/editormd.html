@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8" />
+        <title>ProjectMe.md - Auto Readme Generator</title>
+        <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
+        <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" />
+        <link rel="stylesheet" href="{{url_for('static',filename='css/editormd.css')}}" />
+        <link rel="shortcut icon" href="{{url_for('static',filename='images/orange.ico')}}" type="image/x-icon" />
+        <style>      
+            .editormd-preview-theme-dark {
+                color: #777;
+                background:#2C2827;
+            }
+            
+            .editormd-preview-theme-dark .editormd-toc-menu > .markdown-toc {
+                background:#fff;
+                border:none;
+            }
+            
+            .editormd-preview-theme-dark .editormd-toc-menu > .markdown-toc h1{
+                border-color:#ddd;
+            }
+            
+            .editormd-preview-theme-dark .markdown-body h1,
+            .editormd-preview-theme-dark .markdown-body h2,
+            .editormd-preview-theme-dark .markdown-body hr {
+                border-color: #222;
+            }
+            
+            .editormd-preview-theme-dark .editormd-preview-container  blockquote {
+                color: #555;
+                border-color: #333;
+                background: #222;
+                padding: 0.5em;
+            }
+            
+            .editormd-preview-theme-dark .editormd-preview-container abbr {
+                background:#ff9900;
+                color: #fff;
+                padding: 1px 3px;
+                border-radius: 3px; 
+            }
+            
+            .editormd-preview-theme-dark .editormd-preview-container code {
+                background: #5A9600;
+                color: #fff;
+                border: none;
+                padding: 1px 3px;
+                border-radius: 3px; 
+            }
+            
+            .editormd-preview-theme-dark .editormd-preview-container table {
+                border: none;
+            }
+            
+            .editormd-preview-theme-dark .editormd-preview-container .fa-emoji {
+                color: #B4BF42;
+            }
+            
+            .editormd-preview-theme-dark .editormd-preview-container .katex {
+                color: #FEC93F;
+            }
+            
+            .editormd-preview-theme-dark [class*=editormd-logo] {
+                color: #2196F3;
+            }
+            
+            .editormd-preview-theme-dark .sequence-diagram text {
+                fill: #fff;
+            }
+            
+            .editormd-preview-theme-dark .sequence-diagram rect, 
+            .editormd-preview-theme-dark .sequence-diagram path {
+                color:#fff;
+                fill : #64D1CB;
+                stroke : #64D1CB;
+            }
+            
+            .editormd-preview-theme-dark .flowchart rect, 
+            .editormd-preview-theme-dark .flowchart path {
+                stroke : #A6C6FF;
+            }
+            
+            .editormd-preview-theme-dark .flowchart rect {
+                fill: #A6C6FF;
+            }
+            
+            .editormd-preview-theme-dark .flowchart text {
+                fill: #5879B4;
+            }
+
+            #test-editormd {
+                border-radius: 10px;
+                overflow: hidden;
+            }
+
+            .menu-bar-container {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                overflow-x: hidden; /* 가로 스크롤 활성화 */
+                margin-bottom: 10px;
+            }
+
+            .menu-bar {
+                background-color: rgb(248, 248, 248);
+                width: 90%;
+                padding: 10px;
+                margin-bottom: 10px;
+                border-radius: 5px;
+                display: inline-block;
+                overflow-x: auto; /* menu-bar 내에서 가로 스크롤 활성화 */
+                white-space: nowrap; /* 이미지 가로로 나열 */
+            }
+
+            .image-gallery {
+                display: inline-block;
+            }
+
+            .image-gallery img {
+                width: 250px;
+                height: 150px;
+                margin-right: 5px; /* 이미지 간 간격 */
+                object-fit: contain; /* 원본 비율 유지하며 빈 공간 흰색 채우기 */
+                background-color: white; /* 빈 공간 흰색 배경 */
+            }
+            .image-gallery img:hover {
+                cursor: pointer;
+            }
+            
+            .menu-bar button {
+                margin-right: 5px;
+            }
+
+            #layout {
+                background-color: rgba(255,255,255,1);
+                display: flex;
+                flex-direction: column;
+                align-items: center; /* Center horizontally */
+            }
+        
+            /* File Upload 스타일 */
+            #upload-container {
+                width: 90%;
+                margin-bottom: 10px;
+                text-align: center;
+                padding: 20px;
+                border: 2px dashed #ccc;
+                border-radius: 10px;
+                background-color: #f8f8f8;
+                color: #666;
+                cursor: pointer;
+            }
+
+            #upload-container.dragover {
+                background-color: #e0e0e0;
+                border-color: #333;
+            }
+        </style>     
+    </head>
+    <body>
+        <div id="layout">
+            <header style="display:flex; justify-content: space-between;">
+                <h1 style="color: black; display: block;">
+                    🍊BITAMin Auto-Project-ReadMe-Generator
+                </h1>
+            </header>
+            <input type="file" name="pdf" id="file-input" style="display:none;">
+            <div id="upload-container">
+                <!-- <input type="file" > -->
+                <p id="upload-container-text">Drag & Drop or click here to upload your project PDF</p>
+                
+            </div>
+            <div class="menu-bar-container">
+                <!-- File Uploader -->
+                
+                <div class="menu-bar">
+                    <div class="image-gallery">
+                        <!-- <img id="image_netflix-stock_04_4" src="workspace/images/image_netflix-stock_04_4.jpg" alt="img1">
+                        <img src="workspace/images/image_netflix-stock_05_4.jpg" alt="img2">
+                        <img src="workspace/images/image_netflix-stock_07_4.jpg" alt="img3">
+                        <img src="workspace/images/image_netflix-stock_08_4.jpg" alt="img4">
+                        <img src="workspace/images/image_netflix-stock_09_3.jpg" alt="img5">
+                        <img src="workspace/images/image_netflix-stock_09_4.jpg" alt="img6">
+                        <img src="workspace/images/image_netflix-stock_09_5.jpg" alt="img7">
+                        <img src="workspace/images/image_netflix-stock_11_4.jpg" alt="img8">
+                        <img src="workspace/images/image_netflix-stock_12_4.jpg" alt="img9">
+                        <img src="workspace/images/image_netflix-stock_14_5.jpg" alt="img10">
+                        <img src="workspace/images/image_netflix-stock_15_3.jpg" alt="img11"> -->
+                    </div>
+                    <!-- <div class="btns">
+                        <button id="light-dark">dark mode</button>
+                        <button id="goto-line-btn">Goto line 90</button>
+                        <button id="show-btn">Show editor</button>
+                        <button id="hide-btn">Hide editor</button>
+                        <button id="get-md-btn">Get Markdown</button>
+                        <button id="get-html-btn">Get HTML</button>
+                        <button id="watch-btn">Watch</button>
+                        <button id="unwatch-btn">Unwatch</button>
+                        <button id="preview-btn">Preview HTML (Press Shift + ESC cancel)</button>
+                        <button id="fullscreen-btn">Fullscreen (Press ESC cancel)</button>
+                        <button id="show-toolbar-btn">Show toolbar</button>
+                        <button id="close-toolbar-btn">Hide toolbar</button>
+                        <button id="toc-menu-btn">ToC Dropdown menu</button>
+                        <button id="toc-default-btn">ToC default</button>
+                    </div> -->
+                </div>
+            </div>
+            <div class="menu-bar-container">
+                <p>
+                    Select Themes : 
+                    <select id="editormd-theme-select">
+                        <option selected="selected" value="">select Editor.md themes</option>
+                    </select>
+                    <select id="editor-area-theme-select">
+                        <option selected="selected" value="">select editor area themes</option>
+                    </select>
+                    <select id="preview-area-theme-select">
+                        <option selected="selected" value="">select preview area themes</option>
+                    </select>
+                </p>
+            </div>
+            <div id="your-readme">
+                <textarea style="display:block;"></textarea>
+            </div>
+        </div>
+        <script src="{{url_for('static',filename='editormd.js')}}"></script>
+        <!-- English -->
+        <script src="{{url_for('static',filename='languages/en.js')}}"></script>
+        <script type="text/javascript">
+            var yourReadme;
+            var rootUrl = window.location.origin; // "http://ipaddr:port#" --> /code/ 디렉토리임.
+            var imageGallery = $('.image-gallery')
+            var workFileOrigin = "";
+            var workFileClean = "";
+
+            $(function() { //factory function               
+                /////////////////////////////////////////////////////
+                // File Uploader
+                const uploadContainer = $('#upload-container');
+                const fileInput = $('#file-input');
+                // UploadFile 함수
+                // Upload file function
+                function uploadFile(file) {
+                    const formData = new FormData();
+                    formData.append('file', file);
+
+                    const uct = document.querySelector('#upload-container-text')
+                    const gifPath = `${rootUrl}/webapp/images/loading.gif`;
+                    const gifTag = document.createElement('img');
+                    gifTag.src = gifPath;
+                    gifTag.alt = "Loading & Processing...";
+                    uct.textContent = '';
+                    uct.appendChild(gifTag);
+
+                    $.ajax({
+                        url: `${rootUrl}/upload.do`, // Change this to your server-side upload handler
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            // console.log(response)
+                            switch (response.code) {
+                                case 200:
+                                    workFileOrigin = response.msg[0] // = WORKFILEORIGIN
+                                    workFileClean = response.msg[1]
+                                    // console.log(workFileName)
+                                    uct.removeChild(gifTag)
+                                    uct.innerText = `${response.msg[0]}`
+
+                                    loadImageGallery();
+                                    attachImageOverlay('.image-gallery img');
+                                    attachImageDragstart('.image-gallery img');
+                                    break;
+                                default: // code == 400
+                                    uct.removeChild(gifTag)
+                                    alert('File upload failed:' + response.msg);
+                                    uct.innerText = "Drag & Drop or click here to upload your project PDF"
+                                    break;
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            uct.removeChild(gifTag)
+                            uct.innerText = "Drag & Drop or click here to upload your project PDF"
+                            console.error( textStatus, errorThrown);
+                        }
+                    });
+                }
+                // upload container를 click해도 file-input이 change가 발생하도록 트리거 부착
+                uploadContainer.on('click',function(e){
+                    e.preventDefault();
+                    if (!e.isTrigger){ // 클릭 무한루프 방지
+                        fileInput.click();
+                    }
+                });
+                // Handle file input change event
+                fileInput.on('change',function(e){
+                    const file = e.target.files[0];
+                    if (file){
+                        uploadFile(file); //위의 uploadFile 함수
+                    }
+                })
+                // Handle dragover event
+                uploadContainer.on('dragover', function(event) {
+                    event.preventDefault();
+                    uploadContainer.addClass('dragover');
+                });
+                // Handle drop event
+                uploadContainer.on('drop', function(event) {
+                    event.preventDefault();
+                    uploadContainer.removeClass('dragover');
+                    const file = event.originalEvent.dataTransfer.files[0];
+                    if (file) {
+                        uploadFile(file); //위의 uploadFile 함수
+                    }
+                });
+
+                /////////////////////////////////////////////////////
+                // /webabb/workspace/images 내의 이미지들을 불러와 menu-bar에 가로로 표시하는 함수.
+                function loadImageGallery(){
+                    $.ajax({
+                        url: '/loadimages.do',
+                        type : 'GET',
+                        success: function(data) {
+                            // console.log(data) // data는 image file name list 이다.
+                            if (data){
+                                data.forEach(function(imgName){
+                                    if (imgName.match(/\.(jpg|jpeg|png|gif|bmp|webp)$/i)) {
+                                        let altText = imgName.substring(0, imgName.lastIndexOf('.')); // Remove extension
+                                        let srcText = `${rootUrl}/webapp/workspace/images/${imgName}`;
+                                        let imgTag = '<img id="'+ altText +'" src="' + srcText + '" alt="' + altText + '">';
+                                        imageGallery.append(imgTag);
+                                    }
+                                }); // forEach
+                            }// if
+                        } //success
+                    });
+                }; // loadImageGallery()
+
+                // 이미지 클릭 시 화면 정중앙에 오버레이하는 함수.
+                function attachImageOverlay(cssSelector){
+                    $(document).on('click',cssSelector,function(){
+                        let imageSrc = $(this).attr('src');
+                        let modal = `
+                            <div id="image-modal" style="
+                                position: fixed;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                background-color: rgba(0, 0, 0, 0.8); /* 2. 배경은 반투명한 검은색으로 */
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                z-index: 9999;
+                            ">
+                                <img src="${imageSrc}" style="
+                                    max-width: 100%;
+                                    max-height: 100%;
+                                " />
+                            </div>
+                        `
+                        $('body').append(modal);
+                    });
+                    // 다시 클릭하면 이미지 오버레이 제거
+                    $(document).on('click','#image-modal',function(){
+                        $('#image-modal').remove();
+                    })
+                }; // attachImageOverlay()
+
+                /////////////////////////////////////////////////////
+                // Image Drag & Drop 기능
+                // Drag start event: Save the dragged image's id
+                function attachImageDragstart(cssSelector){
+                    $(document).on('dragstart', cssSelector, function(e) {
+                        e.originalEvent.dataTransfer.setData('text/plain',$(this).attr('id'));
+                        // // drag한 이미지의 Id를 draggedImageId에 저장한다.
+                        // draggedImageId = $(this).attr('id');
+                        // // root주소 + workspace/images + draggedImageId + .jpg 문자열을 결합하여라.
+                        // draggedImagePath = `${rootUrl}/webapp/workspace/images/${draggedImageId}.jpg`;
+                    });
+                }
+                
+                $(document).on('dragover', '.CodeMirror-code', function(e) {
+                    // Drag 하는 동안 markdown 편집기의 커서를 이동시킨다.
+                    e.preventDefault();
+                    let x = e.originalEvent.clientX;
+                    let y = e.originalEvent.clientY;
+                    
+                    // drag 중에 cursor와 가장 가까운 위치의 pre 태그를 선택
+                    const targetLine = document.elementFromPoint(x,y).closest('pre');
+                    let currentLine = null;
+                    if (targetLine){
+                        currentLine = targetLine.previousElementSibling.innerText;
+                    }
+
+                    if (currentLine>0){
+                        yourReadme.setCursor({'line':currentLine-1, 'ch':99999});
+                        yourReadme.focus();
+                    }
+
+                });
+
+                $(document).on('drop', '.CodeMirror-code', function(e) {
+                    /*
+                    markdown 편집기 내에서 drop 이벤트 발생 시,
+                    1. 현재 커서와 가장 가까운 pre 태그를 찾는다. -> 현재 커서의 lineNumber를 찾는다.
+                    2. 해당 커서로 편집기의 커서를 이동시키고 focus를 맞춘다.
+                    3. 해당 lineNumber 다음 줄에 image를 추가한다.
+                    */
+                    e.preventDefault();
+                    const draggedElementId = e.originalEvent.dataTransfer.getData('text/plain');
+
+                    let x = e.originalEvent.clientX;
+                    let y = e.originalEvent.clientY;
+                    // let imageId = e.originalEvent.dataTransfer.getData('text/plain');
+                    // drag 중에 cursor와 가장 가까운 위치의 pre 태그를 선택
+                    const targetLine = document.elementFromPoint(x,y).closest('pre');
+                    let currentLine = null;
+                    if (targetLine){
+                        let prevLineNumber = targetLine.previousElementSibling.innerText;
+
+                        yourReadme.setCursor({"line":parseInt(prevLineNumber-1),"ch":99999})
+                        yourReadme.focus()
+                        yourReadme.insertValue(`\n![${draggedImageId}](${rootUrl}/webapp/workspace/images_${workFileClean}/${draggedImageId}.jpg)`);
+                        
+                    }
+                });
+
+                /////////////////////////////////////////////////////
+                // Markdown 편집기를 불러온다.
+                yourReadme = editormd("your-readme",{
+                    width       : "90%",
+                    height      : () => window.innerHeight * 0.75,
+                    path        : 'lib/',
+                    theme       : (localStorage.theme) ? localStorage.theme : "default",
+                    previewTheme: (localStorage.previewTheme) ? localStorage.previewTheme : "default",
+                    editorTheme : (localStorage.editorTheme) ? localStorage.editorTheme : "default"
+                });
+                
+                /////////////////////////////////////////////////////
+                // workspace에서 md 파일을 읽어 your-readme아래의 textarea에 내용을 채운다.
+                function loadReadmeFile() {
+                    $.ajax({
+                        url: "/loadfile.do",
+                        type : 'GET',
+                        dataType: 'text',
+                        success: function(response) {
+                            // "your-readme" id를 가진 div 태그 내의 textarea 요소를 찾는다.
+                            let yourReadmeTextarea = document.querySelector('#your-readme textarea');
+                            if (response.code == 200){
+                                // 읽은 텍스트를 textarea 요소의 value로 입력한다.
+                                yourReadmeTextarea.value = response.msg;
+
+                                loadImageGallery();
+                                attachImageOverlay('.image-gallery img');
+                                attachImageDragstart('.image-gallery img');
+                            }
+                            else{
+                                alert(response.msg);
+                            }
+                            
+                        },
+                        error: function() {
+                            alert(response.msg);
+                        }
+                    });
+                };
+
+                
+                
+                var draggedImageId = "";
+                var draggedImagePath = "";
+                
+
+                
+
+                /////////////////////////////////////////////////////
+                // Markdown 편집기의 테마를 변경하는 select element를 위한 함수.
+                function themeSelectAll(id, editormd, lsKey, callback){
+                    var select = $("#"+id);
+
+                };
+                function themeSelect(id, themes, lsKey, callback)
+                {
+                    var select = $("#" + id);
+                    
+                    for (var i = 0, len = themes.length; i < len; i ++)
+                    {                    
+                        var theme    = themes[i];
+                        var selected = (localStorage[lsKey] == theme) ? " selected=\"selected\"" : "";
+                        
+                        select.append("<option value=\"" + theme + "\"" + selected + ">" + theme + "</option>");
+                    }
+                    
+                    select.bind("change", function(){
+                        var theme = $(this).val();
+                        
+                        if (theme === "")
+                        {
+                            alert("theme == \"\"");
+                            return false;
+                        }
+                        
+                        console.log("lsKey =>", lsKey, theme);
+                        
+                        localStorage[lsKey] = theme;
+                        callback(select, theme);
+                    }); 
+                    
+                    return select;
+                };
+
+                themeSelect("editormd-theme-select", editormd.themes, "theme", function($this, theme) {
+                    yourReadme.setTheme(theme);
+                });
+                
+                themeSelect("editor-area-theme-select", editormd.editorThemes, "editorTheme", function($this, theme) {
+                    yourReadme.setCodeMirrorTheme(theme); 
+                    // or yourReadme.setEditorTheme(theme);
+                });
+                
+                themeSelect("preview-area-theme-select", editormd.previewThemes, "previewTheme", function($this, theme) {
+                    yourReadme.setPreviewTheme(theme);
+                });      
+
+                // Drag over event: Necessary to allow a drop event
+                // $('.CodeMirror-code').on('dragover', function(e) {
+                //     e.preventDefault(); // Allow dropping
+                //     // var textarea = this;
+                //     let nearestDiv = getCursorPositionFromMouseEvent(e, textarea);
+                //     console.log("nearestDiv: " + nearestDiv)
+
+
+
+                //     // 커서를 계산된 위치로 이동시킵니다.
+                //     // textarea.setSelectionRange(cursorPosition, cursorPosition);
+                // });
+
+                // Drop event: Insert the image ID at the cursor position
+                // $('.CodeMirror-code').on('drop', function(e) {
+                //     console.log('drop event')
+                //     e.preventDefault();
+
+                //     // Get the dropped text (image id)
+                //     var imageId = e.originalEvent.dataTransfer.getData('text/plain');
+                //     console.log('drop',imageId)
+
+                //     // Find the cursor position and insert the image ID
+                //     let cursorPos = this.selectionStart;
+                //     let textAreaTxt = $(this).val();
+                //     let textBefore = textAreaTxt.substring(0, cursorPos);
+                //     let textAfter = textAreaTxt.substring(cursorPos, textAreaTxt.length);
+                //     console.log(cursorPos + ", " + textAreaTxt)
+
+                //     $(this).val(textBefore + imageId + textAfter);
+                // });
+
+                // function createNewImageLine(prevLineNumber,imageId) {
+                //     // Make New Element
+                //     let newdiv = document.createElement('div');
+                //     newdiv.style.position='relative';
+                //     let gutterWrapper = document.createElement('div');
+                //     gutterWrapper.className = 'CodeMirror-gutter-wrapper';
+                //     gutterWrapper.style.left = '-42px';
+                //     gutterWrapper.style.width = '-42px';
+                //     let lineNumber = document.createElement('div');
+                //     lineNumber.className = 'CodeMirror-linenumber CodeMirror-gutter-elt';
+                //     lineNumber.style.left = '-42px';
+                //     lineNumber.style.width = '-42px';
+                //     lineNumber.textContent = prevLineNumber+1;
+                //     let pre = document.createElement('pre');
+                //     let spanWrapper = document.createElement('span');
+                //     spanWrapper.style.paddingRight = '0.1px';
+                //     let spanTag = document.createElement('span');
+                //     spanTag.className = 'cm-tag';
+                //     spanTag.textContent = `![${imageId}]`;
+                //     let spanString = document.createElement('span');
+                //     spanString.className = 'cm-string';
+                //     spanString.textContent = `(./webapp/workspace/images/${imageId}.jpg)`;
+
+                //     // 요소들을 연결
+                //     spanWrapper.appendChild(spanTag)
+                //     spanWrapper.appendChild(spanString)
+                //     pre.appendChild(spanWrapper)
+                //     gutterWrapper.appendChild(lineNumber)
+                //     newdiv.appendChild(gutterWrapper)
+                //     newdiv.appendChild(pre)             
+                //     return newdiv       
+                // }
+                
+                // $("#goto-line-btn").bind("click", function(){
+                //     yourReadme.gotoLine(90);
+                // });
+                
+                // $("#show-btn").bind('click', function(){
+                //     yourReadme.show();
+                // });
+                
+                // $("#hide-btn").bind('click', function(){
+                //     yourReadme.hide();
+                // });
+                
+                // $("#get-md-btn").bind('click', function(){
+                //     alert(yourReadme.getMarkdown());
+                // });
+                
+                // $("#get-html-btn").bind('click', function() {
+                //     alert(yourReadme.getHTML());
+                // });                
+                
+                // $("#watch-btn").bind('click', function() {
+                //     yourReadme.watch();
+                // });                 
+                
+                // $("#unwatch-btn").bind('click', function() {
+                //     yourReadme.unwatch();
+                // });              
+                
+                // $("#preview-btn").bind('click', function() {
+                //     yourReadme.previewing();
+                // });
+                
+                // $("#fullscreen-btn").bind('click', function() {
+                //     yourReadme.fullscreen();
+                // });
+                
+                // $("#show-toolbar-btn").bind('click', function() {
+                //     yourReadme.showToolbar();
+                // });
+                
+                // $("#close-toolbar-btn").bind('click', function() {
+                //     yourReadme.hideToolbar();
+                // });
+                
+                // $("#toc-menu-btn").click(function(){
+                //     yourReadme.config({
+                //         tocDropdown   : true,
+                //         tocTitle      : "目录 Table of Contents",
+                //     });
+                // });
+                
+                // $("#toc-default-btn").click(function() {
+                //     yourReadme.config("tocDropdown", false);
+                // });
+
+
+            }); // factory function
+        </script>
+    </body>
+</html>
