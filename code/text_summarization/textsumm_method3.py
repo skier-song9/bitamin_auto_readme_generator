@@ -7,7 +7,7 @@ class TextSummarizer:
     def __init__(self, api_key_path):
         self.api_key = self.load_api_key(api_key_path)
         self.llm_3 = ChatOpenAI(model="gpt-3.5-turbo", openai_api_key=self.api_key)
-        self.llm_4 = ChatOpenAI(model="gpt-4", openai_api_key=self.api_key)
+        self.llm_4 = ChatOpenAI(model="gpt-4o-mini", openai_api_key=self.api_key)
 
     @staticmethod
     def load_api_key(path):

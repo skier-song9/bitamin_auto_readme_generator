@@ -1,19 +1,19 @@
 from flask import Flask
 from flask import request
 from flask import render_template #템플릿 파일(.html) 서비스용
-from flask import make_response #응답 객체(Response) 생성용
-from flask import flash, redirect #응답메시지 및 리다이렉트용
+# from flask import make_response #응답 객체(Response) 생성용
+# from flask import flash, redirect #응답메시지 및 리다이렉트용
 from flask import jsonify #JSON형태의 문자열로 응답시
 from flask_cors import CORS
-import os, re, regex
+import os, re, regex, time
 import threading
 import pandas as pd
+from paddleocr import PaddleOCR
 
 # import custom modules
-# from object_detection import detection, utils
+from object_detection import detection, pdf2img
 from image_classification import image_classifier
-# from text_summarization import textsumm_method3
-# from readme_formatting import txt_to_markdown
+from text_summarization import textsumm_method3
 
 # 웹 앱 생성
 app = Flask(__name__,
@@ -37,11 +37,17 @@ APP_ROOT = os.getcwd() # bitamin_auto_readme_generator/code/
 ASSETS = os.path.join(APP_ROOT,'assets')
 WORKSPACE = os.path.join(APP_ROOT,'webapp','workspace')
 WORKFILEORIGIN = '' # .pdf 확장자까지 포함하는 원본 파일명
-WORKFILECLEAN = '' # 확장자/공백/특수문자를 제거한 파일명
-WORKIMAGEDIR = '' # images_WORKFILECLEAN : 파일을 처리해서 나온 이미지를 저장할 폴더
+WORKFILECLEAN = '' # 확장자/공백/특수문자를 제거한 파일명 + timestamp
+WORKIMAGEDIR = '' # images_WORKFILECLEAN : 파일을 처리해서 나온 이미지를 저장할 폴더 경로
 
+# # image detector class 준비
+img_det = detection.Image_Detector(os.path.join(ASSETS, 'best.pt'))
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+ocr = PaddleOCR(lang='korean', )
 # # image classifier class 준비
-img_clf = image_classifier.Image_Classifier(os.path.join(ASSETS,'VGG19clf_acc94_0728.pth'))
+img_clf = image_classifier.Image_Classifier(os.path.join(ASSETS, 'VGG19clf_acc94_0728.pth'))
+# # text summarizer class 준비
+txt_summ = textsumm_method3.TextSummarizer(api_key_path=os.path.join(ASSETS, 'openai_api_key.json'))
 
 # 필요 함수들
 def clean_filename(text):
@@ -53,7 +59,7 @@ def clean_filename(text):
     text = regex.sub(r'[^\p{L}\p{N}0-9]', '', text)
     return text
 
-def process_object_detection(pdf_filepath):
+def process_object_detection():
     '''
     {params}
     pdf_filepath : 처리할 pdf파일의 경로 > 바로 open(pdf_filepath,'r') 해서 사용하면 됨.
@@ -69,7 +75,47 @@ def process_object_detection(pdf_filepath):
         >> WORKIMAGEDIR이 폴더 전체 경로니까 os.path.join(WORKIMAGEDIR,이미지파일이름) 으로 바로 저장하면 됨.
     3. 종료.
     '''
-    pass
+    global WORKSPACE
+    global WORKFILEORIGIN
+    global WORKFILECLEAN
+    global WORKIMAGEDIR
+    global img_det
+    global ocr
+    pdf_filepath = os.path.join(WORKSPACE,WORKFILEORIGIN)
+    # 페이지별로 이미지로 변환 >> page image가 저장된 디렉토리 이름 반환 > WORKFILECLEAN
+    pdf2img_dirname = pdf2img.convert_and_rename_pdf(input_filepath=pdf_filepath,
+                                   workfileorigin=WORKFILEORIGIN,
+                                   workfileclean=WORKFILECLEAN)
+    # image detector 실행 >> textbox image들이 저장된 경로 반환 /data/object_detection/output/WORKFILECLEAN/
+    textbox_dirpath = img_det.predict(pdf_name=pdf2img_dirname,  save_image_dir=WORKIMAGEDIR, save=True)
+
+    # textbox image에서 text를 추출하여
+    textbox_filenames = [f for f in os.listdir(textbox_dirpath)]
+    textbox_filenames.sort(key = lambda x : (int(x.split('_')[0]), int(x.split('_')[1])))
+    page_texts = {}
+    for filename in textbox_filenames:
+        parts = filename.split('_')
+        if len(parts)>=4:
+            page_number = parts[2]
+        else:
+            continue
+        textbox_imagepath = os.path.join(textbox_dirpath, filename)
+        result = ocr.ocr(textbox_imagepath, cls=False)[0]
+        text = ''
+        for r in result:
+            text += ' '
+            text += r[1][0]
+        if page_number not in page_texts:
+            page_texts[page_number]=[]
+        page_texts[page_number].append(text)
+    txt_filepath = os.path.join(WORKSPACE, WORKFILECLEAN+'.txt')
+    if os.path.exists(txt_filepath):
+        os.remove(txt_filepath)
+    with open(txt_filepath, 'w', encoding='utf-8') as f:
+        for page_number in sorted(page_texts.keys()):
+            f.write(f"<p.{page_number}>\n")
+            for text in page_texts[page_number]:
+                f.write(text+'\n')
 
 def process_image_classification():
     '''
@@ -78,6 +124,8 @@ def process_image_classification():
     2. dataFrame에서 class가 'none'으로 분류된 이미지들은 WORKIMAGEDIR에서 제거
     3. 종료.
     '''
+    global WORKIMAGEDIR
+    global img_clf
     # 추론
     img_clf_result_df, _ = img_clf.predict(WORKIMAGEDIR, save=False) # 결과 df를 csv파일로 저장하지 않음.
     for _, row in img_clf_result_df.iterrows():
@@ -97,8 +145,64 @@ def process_text_summarization():
     4. os.path.join(WORKSPACE,'WORKFILECLEAN'+'.md') 경로로 markdown 파일 저장.
     5. 종료.
     '''
+    global WORKSPACE
+    global WORKFILECLEAN
     txt_filepath = os.path.join(WORKSPACE, WORKFILECLEAN+'.txt')
-    pass
+    if not os.path.exists(txt_filepath):
+        raise OSError(f"{txt_filepath} File doesn't exists")
+    with open(txt_filepath, 'r', encoding='utf-8') as f:
+        text = f.read()
+    text5 = txt_summ.extract_5pages(text)
+    extracted_info, main_topics_list = txt_summ.extract_info(text5)
+    cleaned_text = txt_summ.remove_page(text)
+    divided_text = txt_summ.divide_text(extracted_info, main_topics_list, cleaned_text)
+    summarized_text = txt_summ.summarize(divided_text)
+    tagged_text = txt_summ.tag_text(summarized_text)
+
+    # # readme formatting
+    main_re = re.compile(r'<main>(.*?)</main>', re.DOTALL)
+    sub_re = re.compile(r'<sub>(.*?)</sub>', re.DOTALL)
+    content_re = re.compile(r'<content>(.*?)</content>', re.DOTALL)
+    page_re = re.compile(r'<page>(.*?)</page>', re.DOTALL)
+
+    # Find all occurrences of each tag
+    subject = tagged_text.split("<subject>")[1].split("</subject>")[0].strip()
+    team = tagged_text.split("<team>")[1].split("</team>")[0].strip().split(", ")
+    index = tagged_text.split("<index>")[1].split("</index>")[0].strip().split(", ")
+    mains = main_re.findall(tagged_text)
+
+    # Convert to Markdown format
+    readme_md = f"""
+    # {subject}
+    (프로젝트 진행기간을 입력하세요. ####.##.## ~ ####.##.##)
+    ### Team
+    {', '.join(team)}
+
+    ## Table of Contents
+    """
+    for i, section in enumerate(index, 1):
+        readme_md += f"- [{section}](#section_{i})\n"
+    readme_md += "<br>\n"
+    for idx, main in enumerate(mains):
+        main_text = main.strip()
+        readme_md += f"<a name='section_{idx + 1}'></a>\n\n## {main_text}\n\n"
+        section_content = tagged_text.split(f"<main>{main_text}</main>")[1].split("<main>")[0]
+
+        subs = sub_re.findall(section_content)
+        contents = content_re.findall(section_content)
+        pages = page_re.findall(section_content)
+
+        # Add the subsections and content
+        for sub, content_text, page in zip(subs, contents, pages):
+            readme_md += f"#### {sub.strip()}\n\n"
+            readme_md += f"- {content_text.strip()}\n\n"
+            # readme_md += f"*Page: {page.strip()}*\n\n"
+
+    readme_filepath = os.path.join(WORKSPACE, WORKFILECLEAN+'.md')
+    if os.path.exists(readme_filepath):
+        os.remove(readme_filepath)
+    with open(readme_filepath, 'w', encoding='utf-8') as f:
+        f.write(readme_md)
 
 @app.route('/')
 def index():
@@ -126,7 +230,8 @@ def fileUpload():
         # 해당 파일명으로 image 폴더 생성
         # 파일명에서 공백 및 특수문자 제거
         WORKFILEORIGIN = files.filename  # 사용자가 업로드한 pdf 파일 이름 원본 (확장자 포함)
-        WORKFILECLEAN = clean_filename(WORKFILEORIGIN)  # WORKFILEORIGIN에서 공백/특수문자/확장자를 제거한 clean filename (폴더 생성 시 오류 방지를 위해)
+        timestamp = str(int(time.time()))
+        WORKFILECLEAN = clean_filename(WORKFILEORIGIN)+f"_{timestamp}"  # WORKFILEORIGIN에서 공백/특수문자/확장자를 제거한 clean filename (폴더 생성 시 오류 방지를 위해)
         WORKIMAGEDIR = os.path.join(WORKSPACE, 'images_'+WORKFILECLEAN)  # pdf에 대한 이미지 분류 결과를 저장할 이미지 폴더 경로
         try:
             if os.path.exists(WORKIMAGEDIR):
@@ -144,7 +249,7 @@ def fileUpload():
 
         ###############################################################
         # object detection 프로세스를 통해 전체 텍스트와 전체 이미지를 추출한다.
-        process_object_detection(os.path.join(WORKSPACE,WORKFILEORIGIN))
+        process_object_detection()
         # Multi-thread : 아래 2가지 프로세스를 병렬적으로 진행한다.
         try:
             # # image classification을 진행한 후 WORKFILEIMAGEDIR에 저장한다.

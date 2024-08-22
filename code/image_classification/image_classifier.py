@@ -80,8 +80,7 @@ class Image_Classifier:
         '''
         clf_params_path : fine-tuning한 vgg19 모델 classifier의 parameters 파일 경로 -> 상대경로, 절대경로 모두 가능(단, 상대경로 시 image_classifier.py 파일을 import하는 파일의 위치가 기준이 됨. e.g. main.py에서 해당 클래스를 객체화했다면 상대경로는 main.py를 현위치로 인식함.)
         '''
-        self.device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-        
+        self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
         assert str(self.device).startswith('cuda'), f"Device is {self.device}, MUST NEED CUDA DEVICE!"
 
         # 프로젝트 root의 절대경로 : ~~~/bitamin_auto_readme_generator/

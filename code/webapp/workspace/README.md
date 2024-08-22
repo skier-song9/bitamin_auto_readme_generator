@@ -1,140 +1,92 @@
-# 🍊BitaMin Project
 
-- BitaMin, data analysis &amp; data science assosiation, 12th and 13th joint project (2024.03.06 ~ 2024.06.05.)
-- Time Series and Reinforcement Learning for Stock Trading
-
+# Netflix Stock Price Prediction with News Topic & Sentiment
+(프로젝트 진행기간을 입력하세요. ####.##.## ~ ####.##.##)
 ### Team
-|송규헌|송휘종|서영우|이태경|정유진|정준우|
-|:---:|:---:|:---:|:---:|:---:|:---:|
-|![song9-avatar](https://avatars.githubusercontent.com/u/113088511?v=4)|![shj](https://avatars.githubusercontent.com/u/170795597?v=4)|![uosstat](https://avatars.githubusercontent.com/u/101987656?v=4)|![taekyoung](https://avatars.githubusercontent.com/u/122856705?v=4)|![y8jinn](https://avatars.githubusercontent.com/u/112757321?v=4)|![junwoo](https://avatars.githubusercontent.com/u/104676353?v=4)|
-|[Github](https://github.com/skier-song9)|[Github](https://github.com/songhwijong)|[Github](https://github.com/uosstat98)|[Github](https://github.com/taekyounglee1224)|[Github](https://github.com/y8jinn)|[Github](https://github.com/Junwoo2001)|
+송규헌, 권도영, 이태경, 김서윤, 한진솔
 
-## ✅Table of Contents
-- [💼Project Introduction](#Project_Introduction)
-    - [Overview](#Overview)
-    - [🔖Reference](#Reference)
-- [🤗Environment](#Environment)
-- [🦾Training](#Training)
-- [🛠️Test (Backtrading)](#Test-(Backtrading))
-- [🛠️Test (System trading)](#Test-(SystemTrading))
+## Table of Contents
+- [INTRODUCTION](#section_1)
+- [DATA PREPROCESSING](#section_2)
+- [MODELING](#section_3)
+- [CONCLUSIONS AND LIMITATIONS](#section_4)
 <br>
+<a name='section_1'></a>
 
+## INTRODUCTION
 
-<a name='Project_Introduction'></a>
-## 💼Project Introduction
-<a name='Overview'></a>
-#### Overview)
+#### 프로젝트 배경
 
-<h6>◾ Project Topic</h6>
-Maximizing Portfolio Value by <b>Time Series Forecasting</b> and system trading using <b>Reinforcement Learning</b>.
+- 뉴스가 주가 변동에 미치는 영향을 탐구하고 뉴스 감성분석 및 토픽 모델링 결과를 사용하여 주가 예측 가능성을 연구 기존의 단기 예측을 넘어 장기적인 추세를 고려한 주가 예측 모델 구현
 
-<h6>◾ Goals</h6>
-<ul style='list-style-type:decimal;'>
-    <li>Use <b style='background-color: #EDF3EC;'>Time Series Forecasting</b> to predict the stock prices (high, low, maximum fluctuation rate, etc.) for the next 5 days and then select the 6 stocks with the highest (high-low) difference.</li>
-    <li>Train <b style='background-color: #EDF3EC;'>Reinforcement Learning</b> on the selected stocks and implement system trading</li>
-</ul>
+#### 프로젝트 목표
 
-<h6>◾Flowchart</h6>
-<img src='https://github.com/skier-song9/bitamin1213_trading/blob/master/ppt/project_flowchart.png' alt='project flowchart image'>
+- 뉴스 데이터를 활용한 주가 예측 모델의 최적화 및 효율적인 파라미터 선정 LSTM GRU Transformer 모델 비교 및 튜닝
 
-<a name='Reference'></a>
-<h4>🔖Reference</h4>
-<h6>◾<a href="https://github.com/quantylab">Quantylab</a></h6>
-We used baseline code of quantylab's rltrader for training model. Modified for real-time trading. 
-<br/>
-<br/>
+#### 데이터 수집
 
-<a name='Environment'></a>
-## 🤗Environment
+- FinanceDataReader와 Stock News API를 사용하여 2018년 1월 2일부터 2023년 12월 29일까지의 NETFLIX 핀터레스트 메타플렛폼스 스포티파이 주가 데이터 및 뉴스 데이터 수집
 
-- recommend making a conda virtual environment
-- Python 3.7+
-- PyTorch 1.13.1
+<a name='section_2'></a>
 
-```bash
-conda install python==3.7
-conda install pytorch torchvision torchaudio cudatoolkit=10.2 -c pytorch
-conda install pandas
-conda install matplotlib
-conda install -c conda-forge ta-lib
-pip install -r trading_requirements.txt
-```
+## DATA PREPROCESSING
 
-<br/>
+#### 파생 변수 생성
 
-<a name='Training'></a>
-## 🦾Training
+- 변화율 이동 평균 등의 파생 변수 생성 2018년 데이터를 추가로 수집해 파생변수 생성에 활용
 
-<ul style='list-style-type:decimal;'>
-    <li><code style="background-color: #EDEDEB;color: #EB7979;border-radius: 3px;padding: 0 3px;font-family: consolas;">cd rltrader/src/</code></li>
-    <li>refer to <a href="https://github.com/quantylab/rltrader?tab=readme-ov-file#%EC%8B%A4%ED%96%89">quantylab</a> for detailed parameters descriptions.<br>e.g.)</li>
-    <pre>
-<code class='bash'>python main.py --mode train --ver v1 --name 001470_202404151325_202405241530 --stock_code 001470 --rl_method ppo --net cnn --backend pytorch --balance 500000000 --start_date 202404151325 --end_date 202405241530</code></pre>
-    <li style="margin-left:30px;list-style-type:circle;"><code style="background-color: #EDEDEB;color: #EB7979;border-radius: 3px;padding: 0 3px;font-family: consolas;">--mode</code> : set 'train' when training model</li>
-    <li style="margin-left:30px;list-style-type:circle;"><code style="background-color: #EDEDEB;color: #EB7979;border-radius: 3px;padding: 0 3px;font-family: consolas;">--ver</code> : leave it with 'v1' for out code</li>
-    <li style="margin-left:30px;list-style-type:circle;"><code style="background-color: #EDEDEB;color: #EB7979;border-radius: 3px;padding: 0 3px;font-family: consolas;">--name</code> : set name of output directory and model file</li>
-    <li style="margin-left:30px;list-style-type:circle;"><code style="background-color: #EDEDEB;color: #EB7979;border-radius: 3px;padding: 0 3px;font-family: consolas;">--start_date</code> & <code style="background-color: #EDEDEB;color: #EB7979;border-radius: 3px;padding: 0 3px;font-family: consolas;">--end_date</code> : 'year-month-day-hour-minute'(%Y%m%d%H%M) format</li>
-</ul>
-<p>When training procedure ends model parameters, output images and log are stored in <code style="background-color: #EDEDEB;color: #EB7979;border-radius: 3px;padding: 0 3px;font-family: consolas;">/rltrader/models/</code> and <code style="background-color: #EDEDEB;color: #EB7979;border-radius: 3px;padding: 0 3px;font-family: consolas;">/rltrader/output/</code> 
-</p>
+#### 지표 추가
 
+- Technical Analysis Library를 사용하여 Bollinger Bands Keltner Channel 등 37개의 금융 지표 추가
 
-<a name='Test-(Backtrading)'></a>
-## 🛠️Test (Backtrading)
-<p>check the start_date and end_date of stock. start_date should be the 120 time steps before you want to start the test because of input size of CNN.<br>
-e.g.) if you want to backtrade from 2024.05.27 09:01 to 2024.05.31 15:30 then you should set the start_date as 202405241322 which is 120 time steps before the 2024.05.27 09:01.</p>
-<p>Also you should set --name same as the train name in order to make sure rltrader use trained model for inference.</p>
-<pre>
-<code class='bash'>
-python main.py --mode test --ver v1 --name 001470_202404151325_202405241530 --stock_code 001470 --rl_method ppo --net cnn --backend pytorch --balance 500000000 --start_date 202405241320 --end_date 202405311530
-</code></pre>
+#### 유사 주식 종가 추가
 
+- 핀터레스트 메타플렛폼스 스포티파이의 해당 기간 종가를 feature로 추가
 
-<a name='Test-(SystemTrading)'></a>
-## 🛠️Test (System Trading)
+#### 다중공선성 제거
 
-<h5>setting</h5>
-You should place 'api.json' in order to use KIS API for trading.
-<ul style='list-style-type:decimal;'>
-    <li>Make <a href="https://securities.koreainvestment.com/main/Main.jsp" target="blank">KoreaInvestment</a> account.</li>
-    <li>Follow the menu ‘트레이딩’ > ‘모의투자’ > ‘주식/선물옵션 모의투자 > 모의투자안내’ > ‘신청/재도전’</li>
-    <li>Set initial balance and trading period as you wish.</li>
-    <li>Go to API center <a target="blank" href="https://apiportal.koreainvestment.com/intro">KIS API</a>. </li>
-    <li>Apply for an API(<a href="https://securities.koreainvestment.com/main/customer/systemdown/RestAPIService.jsp" target="blank">url</a>).</li>
-    <li>Set your api.json file as below and place the file under <code style="background-color: #EDEDEB;color: #EB7979;border-radius: 3px;padding: 0 3px;font-family: consolas;">/bitamin1213_trading/rltrader/src/quantylab/rltrader/</code></li>
-<pre>
-<code class='json'>
-{
-    "real_invest" : {
-        "account" : "실전투자계좌번호8자리-01", 
-        "app_key" : "실전투자계좌 APP Key 복사해서 붙여넣기",
-        "app_secret" : "실전투자계좌 APP Secret 복사해서 붙여넣기",
-        "access_token" : ""
-    },
-        
-        "mock_invest" : {
-            "account" : "모의투자계좌번호8자리-01",
-            "app_key" : "모의투자계좌 APP Key 복사해서 붙여넣기",
-            "app_secret" : "모의투자계좌 APP Secret 복사해서 붙여넣기",
-            "access_token" : ""        
-        }    
-}</code></pre>
-<li>Get access token by runnig utils.py</li>
-<pre>
-<code class='bash'>
-cd /bitamin1213_trading/rltrader/src/quantylab/rltrader
-python utils.py
-</pre></code>
-</ul>
-<h5>system trading</h5>
-For real-time system trading, use 'predict' keyword. Setting start_date is same as backtrading, 120 time steps before.<br>
-You should run system trading code day by day. 'predict' method is just for a day trading.
-<pre>
-<code class='bash'>
-python main.py --mode predict --ver v1 --name 001470_202404151325_202405241530 --stock_code 001470 --rl_method ppo --net cnn --backend pytorch --balance 500000000 --start_date 202405241320 --end_date 202405281530 --is_start_end 2 --is_mock 1
-</code></pre>
-<ul style='list-style-type:circle;'>
-<li><code style="background-color: #EDEDEB;color: #EB7979;border-radius: 3px;padding: 0 3px;font-family: consolas;">--is_start_end</code> : 0 for Monday, 1 for Tuesday~Thursday, 2 for Friday.</li>
-<li><code style="background-color: #EDEDEB;color: #EB7979;border-radius: 3px;padding: 0 3px;font-family: consolas;">--is_mock</code> : 0 for real investment, 1 for mock investment.</li>
-</ul>
-Access_token is revoked after the system trading code ends. So you should get access_token before running predict code everyday.
+- 주가 변화와 관련된 기본 지표를 유지하고 상관관계가 높은 보조 지표를 제거
+
+#### 뉴스 토픽 및 감성 파생 변수 생성
+
+- 뉴스 토픽과 감성 데이터를 Label Encoding과 OneHot Encoding으로 변환하여 추가
+
+#### 데이터셋 구성
+
+- 주식 데이터셋(stockOnly-df)과 뉴스 포함 데이터셋(total-df) 구성
+
+<a name='section_3'></a>
+
+## MODELING
+
+#### 시계열 분석
+
+- 고정된 Window Size로 연속된 데이터 입력 및 예측
+
+#### 모델 정의
+
+- LSTM GRU Transformer 모델 정의 LSTM은 기존 주가 예측에 주로 사용됨 GRU는 LSTM의 복잡성을 단순화 Transformer는 NLP에서 좋은 성능을 보여 주가 예측에 적용
+
+#### 모델 비교
+
+- 예측 대상 변수(Close vs ID-ROC) 뉴스 포함 여부 모델 종류(LSTM vs GRU vs Transformer) 비교
+
+<a name='section_4'></a>
+
+## CONCLUSIONS AND LIMITATIONS
+
+#### 평가 기준
+
+- 예측 평가 지표로 RMSE 사용 Close 종가 예측보다 ROC 예측이 추세 반영이 잘됨
+
+#### 모델 결과
+
+- LSTM GRU Transformer 각각의 모델 결과 비교 LSTM이 평균 손실값이 가장 작고 Transformer가 가장 큼
+
+#### 최적 파라미터
+
+- LSTM (stock-only seq 30 batch 64 avg error 1.85%) GRU (total seq 30 batch 128 avg error 1.66%) Transformer (total seq 30 batch 64 avg error 1.62%)
+
+#### 한계점
+
+- 예측 성능 평가의 어려움 예상치 못한 사건의 발생으로 인한 예측의 어려움 뉴스 데이터의 정확도 문제 등
+
