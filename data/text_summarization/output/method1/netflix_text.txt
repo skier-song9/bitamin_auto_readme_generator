@@ -1,41 +1,27 @@
-<subject>주가 예측</subject>
-<team>홍길동, 김철수</team>
-<index>주가 예측 프로젝트</index>
+<subject>주가 예측 모델링</subject>  
+<team>팀원 이름</team>  
+<index>뉴스 데이터를 활용한 주가 예측</index>  
 
-<main>INTRODUCTION</main>
-<sub>Background of topic selection</sub> <content>뉴스가 주가 변동에 미치는 영향을 탐구하고 주가 예측에 뉴스 데이터를 활용하고자 함. 뉴스 감성분석 및 토픽 모델링 결과를 사용하여 한 개의 주식종목을 예측하는 프로젝트를 진행함.</content> <page>4</page>
-<sub>Background of topic selection</sub> <content>장기적인 추세를 고려할 수 있는 주가 예측 모델을 구현하고 기존의 단기 예측 프로젝트에서 벗어나 장기적인 예측 결과를 얻고자 함. 기존 프로젝트의 문제점을 해결하고자 함.</content> <page>5</page>
-<sub>Brief Project Introduction</sub> <content>뉴스 데이터를 활용한 주가 예측 모델의 최적화 및 파라미터 선정. LSTM, GRU, Transformer 모델 비교, 뉴스 감성분석과 토픽모델링의 유용성 검토.</content> <page>6</page>
-<sub>Data collection</sub> <content>FinanceDataReader 라이브러리를 사용하여 NETFLIX, 핀터레스트, 메타플랫폼스, 스포티파이의 주가 데이터를 2018년 1월 2일부터 2023년 12월 29일까지 수집.</content> <page>7</page>
-<sub>Data collection</sub> <content>Stock News API를 활용하여 NETFLIX 관련 뉴스 데이터를 수집. FinBERT와 BERTopic을 사용하여 감성분석과 토픽모델링을 시도하였으나 API를 통해 데이터 정확도를 높임.</content> <page>8</page>
+<main>INTRODUCTION</main>  
+<sub>Background of topic selection</sub> <content>뉴스가 주가 변동에 미치는 영향을 탐구하고, 뉴스의 감성 분석 및 토픽 모델링을 통해 주가 예측 가능성을 연구함. 장기적인 추세를 고려한 주가 예측 모델 구현을 목표로 함.</content> <page>4</page>  
+<sub>Brief Project Introduction</sub> <content>뉴스 데이터를 활용한 주가 예측 모델 최적화를 통해 LSTM, GRU, Transformer의 모델 파라미터를 실험함.</content> <page>6</page>  
+<sub>Data collection</sub> <content>2018년 1월 2일부터 2023년 12월 29일까지 NETFLIX의 주가 데이터와 관련 뉴스 데이터를 수집함.</content> <page>7</page>  
 
-<main>DATA PREPROCESSING</main>
-<sub>Make derived Variable</sub> <content>변화율, 이동 평균 등의 파생변수를 생성함. 2018년 데이터를 추가로 수집해 파생변수 생성에 활용.</content> <page>11</page>
-<sub>Add indicators</sub> <content>금융 시계열 데이터에 대한 기술 분석 라이브러리를 사용하여 다양한 지표를 추가함.</content> <page>12</page>
-<sub>Add indicators</sub> <content>37개의 기술 지표를 사용하여 데이터를 분석함. Bollinger Bands, Keltner Channel 등 다양한 지표 포함.</content> <page>13</page>
-<sub>Peer Analysis</sub> <content>Netflix와 유사한 기업의 종가를 추가하여 feature로 사용함.</content> <page>14</page>
-<sub>Peer Analysis: Fill missing Value</sub> <content>핀터레스트의 상장 이전 결측값을 최초 상장일의 종가로 대체함.</content> <page>15</page>
-<sub>Remove multicollinearity</sub> <content>기본 지표들과 상관관계가 높은 보조 지표를 제거함. Peer stock은 유지.</content> <page>16</page>
-<sub>Make derived variable for News Topics & Sentiment</sub> <content>뉴스 토픽과 감성분석 결과를 레이블 인코딩과 OneHot 인코딩을 통해 파생변수로 추가함. 과거 뉴스의 영향을 측정하기 위해 이동 평균과 이동 모드로 추가.</content> <page>17</page>
-<sub>Dataset stockOnly-df</sub> <content>1257*38</content> <page>18</page>
-<sub>Dataset total-df</sub> <content>1257*59</content> <page>19</page>
+<main>DATA PREPROCESSING</main>  
+<sub>Make derived Variable</sub> <content>변화율과 이동 평균을 포함하는 여러 파생 변수를 생성함.</content> <page>11</page>  
+<sub>Add indicators</sub> <content>금융 시계열 데이터 분석을 위해 37개 기술 지표를 선정함.</content> <page>12</page>  
+<sub>Peer Analysis</sub> <content>Netflix와 유사한 기업의 종가를 feature로 추가함.</content> <page>14</page>  
+<sub>Remove multicollinearity</sub> <content>주가 변화와 관련된 기본 지표들을 유지하며 상관관계가 높은 보조 지표는 제거함.</content> <page>16</page>  
+<sub>Make derived variable for News Topics & Sentiment</sub> <content>뉴스의 영향력을 평가하기 위해 Moving Average와 Moving Mode를 추가함.</content> <page>17</page>  
+<sub>Dataset</sub> <content>주가 데이터셋은 stockOnly-df (1257*38) 및 total-df (1257*59)으로 구성됨.</content> <page>18</page>  
 
-<main>MODELING</main>
-<sub>Time Series</sub> <content>시간에 따른 데이터 패턴을 분석하여 미래 값을 예측. 고정된 Window Size 사용.</content> <page>21</page>
-<sub>Modeling</sub> <content>Step 1: Sequence Length 60, Predict Size 10으로 설정.</content> <page>22</page>
-<sub>Modeling</sub> <content>Step 2: LSTM, GRU, Transformer 모델 정의 및 비교.</content> <page>23</page>
-<sub>Modeling</sub> <content>Step 3: TARGET = 'CLOSE' vs TARGET = '1d-ROC' 비교.</content> <page>24</page>
-<sub>Modeling</sub> <content>Step 3: 뉴스 데이터를 포함한 예측 vs 주가 데이터만을 사용한 예측 비교.</content> <page>25</page>
-<sub>Modeling</sub> <content>Step 3: LSTM, GRU, Transformer 모델 비교.</content> <page>26</page>
+<main>MODELING</main>  
+<sub>Time Series</sub> <content>시간에 따른 데이터 패턴 분석을 통해 미래 값을 예측하는 방법론을 설명함.</content> <page>21</page>  
+<sub>Modeling</sub> <content>Sequence Length를 60, Predict Size를 10으로 설정하여 학습에 사용할 시퀀스 데이터 형태를 설명함.</content> <page>22</page>  
+<sub>Model Comparison</sub> <content>각 모델(LSTM, GRU, Transformer)의 성능을 TARGET 변수에 따라 비교함.</content> <page>24</page>  
 
-<main>CONCLUSIONS AND LIMITATIONS</main>
-<sub>Evaluation</sub> <content>RMSE를 사용하여 예측 평가. Close종가 vs 1dLROC, StockOnly-df vs total-df, LSTM vs GRU vs Transformer 모델 비교.</content> <page>28</page>
-<sub>Select target variable</sub> <content>Dataset stockOnly-df, model: LSTM, Seq size 60, batch size: 8, model size 64</content> <page>29</page>
-<sub>Select target variable</sub> <content>Dataset: total-df, model: LSTM, seq-size 60, batch size: 8, model size 64. ROC로 Target 확정.</content> <page>30</page>
-<sub>Model Result</sub> <content>LSTM loss = RMSE</content> <page>31</page>
-<sub>Model Result</sub> <content>GRU loss = RMSE</content> <page>32</page>
-<sub>Model Result</sub> <content>Transformer loss = RMSE</content> <page>33</page>
-<sub>Compare each parameter</sub> <content>LSTM의 평균 loss가 가장 작고, Transformer의 평균 loss가 가장 큼. GRU는 주식 데이터만 사용했을 때, LSTM과 Transformer는 뉴스 데이터를 포함했을 때 더 나은 성능을 보임.</content> <page>34</page>
-<sub>Compare each parameter</sub> <content>Sequence_size, Batch-size 값이 작을수록 유의미한 결과를 나타내며, 모델 크기는 LSTM과 Transformer에서 64, GRU에서는 128이 유의미한 결과를 보임.</content> <page>35</page>
-<sub>Best parameter for each model</sub> <content>모델별 최적의 파라미터 조합을 선정하여 최종 모델을 선정함. [LSTM] stock-only 데이터셋 seq 30 batch model 64, 평균 오차율: 1.85% [GRU] total 데이터셋 seq 30 batch model 128, 평균 오차율: 1.66% [Transformer] total 데이터셋 seq 30 batch model 64, 평균 오차율: 1.62%</content> <page>36</page>
-<sub>Limitations</sub> <content>예상치 못한 사건으로 인해 예측에 어려움이 있음. 모델 성능 평가가 어려워 예측 그래프를 확인해야 함. 뉴스 데이터를 활용한 시퀀스 길이 문제와 정확도 한계. 주식시장에서는 5% 오차도 큰 손실이나 이익이 될 수 있어 검토가 필요함.</content> <page>40</page>
+<main>CONCLUSIONS AND LIMITATIONS</main>  
+<sub>Evaluation</sub> <content>예측 성능 평가 기준으로 RMSE를 사용하여 모델 성능을 비교함.</content> <page>28</page>  
+<sub>Model Result</sub> <content>LSTM, GRU, Transformer 모델의 결과를 RMSE로 평가함.</content> <page>31</page>  
+<sub>Compare each parameter</sub> <content>모델의 손실 평균값 비교 결과, LSTM이 가장 작은 값을 보임.</content> <page>34</page>  
+<sub>Limitations</sub> <content>금융 시장 예측의 어려움과 모델 성능 평가의 한계를 설명함.</content> <page>40</page>

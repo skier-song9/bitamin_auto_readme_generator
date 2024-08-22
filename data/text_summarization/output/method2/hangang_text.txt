@@ -1,30 +1,33 @@
 <subject>ESTM을 활용한 한강공원 여의도 예측 이용객 수</subject>
-<team>강나염 김진호 서영우 이선경 조성빈</team>
+<team>강나염</team> <team>김진호</team> <team>서영우</team> <team>이선경</team> <team>조성빈</team>
 <index>목차</index>
+<index>연구 01 배경</index>
+<index>02 모델 선정 배경</index>
+<index>03 사용 데이터 셋</index>
+<index>04 전처리</index>
+<index>05 분석 결과</index>
+<index>결론 06</index>
 
-<main>01</main>
-<sub>연구 배경</sub> <content>한강공원 최적 방문 날짜 선택, 도시 계획 및 공공 서비스 개선, 봄철 벚꽃축제로 인한 이용자 수 급증 예상, 분석을 통해 덜 붐비는 날짜 선택 가능, 관련 기관의 행사 안전 조치 계획에 도움.</content> <page>3</page>
+<main>연구 배경</main>
+<sub>연구 배경</sub> <content>한강공원 이용자 수 예측을 통해 이상적인 기상 조건과 비교적 덜 붐비는 날짜를 선택하여 방문 가능성을 높이며, 관련 기관은 행사 안전 조치를 효과적으로 계획할 수 있게 한다.</content> <page>3</page>
 
-<main>02</main>
-<sub>모델 선정 배경</sub> <content>Long Short-Term Memory Network 사용, 모델의 장기 의존성 문제 해결, RNN이 시계열 데이터에서 장기 의존성을 모델링하는 데 탁월한 능력 보유, 복잡한 시간적 패턴 예측에 적합.</content> <page>4</page>
+<main>모델 선정 배경</main>
+<sub>모델 선정 배경</sub> <content>Long Short-Term Memory Network 모델을 사용하여 시계열 데이터의 장기 의존성 문제를 해결하고 복잡한 시간적 패턴을 예측하는 데 적합하다.</content> <page>4</page>
 
-<main>03</main>
-<sub>사용 데이터 셋</sub> <content>여의도 한강공원 주차대수 데이터, 기상 데이터, 여의도 1-5주차장 주차대수, 평균풍속, 강수량, 평균기온, 평균습도, 미세먼지, 초미세먼지.</content> <page>5</page>
+<main>사용 데이터 셋</main>
+<sub>사용 데이터 셋</sub> <content>여의도 한강공원의 주차대수 및 기상 데이터를 사용하여 평균 풍속, 강수량, 평균 기온, 평균 습도, 미세먼지, 초미세먼지를 분석한다.</content> <page>5</page>
 
-<main>04</main>
-<sub>전처리</sub> <content>정규화 스케일링 및 결측치 대체, 데이터의 최소값과 최대값을 사용하여 0과 1 사이로 정규화, 결측 데이터는 앞뒤 각각 2개 데이터의 평균으로 채움.</content> <page>6</page>
+<main>전처리</main>
+<sub>전처리</sub> <content>정규화 및 결측치 대체를 통해 데이터를 0과 7 사이의 값으로 변환하고, 결측 데이터를 앞뒤 데이터의 평균으로 채운다.</content> <page>6</page>
 
-<main>05</main>
-<sub>예측 주차대수 방법</sub> <content>여의도 주차대수를 예측하는 Time Series Forecasting, 기상 데이터 중 기온만을 사용하여 예측.</content> <page>7</page>
-<sub>주차대수 예측 방법</sub> <content>여의도 한강공원 주차대수 예측, 기온, 평균기온, 평균습도를 사용하여 예측, 강수량이 있을 시 성능 저하.</content> <page>8</page>
-<sub>기상 변수 예측 별</sub> <content>평균 풍속, 강수량.</content> <page>9</page>
-<sub>기상 변수 예측 별</sub> <content>평균 기온, 평균 습도.</content> <page>10</page>
-<sub>기상 변수 예측 별</sub> <content>미세먼지, 초미세먼지.</content> <page>11</page>
-<sub>최종 점수 산정 방법</sub> <content>이용객 수 점수 40%, 기상 점수 60%, 일별 한강공원 주차대수를 예측하여 점수 산정, 강수량 낮을수록, 기온 높을수록, 미세먼지 및 초미세먼지 낮을수록, 습도 낮을수록, 풍속 낮을수록 높은 점수.</content> <page>12</page>
-<sub>주차대수 가중치 요일별</sub> <content>일별 주차대수에 요일별 가중치를 곱해 보정, 주차대수가 적은 요일일수록 높은 점수를 받도록 1-정규화한 가중치를 곱함.</content> <page>13</page>
+<main>예측 주차대수 방법</main>
+<sub>예측 주차대수 방법</sub> <content>기온 데이터만을 사용하여 여의도 주차대수를 예측하며, 기온, 평균 기온, 평균 습도를 모두 활용하여 예측 성능을 향상시킨다.</content> <page>7</page>
 
-<main>최종</main>
-<sub>결론</sub> <content>1. 3월 29일 995점, 2. 3월 24일 956점, 3. 3월 27일 924점. 평일 점수: 1. 3월 29일 995점, 2. 3월 27일 924점, 3. 3월 26일 91점. 주말 점수: 1. 3월 24일 956점, 2. 3월 30일 835점, 3. 3월 31일 713점.</content> <page>14</page>
+<main>최종 점수 산정 방법</main>
+<sub>최종 점수 산정 방법</sub> <content>이용객 수 점수와 기상 점수를 기반으로 일별 주차대수를 예측하여 점수를 산정하며, 각 기상 변수를 평가하여 최적 날씨 기준을 정한다.</content> <page>12</page>
 
-<main>06</main>
-<sub>의의 및 한계점</sub> <content>의의: 관광객들이 쾌적한 나들이 날짜 선택 가능, 방문자 수 예측으로 인력 배치 효율화. 한계점: 주차장을 이용하지 않는 방문객 고려 불가, 가중치의 객관성 부족, LSTM 모델의 하이퍼파라미터 조정 어려움.</content> <page>15</page>
+<main>결론</main>
+<sub>결론</sub> <content>예측 결과는 3월 29일 995점, 3월 24일 956점 등으로, 평일과 주말 점수를 구분하여 분석하였다.</content> <page>14</page>
+
+<main>의의 및 한계점</main>
+<sub>의의 및 한계점</sub> <content>관광객들은 쾌적한 나들이 날짜를 선택할 수 있으며, 방문자 수 예측을 통해 인력 배치를 효율적으로 할 수 있지만, 가중치 결정의 주관성 및 하이퍼파라미터 조정의 어려움이 있다.</content> <page>15</page>

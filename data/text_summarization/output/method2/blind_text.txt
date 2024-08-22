@@ -1,35 +1,17 @@
-<subject>시각장애인을 위한 음성 안내 카메라 서비스</subject>
-<team>김지원 박석우 박소언 배성윤 CV2조</team>
-<index>서비스 시연 영상</index>
-<index>주제 선정 배경</index>
-<index>플로우 및 기능설명</index>
-<index>데이터 수집</index>
-<index>얼굴 탐지 모델 훈련 과정</index>
-<index>객체 탐지 모델 선정</index>
-<index>음성 안내 알고리즘</index>
-<index>한계점</index>
+<subject>시각장애인 사진 촬영 지원 서비스</subject>
+<team>김지원, 박석우, 박소언, 배성윤, CV2조</team>
+<index>목차</index>
 
-<main>서비스 목표</main>
-<sub>시각장애인 서비스</sub> <content>구체적 위치 안내 X ex: 위 아래 객체의 구체적 위치 정보 제공</content> <page>4</page>
-<sub>프로젝트 목표</sub> <content>사진기 음성 안내: 1. 객체탐지 모델을 서비스에 맞는 one-stage 얼굴 탐지 모델로 전이학습하여 정확도 향상 2. 적절한 모델 Weight를 활용하여 실시간 추론 속도 개선 3. 탐지된 객체를 적절한 시기에 말해주기 위한 TTS 알고리즘 최적화. 음성 안내를 통해 더욱 정확하고 효율적으로 사진을 촬영할 수 있게 하며 그들의 자율성과 사회적 참여를 크게 향상시킨다.</content> <page>4</page>
+<main>시각장애인 서비스</main>
+<sub>프로젝트 목표</sub> <content>음성 안내를 통해 시각장애인이 사진을 보다 정확하고 효율적으로 촬영할 수 있도록 하여 자율성과 사회적 참여를 향상시킴.</content> <page>1</page>
 
-<main>플로우 및 기능설명</main>
-<content>텍스트 음성 변환 (TTS) text to Speech: 1. 화면에 잡히는 얼굴의 위치 인식 2. 시선 방향 및 각도 파악 (Mediapipe) 3. 얼굴의 위치, 화면 차지 비중 및 방향성 각도를 TTS로 안내. 최대 3개의 객체 라벨 인식 및 위치를 TTS로 안내.</content> <page>5</page>
+<main>객체 탐지 모델</main>
+<sub>모델 성능 비교</sub> <content>YOLOv8n과 YOLOv8s 모델을 비교하여 성능을 평가하며, mAP5O 50% 이상의 겹침 threshold를 기준으로 정확도를 검토함.</content> <page>2</page>
+<sub>모델 최적화</sub> <content>실시간 추론 속도를 개선하기 위해 적절한 모델 Weight를 활용하고, TTS 알고리즘을 최적화하여 탐지된 객체를 적절한 시기에 음성으로 안내함.</content> <page>3</page>
 
-<main>얼굴 탐지 모델 훈련 과정 전면카메라</main>
-<sub>모델 훈련</sub> <content>원래 계획: Mobilenet+SSD, YOLO 비교 후 RetinaNet fine-tunning. 실제 진행: YOLOv8n와 YOLOv8s 성능 비교. Batch: 32, BaseLine epochs: patience, Optimizer: Adam, lr: 0.001, dropout: 0.2. 비교 결과, mAP50-95 평가.</content> <page>7</page>
-<sub>하이퍼 파라미터 튜닝</sub> <content>Hyperparameter tuning 진행.</content> <page>8</page>
-
-<main>객체 탐지 모델 선정 후면카메라</main>
-<content>추론 속도 최적화 및 조명 환경에서의 성능 향상을 위해 YOLOv3 가중치 이용. Albumentations 라이브러리 사용.</content> <page>10</page>
-
-<main>음성 안내 알고리즘 전면카메라</main>
-<sub>실시간 안내</sub> <content>움직이는 객체가 실시간으로 어느 시점에 음성안내를 해야 할지 고민. Frame 전의 얼굴이 같은 위치에서 서서히 가까워지거나 멀어지는 경우 변화를 탐지하지 못하는 문제 해결.</content> <page>12</page>
-<sub>알고리즘 개선</sub> <content>1 frame 전의 bbox와의 IoU를 계산하도록 수정. 5 frame 단위 처리.</content> <page>13</page>
-
-<main>음성 안내 알고리즘 후면카메라</main>
-<sub>객체 인식</sub> <content>후면 카메라는 Confidence가 높은 세 가지의 객체만 인식. 여러 bbox가 있을 때의 IoU 측정 함수 재정의 필요. 움직임 안정화 판단 함수 후면 ver: 화면 차지 비율을 가중치로 갖는 IoU 함수 정의, 추가적인 scaling과 FPS 고려.</content> <page>14</page>
-<sub>여러 레이블 인식</sub> <content>최대 3개 기준으로 IoU 측정, 순간적 변화를 인식하여 정보 제공. 유의미한 움직임이 감지되면 상태 변수 변경, 일정 시간 이상 정지 시 정보 제공.</content> <page>15</page>
+<main>음성 안내 알고리즘</main>
+<sub>전면카메라</sub> <content>움직이는 객체에 대한 음성 안내 시점을 결정하기 위해 IoU를 계산하는 방식으로 수정함. 실시간으로 변화 탐지 문제를 해결하기 위한 방법을 제안함.</content> <page>4</page>
+<sub>후면카메라</sub> <content>후면카메라는 Confidence가 높은 세 가지 객체만 인식하며, IOU 측정 함수를 재정의하고 FPS를 고려하여 bbox를 업데이트함. 유의미한 움직임을 감지하는 기준을 설정함.</content> <page>5</page>
 
 <main>한계점</main>
-<content>음성 안내 도중에 변동사항 반영 불가, 안내 비율 수치의 상대성, TTS 모듈(Pytsx3) 특성상 음성 재생 중단 불가. 시각 장애인의 입장에서 수치로만 제공되는 비율 정보 불편. 사용성 측면에서의 검증 필요. 사용자의 움직임 감지 실패, 카메라 프레임 규격 조정 불가, 객체 라벨의 한정성. 모델이 탐지한 물체의 라벨이 한정적이기 때문에 차지 비율이 높아도 정확한 라벨 분류 불가. 1280*720 규격에 대해서만 사용 가능.</content> <page>16</page>
+<sub>사용성 문제</sub> <content>음성 안내 도중 변동사항 반영 불가, TTS 특성상 음성 재생 중단 불가, 객체 Label의 한정성과 카메라 프레임 규격 조정 실패로 인해 사용성 측면에서 개선이 필요함.</content> <page>6</page>

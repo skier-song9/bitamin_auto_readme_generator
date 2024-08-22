@@ -1,38 +1,23 @@
-<subject>자연어 처리NLP 결과</subject>
-<team>이하나, 김하니</team>
-<index>토너먼트 별 클린스만호 감성분석</index>
+<subject>감성 분석 프로젝트</subject>  
+<team>팀명</team>  
+<index>감성 분석을 통한 여론 조사</index>  
 
-<main>주제 선정 배경</main>
-<sub>주제 선정 배경</sub> <content>자연어 처리NLP 결과:토너먼트 별 클린스만호 감성분석</content> <page>3</page>
+<main>주제 선정 배경</main>  
+<sub>주제 선정 배경</sub> <content>자연어 처리(NLP)를 활용한 클린스만호에 대한 감성 분석을 진행함.</content> <page>3</page>  
 
-<main>데이터 수집 기준</main>
-<sub>데이터 수집 기준</sub> <content>조별리그 115 월 ~125 목 - 끝난 후 16강 전까지의 기간 :126금~ 130 화 16강 131 수 16강 이후 8강 이전의 기간 :21 목~22 금 8강 23 토 8강 이후 4강 이전의 기간 24 일 ~26 화 4강 27 수 4강 이후 여론이슈 이전</content> <page>5</page>
-<sub>데이터 수집 기준</sub> <content>여론 이슈 2/14 수 축구협회 여론전 경질 이전의 여론 이슈 기간 215 목 ~216 금 클린스만 경질 2/ 16금 클린스만 경질 경질 이후의 수집 기간 토~218 일 217</content> <page>6</page>
+<main>데이터 수집 기준</main>  
+<sub>데이터 수집 기준</sub> <content>조별리그와 16강, 8강, 4강 전후로 나누어 여론 데이터를 수집하였으며, 클린스만 경질 관련 이슈 또한 포함됨.</content> <page>5</page>  
 
-<main>데이터 수집- 웹크롤링</main>
-<sub>웹 크롤링-date Cleansing</sub> <content>#날짜 정제화 함수 def date_ cleansing test: try: #지난 뉴스 pattern Ad+ Od+Adt #정규표현식 1! compile r - re pattern match search test group 0 = r # 20240101 date_ _text append match except AttributeError #최근 뉴스 pattern !| 'W* Adw*' #정규표현식 re compile r = pattern match search test = group 1 #print 'match date text append match Try블록: 'd+ Od+ Od+ '는 같은 20240101'과 날짜 형식 지난 뉴스의 날짜 형식 처리 블록: except AttributeError ->'오전 7:10'과 같은 형식 'Aw* Adw*' 2 최근 날짜 형식을 뉴스의 처리 리스트에 추가 date _text -</content> <page>7</page>
-<sub>웹 크롤링-contents Cleansing</sub> <content>#내용 정제화함수 def Contents Cleansing Contents: first Cleansing re sub <d1> */a> </div> </dd> <dd>'" Contents - str Stripo #앞에 필요없는부분제거 Contents Second Cleansing Sub <u] Class= 'relation Ist" */dd>' " Contents re - first Cleansing Contents stripo #뒤에 필없는 부분 제거 새끼기사 - third Cleansing Fe sub '<+>' Cleansing Contents Contents strip Second text append 'third Cleansing Contents Contents #print Contents text 첫 번째 정제: <dl> 태그로 시작해서 </dd> 끝나는 부분 제거 <dd>로 메소드를 사용->공백 제거 stripO 두 번째 정제: 태그로 시작해서 끝나는 <u| class-"relation_Ist"> </dd>로 부분 제거 관련 기사 목록을 본문 포함하며 내용과 무관한 경우 -> 사용하여 추가적인 공백을 stripO을 제거 세 번째 정제: 모든 태그를 제거 HTML</content> <page>8</page>
-<sub>크롤링-crawler함수</sub> <content>[페이지 수 검색어 뉴스 정렬 순서 날짜 범위] 입력 활용] 네이버 뉴스검색 동적으로 생성 ['request' URL - >접속 후 내용 HTML 가져오기 활용] 파싱 ['Beautiful Soup' HTML 태그를 사용하여 뉴스 기사의 제목과 링크 추출 <a> P 클래스를 가진 태그들을 찾아 news tit' 각각의 텍스트제목와 속성/링크을 리스트에 저장 href</content> <page>9</page>
-<sub>웹 크롤링 -Crawler함수</sub> <content>함수를 통해 불필요한 정보 제거 후 저장 Data cleansing 함수를 통해 본문 정제 Contents cleansing <함수 실행 화면> 입력 혈식메 맞게 입력해주세료 시작하시려면 Enter 를 눌러주셰료 최대 크톨릴할 페이지 입력하시오 10 검색어 입력: 클린스만 뉴스 검색 발식 입력[ 관련도운 최신운티 토래된운_2] 시작날파 입력[2/24 :1 1]: 2024115 - 끝날짜 입력[2124 12 1]: 2024 1 3</content> <page>10</page>
+<main>데이터 수집 - 웹크롤링</main>  
+<sub>웹 크롤링 - 날짜 정제화</sub> <content>뉴스 날짜를 정제하는 함수를 구현하여 과거 및 최근 뉴스의 날짜 포맷을 통일함.</content> <page>7</page>  
+<sub>웹 크롤링 - 내용 정제화</sub> <content>뉴스 기사 내용의 불필요한 부분을 제거하는 정제화 함수를 적용함.</content> <page>8</page>  
+<sub>웹 크롤링 - Crawler 함수</sub> <content>네이버 뉴스에서 필요한 정보를 동적으로 수집하기 위해 Beautiful Soup을 활용하여 제목과 링크를 추출함.</content> <page>9</page>  
 
-<main>전처리 및 EDA 분석</main>
-<sub>데이터 확인 1</sub> <content>데이터 확인 1</content> <page>11</page>
-<sub>분석 EDA</sub> <content>분석 EDA</content> <page>12</page>
-<sub>전처리 및 분석 결과 EDA</sub> <content>전처리 및 분석 결과 EDA</content> <page>13</page>
+<main>전처리 및 EDA 분석</main>  
+<sub>전처리 및 분석 결과 EDA</sub> <content>감성 분석을 위해 Lexicon-based, Linguistic, Machine Learning approaches를 활용하여 데이터를 분석함.</content> <page>14</page>  
 
-<main>모델링</main>
-<sub>모델링</sub> <content>Hugging Face의 amphOra/KorFinASC-XLM-RoBERTa 모델 사용! * KorFinASC-XLM-ROBERTa 금융분야에서의 활용을 위해 개발된 모델로 XLM 모델 아키텍처를 기반으로 하고 -RoVERTa 있으며 한국어와 영어 텍스트에 대한 감성 분석에 특히 유용한 모델</content> <page>15</page>
-<sub>모델링</sub> <content>모델링</content> <page>16</page>
-<sub>모델링</sub> <content>모델링</content> <page>17</page>
+<main>모델링</main>  
+<sub>모델링</sub> <content>Hugging Face의 amphOra/KorFinASC-XLM-RoBERTa 모델을 사용하여 한국어 및 영어 텍스트의 감성을 분석함.</content> <page>15</page>  
 
-<main>결과 분석 및 시각화</main>
-<sub>결과분적및시각회</sub> <content>결과분적및시각회</content> <page>18</page>
-<sub>결과분적및시각회</sub> <content>결과분적및시각회</content> <page>19</page>
-<sub>결과분적및시각회</sub> <content>결과분적및시각회</content> <page>20</page>
-<sub>결과분적및시각회</sub> <content>결과분적및시각회</content> <page>21</page>
-<sub>결과분적및시각회</sub> <content>결과분적및시각회</content> <page>22</page>
-<sub>결과분적및시각회</sub> <content>결과분적및시각회</content> <page>23</page>
-<sub>결과분적및시각회</sub> <content>결과분적및시각회</content> <page>24</page>
-
-<main>결과 분석 및 시각화</main>
-<sub>결론</sub> <content>축구협회 사실상 클린스만 감독 경질 트랜스포머 라이브러리의 amphOra/KorFinASC-XLM-RoBERTa 모델을 사용하여 수집한 데이터의 감성분류를 수행한 결과 4강을 기점으로 부정적인 여론이 강해지는 것을 확인할 수 있었음 감성 분석을 통해 트렌드를 정확히 파악할 수 있으며 위기 상황에 민감하게 대처할수 있다!</content> <page>25</page>
+<main>결과 분석 및 시각화</main>  
+<sub>결과 분석 및 시각화</sub> <content>감성 분석 결과 4강을 전후로 부정적인 여론이 증가하는 경향을 확인하였으며, 이를 통해 위기 관리에 효과적으로 대응할 수 있음을 보여줌.</content> <page>25</page>

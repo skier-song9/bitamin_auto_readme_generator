@@ -1,32 +1,16 @@
-<subject>LEVEL 2 모델 소개 XGB LSTM GRU</subject>
-<team>이하나, 김하니</team>
-<index>XGBoost 모델 설명, 슬라이딩 윈도우 방법론, XGBoost 하이퍼 파라미터 튜닝 결과, LSTM 모델 설명, LSTM 모델 구축, GRU 모델 설명, GRU 모델 구축>
+<subject>모델 소개 및 결과 분석</subject>  
+<team>팀원 이름</team>  
+<index>LEVEL 2 모델 소개 XGB LSTM GRU>  
 
-<main>LEVEL 2 모델 소개 XGB LSTM GRU</main>
-<sub>XGBoost 모델 설명</sub> <content>트리 기반의 앙상블 학습 알고리즘으로, 이진분류 모델을 구현했습니다. 병렬처리로 빠르고 뛰어난 예측 성능을 보이며, 'binary: logistic'을 손실함수로 사용했습니다.</content> <page>7</page>
-<sub>슬라이딩 윈도우 방법론</sub> <content>과거 데이터를 기반으로 미래를 예측하는 방식으로, 윈도우를 일정 간격으로 이동시키며 다음 시점의 값을 예측합니다.</content> <page>8</page>
-<sub>XGBoost 하이퍼 파라미터 튜닝 결과</sub> <content>종가 데이터 모델은 learning rate=0.05, depth=5, n_estimators=200, window size=100으로 0.5518의 accuracy를 보였고, 변화율 데이터 모델은 learning rate=0.05, depth=5, n_estimators=100으로 0.6098의 accuracy를 보였습니다.</content> <page>9</page>
-<sub>LSTM 모델 설명</sub> <content>LSTM은 긴 시퀀스 내 중요한 정보를 오래 유지하고 불필요한 정보를 잊어버려 장기 의존성 문제를 해결합니다. Input, Output, Forget Gate를 사용합니다.</content> <page>11</page>
-<sub>LSTM 모델 구축</sub> <content>두 개의 LSTM 레이어와 드롭아웃을 추가하여 과적합을 방지하고, EarlyStopping 콜백을 적용했습니다.</content> <page>12</page>
-<sub>GRU 모델 설명</sub> <content>GRU는 LSTM과 유사하게 게이트 메커니즘을 사용하지만 셀 상태 없이 두 개의 Gate만 사용하여 장기 의존성 문제를 해결합니다.</content> <page>13</page>
-<sub>GRU 모델 구축</sub> <content>두 개의 GRU 레이어와 드롭아웃을 추가하여 과적합을 방지하고, EarlyStopping 콜백을 적용했습니다.</content> <page>14</page>
+<main>LEVEL 2 모델 소개 XGB LSTM GRU</main>  
+<sub>XGBoost</sub> <content>트리 기반의 앙상블 학습 알고리즘으로, 그래디언트 부스팅 방식으로 학습하며 이진분류 모델을 구현, 빠른 속도로 뛰어난 예측 성능을 보여줍니다.</content> <page>7</page>  
+<sub>LSTM</sub> <content>긴 시퀀스 내의 중요한 정보를 유지하고 불필요한 정보를 잊어버리는 Cell state와 Gate 메커니즘을 사용하여 장기 의존성 문제를 효과적으로 해결합니다.</content> <page>11</page>  
+<sub>GRU</sub> <content>LSTM과 유사한 게이트 메커니즘을 통해 중요한 정보를 유지하고, Reset Gate와 Update Gate를 사용하여 시계열 데이터의 패턴을 학습합니다.</content> <page>13</page>  
 
-<subject>LEVEL 3 피쳐 중요도 분석 Attention SHAP</subject>
-<team>이하나, 김하니</team>
-<index>Attention 메커니즘 설명, Attention 모델 구축, SHAP 설명, SHAP XGB 피쳐 중요도 분석>
+<main>LEVEL 3 피쳐 중요도 분석 Attention SHAP</main>  
+<sub>Attention</sub> <content>입력 벡터의 중요도를 계산하여 가중치를 생성, 특정 시간 단계에서 중요한 정보에 집중하여 모델의 예측 성능을 향상시킵니다.</content> <page>16</page>  
+<sub>SHAP</sub> <content>피쳐의 중요도를 시각화하여 모델 예측에 미치는 영향을 분석하는 게임이론 기반 접근법입니다.</content> <page>19</page>  
 
-<main>LEVEL 3 피쳐 중요도 분석 Attention SHAP</main>
-<sub>Attention 메커니즘 설명</sub> <content>Attention은 중요한 부분에 더 집중하게 하는 메커니즘으로, 시계열 데이터에서 중요한 정보에 집중할 수 있습니다.</content> <page>16</page>
-<sub>Attention 모델 구축</sub> <content>Transformer 블록을 포함한 모델을 정의하고, 가중치를 추출하여 Attention을 계산했습니다.</content> <page>17</page>
-<sub>SHAP 설명</sub> <content>SHAP는 게임이론에 기반한 머신러닝 모델의 출력을 설명하기 위한 접근법으로, 피쳐 중요도를 시각화하고 해석할 수 있습니다.</content> <page>19</page>
-<sub>SHAP XGB 피쳐 중요도 분석</sub> <content>종가 데이터 모델은 300개의 피쳐 사용 시 성능이 0.52, 500개의 피쳐 사용 시 성능이 0.5396이었고, 변화율 데이터 모델은 5개의 피쳐 사용 시 성능이 0.5925, 10개의 피쳐 사용 시 성능이 0.5954였습니다. 이는 적은 피쳐로도 성능을 유지할 수 있음을 보여줍니다.</content> <page>22</page>
-
-<subject>LEVEL 4 결과 비교 및 결론</subject>
-<team>이하나, 김하니</team>
-<index>모델 성능 비교, 변수 중요도 적용 유무에 따른 모델 성능 비교, 변수 중요도 적용 방법에 따른 모델 성능 비교, 결론>
-
-<main>LEVEL 4 결과 비교 및 결론</main>
-<sub>모델 성능 비교</sub> <content>XGBoost가 종가와 변화율 데이터 모두에서 가장 우수한 성능을 보였습니다. 변화율 데이터가 종가 데이터보다 더 유의미한 패턴과 트렌드를 제공하여 성능이 향상되었습니다.</content> <page>26</page>
-<sub>변수 중요도 적용 유무에 따른 모델 성능 비교</sub> <content>LSTM과 GRU는 변수 중요도를 적용한 데이터 세트에서 성능이 향상되었고, XGBoost는 약간 감소했습니다. 이는 Attention 매커니즘을 적용하여 시계열 데이터 내의 중요 정보를 잘 파악했기 때문입니다.</content> <page>27</page>
-<sub>변수 중요도 적용 방법에 따른 모델 성능 비교</sub> <content>XGBoost와 LSTM이 각각 우수한 성능을 보였습니다. 변수 중요도 계수를 적용한 데이터 세트에서 XGBoost가 가장 우수한 성능을 보였고, 변수 중요도가 양수인 계수만 적용한 데이터 세트에서는 LSTM이 우수한 성능을 보였습니다.</content> <page>28</page>
-<sub>결론</sub> <content>변화율 데이터가 잡음을 줄이고 추세성을 반영해 종가 데이터보다 정확한 성능을 보였으며, 주가 예측에서는 변화율 데이터를 사용하는 것이 좋습니다. Attention 매커니즘과 변수 중요도 분석을 통해 모델 성능을 개선할 수 있습니다.</content> <page>29</page>
+<main>LEVEL 4 결과 비교 및 결론</main>  
+<sub>결과 비교</sub> <content>XGBoost가 가장 우수한 성능을 보였으며, 변화율 데이터를 사용하여 예측 정확도가 높아졌습니다.</content> <page>26</page>  
+<sub>결론</sub> <content>변화율 데이터가 종가 데이터보다 더 정확한 성능을 보이며, 변수 중요도 분석을 통해 모델 성능을 개선할 수 있습니다.</content> <page>29</page>

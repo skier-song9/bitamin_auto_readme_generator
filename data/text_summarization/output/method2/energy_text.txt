@@ -1,32 +1,22 @@
-<subject>에너지 프로슈머의 행동양식 예측하기 Predict Energy Behavior Of Prosumers</subject>
-<team>1조 박지원 박정훈 박초은</team>
-<index>목차</index>
+<subject>Predict Energy Behavior Of Prosumers</subject>
+<team>1조 박지원</team>
+<team>박정훈</team>
+<team>박초은</team>
 
-<main>분석 개요</main>
-<sub>에너지 프로슈머란?</sub> <content>에너지의 생산과 소비의 역할을 동시에 하는 주체. 주거용 프로슈머는 태양광 패널과 소규모 배터리를 사용하며, 기업 프로슈머는 풍력 발전과 태양열 어레이 같은 대규모 분산 에너지원(DER)을 사용한다.</content> <page>4</page>
-<sub>에너지 중요한 이유 프로슈머가</sub> <content>에너지 프로슈머의 증가는 에너지 생산과 소비 간 불균형을 심화시키고, 자원의 비효율적 이용률이 증가하여 운영 구조의 신뢰와 지속가능성이 저하된다. 프로슈머의 행동양식을 파악하면 친환경 에너지 사용을 독려할 수 있다.</content> <page>5</page>
-<sub>데이터 소개</sub> <content>에스토니아 내 일정 기간의 기후 데이터, 에너지 소비 비용, 태양광 에너지 사용률 등을 바탕으로 프로슈머의 전력 생산·소비량을 예측한다.</content> <page>6</page>
-<sub>데이터 소개 train CSV</sub> <content>is_consumption, datetime, data_block_id, row_id, prediction_unit_id, County, is_business, product_type, target 등을 포함한 데이터 세트. 각 조합에 따른 실제 시간당 생산 및 소비 사용량을 예측한다.</content> <page>7</page>
-<sub>데이터 소개 Client CSV</sub> <content>eic_count, product_type, installed Capacity, datetime, data_block_id 등을 포함한 데이터 세트.</content> <page>8</page>
-<sub>데이터 소개 forecast Weather CSV</sub> <content>Origin datetime, hours_ahead, temperature, dewpoint, Cloudcover, 10_metre_[u/v] Wind, Snowfall, data_block_id 등을 포함한 데이터 세트.</content> <page>9</page>
-<sub>데이터 소개 electricity_prices CSV</sub> <content>Origin date, forecast date, euros_per_mwh, data_block_id 등을 포함한 데이터 세트.</content> <page>11</page>
-<sub>데이터 소개 gas_prices CSV</sub> <content>Origin date, forecast date, euros_per_mwh, data_block_id 등을 포함한 데이터 세트.</content> <page>12</page>
-<sub>분석 방향성 소개</sub> <content>상관분석, 요인분석, 파생변수 도출, 변수 중요도 파악, 최종 모델링 XGBoost.</content> <page>13</page>
+<index>01 분석 개요</index>
+<main>분석개요</main>
+<sub>에너지 프로슈머란?</sub> <content>에너지 프로슈머는 에너지를 생산하고 소비하는 주체로, 주거용은 소규모 배터리와 태양광 패널을, 기업은 대규모 분산 에너지 자원을 사용한다.</content> <page>4</page>
+<sub>데이터 소개</sub> <content>에스토니아에서 기후 데이터, 에너지 소비, 비용, 태양광 에너지 사용률 등을 바탕으로 에너지 프로슈머의 전력 생산 및 소비량을 예측하는 데이터 세트를 사용한다.</content> <page>6</page>
+<sub>분석 방향성 소개</sub> <content>상관분석과 요인분석을 통해 변수 중요도를 파악하고, 최종 모델링은 XGBoost를 사용한다.</content> <page>13</page>
 
-<main>변수 선택</main>
-<sub>상관분석</sub> <content>총 50여 개의 features 중 유의미한 변수를 선별하고자 상관분석을 진행. 대체로 타겟과의 상관계수가 낮아 추가 요인분석을 시행.</content> <page>15</page>
-<sub>요인분석?</sub> <content>여러 변수 간 상관관계를 고려하여 내제된 중요 요인을 추출하는 분석 방법. PCA와 유사하지만, 요인 분석은 기존 변수에 영향을 끼치는 공통 요인을 파악한다.</content> <page>16</page>
-<sub>요인분석</sub> <content>Scree Plot을 이용해 적절한 요인의 개수를 찾고, 중요한 features를 묶어 분석.</content> <page>17</page>
-<sub>2 파생변수 도출 train CSV</sub> <content>시간, 월, 날짜, 요일 등 Fourier transform을 통해 파생변수를 도출하고, target mean 및 표준편차를 계산.</content> <page>19</page>
-<sub>2 파생변수 도출 forecast Weather CSV</sub> <content>상대습도, 습구온도, 불쾌지수, Cloudcover, direct_solar_radiation, Surface_solar_radiation_downwards의 평균 및 표준편차를 계산.</content> <page>20</page>
+<index>02 변수 선택</index>
+<main>변수선택</main>
+<sub>상관분석 & 요인분석</sub> <content>50여개의 feature 중 유의미한 변수를 선별하고, 요인 분석을 통해 변수 간의 관계를 파악한다.</content> <page>15</page>
+<sub>파생변수 도출</sub> <content>시간, 요일, 월 등의 변수를 활용하여 불쾌지수를 포함한 다양한 파생변수를 도출하였다.</content> <page>19</page>
 
+<index>03 모델링</index>
 <main>모델링</main>
-<sub>모델 및 평가지표 소개</sub> <content>XGBoost 모델을 사용하여 Gradient Boosting을 구현. Mean Absolute Error(MAE)로 평가.</content> <page>22</page>
-<sub>초기 모델</sub> <content>거의 모든 변수를 활용하여 모델 피팅. business 별 구분을 최종 모델에 반영.</content> <page>23</page>
-<sub>수정된 모델 1 데이터 분리</sub> <content>consumption과 business에 따라 총 4가지 데이터로 분리하여 모델 피팅 및 평가.</content> <page>24</page>
-<sub>모델 2 수정된 하이퍼 튜닝 파라미터</sub> <content>Random Search 기법을 활용하여 최적의 하이퍼 파라미터를 도출. 최적화된 파라미터를 사용하여 성능을 향상.</content> <page>26</page>
-<sub>모델 3 수정된 변수 제거</sub> <content>SHAP 변수 중요도를 바탕으로 중요도가 낮은 변수를 제거하여 성능을 향상. 주요 변수로는 apparent temperature, installed capacity, temperature 등이 있다.</content> <page>27</page>
-
-<main>최종 결과</main>
-<content>4개의 MAE 평균 25.4941</content> <page>31</page>
-<content>감사합니다</content> <page>32</page>
+<sub>모델 및 평가지표 소개</sub> <content>XGBoost 모델을 사용하여 예측 성능을 극대화하며, MAE를 평가지표로 설정하였다.</content> <page>22</page>
+<sub>초기 모델</sub> <content>모든 변수를 활용하여 초기 모델을 피팅하고, MAE 평균은 5589였다.</content> <page>23</page>
+<sub>수정된 모델</sub> <content>데이터를 비즈니스별로 분리하여 모델을 재조정하고, 하이퍼파라미터 최적화를 통해 성능을 개선하였다.</content> <page>26</page>
+<sub>최종 결과</sub> <content>4개의 MAE 평균은 2549로 개선되었다.</content> <page>31</page>

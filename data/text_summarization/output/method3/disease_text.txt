@@ -3,25 +3,15 @@
 <index>주제 및 배경, 데이터 소개 및 EDA, 전처리, 모델링, 결과</index>
 
 <main>주제 및 배경</main>
-<sub>프로젝트 배경</sub> <content>안저사진을 분석하여 망막질환 및 자폐스펙트럼장애를 판독하는 AI 모델 개발.</content> <page>3</page>
-<sub>안저 데이터</sub> <content>낮은 침습성, 짧은 검사 시간, 고해상도 이미지 확보 가능, 다양한 질병 진단 가능성.</content> <page>5</page>
-
+<sub>프로젝트 배경</sub> <content>안저검사 망막 사진을 통해 자폐스펙트럼장애를 선별하고 중증도를 예측하는 모델 개발. 이 연구는 의료 AI 분야에서 안저 영상 분석의 가능성을 보여주며, 연구 결과는 'JAMA Network Open'에 게재됨.</content> <page>1</page>
 <main>데이터 소개 및 EDA</main>
-<sub>데이터 소가</sub> <content>Kaggle의 OCULAR DISEASE RECOGNITION 데이터베이스 사용.</content> <page>6</page>
-<sub>EDA</sub> <content>19개의 라벨을 포함할 것인지, 클래스 불균형 문제, 라벨 간의 개수 차이.</content> <page>7</page>
-
+<sub>안저 데이터</sub> <content>안저 영상은 망막 질환 진단에 유용하며, OCT 기술로 고해상도 이미지를 획득할 수 있음. ODIR 데이터베이스를 사용하여 다양한 질병을 포함한 5000명의 환자 데이터를 분석.</content> <page>2</page>
+<sub>EDA</sub> <content>데이터 클래스의 불균형 문제를 확인하였으며, 특히 '정상'과 '당뇨병' 라벨의 수가 압도적으로 많아 진단의 부정확성을 초래할 수 있음.</content> <page>2</page>
 <main>전처리</main>
-<sub>전처리</sub> <content>19개의 라벨 중 TOP 5 라벨 선정, DIAGNOSES 컬럼 생성.</content> <page>8</page>
-<sub>이미지 클래스 불균형</sub> <content>데이터 증강 필요, FASTAI, AUTO AUGMENT, ALBUMENTATION, GAN 사용 시도.</content> <page>11</page>
-
+<sub>클래스 불균형 해결</sub> <content>상위 5개 주요 질병 라벨을 선정하여 데이터의 불균형을 완화하기 위한 이미지 증강 필요성을 강조.</content> <page>3</page>
+<sub>이미지 증강 기법</sub> <content>FASTAI 및 ALBUMENTATION 라이브러리를 사용하여 다양한 이미지 증강 기법을 적용하여 데이터셋을 변환.</content> <page>3</page>
 <main>모델링</main>
-<sub>모델링</sub> <content>이미지 분류 모델 및 클래스별 데이터 불균형 해소를 위한 이미지 증강 방법 선정.</content> <page>14</page>
-<sub>Resnet18</sub> <content>경량화된 ResNet18로 이미지 분류, 기울기 소실 문제 해결.</content> <page>15</page>
-<sub>Densenet</sub> <content>Dense Block과 Transition Layer로 정보 흐름 극대화, 소실 문제 완화.</content> <page>16</page>
-<sub>VGG16</sub> <content>3X3 필터 사용, 기울기 소실 문제 해결, 작은 필터로 뛰어난 성능.</content> <page>17</page>
-<sub>VGG19</sub> <content>VGG16의 확장된 버전, 더 깊은 네트워크 구조.</content> <page>18</page>
-
+<sub>이미지 분류 모델 선정</sub> <content>ResNet18, DenseNet, VGG16, VGG19 모델을 사용하여 이미지 분류를 진행. ResNet18은 경량화된 모델로 학습 속도를 개선하고, DenseNet은 정보 흐름을 극대화하여 효율적인 학습을 가능하게 함.</content> <page>4</page>
 <main>결과</main>
-<sub>모델링 결과</sub> <content>이미지 분류 모델 및 데이터 불균형 해소를 위한 이미지 증강 방법 선정.</content> <page>19</page>
-<sub>이미지 증강 방법</sub> <content>AUTOAUGMENT, FASTAI AUGMENTATION, ALBUMENTATIONS 성능 비교.</content> <page>21</page>
-<sub>한계 및 의의</sub> <content>GAN의 실패, 모델 부류 정확도 문제, 이미지 데이터 전처리 방법 학습 및 모델 성능 비교.</content> <page>22</page>
+<sub>모델 선정 결과</sub> <content>AUTOAUGMENT와 FASTAI AUGMENTATION을 통해 이미지 증강 방법을 탐색하였으나, 성능이 낮았음. GAN을 통한 데이터 불균형 문제 해결 시도에도 불구하고 생성된 이미지의 품질이 낮아 한계를 보였음.</content> <page>5</page>
+<sub>프로젝트의 의의</sub> <content>다양한 데이터 전처리 및 모델 성능 비교를 통해 최적의 모델을 선정하는 과정에서 유의미한 경험을 얻음.</content> <page>5</page>

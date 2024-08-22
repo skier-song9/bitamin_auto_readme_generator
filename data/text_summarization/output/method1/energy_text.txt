@@ -1,30 +1,19 @@
-<subject>에너지 프로슈머 분석</subject>
-<team>분석팀</team>
-<index>에너지 프로슈머 분석 개요>
+<subject>에너지 프로슈머 분석</subject>  
+<team>팀명</team>  
+<index>에너지 프로슈머 분석>  
 
-<main>01 분석 개요</main>
-<sub>에너지 프로슈머란?</sub> <content>에너지의 생산과 소비를 동시에 하는 주체로, 주거용과 기업용 프로슈머가 있으며 각각 소규모 배터리와 대규모 분산 에너지 자원을 사용한다.</content> <page>4</page>
-<sub>에너지 프로슈머가 중요한 이유</sub> <content>에너지 프로슈머의 증가로 에너지 생산과 소비 간 불균형이 심화되며, 행동양식을 파악하여 친환경 에너지 사용을 독려할 수 있다.</content> <page>5</page>
-<sub>데이터 소개</sub> <content>에스토니아의 기후 데이터, 에너지 소비 비용, 태양광 에너지 사용률 등으로 프로슈머의 전력 생산 및 소비량을 예측한다.</content> <page>6</page>
-<sub>데이터 소개(train.csv)</sub> <content>소비 인지 생산 인지, 시간표, 데이터 식별자, 계약 타입, 실제 시간당 생산 및 소비 사용량을 포함한다.</content> <page>7</page>
-<sub>데이터 소개(Client.csv)</sub> <content>EIC 집계 수, 계약 타입, 설치된 태양광 패널의 에너지 수용량, 시간표, 데이터 식별자 정보를 포함한다.</content> <page>8</page>
-<sub>데이터 소개(forecast_Weather.csv)</sub> <content>날씨 예보 발생 시간, 기온, 이슬점, 구름 커버, 바람, 적설량 등을 포함한다.</content> <page>9</page>
-<sub>데이터 소개(forecast_Weather.csv - 2)</sub> <content>태양 복사 에너지, 강수량, 위도경도 좌표를 포함한다.</content> <page>10</page>
-<sub>데이터 소개(electricity_prices.csv)</sub> <content>전기 가격의 날짜, 예측 전기 가격 적용 날짜, 메가와트시 당 시장 전기 가격을 포함한다.</content> <page>11</page>
-<sub>데이터 소개(gas_prices.csv)</sub> <content>가스 가격의 날짜, 예측 가스 가격 적용 날짜, 메가와트시 당 시장 가스 가격을 포함한다.</content> <page>12</page>
-<sub>분석 방향성 소개</sub> <content>상관분석, 요인분석, 파생변수 도출, 변수 중요도 파악, 최종 모델링(XGBoost)을 수행한다.</content> <page>13</page>
+<main>분석 개요</main>  
+<sub>에너지 프로슈머란?</sub> <content>에너지의 생산과 소비를 동시에 수행하는 주체로, 주거용 태양광 패널 및 기업의 풍력 발전 등 대규모 분산 에너지를 활용한다.</content> <page>4</page>  
+<sub>에너지 중요한 이유 프로슈머가</sub> <content>프로슈머 수의 증가로 에너지 생산과 소비 간 불균형이 심화되고 있으며, 이를 통해 친환경 에너지 사용을 독려할 수 있는 요소를 밝힌다.</content> <page>5</page>  
+<sub>데이터 소개</sub> <content>에스토니아의 기후 데이터, 에너지 소비 비용, 태양광 에너지 사용률을 바탕으로 에너지 프로슈머의 전력 생산소비량을 예측한다.</content> <page>6</page>  
 
-<main>02 변수 선택</main>
-<sub>상관분석</sub> <content>유의미한 변수를 선별하여 모델 정확성을 높이기 위해 상관분석을 시행하며, 주요 변수는 기온, 구름 커버, 태양 복사 에너지 등을 포함한다.</content> <page>15</page>
-<sub>요인분석</sub> <content>PCA와 유사하게 변수 차원을 줄이는 분석으로, 중요 요인을 추출하여 Scree Plot을 사용해 적절한 요인 개수를 찾는다.</content> <page>16</page>
-<sub>요인분석 결과</sub> <content>Scree Plot을 이용해 요인의 개수를 5로 지정하여 분석한 결과, 중요한 features를 요인별로 묶을 수 있다.</content> <page>18</page>
-<sub>파생변수 도출 (train.csv)</sub> <content>시간, 월, 날짜, 요일, Fourier 변환, 불쾌지수, 휴일 여부, 계절 구분, 평균 및 표준편차 등을 포함한다.</content> <page>19</page>
-<sub>파생변수 도출 (forecast_weather.csv)</sub> <content>상대습도, 습구온도, 불쾌지수, 구름 커버, 태양 복사 에너지의 평균 및 표준편차 등을 포함하며, 지역성과 계절 요소를 반영한다.</content> <page>20</page>
+<main>변수 선택</main>  
+<sub>상관분석</sub> <content>50여개의 features 중 타겟과의 상관계수가 낮은 유의미한 변수를 선별하고자 한다.</content> <page>15</page>  
+<sub>요인분석</sub> <content>변수 간 상관관계를 고려하여 중요 요인을 추출하며, Scree Plot을 사용해 적절한 요인 개수를 찾는다.</content> <page>16</page>  
+<sub>파생변수 도출</sub> <content>시간 변수의 Fourier feature transform 및 평균, 표준편차를 반영한 파생변수를 도출하였다.</content> <page>19</page>  
 
-<main>03 모델링</main>
-<sub>모델 및 평가지표 소개</sub> <content>Extreme Gradient Boosting 알고리즘을 사용하며, 평가 지표로는 Mean Absolute Error (MAE)를 사용한다.</content> <page>22</page>
-<sub>초기 모델</sub> <content>대부분의 변수를 활용하여 초기 모델을 피팅하였으며, MAE는 5589738235473633이다.</content> <page>23</page>
-<sub>수정된 모델 1 (데이터 분리)</sub> <content>consumption과 business에 따라 총 4가지 데이터로 분리하여 모델 피팅 및 평가를 수행하였다.</content> <page>24</page>
-<sub>모델 2 (수정된 하이퍼 튜닝 파라미터)</sub> <content>Random Search 파라미터 최적화 기법을 사용하여 최적화 수행 후 가장 성능이 좋은 하이퍼 파라미터를 도출하였다.</content> <page>26</page>
-<sub>모델 3 (수정된 변수 제거)</sub> <content>SHAP 변수 중요도를 바탕으로 변수를 제거하고, 제거 후 MAE는 25 4941이다.</content> <page>27</page>
-<sub>최종 결과</sub> <content>4개의 MAE 평균은 25 4941이다.</content> <page>31</page>
+<main>모델링</main>  
+<sub>모델 및 평가지표 소개</sub> <content>XGBoost 모델을 사용하며, MAE(Mean Absolute Error)를 평가지표로 설정하였다.</content> <page>22</page>  
+<sub>초기 모델</sub> <content>모든 변수를 활용하여 모델 피팅을 수행하였고, MAE는 558973823.5473633으로 나타났다.</content> <page>23</page>  
+<sub>수정된 모델</sub> <content>데이터를 consumption과 business에 따라 4가지로 분리하여 모델 피팅과 평가를 수행하였다.</content> <page>24</page>  
+<sub>최종 결과</sub> <content>4개의 MAE 평균은 25.4941로 나타났다.</content> <page>31</page>

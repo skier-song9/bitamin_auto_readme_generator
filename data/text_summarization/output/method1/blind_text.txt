@@ -1,21 +1,27 @@
-<subject>서비스 시연 영상</subject>
-<team>이하나, 김하니</team>
-<index>서비스 시연 영상>
+<subject>서비스 목표 및 모델 개발</subject>  
+<team>팀 이름 미제공</team>  
+<index>서비스 목표 및 모델 개발</index>  
 
-<main>서비스 시연 영상</main>
-<sub>서비스 시연 영상</sub> <content>전면카메라와 후면카메라를 활용한 서비스 시연 영상을 각각 링크를 통해 확인할 수 있습니다.</content> <page>2</page>
+<main>서비스 목표</main>  
+<sub>서비스 목표</sub> <content>시각장애인 이용자를 위한 사진 촬영을 돕기 위해 음성 안내 서비스 제공. 객체탐지 모델을 one-stage 얼굴 탐지 모델로 전이학습하고, 실시간 추론 속도 개선 및 TTS 알고리즘 최적화를 통해 자율성과 사회적 참여를 향상시키는 것이 목표입니다.</content> <page>4</page>  
 
-<main>플로우 및 기능설명</main>
-<sub>플로우 및 기능설명</sub> <content>텍스트 음성 변환(TTS) 기능을 통해 화면에 잡힌 얼굴의 위치, 시선 방향, 각도 등을 인식하고 안내합니다. 최대 3개의 객체를 인식하며, 각 객체의 라벨과 위치를 TTS로 안내합니다.</content> <page>5</page>
+<main>플로우 및 기능설명</main>  
+<sub>플로우 및 기능설명</sub> <content>TTS 기능을 통해 얼굴의 위치 인식, 시선 방향 및 각도를 안내하며, 최대 3개 객체의 Label과 위치를 음성으로 전달합니다.</content> <page>5</page>  
 
-<main>얼굴 탐지 모델 훈련 과정</main>
-<sub>얼굴 탐지 모델 훈련 과정</sub> <content>Mobilenet+SSD와 YOLO 모델을 비교한 후 RetinaNet을 파인튜닝할 계획이었으나, 실제로는 YOLOv8n와 YOLOv8s 모델을 사용하여 성능을 비교했습니다. mAP50-95 평가를 통해 객체의 겹침 범위를 세부적으로 고려한 결과를 도출했습니다.</content> <page>7</page>
+<main>얼굴 1모델 훈련 탐지 과정</main>  
+<sub>얼굴 1모델 훈련 탐지 과정</sub> <content>YOLO yolov8n과 yolov8s 성능 비교 후 YOLOv8 모델을 사용하여 객체 탐지 평가를 진행하였고, mAP50 50%의 겹침 threshold에서 정확한 위치 평가를 고려했습니다.</content> <page>7</page>  
 
-<main>객체 탐지 모델 선정</main>
-<sub>객체 탐지 모델 선정</sub> <content>YOLOV 모델을 선택하여 추론 속도를 최적화하고, 조명 환경에서 성능을 높이기 위해 albumentation 라이브러리를 이용했습니다.</content> <page>10</page>
+<main>하이퍼 파라미터 튜닝</main>  
+<sub>하이퍼 파라미터 튜닝</sub> <content>하이퍼 파라미터 튜닝 과정에 대한 구체적인 내용은 제공되지 않았습니다.</content> <page>8</page>  
 
-<main>음성 안내 알고리즘</main>
-<sub>음성 안내 알고리즘</sub> <content>움직이는 객체를 실시간으로 탐지하여 어느 시점에 음성 안내를 해야 하는지에 대한 문제를 해결하기 위해 여러 알고리즘을 적용했습니다. 안정화 판단 함수와 FPS를 고려한 프레임 단위 업데이트를 통해 유의미한 움직임을 인식하고 정보를 제공합니다.</content> <page>11</page>
+<main>얼굴 탐지모델 훈련 과정</main>  
+<sub>얼굴 탐지모델 훈련 과정</sub> <content>훈련 모델에 대한 추가 정보는 제공되지 않았습니다.</content> <page>9</page>  
 
-<main>한계점</main>
-<sub>한계점</sub> <content>음성 안내 도중 변동사항 반영 불가, Pyttsx3의 TTS 구현 모듈 특성상 음성 재생 도중 중단 불가, 시각 장애인에게 비율 정보가 불편할 수 있으며 사용성 검증이 필요합니다. 카메라 프레임 규격 조정과 객체 라벨의 한정성 등의 문제점이 있습니다.</content> <page>16</page>
+<main>객체 탐지모델 선정</main>  
+<sub>객체 탐지모델 선정</sub> <content>후면카메라에서 추론 속도를 최적화하고, YOLOV의 인식 능력을 보완하기 위해 색보정 함수 및 albumentation 라이브러리를 사용했습니다.</content> <page>10</page>  
+
+<main>음성 안내 알고리즘</main>  
+<sub>음성 안내 알고리즘</sub> <content>전면카메라에서 객체에 대한 실시간 음성 안내 시점 연구 및 bbox와 IoU 계산을 통해 음성 안내 결정을 5프레임 단위로 수행하도록 수정했습니다. 후면카메라에서는 Confidence가 높은 객체만 인식하며, 유의미한 움직임을 판단하여 상태 변수를 변경합니다.</content> <page>11</page> <page>13</page> <page>14</page> <page>15</page>  
+
+<main>한계점</main>  
+<sub>한계점</sub> <content>음성 안내 중 변동사항을 반영할 수 없고, TTS의 특성상 음성 재생 중단이 불가능합니다. 사용자의 움직임 감지 입력 정보 변화에 따른 안내 중단 구현 실패, 모델 학습 및 테스트를 위한 웹캠 프레임 규격 제한으로 인해 정확한 Label 분류에 한계가 있습니다.</content> <page>16</page>

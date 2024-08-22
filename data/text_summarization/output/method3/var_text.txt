@@ -1,23 +1,21 @@
-<subject>의과 모델을 이용 하포트 폴리오 VAR 수익 물예측 정 - {isK <즈 Val at e</subject>
+<subject>Value at Risk & Conclusion</subject>
 <team>송휘종, 이수정, 강춘우, 김나현, 이형석</team>
-<index>Timeline, ntroduction to Time Series Analysis, Value at Risk & Conclusion Discussion</index>
+<index>Timeline, Introduction to Time Series Analysis, Value at Risk, Conclusion, Discussion</index>
 
 <main>Timeline</main>
-<sub>Timeline</sub> <content>Project aimed to experience time series models commonly used in financial analysis.</content> <page>4</page>
-
+<sub>프로젝트 목표</sub> <content>VAR 포트폴리오 모델을 이용하여 수익률 예측 및 Value at Risk 측정.</content> <page>3</page>
 <main>Introduction to Time Series Analysis</main>
-<sub>자기 회귀(CAuto-Regressive) 모델</sub> <content>Uses past values of a variable to predict its future values through linear combinations.</content> <page>6</page>
-<sub>백터 자기회귀 모델(Vector Auto-Regressive)</sub> <content>Utilized for multivariate time series predictions considering mutual influence among multiple variables within the same dataset.</content> <page>7</page>
-<sub>정상성</sub> <content>Discusses the concept of stationarity and tests like Augmented Dickey-Fuller (ADF) and Phillips-Perron (PP) to check if a series is stationary.</content> <page>8</page>
-<sub>그랜처-인과관계 검정</sub> <content>Tests the mutual causality between variables, rejecting null hypotheses to use variables as predictors in VAR.</content> <page>9</page>
-<sub>종목선정</sub> <content>Stocks selected for analysis include CELTRON, Hyundai, SK Innovation, and others, covering the period from January 2013 to December 2022.</content> <page>11</page>
-<sub>변수 수집 및 선정</sub> <content>Lists collected variables for different companies including economic indices, stock prices, and oil prices.</content> <page>12</page>
-<sub>VAR모델링</sub> <content>Various VAR models with different lags (5, 9, 11) were selected for predicting returns.</content> <page>17</page>
-<sub>이용한수익률 예측</sub> <content>Shows predicted vs actual returns for January 2023 using the VAR model.</content> <page>22</page>
-
-<main>Value at Risk & Conclusion Discussion</main>
-<sub>Value at Risk</sub> <content>Discusses the value at risk measurement, including various methods such as RiskMetrics, TimeSeries Approach, Block Maxima, and Peaks Over Threshold.</content> <page>24</page>
-<sub>BiskMetrics</sub> <content>Illustrates the calculation of loss at time t for a given amount, considering all information up to time t.</content> <page>26</page>
-<sub>포트폴리오의 Value at Risk</sub> <content>Discusses the correlation matrix, weights, and conditions for portfolio VaR, emphasizing the importance of weight constraints.</content> <page>29</page>
-<sub>포트폴리오의 수익률과 VaR</sub> <content>Shows portfolio returns and VaR.</content> <page>32</page>
-<sub>결론 및 한계점</sub> <content>Emphasizes trend prediction over exact return prediction, confirming portfolio theory on risk reduction through diversification. Notes the simplicity and limitations of the VAR model and the need for objective metrics for model selection.</content> <page>33</page>
+<sub>자기 회귀 모델</sub> <content>현재의 값이 이전의 값에 의존하여 예측하는 모델 설명.</content> <page>6</page>
+<sub>백터 자기회귀 모델</sub> <content>다변량 시계열 예측에서 변수 간 상호 영향을 고려하여 미래 값을 예측하는 방법.</content> <page>7</page>
+<sub>정상성</sub> <content>시계열 데이터의 정상성을 정의하고 검정하는 방법 소개.</content> <page>8</page>
+<sub>그랜처-인과관계 검정</sub> <content>변수 간 인과관계를 검정하는 방법 설명.</content> <page>9</page>
+<main>Value at Risk</main>
+<sub>Value at Risk 개념</sub> <content>손실 측정 지표로서의 Value at Risk 정의 및 측정 방법 설명.</content> <page>24</page>
+<sub>측정 방법</sub> <content>RiskMetrics, TimeSeries Approach 등 다양한 방법으로 VaR 측정을 수행.</content> <page>25</page>
+<sub>포트폴리오 VaR</sub> <content>포트폴리오의 상관계수와 가중치에 따라 VaR 계산 방법 설명.</content> <page>29</page>
+<sub>포트폴리오 수익률과 VaR</sub> <content>포트폴리오의 수익률과 VaR 간 관계 분석.</content> <page>32</page>
+<main>Conclusion</main>
+<sub>결론</sub> <content>수익률 예측보다는 추세 예측의 중요성을 강조하고, 분산 투자의 필요성을 확인.</content> <page>33</page>
+<sub>한계점</sub> <content>VAR 모델이 실제 금융 시장을 잘 반영하지 못할 수 있으며, 적절한 모델 선택을 위한 객관적인 지표 필요.</content> <page>34</page>
+<main>Discussion</main>
+<sub>VAR 모델의 한계</sub> <content>VAR 모델이 단순하여 금융 시장과 차이가 있을 수 있으며, 다른 방법과 비교할 때 VaR의 경향성 문제 언급.</content> <page>34</page>

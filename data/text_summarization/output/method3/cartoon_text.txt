@@ -1,26 +1,18 @@
-<subject>CartOOnGAN</subject>
-<team>재원, 선장, 용호, 항해사, 영서, 항해사</team>
+<subject>GAN 이란?</subject>
+<team>재원, 용호, 영서</team>
 <index>GAN 이란?, CartoonGAN, Dataset, CartoonGAN 변형, Experiment</index>
 
-<main>GAN 이란?</main>
-<sub>GAN의 정의와 훈련 과정</sub> <content>GAN은 위조 지폐범과 경찰의 관계를 통해 설명되며, Generator는 Discriminator를 속이기 위해 진짜 같은 이미지를 생성하게 된다.</content> <page>3</page>
-<sub>손실함수</sub> <content>Generator와 Discriminator 간의 경쟁을 통해 Generator가 진짜 같은 이미지를 생성하도록 훈련된다. 학습 목표는 손실 함수를 최소화하는 것이 아님.</content> <page>5</page>
-<sub>Training Step</sub> <content>GAN의 학습 과정에서 메러를 최소화하도록 학습된다.</content> <page>6</page>
-
+<main>GAN이란?</main>
+<sub>GAN의 훈련 과정</sub> <content>GAN은 적대적 훈련을 통해 Generator가 Discriminator를 속여 진짜 같은 이미지를 생성하는 것을 목표로 하며, 이 과정에서 손실 함수가 중요한 역할을 한다.</content> <page>1</page>
 <main>CartoonGAN</main>
-<sub>Architecture</sub> <content>상세한 아키텍처 설명.</content> <page>8</page>
-<sub>Loss function</sub> <content>CartoonGAN에서 사용되는 손실 함수는 실제 만화 이미지와 생성된 이미지 간의 차이를 최소화하는 것을 목표로 한다. 세부 항목으로는 실제 만화 이미지, 제거된 만화 이미지, 생성된 이미지에 대한 판별기 학습 역할이 포함된다.</content> <page>9</page>
-
+<sub>Architecture</sub> <content>CartoonGAN은 VGG 네트워크의 피처를 사용하여 생성된 만화 이미지와 원본 이미지 간의 고수준 특징의 차이를 최소화하며 스타일 변환을 수행한다.</content> <page>3</page>
+<sub>Loss function</sub> <content>손실 함수의 세 가지 주요 항목이 있으며, 이는 각각 진짜 만화 이미지, 오래된 이미지 제거, 생성된 이미지의 판별 역할을 학습시키는 데 기여한다.</content> <page>3</page>
 <main>Dataset</main>
-<sub>Dataset 구성</sub> <content>'원피스' 시리즈 영화에서 약 11시간 30분 분량의 데이터를 추출하여, 9728장의 만화 이미지와 10000장의 실제 이미지를 포함한 데이터셋을 생성. Edge Smoothing 기법을 사용하여 이미지 품질을 향상시킴.</content> <page>11</page>
-<sub>Training Step</sub> <content>상세한 학습 단계 설명.</content> <page>12</page>
-
+<sub>데이터 설명</sub> <content>다양한 '원피스' 영화에서 약 11시간 30분 분량의 영상에서 9728장의 만화 이미지와 10000장의 실제 이미지를 추출하여 데이터셋을 구성하였다.</content> <page>5</page>
 <main>CartoonGAN 변형</main>
-<sub>변형 CartoonGAN ResNet Block</sub> <content>Generator에 사용되는 ResNet Block에서 batch normalization과 residual connection 이후에 ReLU가 적용되는 구조로 변경.</content> <page>14</page>
-<sub>변형 CartoonGAN Generator Upsampling</sub> <content>Generator에서 blurring과 batch normalization을 사용하여 upsampling 과정에서 발생할 수 있는 문제를 해결함.</content> <page>15</page>
-<sub>Content Loss</sub> <content>Content Loss를 VGG19에서 VGG16으로 변경하고, VGG16의 24번째 layer까지만 사용하여 feature extractor로 활용.</content> <page>16</page>
-
+<sub>변형 CartoonGAN ResNet Block</sub> <content>Generator의 ResNet Block 구조에서 배치 정규화와 잔여 연결을 통해 더 정교한 학습을 가능하게 한다.</content> <page>7</page>
+<sub>변형 CartoonGAN Generator Upsampling</sub> <content>업샘플링 과정에서 발생할 수 있는 아티팩트를 줄이기 위해 블러링과 배치 정규화를 도입하였다.</content> <page>7</page>
+<sub>변형 CartoonGAN Content Loss</sub> <content>Content Loss를 VGG16로 변경하여 계산의 효율성을 높이고 저수준 특성을 추출하는 데 적합하게 수정하였다.</content> <page>7</page>
 <main>Experiment</main>
-<sub>Pretrain Generator</sub> <content>Real image의 content를 유지하기 위해 Generator를 사전 학습함. epochs 10, batch size 16, Optimizer AdamW 사용.</content> <page>18</page>
-<sub>Discriminator & Generator train</sub> <content>Discriminator와 Generator를 함께 학습시킴. epochs 10, batch size 16, Optimizer AdamW 사용. 손실 함수로는 Adversarial Loss, BCEWithLogitsLoss, Content Loss 등이 사용됨.</content> <page>19</page>
-<sub>Experiment Results</sub> <content>최종 실험 결과 설명.</content> <page>20</page>
+<sub>Experiment Train</sub> <content>Generator는 실제 이미지의 콘텐츠를 유지하기 위해 사전 훈련되며, 손실 함수는 Content Loss와 기본 손실로 구성된다.</content> <page>9</page>
+<sub>Experiment Results</sub> <content>실험 결과는 Discriminator와 Generator의 훈련을 통해 이미지의 진짜같은 특성을 유지하는 데 중점을 두며, 다양한 하이퍼파라미터와 손실 함수가 사용되었다.</content> <page>9</page>

@@ -1,27 +1,17 @@
 <subject>나용자의 순차적 고려한 레시피 기반 음식 & 식당 추천 선호도를</subject>
 <team>김태호12기, 이철민13기, 김아진13기, 김윤영13기</team>
-<index>모델 SASREC, 사용 데이터, 식당 추천 알고리즘, 모델 설명 & 성능 비교, 향후 발전방향</index>
+<index>모델, 사용 데이터, 식당 추천 알고리즘, 모델 설명 & 성능 비교, 향후 발전방향</index>
 
-<main>모델 SASREC</main>
-<sub>Neural Collaborative Filtering</sub> <content>Neural Net 기반의 Filtering 모델로 사용자와 아이템 간의 상호작용을 예측하여 개인화된 추천을 제공한다.</content> <page>7</page>
-<sub>Factorization Machine</sub> <content>SVM과 MF를 결합하여 Feature 간의 모든 interaction을 모델링하며 사용자의 선호도를 예측한다.</content> <page>8</page>
-<sub>Wide & Deep</sub> <content>구글이 발표한 추천 랭킹 알고리즘으로 Memorization을 위한 Wide 모델과 Generalization을 위한 Deep 모델을 결합하여 앱 간의 interaction을 학습한다.</content> <page>9</page>
-<sub>SASREC</sub> <content>Self-Attention을 활용하여 사용자의 상호작용 시퀀스를 모델링 사용자의 선호도 및 변화를 잘 포착하여 높은 성능을 보인다.</content> <page>10</page>
-
-<main>모델 설명 & 성능 비교</main>
-<sub>모델 정의 NCF</sub> <content>Neural Collaborative Filtering 모델 정의.</content> <page>11</page>
-<sub>모델 정의 FM</sub> <content>Factorization Machine 모델 정의.</content> <page>11</page>
-<sub>모델 정의 WIDE&DEEP</sub> <content>Wide & Deep 모델 정의.</content> <page>12</page>
-<sub>모델 정의 SASReC</sub> <content>SASReC 모델 정의.</content> <page>12</page>
-<sub>랭킹 성능 평가 지표</sub> <content>NDCG@10과 HR@10을 사용하여 모델 성능 평가. SASReC의 성능이 가장 우수하여 최종 모델로 선택되었다.</content> <page>13</page>
-<sub>SASRec 성능</sub> <content>Sparsity가 높은 데이터에서도 높은 성능을 보이며 최종적으로 SASRec을 사용하여 음식점 추천을 진행한다.</content> <page>15</page>
-
-<main>식당 추천 알고리즘</main>
-<sub>구현 과정</sub> <content>FOODCOM 데이터와 YELPCOM 데이터를 TF-IDF 벡터로 변환하고 SASRec 모델의 출력 결과를 통해 음식 간의 유사도를 Cosine 계산하여 추천 식당을 결정한다.</content> <page>17</page>
-<sub>추천 예시 User 1842</sub> <content>Kimchi Pancake을 기반으로 추천 식당 Atti.</content> <page>18</page>
-<sub>추천 예시 User 19073</sub> <content>Small Sausage And Broccoli Rabe Pizza를 기반으로 추천 식당 Rubirosa.</content> <page>19</page>
-
-<main>향후 발전방향</main>
-<sub>적용 가능한 지역 확대</sub> <content>현재 뉴욕에 한정된 음식점 데이터를 다양한 지역으로 확대.</content> <page>20</page>
-<sub>사전훈련된 단어 벡터 사용</sub> <content>tf-idf 대신 Word2Vec과 같은 사전 훈련된 단어 벡터를 사용하여 유사도 계산.</content> <page>20</page>
-<sub>더 많은 유저 필요</sub> <content>시스템의 성능 향상을 위해 더 많은 사용자 데이터 필요.</content> <page>20</page>
+<main>모델</main>  
+<sub>NEURAL GoLLabOratiVE FiLTErING</sub> <content>Neura! Net 기반의 Collaborative Filtering 모델로, 사용자와 아이템 간의 상호 작용을 예측하여 개인화된 추천을 제공하는 시스템이다. 기존의 선형적인 Matrix Factorization의 한계를 극복하고 복잡한 관계를 모델링할 수 있다.</content> <page>1</page>  
+<main>사용 데이터</main>  
+<sub>Foodcom Dataset</sub> <content>식당 추천 시스템에 사용되는 데이터셋이다.</content> <page>2</page>  
+<sub>Yelpcom Dataset</sub> <content>사용자 리뷰 기반의 데이터셋으로, 추천 시스템에 활용된다.</content> <page>2</page>  
+<main>식당 추천 알고리즘</main>  
+<sub>SASREC</sub> <content>Self-Attention을 활용한 시퀀스 모델링을 통해 사용자 선호도를 잘 포착하였으며, 높은 성능을 보여주는 모델이다. 데이터의 희소성 문제를 해결하고, 최종 모델로 선정되어 음식점 추천에 사용될 예정이다.</content> <page>3</page>  
+<main>모델 설명 & 성능 비교</main>  
+<sub>NCF, FM, WIDE&DEEP, SASReC</sub> <content>다양한 모델 정의와 함께 성능 평가 지표인 NDCG와 Hit Ratio를 통해 추천 시스템의 성능을 평가하였다. SASReC 모델이 가장 좋은 성능을 보였다.</content> <page>5</page>  
+<main>향후 발전방향</main>  
+<sub>지역 확대</sub> <content>현재 음식점 데이터에 한정되어 있으나, 향후 다양한 지역의 식당을 추가할 계획이다.</content> <page>6</page>  
+<sub>유사도 계산 개선</sub> <content>tf-idf 외에 Word2Vec과 같은 사전 훈련된 단어 벡터를 사용하여 추천의 정확성을 높일 예정이다.</content> <page>6</page>  
+<sub>사용자 수 증가</sub> <content>더 많은 사용자 데이터가 필요하다.</content> <page>6</page>

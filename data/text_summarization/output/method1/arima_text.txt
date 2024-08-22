@@ -1,36 +1,27 @@
-<subject>포용적 기후정책 아이디어 공모전</subject>
-<team>팀 A</team>
-<index>프로젝트 배경 소개</index>
+<subject>미세먼지 예측 프로젝트</subject>  
+<team>팀원 이름</team>  
+<index>미세먼지 예측 프로젝트>  
 
-<main>프로젝트 배경 소개</main>
-<sub>프로젝트 배경</sub> <content>포용적 기후정책 아이디어 공모전은 WHO가 지정한 1군 발암물질인 미세먼지 문제를 다루며, 대기오염으로 인한 조기사망자가 2060년까지 크게 증가할 것으로 전망됩니다. 이를 위해 미래 미세먼지 추세를 분석하는 시계열 분석 프로젝트를 계획했습니다.</content> <page>3</page>
+<main>프로젝트 배경 소개</main>  
+<sub>프로젝트 배경</sub> <content>본 프로젝트는 WHO의 예측에 따라 2060년까지 미세먼지로 인한 조기사망자가 크게 증가할 것으로 예상되어, 미세먼지 추세를 분석하는 시계열 분석 프로젝트로 기획되었습니다.</content> <page>3</page>  
 
-<main>시계열 모델 스터디</main>
-<sub>모델 ARIMA&SARIMA</sub> <content>ARIMA 모델은 시간에 관계없이 평균과 분산이 일정한 시계열 데이터를 분석하며, 차분을 통해 비정상성을 정상성으로 변환합니다. SARIMA 모델은 ARIMA 모델에 계절성을 추가한 것입니다.</content> <page>5</page>
+<main>시계열 모델 스터디</main>  
+<sub>모델 ARIMA&SARIMA</sub> <content>ARIMA 모델은 자기회귀와 이동평균을 통합한 모델로, 비정상 데이터를 정상화하기 위한 차분 과정을 포함합니다. SARIMA 모델은 계절성을 추가한 ARIMA 모델로, 계절적 변동을 고려하여 예측 정확도를 향상시킵니다.</content> <page>5</page>  
 
-<main>사용 데이터셋</main>
-<sub>사용 데이터셋</sub> <content>대기환경지수를 포함한 다양한 대기오염 물질 데이터를 사용합니다.</content> <page>7</page>
+<main>사용 데이터셋</main>  
+<sub>사용 데이터셋</sub> <content>대기환경지수, 미세먼지, 질소, 산화탄소 등 다양한 대기오염 관련 데이터를 사용하여 모델을 구축합니다.</content> <page>7</page>  
 
-<main>시계열 데이터 분석의 전처리</main>
-<sub>데이터 전처리 및 구조화</sub> <content>필요없는 칼럼을 제거하고, '년'과 '월'을 추출하여 새로운 컬럼을 추가하며, 2002년부터 2023년까지의 데이터로 필터링했습니다.</content> <page>8</page>
-<sub>데이터 그룹화</sub> <content>년과 월별로 데이터를 그룹화하여 평균 미세먼지 농도를 계산하고, 초미세먼지를 제거한 후 분석에 이용합니다.</content> <page>8</page>
-<sub>시계열 분석 함수 정의</sub> <content>주어진 시계열 데이터의 이동 평균과 이동 표준편차를 계산하여 시각화합니다.</content> <page>9</page>
-<sub>정상성 검정</sub> <content>Dickey-Fuller 검정을 통해 시계열 데이터의 정상성을 테스트합니다.</content> <page>9</page>
-<sub>시계열데이터의 정상성 확인을 위한 시각화</sub> <content>시계열 데이터 플롯, Dickey-Fuller 테스트 p-value, ACF 및 PACF 플롯을 생성하여 정상성을 확인합니다.</content> <page>10</page>
-<sub>시각화 결과</sub> <content>원본 데이터의 월별 변화, 추세, 계절성, 잔차를 시각화하여 분석 모델에 활용합니다.</content> <page>11</page>
-<sub>시계열데이터 플롯 및 정상성 테스트</sub> <content>시계열 데이터를 플롯하여 시각화하고 정상성 검정을 수행합니다. 데이터는 비정상적이므로 정상성 변환이 필요합니다.</content> <page>12</page>
-<sub>차분을 통한 정상성 확보</sub> <content>차분을 통해 비정상적인 시계열 데이터를 정상성으로 변환합니다.</content> <page>13</page>
+<main>시계열 데이터 분석의 전처리</main>  
+<sub>데이터 전처리 및 구조화</sub> <content>필요 없는 칼럼을 제거하고, '측정소명', '년', '월'을 추출하여 새로운 컬럼을 추가하였으며, 2002년부터 2023년까지의 데이터로 필터링하였습니다.</content> <page>8</page>  
+<sub>차분을 통한 정상성 확보</sub> <content>비정상적인 시계열 데이터를 차분하여 정상성을 확보하였으며, 검정 결과 p-value가 0.05 이하로 정상적인 시계열 데이터로 확인되었습니다.</content> <page>13</page>  
 
-<main>ARIMA SARIMA 적용과 비교</main>
-<sub>ARIMA</sub> <content>최적 파라미터를 탐색하고 모델을 적합하여 미래값 예측 및 시각화를 수행합니다.</content> <page>14</page>
-<sub>SARIMA</sub> <content>SARIMA 모델을 데이터에 적합하고 계절성을 추가하여 미래값을 예측하고 시각화합니다.</content> <page>15</page>
+<main>ARIMA SARIMA 적용과 비교</main>  
+<sub>ARIMA 모델 적용</sub> <content>최적의 파라미터 조합을 탐색하고, 이를 바탕으로 모델을 적합하여 미래 값을 예측하고 시각화하였습니다.</content> <page>14</page>  
+<sub>SARIMA 모델 적용</sub> <content>SARIMA 모델을 데이터에 적합하여 미래 값을 예측하고 시각화하였습니다.</content> <page>15</page>  
 
-<main>분석결과</main>
-<sub>분석 결과</sub> <content>ARIMA와 SARIMA 모델을 비교 분석합니다.</content> <page>16</page>
-<sub>파라미터 유의성</sub> <content>진단 통계량 대부분의 파라미터가 통계적으로 유의미하지만, 잔차의 정규성과 이분산성 문제로 불확실성이 증가할 수 있습니다.</content> <page>17</page>
+<main>분석결과</main>  
+<sub>ARIMA 결과</sub> <content>모델의 대부분 파라미터가 통계적으로 유의미하며, 잔차의 독립성이 확인되었으나 정규성을 따르지 않고 이분산성이 존재하여 불확실성이 증가할 수 있습니다.</content> <page>17</page>  
 
-<main>프로젝트 인사이트 공유</main>
-<sub>장기 추세</sub> <content>서울시의 미세먼지 농도는 전반적으로 감소하는 추세를 보이고 있으며, 이는 정책 및 환경 규제의 효과로 예상됩니다.</content> <page>18</page>
-<sub>계절성</sub> <content>미세먼지 농도는 겨울철과 봄철에 높아지는 경향이 있으며, 이는 난방 연료 사용 증가와 황사 등 계절적 요인과 관련이 있습니다.</content> <page>18</page>
-<sub>미래 예측</sub> <content>2024년 예측 결과에 따르면 미세먼지 농도는 감소 추세를 유지할 것으로 보이며, 단기 변동성은 유지될 것입니다.</content> <page>18</page>
-<sub>정책적 시사점</sub> <content>미세먼지 농도는 특정 시기에 높은 변동성을 보이므로, 지속적인 정책적 노력이 필요하며 계절적 요인에 맞춘 대기 오염 저감 대책을 강화해야 합니다.</content> <page>18</page>
+<main>프로젝트 인사이트 공유</main>  
+<sub>장기 추세</sub> <content>서울시의 미세먼지 농도는 전반적으로 감소하는 추세를 보이며, 이는 대기 질 개선을 위한 정책과 환경 규제의 효과로 분석됩니다.</content> <page>18</page>  
+<sub>미세먼지 농도 예측</sub> <content>2024년 미세먼지 농도는 현재의 감소 추세를 유지할 것으로 보이며, 예측된 값이 관측된 값과 유사한 패턴을 따를 것으로 예상됩니다.</content> <page>18</page>

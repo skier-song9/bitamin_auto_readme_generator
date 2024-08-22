@@ -3,25 +3,20 @@
 <index>INTRODUCTION, DATA PREPROCESSING, MODELING, CONCLUSIONS AND LIMITATIONS</index>
 
 <main>INTRODUCTION</main>
-<sub>프로젝트 배경</sub> <content>뉴스가 주가 변동에 미치는 영향을 탐구하고 뉴스 감성분석 및 토픽 모델링 결과를 사용하여 주가 예측 가능성을 연구 기존의 단기 예측을 넘어 장기적인 추세를 고려한 주가 예측 모델 구현</content> <page>4</page>
-<sub>프로젝트 목표</sub> <content>뉴스 데이터를 활용한 주가 예측 모델의 최적화 및 효율적인 파라미터 선정 LSTM GRU Transformer 모델 비교 및 튜닝</content> <page>6</page>
-<sub>데이터 수집</sub> <content>FinanceDataReader와 Stock News API를 사용하여 2018년 1월 2일부터 2023년 12월 29일까지의 NETFLIX 핀터레스트 메타플렛폼스 스포티파이 주가 데이터 및 뉴스 데이터 수집</content> <page>7</page>
-
+<sub>Background of topic selection</sub> <content>주가 예측에 뉴스를 활용하기 위한 프로젝트로, 뉴스의 감성 분석과 토픽 모델링 결과를 사용하여 주가 변동의 가능성을 탐구.</content> <page>11</page>
+<sub>Brief Project Introduction</sub> <content>뉴스 데이터를 활용한 주가 예측 모델의 최적화 및 파라미터 선정이 목표이며, LSTM, GRU, Transformer 모델을 통한 실험과 성능 평가를 진행.</content> <page>12</page>
+<sub>Data collection</sub> <content>NETFLIX의 주가 데이터를 FinanceDataReader 라이브러리로 수집하고, Stock News API를 통해 관련 뉴스 데이터를 수집하여 감성 분석 및 토픽 모델링을 시도함.</content> <page>13</page>
 <main>DATA PREPROCESSING</main>
-<sub>파생 변수 생성</sub> <content>변화율 이동 평균 등의 파생 변수 생성 2018년 데이터를 추가로 수집해 파생변수 생성에 활용</content> <page>11</page>
-<sub>지표 추가</sub> <content>Technical Analysis Library를 사용하여 Bollinger Bands Keltner Channel 등 37개의 금융 지표 추가</content> <page>12</page>
-<sub>유사 주식 종가 추가</sub> <content>핀터레스트 메타플렛폼스 스포티파이의 해당 기간 종가를 feature로 추가</content> <page>14</page>
-<sub>다중공선성 제거</sub> <content>주가 변화와 관련된 기본 지표를 유지하고 상관관계가 높은 보조 지표를 제거</content> <page>16</page>
-<sub>뉴스 토픽 및 감성 파생 변수 생성</sub> <content>뉴스 토픽과 감성 데이터를 Label Encoding과 OneHot Encoding으로 변환하여 추가</content> <page>17</page>
-<sub>데이터셋 구성</sub> <content>주식 데이터셋(stockOnly-df)과 뉴스 포함 데이터셋(total-df) 구성</content> <page>18</page>
-
+<sub>Make derived Variable</sub> <content>변화율과 이동 평균을 포함한 파생변수를 생성하며, 기술 분석 지표를 사용하여 데이터의 특성을 풍부하게 함.</content> <page>21</page>
+<sub>Add indicators</sub> <content>다양한 기술 분석 지표를 추가하고, 한국투자증권 mts에서 37개 지표를 선정함.</content> <page>22</page>
+<sub>Peer Analysis</sub> <content>NETFLIX와 유사한 기업들의 주가를 feature로 추가하고, 주가 변화와의 관계를 분석.</content> <page>23</page>
+<sub>Remove multicollinearity</sub> <content>주가 변화와 관련된 주요 지표를 유지하며, 상관관계가 높은 보조 지표는 제거.</content> <page>24</page>
+<sub>Make derived variable for News Topics & Sentiment</sub> <content>뉴스의 주제와 감성을 파생변수로 추가하고, 과거 뉴스의 영향을 측정하기 위해 이동 평균을 사용.</content> <page>25</page>
+<sub>Dataset</sub> <content>주식 데이터셋과 전체 데이터셋의 구조와 크기를 정의함.</content> <page>26</page>
 <main>MODELING</main>
-<sub>시계열 분석</sub> <content>고정된 Window Size로 연속된 데이터 입력 및 예측</content> <page>21</page>
-<sub>모델 정의</sub> <content>LSTM GRU Transformer 모델 정의 LSTM은 기존 주가 예측에 주로 사용됨 GRU는 LSTM의 복잡성을 단순화 Transformer는 NLP에서 좋은 성능을 보여 주가 예측에 적용</content> <page>23</page>
-<sub>모델 비교</sub> <content>예측 대상 변수(Close vs ID-ROC) 뉴스 포함 여부 모델 종류(LSTM vs GRU vs Transformer) 비교</content> <page>24</page>
-
+<sub>Time Series</sub> <content>과거 데이터를 분석하여 미래 값을 예측하는 방법론을 적용하며, 모델 입력 데이터와 예측 데이터의 구조를 설정함.</content> <page>31</page>
+<sub>Modeling</sub> <content>LSTM, GRU, Transformer 모델을 정의하고, 각 모델의 성능을 비교하기 위한 다양한 파라미터 조정을 시도함.</content> <page>32</page>
 <main>CONCLUSIONS AND LIMITATIONS</main>
-<sub>평가 기준</sub> <content>예측 평가 지표로 RMSE 사용 Close 종가 예측보다 ROC 예측이 추세 반영이 잘됨</content> <page>28</page>
-<sub>모델 결과</sub> <content>LSTM GRU Transformer 각각의 모델 결과 비교 LSTM이 평균 손실값이 가장 작고 Transformer가 가장 큼</content> <page>31</page>
-<sub>최적 파라미터</sub> <content>LSTM (stock-only seq 30 batch 64 avg error 1.85%) GRU (total seq 30 batch 128 avg error 1.66%) Transformer (total seq 30 batch 64 avg error 1.62%)</content> <page>36</page>
-<sub>한계점</sub> <content>예측 성능 평가의 어려움 예상치 못한 사건의 발생으로 인한 예측의 어려움 뉴스 데이터의 정확도 문제 등</content> <page>40</page>
+<sub>예측 평가기준</sub> <content>MSE 대신 RMSE를 사용하여 예측 모델의 성능을 평가하며, 다양한 변수와 모델을 비교 분석함.</content> <page>33</page>
+<sub>최종 모델 성능</sub> <content>LSTM, GRU, Transformer 모델의 평균 오차율을 비교하고, ROC로 예측하는 것이 추세 반영에 유리함을 확인함.</content> <page>34</page>
+<sub>Limitations</sub> <content>금융 시장의 예측 어려움과 변동성을 언급하며, 모델 성능 평가의 필요성 및 주식 시장에서의 예측 정확도 기준을 설명함.</content> <page>35</page>

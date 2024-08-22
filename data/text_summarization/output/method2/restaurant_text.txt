@@ -1,35 +1,24 @@
-<subject>추천시스템 1조</subject>
+<subject>식당 추천 시스템</subject>
 <team>김태호12기, 이철민13기, 김아진13기, 김윤영13기</team>
 <index>Ndex</index>
 
-<main>프로젝트 소개</main>
-<sub>모델 SASREC</sub> <content>사용자의 입맛에 맞는 음식을 추천하고 그 음식을 파는 식당을 추천해드립니다.</content> <page>3</page>
+<main>모델</main>
+<sub>SASREC</sub> <content>사용자의 입맛에 맞는 음식을 추천하고 해당 음식을 제공하는 식당을 추천하는 알고리즘입니다.</content> <page>1</page>
 
 <main>사용 데이터</main>
-<sub>사용리진록</sub> <content>Foodcom과 Yelpcom 데이터를 사용하여 유저가 좋아할 음식과 유사한 음식을 파는 식당을 추천합니다.</content> <page>4</page>
-<sub>사용리니지록</sub> <content>Foodcom Dataset과 Yelpcom Dataset을 사용합니다.</content> <page>5</page>
+<sub>식당 추천 알고리즘</sub> <content>사용되는 데이터는 Foodcom과 Yelpcom에서 가져온 정보입니다.</content> <page>1</page>
 
-<main>모델</main>
-<sub>NEURAL Collaborative Filtering</sub> <content>Neural Net 기반의 Filtering 모델로 사용자와 아이템 간의 상호작용을 예측하여 개인화된 추천을 제공합니다.</content> <page>7</page>
-<sub>Factorization Machine</sub> <content>Factorization Model과 SVM의 장점을 결합하여 사용자의 선호도를 예측합니다.</content> <page>8</page>
-<sub>Wide & Deep</sub> <content>구글이 발표한 추천 랭킹 알고리즘으로, Memorization에 특화된 Wide 모델과 Generalization에 특화된 Deep 모델을 결합하여 추천을 제공합니다.</content> <page>9</page>
-<sub>SASREC</sub> <content>사용자의 상호작용 시퀀스를 모델링하여 개인화된 추천을 제공하는 모델입니다.</content> <page>10</page>
-
-<main>모델 성능</main>
-<sub>모델 정의 NCF, FM, WIDE&DEEP, SASREC</sub> <content>랭킹 성능 평가 지표로 NDCG@10과 HR@10을 사용하며, SASREC이 가장 높은 성능을 보였습니다.</content> <page>13</page>
-
-<main>SASrec을 활용한 추천시스템</main>
-<sub>모델 구현 SASREC 수조시스템</sub> <content>Self-Attention을 활용한 시퀀스 모델링을 통해 사용자의 선호도 변화를 잘 포착하여 높은 성능을 보였습니다. 최종 모델로 SASREC을 사용하여 음식점 추천을 진행합니다.</content> <page>15</page>
+<main>모델 설명 & 성능 비교</main>
+<sub>모델 성능</sub> <content>추천 시스템의 성능은 NDCG 및 Hit Ratio로 평가되며, SASReC 모델이 가장 뛰어난 성능을 보였습니다.</content> <page>1</page>
 
 <main>식당 추천 알고리즘 구현</main>
-<sub>구현 과정</sub> <content>Foodcom 데이터와 Yelpcom 데이터의 음식을 TF-IDF 벡터로 변환하여 SASREC 모델의 출력 결과와 유사도를 계산하여 가장 높은 유사도를 가진 식당을 추천합니다.</content> <page>17</page>
+<sub>구현 과정</sub> <content>1. FOODCOM과 YELPCOM 데이터를 TF-IDF 벡터로 변환, 2. SASREC 모델을 사용해 FOODCOM 음식 이름과 YELPCOM의 유명 음식 간의 유사도를 Cosine으로 계산, 3. 가장 높은 유사도를 가진 식당을 추천합니다.</content> <page>1</page>
 
 <main>식당 추천 예시</main>
-<sub>User 1842</sub> <content>추천 식당: Atti, 추천 결과: Kimchi Pancake</content> <page>18</page>
-<sub>User 19073</sub> <content>추천 식당: Rubirosa, 추천 결과: Chicago Style Deep Dish Sausage Pizza</content> <page>19</page>
+<sub>User 1842</sub> <content>추천된 식당은 Kimchi Pancake, Pork Belly 등으로, SASReC 모델을 통해 추천되었습니다.</content> <page>1</page>
+<sub>User 19073</sub> <content>추천된 식당은 Rubirosa, Small Sausage And Broccoli Rabe Pizza 등으로, SASReC 모델을 통해 추천되었습니다.</content> <page>1</page>
 
 <main>향후 발전 방향</main>
-<sub>적용 가능한 지역 확대</sub> <content>현재는 음식점 데이터에 한정되어 있지만, 이후 다양한 지역의 식당을 추가하여 사용 지역을 확대할 예정입니다.</content> <page>20</page>
-
-<main>가자합니다</main>
-<main>Q&A</main>
+<sub>적용 가능한 지역 확대</sub> <content>다양한 지역의 식당을 추가하여 추천 시스템의 적용 범위를 넓히고자 합니다.</content> <page>1</page>
+<sub>음식점 추천 시 사전훈련된 단어 벡터 사용</sub> <content>tf-idf 외에 Word2Vec과 같은 사전 훈련된 단어 벡터를 활용할 계획입니다.</content> <page>1</page>
+<sub>더 많은 유저 필요</sub> <content>추천의 정확도를 높이기 위해 더 많은 사용자 데이터를 수집할 필요가 있습니다.</content> <page>1</page>

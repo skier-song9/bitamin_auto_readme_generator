@@ -1,34 +1,31 @@
 <subject>SARIMA와 ARIMA 모델 비교를 통한 미세먼지 분석</subject>
 <team>TEAM 시계열 2조 김채연 김아진 문승민 서윤 허범현</team>
-<index>목차</index>
+<index>프로젝트 배경 소개>
+<index>시계열 모델 스터디>
+<index>ARIMA & SARIMA>
+<index>사용 데이터셋>
+<index>시계열 데이터 분석의 전처리>
+<index>ARIMA SARIMA 적용과 비교>
+<index>분석결과>
+<index>프로젝트 인사이트 공유>
 
-<main>프로젝트 배경</main>
-<content>지정한 1군 발암물질 미세먼지는 WHO가 대기오염으로 인한 조기사망자는 2010년 36명에서 10만명당 107명으로 2060년 29배 증가할 것으로 전망 기존 미래 미세먼지를 예측 미세먼지 추세를 분석하여 하는 시계열 분석 프로젝트 계획</content> <page>3</page>
+<main>프로젝트 배경 소개</main>
+<content>WHO는 2060년까지 대기오염으로 인한 조기 사망자가 29배 증가할 것으로 전망하며, 미세먼지 추세를 분석하는 프로젝트를 계획함.</content> <page>1</page>
 
 <main>시계열 모델 스터디</main>
-
-<main>모델 ARIMA&SARIMA</main>
-<sub>ARCAutoregressive Modes</sub> <content>Integrated Yt = po + piyt-1 + D2yt-2 +  + Opyt-p + &t MAMOVIN9 Average Models +2Et-2 + + EqEt-q Yt = Do + Et + BiEt-1</content> <page>5</page>
-<sub>ARIMA 모델의 차수</sub> <content>pda 차수 P:AR의 여:I차분 9:MA의 차수 - nonstationary를 Stationary정상성]하거 하는 differencing을 몇번했는가를 나타내는 것 *stationary 시간에 관계없이 평균과 분산이 일정한 시계열 데이터</content> <page>5</page>
-<sub>SARIMA 모델</sub> <content>SSeasonal + ARIMA 모델에 계절성이 ARIMA 추가된 것!</content> <page>5</page>
+<content>ARIMA 모델은 비정상 시계열 데이터를 정상화하기 위해 차분을 사용하는 방법을 포함하며, SARIMA 모델은 계절성을 추가하여 ARIMA를 확장한 것이다.</content> <page>2</page>
 
 <main>시계열 데이터 분석의 전처리</main>
-<sub>사용데이터셋</sub> <content>대기환경지수미세먼지모존 미산마질소 밀산화탄소마방산가스듬의념균대기모염도월빌점보를제공합니다</content> <page>7</page>
-<sub>데이터 전처리 및 구조화</sub> <content>필요없는 칼럼 제거 '측정소명' a 6'년'과 '월'을 추출하여 새로운 컬럼 추가 2002년부터 2023년까지으 데이터만 필터링 C</content> <page>8</page>
-<sub>데이터 그룹화</sub> <content>a'년'과 '월'별로 데이터를 그룹화 ->각그룹의 평균 미세먼지 농도 계산 b 초미세먼지 제거 후 미세먼지 데이터만 분석에 이용</content> <page>8</page>
-<sub>시계열 분석 함수 정의</sub> <content>주어진 시계열 데이터의 이동 평균과 이동 a 표준편차를 계산하여 시각화</content> <page>9</page>
-<sub>정상성 검정</sub> <content>Dickey--Fuller 검정을 통해 시계열 데이터의 정상성 테스트 a</content> <page>9</page>
-<sub>시각화 결과</sub> <content>원본데이터 Observed 전체 시계열 데이터로 미세먼지 농도의 월별 변화 추세 Trend 장기적인 변화를 나타냄 초기에는 높은 값을 보이다가 점차 감소하는 추세를 보임 계절성 Seasonal 주기적인 변동을 나타냄 매년 특정 월에 미세먼지 농도가 주기적 으로 변동하는 것을 보여줌 -> 계절성 0 잔차 Residual 추세와 계절성을 제거한 후 남는 불규칙한 변동 예측 모델의 잔차 분석에 활용될 수 있습니다</content> <page>11</page>
-<sub>시계열데이터 플롯 및 정상성 테스트</sub> <content>시계열 데이터를 플롯하여 시각화하고 정상성 검정을 수행 a 시계열 데이터 플롯 정상성 검정 전반적으로 감소하는 추세 계절적 변동으로 인한 변동 심함 Critical Value 1%-346 5%-287 10%-257 Test Statistic :-232 p-value 017 > 005 비정상적인 시계열 데이터 -> 정상적으로 변환 필요!</content> <page>12</page>
-<sub>차분을 통한 정상성 확보</sub> <content>비정상적인 시계열 데이터를 차분하여 정상성 확보 a 시계열 데이터 플롯 정상성 검정 전반적으로 일정해짐 정상성 확보 Critical Value 1%-346 5%-287 10%-257 Test Statistic : -1235 000 p-value < 005 정상적인 시계열 데이터</content> <page>13</page>
+<content>데이터 전처리를 통해 필요 없는 칼럼을 제거하고, 연도와 월별로 그룹화하여 평균 미세먼지 농도를 계산함. Dickey-Fuller 검정을 통해 정상성을 테스트하고, 시각화를 통해 데이터의 추세와 계절성을 분석함.</content> <page>3</page>
 
-<main>시계열 모델 적용</main>
-<sub>ARIMA</sub> <content>최적 파라미터 탐색 파라미터 조합pdf 모든 조합 생성 a b 최적 파라미터 탐색 최적 파라미터로 모델 적합 C N 미래값 예측 및 시각화 미래값 예측 a b 시각화</content> <page>14</page>
-<sub>SARIMA</sub> <content>+- 모델 적용 SARIMA ARIMA 모델에 계절성 추가 a b 모델을 데이터에 적합 2 미래값 예측 및 시각화 미래값 예측 a 6 시각화</content> <page>15</page>
+<main>ARIMA</main>
+<content>최적 파라미터를 탐색하여 모델을 적합시키고 미래값을 예측 및 시각화함.</content> <page>4</page>
+
+<main>SARIMA</main>
+<content>SARIMA 모델을 적용하여 계절성을 데이터에 포함시키고 미래값을 예측 및 시각화함.</content> <page>5</page>
 
 <main>분석 결과</main>
-<sub>파라미터 유의성</sub> <content>진단 통계량 대부분의 파라미터가 통계적으로 유의미하다 잔차가 독립적이므로 자기상관 구조를 잘 설명하고 있으나 잔차가 정규성을 따르지 않고 이분산성이 있다는 점에서 불 확실성을 증가시킬 수 있다</content> <page>17</page>
+<content>대부분의 ARIMA 및 SARIMA 파라미터가 통계적으로 유의미하며, 잔차의 독립성과 자기상관 구조가 잘 설명되지만 정규성을 따르지 않음.</content> <page>6</page>
 
 <main>결론 및 인사이트 공유</main>
-<sub>장기 추세</sub> <content>계절성 서울시의 미세먼지 농도는 전반적으로 감소하는 추세를 보이고 있다 이는 대기 질 개선을 위한 정책 및 환경 규제의 효과가 반영된 것으로 예상해볼 수 있다 미세먼지 농도는 연중 특정 시기에 주기적인 변동을 보인다 일반적으로 겨울철과 봄철에 미세먼지 농도가 높아지는 경향이 있다 이는 난방 연료 사용 증가 황사 등 계절적 요인과 관련이 있다</content> <page>18</page>
-<sub>미래 예측</sub> <content>정책적 시사점 2024년의 예측 결과에 따르면 미세먼지 농도는 현재의 감소 추세를 유지할 것으로 보인다 예측된 값이 관측된 값과 유사한 패턴을 따르며 미세먼지 농도의 단기 변동성은 유지될 것으로 보인다 전반적인 감소 추세에도 불구하고 미세먼지 농도는 여전히 계절적 으로 높은 변동성을 보이고 있다 따라서 대기 질 관리를 위한 지속 적인 정책적 노력이 필요하다 특정 시기에 미세먼지 농도가 높아지는 경향을 고려하여 계절적 요 인에 맞춘 대기 오염 저감 대책을 강화할 필요가 있다</content> <page>18</page>
+<content>서울시의 미세먼지 농도는 전반적으로 감소하는 추세를 보이며, 특정 시기에 주기적인 변동이 있음을 확인하였다. 2024년 예측 결과에 따르면 미세먼지 농도는 현재의 감소 추세를 유지할 것으로 보이며, 계절적 요인에 따른 대기 질 관리를 위한 지속적인 정책적 노력이 필요하다.</content> <page>7</page>

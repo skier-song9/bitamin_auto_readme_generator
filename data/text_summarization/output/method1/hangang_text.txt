@@ -1,25 +1,27 @@
-<subject>연구 배경 및 분석</subject>
-<team>이하나, 김하니</team>
-<index>한강공원 방문자 예측 모델>
+<subject>한강공원 방문자 수 예측</subject>  
+<team>프로젝트 팀</team>  
+<index>한강공원 방문자 수 예측>  
 
-<main>연구 배경</main>
-<sub>한강공원 최적 방문 날짜 선택</sub> <content>한강공원 이용자 수 분석을 통해 이상적인 기상 조건과 덜 붐비는 날짜를 선택, 대규모 공공 공간 방문자 수 예측으로 행사 안전 조치 계획 가능.</content> <page>3</page>
+<main>연구 배경</main>  
+<sub>연구 목적</sub> <content>한강공원 최적 방문 날짜 선택 및 도시 계획, 공공 서비스 개선을 위한 방문자 수 예측. 봄철 방문자 수 급증을 고려하여 이상적인 기상 조건과 덜 붐비는 날짜를 선택하여 방문 가능.</content> <page>3</page>  
+<sub>예측의 필요성</sub> <content>대규모 공공 공간의 방문자 수를 예측함으로써 관련 기관이 행사 안전 조치를 효과적으로 계획할 수 있음.</content> <page>3</page>  
 
-<main>모델 선정 배경</main>
-<sub>Long Short-Term Memory Network</sub> <content>LSTM 모델은 장기 의존성 문제를 해결하고 시계열 데이터에서 장기적인 의존성을 모델링하는 데 탁월하여 복잡한 시간적 패턴 예측에 적합.</content> <page>4</page>
+<main>모델 선정 배경</main>  
+<sub>모델 선택 이유</sub> <content>Long Short-Term Memory Network (LSTM) 사용. RNN의 장기 의존성 문제를 해결하고, 시계열 데이터에서 복잡한 시간적 패턴을 예측하는 데 탁월한 능력을 보유.</content> <page>4</page>  
 
-<main>사용 데이터 셋</main>
-<sub>여의도 한강공원 주차대수 데이터</sub> <content>여의도 1-5주차장 주차대수, 평균풍속, 강수량, 평균기온, 평균습도, 미세먼지, 초미세먼지 데이터를 사용.</content> <page>5</page>
+<main>사용 데이터셋</main>  
+<sub>주차대수 데이터</sub> <content>여의도 한강공원 주차대수 데이터와 기상 데이터 사용. 포함 변수: 여의도 1-5 주차장 주차대수, 평균 풍속, 강수량, 평균 기온, 평균 습도, 미세먼지, 초미세먼지.</content> <page>5</page>  
 
-<main>전처리</main>
-<sub>정규화 및 결측치 대체</sub> <content>데이터를 0과 1 사이로 정규화하고, 결측치는 앞뒤 데이터 평균으로 채움.</content> <page>6</page>
+<main>전처리</main>  
+<sub>데이터 정규화</sub> <content>데이터의 최소값과 최대값을 계산하여 0과 1 사이의 값으로 정규화. 결측치는 각 변수의 앞뒤 데이터 평균으로 채움.</content> <page>6</page>  
 
-<main>분석 결과</main>
-<sub>예측 주차대수 방법</sub> <content>기온만으로 주차대수 예측, 평균기온과 평균습도 모두 사용 시 성능 저하.</content> <page>7</page>
-<sub>기상 변수 예측별 결과</sub> <content>평균풍속, 강수량, 평균기온, 평균습도, 미세먼지, 초미세먼지에 따른 예측 결과 제시.</content> <page>10</page>
-<sub>최종 점수 산정 방법</sub> <content>이용객 수 점수 40%, 기상 점수 60%로 주차대수 예측 점수 산정, 기상 조건에 따른 점수 기준 설정.</content> <page>12</page>
-<sub>주차대수 가중치 요일별</sub> <content>예측 주차대수에 요일별 가중치 적용, 주차대수가 적은 요일에 높은 점수 부여.</content> <page>13</page>
+<main>예측 주차대수 방법</main>  
+<sub>주차대수 예측 방법</sub> <content>여의도 주차대수 예측을 위해 기온 데이터만 사용하여 예측. 기온, 평균 기온, 평균 습도를 모두 사용하였으나 강수량 시 성능 저하 발생.</content> <page>7</page>  
 
-<main>결론</main>
-<sub>최종 점수</sub> <content>3월 29일 995점, 3월 24일 956점, 3월 27일 924점 등으로 일별 점수 제시.</content> <page>14</page>
-<sub>의의 및 한계점</sub> <content>관광객은 쾌적한 방문 날짜 선택 가능, 방문자 수 예측으로 인력 배치 효율화 가능. 한계점은 주차장 이용하지 않은 방문객 미고려, 가중치의 주관성, LSTM 모델의 하이퍼파라미터 조정 어려움.</content> <page>15</page>
+<main>기상 변수 예측</main>  
+<sub>기상 변수</sub> <content>기상 변수로는 평균 풍속, 강수량, 평균 기온, 평균 습도, 미세먼지, 초미세먼지가 포함됨.</content> <page>9</page>  
+<sub>기상 변수의 영향</sub> <content>각 기상 변수가 주차대수 예측에 미치는 영향을 분석.</content> <page>10</page>  
+
+<main>최종 점수 산정 방법</main>  
+<sub>점수 산정 기준</sub> <content>이용객 수 점수 40%, 기상 점수 60%로 설정. 예측한 주차대수가 적을수록 높은 점수 부여. 기상조건에 따른 점수 산정 기준: 강수량 25%, 기온 174%, 미세먼지 및 초미세먼지 5%, 습도 5%, 풍속 25% 기준.</content> <page>12</page>  
+<sub>최종 점수 예시</sub> <content>3월 29일 995점, 3월 24일 956점, 3월 27일 924점 등으로 전체 및 주말 점수 평가.</content> <page>14</page>

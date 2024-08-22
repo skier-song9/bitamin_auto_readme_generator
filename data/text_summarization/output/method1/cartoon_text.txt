@@ -1,21 +1,22 @@
-<subject>CartoonGAN Project</subject>
-<team>Research Team</team>
-<index>README Summaries</index>
+<subject>GAN 이란?</subject> <team>이하나, 김하니</team> <index>GAN 이란?</index>
+
+<main>GAN 이란?</main>
+<sub>GAN이란?</sub> <content>GAN은 Generator와 Discriminator 간의 적대적 훈련을 통해 진짜 같은 이미지를 생성하는 것이 목표이다.</content> <page>4</page>
+<sub>손실함수</sub> <content>Generator와 Discriminator의 경쟁을 통해 Generator가 Discriminator를 속이며 학습하고, 손실 함수 최소화가 학습 목표는 아니다.</content> <page>5</page>
 
 <main>CartoonGAN</main>
-<sub>Architecture</sub> <content>Architecture details of CartoonGAN are introduced.</content> <page>8</page>
-<sub>Loss function</sub> <content>Loss function details are provided, including CGD, Ccon, and Ladv. The use of VGG network features for minimizing differences between generated and original images is explained.</content> <page>9</page>
+<sub>Architecture</sub> <content>CartoonGAN은 Generator가 실제 사진을 입력받아 만화 이미지를 생성하며, VGG 네트워크에서 추출한 피처로 고수준 특징의 차이를 최소화하여 스타일 변환을 수행한다.</content> <page>8</page>
+<sub>Loss function</sub> <content>CartoonGAN의 손실 함수는 Discriminator의 예측 로그 확률을 기반으로 하여 세 가지 항으로 구성된다.</content> <page>9</page>
 
 <main>Dataset</main>
-<sub>Dataset</sub> <content>Details about the dataset used: 8 One Piece movies with a total duration of approximately 11h 30m, resulting in 9728 extracted frames. Data preprocessing steps include center cropping, edge detection with CannyEdge (threshold 150-500), dilation operations, and Gaussian blur (kernel 5x5) for edge smoothing. The dataset consists of 9728 smoothed cartoon images and 10000 real images.</content> <page>11</page>
+<sub>Dataset</sub> <content>데이터셋은 9728장의 만화 이미지와 10000장의 실제 이미지로 구성되며, 전처리 과정이 포함된다.</content> <page>11</page>
 
 <main>CartoonGAN 변형</main>
-<sub>변형 CartoonGAN</sub> <content>Introduction to changes in CartoonGAN.</content> <page>13</page>
-<sub>변형 CartoonGAN ResNet Block</sub> <content>Details on the modified ResNet Block used in the Generator, where batch normalization and residual connection are followed by ReLU.</content> <page>14</page>
-<sub>변형 CartoonGAN Generator Upsampling</sub> <content>Changes in Generator Upsampling include using blurring to solve checkerboard artifacts and switching from instance normalization to batch normalization for faster and more stable training.</content> <page>15</page>
-<sub>CartOonGAN 변형 Content Loss</sub> <content>Content Loss is changed from VGG19 to VGG16, using only up to the 24th layer for feature extraction, making the computation less costly and suitable for low-level feature extraction.</content> <page>16</page>
+<sub>변형 CartoonGAN</sub> <content>Generator의 ResNet Block 구조가 batch normalization과 residual connection 후에 ReLU가 적용되도록 변형된다.</content> <page>14</page>
+<sub>Generator Upsampling</sub> <content>Generator에서 blurring과 batch normalization을 사용하여 upsampling 과정의 문제를 해결하고, 더 빠른 학습과 안정성을 제공한다.</content> <page>15</page>
+<sub>Content Loss</sub> <content>Content Loss는 VGG19에서 VGG16으로 변경되어 VGG16의 24번째 레이어까지만 사용된다.</content> <page>16</page>
 
 <main>Experiment</main>
-<sub>Experiment Train</sub> <content>Pretraining of Generator to maintain the content of real images. Training parameters: epochs 10, batch size 16, Optimizer AdamW, learning rate 0.0001, beta1 0.5, beta2 0.999, weight decay 0.0001, and Content Loss as the base loss.</content> <page>18</page>
-<sub>Experiment Train</sub> <content>Training details for Discriminator and Generator: Discriminator is trained to classify images correctly, while Generator is trained to produce images that Discriminator classifies as real. Training parameters: epochs 10, batch size 16, Optimizer AdamW, learning rate 0.000015, beta1 0.5, beta2 0.999, weight decay 0.00001, with loss functions including Adversarial Loss, BCEWithLogitsLoss, and Content Loss.</content> <page>19</page>
-<sub>Experiment Results</sub> <content>Results of the experiments are documented.</content> <page>20</page>
+<sub>Experiment Train</sub> <content>Generator는 10 epochs 동안 pretrained되며, batch size, Optimizer, learning rate 등의 하이퍼파라미터가 설정된다.</content> <page>18</page>
+<sub>Presentation</sub> <content>Generator와 Discriminator를 학습시키며 Generator의 손실 함수는 Adversarial Loss와 Content Loss의 조합으로 구성된다.</content> <page>19</page>
+<sub>Experiment Results</sub> <content>최종 실험 결과는 Generator가 실제 이미지의 content를 잘 유지하며 Discriminator가 효과적으로 이미지를 분류하도록 학습되었음을 보여준다.</content> <page>20</page>

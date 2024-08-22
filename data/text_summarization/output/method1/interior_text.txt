@@ -1,15 +1,23 @@
-<subject>EDA & Modeling</subject>
-<team>이하나, 김하니</team>
-<index>EDA and Text Augmentation</index>
+<subject>프로젝트 배경</subject>  
+<team>팀명 미제공</team>  
+<index>프로젝트 배경>  
 
-<main>EDA</main>
-<sub>주최 측 Train Data</sub> <content>id, 질문 2개, 질문의 카테고리, 답변 5개의 column으로 이루어져 있음. 질문 답변 Set로 토큰화해서 input으로 입력. Train data의 예시.</content> <page>5</page>
+<main>프로젝트 배경</main>  
+<sub>Project Background</sub> <content>ChatGPT 언어모델을 활용하여 자연어처리의 원리를 이해하고, 특정 TASK에 적합한 TEXT 생성을 목표로 한다.</content> <page>3</page>  
 
-<main>Text Augmentation</main>
-<sub>Crawling & Prompt Engineering</sub> <content>논문 및 자료 실용적 Train 데이터 키워드 1 레퍼런스 앱 웹 사이트 3 기반 2 다양한 종류의 질문 생성. 전문성 있는 질문 소스 탐색. 사람들이 자주 묻는 질문적 실용적 키워드 탐색.</content> <page>8</page>
-<sub>Train dataset 증강</sub> <content>기존 644 *2*5- 6440 QA rOWS Sets 증강 이후 8319 QA Sets.</content> <page>9</page>
+<main>EDA</main>  
+<sub>Overall Progress</sub> <content>NLP 도메인 이해와 Transformer 관련 논문 연구를 통해 언어모델 개발 및 추론 목표에 대한 전반적인 진행 상황을 정리한다.</content> <page>4</page>  
+<sub>Train Data</sub> <content>Train Data는 질문 2개와 답변 5개로 구성되며, 질문 및 답변 Set으로 토큰화하여 input으로 사용한다.</content> <page>5</page>  
 
-<main>Modeling & Inference</main>
-<sub>Fine Tuning</sub> <content>사전 학습된 모델을 소규모의 특정 데이터 세트에 대해 추가로 학습시켜 특정 작업이나 도메인에서 기능을 개선하고 성능을 향상시키는 프로세스. generic task Specific.</content> <page>11</page>
-<sub>LORA PEFT</sub> <content>적은 매개변수 학습만으로 빠른 시간에 새로운 문제를 효과적으로 해결하는 fine-tuning 기법. 대부분의 매개변수 가중치는 원래대로 유지하되 일부만 미세조정하는 방식을 사용하여 훈련 비용과 컴퓨팅 리소스를 절약하면서도 특정 작업의 성능을 향상시킬 수 있음. 허깅페이스에 제공하는 라이브러리를 활용. Query 가중치에 대해 LoORA 적용.</content> <page>12</page>
-<sub>Inference</sub> <content>Base model, Fine-tuned model. 무의미한 동어 반복 식의 Text Generation. 학습된 정보를 바탕으로 자세한 답변을 생성하나 주어진 질문에 대한 답을 하지 않음. Fine-tuned model W/t instruction: 학습된 정보를 바탕으로 구체적인 답변을 생성. 주어진 질문에 대한 답을 하도록 input에 INSTRUCTION 부여. As-IS QUESTION TO-BE 주어진 질문에 대한 답을 출력. 질문: {QUESTION} 답: 학습된 정보를 바탕으로 자세한 답변을 생성하며 주어진 질문에 대한 답변을 함.</content> <page>13</page>
+<main>Text Augmentation</main>  
+<sub>Crawling & Prompt Engineering</sub> <content>실용적 Train 데이터를 위한 질문 소스를 탐색하고, ChatGPT를 통해 전문적인 답변을 생성한다.</content> <page>8</page>  
+<sub>최종 train dataset</sub> <content>기존 6440 QA rOWS Sets에서 증강 후 8319 QA Sets로 증가하였다.</content> <page>9</page>  
+
+<main>Modeling & Inference</main>  
+<sub>Issues</sub> <content>Kaggle Notebook과 Colab T4의 제한된 GPU 자원 사용으로 어려움이 있으며, 한국어 데이터로 사전훈련된 모델의 성능 기대에 대한 논의가 있다.</content> <page>10</page>  
+<sub>Fine Tuning</sub> <content>사전 학습된 모델을 특정 데이터 세트에 맞춰 추가 학습하여 성능을 향상시키는 Fine Tuning 과정을 설명한다.</content> <page>11</page>  
+<sub>LORA PEFT</sub> <content>적은 매개변수 학습으로 효율적인 문제 해결을 위한 fine-tuning 기법인 LoRA PEFT를 활용하여 훈련 비용과 리소스를 절약하면서 성능을 향상시킨다.</content> <page>12</page>  
+<sub>Inference</sub> <content>Base model과 Fine-tuned model의 성능 차이를 비교하며, 주어진 질문에 대한 구체적인 답변 생성을 위한 instruction 부여 방법을 설명한다.</content> <page>13</page>  
+
+<main>보완할 점 & 추후계획</main>  
+<sub>Gradio</sub> <content>EOD</content> <page>15</page>

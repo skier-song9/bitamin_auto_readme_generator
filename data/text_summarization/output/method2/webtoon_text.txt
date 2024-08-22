@@ -1,29 +1,30 @@
-<subject>BIT Amin</subject>
-<team>RecSys Team 2 - 강나영 김나현 엄성원 이철민</team>
-<index>독자와 웹툰 간 로그데이터를 활용한 웹툰 추천 시스템</index>
+<subject>독자와 웹툰 간 로그데이터를 활용한 웹툰 추천 시스템</subject>
+<team>RecSys Team 2 - 강나영, 김나현, 엄성원, 이철민</team>
+<index>TABLE OF CONTENTS</index>
 
 <main>프로젝트 소개</main>
-<sub>프로젝트 배경</sub> <content>정제된 '대량의 데이터'를 사용하여 모델 선택 범위를 넓히고자 함. 사용자의 데이터를 효과적으로 사용할 수 있는 주제 선정. 직관적으로 추천 시스템의 작동을 확인할 수 있도록 국내 최신 데이터 활용.</content> <page>3</page>
-<sub>프로젝트 목표</sub> <content>사용자 데이터와 웹툰 데이터를 이용해 개인화된 추천 시스템을 개발. 사용자가 흥미를 느낄 만한 웹툰을 정확히 추천. 사용자와 아이템의 데이터에 맞는 알고리즘 탐색 및 적용.</content> <page>3</page>
+<sub>프로젝트 배경</sub> <content>정제된 '대량의 데이터'를 사용하여 모델 선택 범위를 넓히고자 하며, 사용자 데이터를 효과적으로 사용할 수 있는 주제 선정과 직관적인 추천 시스템의 작동을 확인할 수 있도록 가급적 국내 최신 데이터를 활용합니다.</content> <page>1</page>
+<sub>프로젝트 목표</sub> <content>사용자 데이터와 웹툰 데이터를 이용해 개인화된 추천 시스템을 개발하여 사용자가 흥미를 느낄 만한 웹툰을 정확히 추천하고, 사용자와 아이템의 데이터에 맞는 알고리즘을 탐색 및 적용합니다.</content> <page>2</page>
 
-<main>02 데이터 수집 및 전처리</main>
-<sub>데이터 소스 설명</sub> <content>Webtoon_CustomersCSV, Webtoon_articlesCSV, Webtoon_interaction_trainCSV 사용. interaction data = pd.read_csv('/data/webtoon_interaction').</content> <page>4</page>
-<sub>데이터 전처리</sub> <content>649만 개의 데이터 중 100개 이상 평가한 유저만 남음. 피봇 테이블 형식의 데이터 생성.</content> <page>5</page>
+<main>데이터 수집 및 전처리</main>
+<sub>데이터 소스 설명</sub> <content>Webtoon_CustomersCsV, Webtoon_articlescs!, Webtoon_interaction_traincs! 등의 다양한 데이터 소스를 사용합니다.</content> <page>3</page>
+<sub>데이터 전처리</sub> <content>649만 개의 데이터 중 100개 이상 평가한 유저만 남기며, 피봇 테이블 형식의 데이터로 변환합니다.</content> <page>4</page>
 
-<main>03 모델 선택 및 학습</main>
-<sub>Filtering 모델 CF (Collaborative)</sub> <content>개념: 비슷한 취향을 가진 사용자들이 다른 아이템에 대해서도 비슷한 취향을 가진다고 가정하고 추천. User-Based와 Item-Based로 나뉨. 특징: 데이터 크기가 작고 각 사용자에 대한 충분한 정보가 있는 경우에는 UBCF, 정보가 없는 경우에는 IBCF가 적합. 장점: 직관적인 결과, 상품의 정보 없이 추천 가능. 단점: Cold Start Problem, 계산량이 많아 추천의 효율성 떨어짐. 모델 성능 평가: RMSE</content> <page>7</page>
-<sub>NCF Filtering 모델 (Neural Collaborative)</sub> <content>개념: 사용자와 아이템을 각각 embedding vector로 표현하고, interaction을 바탕으로 학습하여 추천. 장점: 추천 알고리즘의 직관성과 사용성. 단점: Long tail Data Sparsity.</content> <page>9</page>
-<sub>SVD 모델 (Singular Value Decomposition)</sub> <content>개념: 사용자-아이템 행렬을 세 개의 행렬로 분해하여 잠재적 특성을 추출. 특징: 대각행렬을 통한 특이값 분해로 유저 아이템의 행과 열 개수가 다른 추천모델에도 적합. 장점: 차원 축소를 통해 계산 효율성 증가 및 노이즈 제거. 단점: 큰 데이터셋에서 계산 비용 높아짐, 실시간 업데이트 어려움. 모델 성능 평가: RMSE.</content> <page>11</page>
-<sub>ALS 모델 (Alternating Least Squares)</sub> <content>개념: 추천 시스템에서 주로 사용되는 행렬 분해 기법. 특징: 교대 최소 제곱법, 손실 함수 최적화, 정규화, 대규모 데이터셋에 적합.</content> <page>14</page>
+<main>모델 선택 및 학습</main>
+<sub>Filtering 모델 CFCCollaborative</sub> <content>User-Based와 Item-Based 알고리즘을 통해 비슷한 취향을 가진 사용자들이 다른 아이템에 대해서도 비슷한 취향을 가지고 있을 것이라는 가정으로 추천을 진행하며, 직관적인 결과를 제공하나 Cold Start Problem이 존재합니다.</content> <page>5</page>
+<sub>NCF Filtering 모델 Neura Collaborative</sub> <content>사용자와 아이템을 embedding vector로 표현하고, 사용자-아이템 간 interaction을 바탕으로 추천 확률을 학습하여 아이템을 추천합니다. 장점은 복잡한 비선형 학습이 가능하나 데이터의 희소성 문제를 안고 있습니다.</content> <page>6</page>
+<sub>모델 SVDSingular Value Decomposition</sub> <content>사용자-아이템 행렬을 세 개의 행렬로 분해하여 잠재적 특성을 추출하며, 차원 축소를 통해 계산 효율성을 증가시키지만 실시간 업데이트가 어렵습니다.</content> <page>7</page>
+<sub>ALS 모델 Alternating Least Squares</sub> <content>사용자-아이템 상호작용 행렬을 저차원 행렬로 분해하여 잠재 요인을 학습하는 방식으로, 대규모 데이터셋에 적합합니다.</content> <page>8</page>
 
-<main>03 최종 모델 선정</main>
-<sub>모델 선정 이유 ALS (Alternating Least Squares)</sub> <content>Implicit Feedback의 형태로 수집된 데이터의 문제점: 사용자의 호불호를 정확히 파악하기 어려움. 선호와 비선호를 binary로 분류하는 방법 사용. 대규모 데이터에 적합. RMSE 수치: 0.1.</content> <page>16</page>
-<sub>ALS 모델링 및 결과 출력</sub> <content>웹툰 추천 진행, 모델 성능 평가: RMSE.</content> <page>17</page>
+<main>최종 모델 선정</main>
+<sub>모델 선정 이유 ALS Alternating Least Squares</sub> <content>Implicit Feedback의 형태로 수집된 데이터에서 사용자 선호를 정확히 파악하기 어려운 문제를 해결하며, 대규모 데이터에 적합하여 RMSE 수치가 우수합니다.</content> <page>9</page>
+<sub>ALS Alternating Least Squares 모델링 및 결과 출력</sub> <content>웹툰 추천 진행 모델 성능 평가를 통해 RMSE를 측정합니다.</content> <page>10</page>
 
-<main>04 웹툰 추천 시스템 구현</main>
-<sub>기존 사용자 웹툰 추천 결과</sub> <content>USER_ID 100001344: 올가미17회, 외모지상주의16회, 이상한 변호사 우영우7회. 타입: 스토리, 장르: 판타지, 드라마 등. RMSE: 0.10001713.</content> <page>18</page>
-<sub>신규 사용자 웹툰 추천 결과</sub> <content>USER_ID 123456: 좋아하는 웹툰 3개 입력 (이별후, 사내 결혼, 순정말고 순종). RMSE: 0.10001718.</content> <page>19</page>
+<main>웹툰 추천 시스템 구현</main>
+<sub>웹툰 추천 결과</sub> <content>USER_ID 100001344 사용자가 이전에 봤던 웹툰과 추천 결과를 바탕으로 RMSE 0.10001713을 기록합니다.</content> <page>11</page>
+<sub>웹툰 추천 결과</sub> <content>USER_ID 123456의 좋아하는 웹툰 3개 입력 결과로 RMSE 0.10001718을 기록합니다.</content> <page>12</page>
 
-<main>05 결론 및 향후 과제</main>
-<sub>프로젝트 요약 및 의의</sub> <content>여러 가지 추천 알고리즘 모델을 구축하고 비교 분석하여 최적의 모델을 선택함으로써 사용자에게 더 나은 추천 제공. Explicit feedback 없이 Implicit feedback을 사용한 모델 구축으로 최상의 결과 도출. 사용자 선호에 맞는 웹툰 제공으로 만족도 향상 및 플랫폼 이용률 증가.</content> <page>20</page>
-<sub>한계점 및 향후 과제</sub> <content>정제된 데이터 사용으로 사용자 선호도 파악 어려움. 신규 사용자에 대한 추천에는 Cold Start Problem 존재. 향후 과제: Explicit feedback 데이터 수집을 통한 모델 성능 향상, genre 컬럼을 활용한 모델 개선.</content> <page>21</page>
+<main>결론 및 향후 과제</main>
+<sub>프로젝트 요약 및 의의</sub> <content>여러 추천 알고리즘 모델을 구축하고 비교 분석하여 최적의 모델을 선택함으로써 사용자에게 더 나은 추천을 제공하고, 사용자들의 만족도와 플랫폼 이용률을 증가시킬 수 있는 가능성을 보여줍니다.</content> <page>13</page>
+<sub>한계점</sub> <content>정제된 데이터 사용으로 인해 사용자의 선호도를 정확하게 파악하기 어려운 Cold Start Problem이 존재합니다.</content> <page>14</page>
+<sub>향후과제</sub> <content>피드백을 통한 Explicit 모델 성능 향상과 아이템 데이터의 genre 컬럼 활용을 통한 모델 개선이 필요합니다.</content> <page>15</page>
