@@ -26,9 +26,9 @@ def convert_and_rename_pdf(
             new_filename = f"{idx:02}.jpg"
             new_file = os.path.join(new_output_dir, new_filename)
             os.rename(old_file, new_file)
-        # print(f"Conversion completed.")
+        print(f"Conversion completed.")
     else:
-        # print(f"Error: Generated directory '{generated_dir}' not found.")
+        print(f"Error: Generated directory '{generated_dir}' not found.")
         pass
     return pdf_name
 # '''

@@ -102,8 +102,8 @@ class Image_Detector:
                             # print(save_path)
                         cv2.imwrite(save_path, cropped_image)
                     idx += 1
-                # print("Image cropped & saved..")
-            
+                print("Image cropped & saved..")
+        print("image detector finished")
         # return cropped_images
         return textbox_dir
 

@@ -38,6 +38,7 @@ ASSETS = os.path.join(APP_ROOT,'assets')
 WORKSPACE = os.path.join(APP_ROOT,'webapp','workspace')
 WORKFILEORIGIN = '' # .pdf 확장자까지 포함하는 원본 파일명
 WORKFILECLEAN = '' # 확장자/공백/특수문자를 제거한 파일명 + timestamp
+WORKFILEHASH = '' # workfileorigin을 hashing한 값.
 WORKIMAGEDIR = '' # images_WORKFILECLEAN : 파일을 처리해서 나온 이미지를 저장할 폴더 경로
 
 # # image detector class 준비
@@ -89,9 +90,9 @@ def process_object_detection():
     # image detector 실행 >> textbox image들이 저장된 경로 반환 /data/object_detection/output/WORKFILECLEAN/
     textbox_dirpath = img_det.predict(pdf_name=pdf2img_dirname,  save_image_dir=WORKIMAGEDIR, save=True)
 
-    # textbox image에서 text를 추출하여
-    textbox_filenames = [f for f in os.listdir(textbox_dirpath)]
-    textbox_filenames.sort(key = lambda x : (int(x.split('_')[0]), int(x.split('_')[1])))
+    # OCR
+    textbox_filenames = os.listdir(textbox_dirpath)
+    textbox_filenames.sort()
     page_texts = {}
     for filename in textbox_filenames:
         parts = filename.split('_')
@@ -126,6 +127,7 @@ def process_image_classification():
     '''
     global WORKIMAGEDIR
     global img_clf
+    print('start image classification')
     # 추론
     img_clf_result_df, _ = img_clf.predict(WORKIMAGEDIR, save=False) # 결과 df를 csv파일로 저장하지 않음.
     for _, row in img_clf_result_df.iterrows():
@@ -147,6 +149,7 @@ def process_text_summarization():
     '''
     global WORKSPACE
     global WORKFILECLEAN
+    print('start text summarization')
     txt_filepath = os.path.join(WORKSPACE, WORKFILECLEAN+'.txt')
     if not os.path.exists(txt_filepath):
         raise OSError(f"{txt_filepath} File doesn't exists")
@@ -159,6 +162,7 @@ def process_text_summarization():
     summarized_text = txt_summ.summarize(divided_text)
     tagged_text = txt_summ.tag_text(summarized_text)
 
+    print('readme formatting')
     # # readme formatting
     main_re = re.compile(r'<main>(.*?)</main>', re.DOTALL)
     sub_re = re.compile(r'<sub>(.*?)</sub>', re.DOTALL)
@@ -219,6 +223,7 @@ def fileUpload():
     global WORKFILEORIGIN
     global WORKFILECLEAN
     global WORKIMAGEDIR
+    global WORKFILEHASH
     try:
         # 파일은 request.files['파라미터명']으로 받기
         files = request.files['file']
@@ -233,6 +238,7 @@ def fileUpload():
         timestamp = str(int(time.time()))
         WORKFILECLEAN = clean_filename(WORKFILEORIGIN)+f"_{timestamp}"  # WORKFILEORIGIN에서 공백/특수문자/확장자를 제거한 clean filename (폴더 생성 시 오류 방지를 위해)
         WORKIMAGEDIR = os.path.join(WORKSPACE, 'images_'+WORKFILECLEAN)  # pdf에 대한 이미지 분류 결과를 저장할 이미지 폴더 경로
+        WORKFILEHASH = str(hash(WORKFILEORIGIN))[1:]+f"_{timestamp}"
         try:
             if os.path.exists(WORKIMAGEDIR):
                 pass

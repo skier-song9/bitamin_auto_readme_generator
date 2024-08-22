@@ -17,8 +17,10 @@ if not os.path.exists(output_dir):
 page_texts = {}
 
 # Get a sorted list of filenames
-filenames = [f for f in os.listdir(image_dir) if f.endswith('.jpg')]
-filenames.sort(key=lambda x: (int(x.split('_')[0]), int(x.split('_')[1])))
+# filenames = [f for f in os.listdir(image_dir) if f.endswith('.jpg')]
+# filenames.sort(key=lambda x: (int(x.split('_')[0]), int(x.split('_')[1])))
+filenames = os.listdir(image_dir)
+filenames.sort()
 
 for filename in filenames:
     parts=filename.split('_')
