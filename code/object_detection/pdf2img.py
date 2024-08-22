@@ -1,6 +1,7 @@
 import os
 from pdf2jpg import pdf2jpg
 import time
+import re
 
 ROOT = 'bitamin_auto_readme_generator'
 
@@ -17,11 +18,16 @@ def convert_and_rename_pdf(
     new_output_dir = os.path.join(output_dir, pdf_name) # output_dir의 이름을 변경하기 위함
 
     pdf2jpg.convert_pdf2jpg(input_dir, output_dir, pages="ALL")
+    
     generated_dir = os.path.join(output_dir, pdf_name_origin + '.pdf_dir')
+
+    def sort_key(filename):
+        match = re.search(r'\d+', filename)
+        return int(match.group()) if match else 0
 
     if os.path.exists(generated_dir):
         os.rename(generated_dir, new_output_dir)
-        for idx, filename in enumerate(sorted(os.listdir(new_output_dir))):
+        for idx, filename in enumerate(sorted(os.listdir(new_output_dir),key=sort_key)):
             old_file = os.path.join(new_output_dir, filename)
             new_filename = f"{idx:02}.jpg"
             new_file = os.path.join(new_output_dir, new_filename)
@@ -31,7 +37,9 @@ def convert_and_rename_pdf(
         print(f"Error: Generated directory '{generated_dir}' not found.")
         pass
     return pdf_name
-# '''
-# example >
-# convert_and_rename_pdf('variation')
-# '''
+
+'''
+convert_and_rename_pdf('C:\\Users\\happy\Desktop\\bitamin_auto_readme_generator\\data\\object_detection\\input\\lstm.pdf',
+                       'lstm.pdf',
+                       'lstm_0822.pdf')
+'''
