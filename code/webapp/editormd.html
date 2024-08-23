@@ -266,13 +266,66 @@
                                 case 200:
                                     workFileOrigin = response.msg[0] // = WORKFILEORIGIN
                                     workFileClean = response.msg[1]
-                                    // console.log(workFileName)
+                                    console.log(workFileClean)
                                     uct.removeChild(gifTag)
                                     uct.innerText = `${response.msg[0]}`
 
                                     loadImageGallery();
                                     attachImageOverlay('.image-gallery img');
                                     attachImageDragstart('.image-gallery img');
+
+                                    $.ajax({
+                                        url: "/loadfile.do",
+                                        type : 'GET',
+                                        success: function(response) {
+                                            // "your-readme" id를 가진 div 태그 내의 textarea 요소를 찾는다.
+                                            let yourReadmeTextarea = document.querySelector('#your-readme textarea');
+                                            if (response.code == 200){
+                                                console.log(response.msg);
+                                                // 읽은 텍스트를 textarea 요소의 value로 입력한다.
+                                                yourReadmeTextarea.value = response.msg;
+                                                yourReadme = editormd("your-readme",{
+                                                    width       : "90%",
+                                                    height      : () => window.innerHeight * 0.75,
+                                                    path        : 'lib/',
+                                                    theme       : (localStorage.theme) ? localStorage.theme : "default",
+                                                    previewTheme: (localStorage.previewTheme) ? localStorage.previewTheme : "default",
+                                                    editorTheme : (localStorage.editorTheme) ? localStorage.editorTheme : "default",
+                                                    codeFold    : true,
+                                                    saveHTMLToTextarea : true,
+                                                    searchReplace : true,
+                                                    htmlDecode  : "style,script,iframe|on*",       
+                                                    toc         : true,
+                                                    emoji       : true,
+                                                    taskList    : true,
+                                                    tocm        : false,
+                                                    tex         : true,                   
+                                                    flowChart   : true,             
+                                                    sequenceDiagram : true,
+                                                    imageUpload : true,
+                                                    imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                                                    imageUploadURL : "./php/upload.php",
+                                                    onload : function() {
+                                                        console.log('onload', this);
+                                                        // this.fullscreen();
+                                                        //this.unwatch();
+                                                        //this.watch().fullscreen();
+
+                                                        //this.setMarkdown("#PHP");
+                                                        // this.width("80%");
+                                                        // this.height(480);
+                                                        // this.resize("100%", 640);
+                                                    }
+                                                });
+                                            }
+                                            else{
+                                                alert(response.msg);
+                                            }
+                                        },
+                                        error: function(e) {
+                                            alert(e);
+                                        }
+                                    });
                                     break;
                                 default: // code == 400
                                     uct.removeChild(gifTag)
@@ -324,12 +377,14 @@
                         url: '/loadimages.do',
                         type : 'GET',
                         success: function(data) {
+                            imgDir = data['dir']
+                            imgList = data['filelist']
                             // console.log(data) // data는 image file name list 이다.
-                            if (data){
-                                data.forEach(function(imgName){
+                            if (imgList){
+                                imgList.forEach(function(imgName){
                                     if (imgName.match(/\.(jpg|jpeg|png|gif|bmp|webp)$/i)) {
                                         let altText = imgName.substring(0, imgName.lastIndexOf('.')); // Remove extension
-                                        let srcText = `${rootUrl}/webapp/workspace/images/${imgName}`;
+                                        let srcText = `${rootUrl}/webapp/workspace/${imgDir}/${imgName}`;
                                         let imgTag = '<img id="'+ altText +'" src="' + srcText + '" alt="' + altText + '">';
                                         imageGallery.append(imgTag);
                                     }
@@ -424,7 +479,7 @@
 
                         yourReadme.setCursor({"line":parseInt(prevLineNumber-1),"ch":99999})
                         yourReadme.focus()
-                        yourReadme.insertValue(`\n![${draggedImageId}](${rootUrl}/webapp/workspace/images_${workFileClean}/${draggedImageId}.jpg)`);
+                        yourReadme.insertValue(`\n![${draggedElementId}](${rootUrl}/webapp/workspace/images_${workFileClean}/${draggedElementId}.jpg)`);
                         
                     }
                 });
@@ -437,7 +492,32 @@
                     path        : 'lib/',
                     theme       : (localStorage.theme) ? localStorage.theme : "default",
                     previewTheme: (localStorage.previewTheme) ? localStorage.previewTheme : "default",
-                    editorTheme : (localStorage.editorTheme) ? localStorage.editorTheme : "default"
+                    editorTheme : (localStorage.editorTheme) ? localStorage.editorTheme : "default",
+                    codeFold    : true,
+                    saveHTMLToTextarea : true,
+                    searchReplace : true,
+                    htmlDecode  : "style,script,iframe|on*",       
+                    toc         : true,
+                    emoji       : true,
+                    taskList    : true,
+                    tocm        : false,
+                    tex         : true,                   
+                    flowChart   : true,             
+                    sequenceDiagram : true,
+                    imageUpload : true,
+                    imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                    imageUploadURL : "./php/upload.php",
+                    onload : function() {
+                        console.log('onload', this);
+                        // this.fullscreen();
+                        //this.unwatch();
+                        //this.watch().fullscreen();
+
+                        //this.setMarkdown("#PHP");
+                        // this.width("80%");
+                        // this.height(480);
+                        // this.resize("100%", 640);
+                    }
                 });
                 
                 /////////////////////////////////////////////////////
@@ -446,36 +526,23 @@
                     $.ajax({
                         url: "/loadfile.do",
                         type : 'GET',
-                        dataType: 'text',
                         success: function(response) {
                             // "your-readme" id를 가진 div 태그 내의 textarea 요소를 찾는다.
                             let yourReadmeTextarea = document.querySelector('#your-readme textarea');
                             if (response.code == 200){
                                 // 읽은 텍스트를 textarea 요소의 value로 입력한다.
                                 yourReadmeTextarea.value = response.msg;
-
-                                loadImageGallery();
-                                attachImageOverlay('.image-gallery img');
-                                attachImageDragstart('.image-gallery img');
                             }
                             else{
                                 alert(response.msg);
                             }
                             
                         },
-                        error: function() {
-                            alert(response.msg);
+                        error: function(e) {
+                            alert(e);
                         }
                     });
                 };
-
-                
-                
-                var draggedImageId = "";
-                var draggedImagePath = "";
-                
-
-                
 
                 /////////////////////////////////////////////////////
                 // Markdown 편집기의 테마를 변경하는 select element를 위한 함수.

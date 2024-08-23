@@ -8,10 +8,9 @@ from flask_cors import CORS
 import os, re, regex, time
 import threading
 import pandas as pd
-from paddleocr import PaddleOCR
 
 # import custom modules
-from object_detection import detection, pdf2img
+from object_detection import detection, pdf2img, textocr
 from image_classification import image_classifier
 from text_summarization import textsumm_method3
 
@@ -44,7 +43,7 @@ WORKIMAGEDIR = '' # images_WORKFILECLEAN : 파일을 처리해서 나온 이미�
 # # image detector class 준비
 img_det = detection.Image_Detector(os.path.join(ASSETS, 'best.pt'))
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
-ocr = PaddleOCR(lang='korean', )
+ocr = textocr.PaddleOcr(lang='korean')
 # # image classifier class 준비
 img_clf = image_classifier.Image_Classifier(os.path.join(ASSETS, 'VGG19clf_acc94_0728.pth'))
 # # text summarizer class 준비
@@ -57,7 +56,7 @@ def clean_filename(text):
     # 2. 공백 대체 (모든 공백 언더바로 대체)
     text = re.sub(r'\s+', '_', text)
     # 3. 특수문자 제거 (모든 나라의 언어는 제외)
-    text = regex.sub(r'[^\p{L}\p{N}0-9]', '', text)
+    text = regex.sub(r'[^\p{L}\p{N}0-9_]', '', text)
     return text
 
 def process_object_detection():
@@ -77,46 +76,20 @@ def process_object_detection():
     3. 종료.
     '''
     global WORKSPACE
-    global WORKFILEORIGIN
     global WORKFILECLEAN
     global WORKIMAGEDIR
     global img_det
     global ocr
-    pdf_filepath = os.path.join(WORKSPACE,WORKFILEORIGIN)
+    pdf_filepath = os.path.join(WORKSPACE,WORKFILECLEAN+".pdf")
     # 페이지별로 이미지로 변환 >> page image가 저장된 디렉토리 이름 반환 > WORKFILECLEAN
     pdf2img_dirname = pdf2img.convert_and_rename_pdf(input_filepath=pdf_filepath,
-                                   workfileorigin=WORKFILEORIGIN,
+                                   workfileorigin=WORKFILECLEAN+".pdf",
                                    workfileclean=WORKFILECLEAN)
     # image detector 실행 >> textbox image들이 저장된 경로 반환 /data/object_detection/output/WORKFILECLEAN/
-    textbox_dirpath = img_det.predict(pdf_name=pdf2img_dirname,  save_image_dir=WORKIMAGEDIR, save=True)
+    textbox_dirpath = img_det.predict(pdf_name=pdf2img_dirname, save_image_dir=WORKIMAGEDIR, save=True)
 
     # OCR
-    textbox_filenames = os.listdir(textbox_dirpath)
-    textbox_filenames.sort()
-    page_texts = {}
-    for filename in textbox_filenames:
-        parts = filename.split('_')
-        if len(parts)>=4:
-            page_number = parts[2]
-        else:
-            continue
-        textbox_imagepath = os.path.join(textbox_dirpath, filename)
-        result = ocr.ocr(textbox_imagepath, cls=False)[0]
-        text = ''
-        for r in result:
-            text += ' '
-            text += r[1][0]
-        if page_number not in page_texts:
-            page_texts[page_number]=[]
-        page_texts[page_number].append(text)
-    txt_filepath = os.path.join(WORKSPACE, WORKFILECLEAN+'.txt')
-    if os.path.exists(txt_filepath):
-        os.remove(txt_filepath)
-    with open(txt_filepath, 'w', encoding='utf-8') as f:
-        for page_number in sorted(page_texts.keys()):
-            f.write(f"<p.{page_number}>\n")
-            for text in page_texts[page_number]:
-                f.write(text+'\n')
+    ocr(textbox_dirpath=textbox_dirpath, save_filepath=os.path.join(WORKSPACE,WORKFILECLEAN+'.txt'))
 
 def process_image_classification():
     '''
@@ -157,12 +130,12 @@ def process_text_summarization():
         text = f.read()
     text5 = txt_summ.extract_5pages(text)
     extracted_info, main_topics_list = txt_summ.extract_info(text5)
-    cleaned_text = txt_summ.remove_page(text)
-    divided_text = txt_summ.divide_text(extracted_info, main_topics_list, cleaned_text)
-    summarized_text = txt_summ.summarize(divided_text)
+    divided_text = txt_summ.divide_text(extracted_info, main_topics_list, text)
+    summarized_text = txt_summ.summarize(divided_text, main_topics_list)
     tagged_text = txt_summ.tag_text(summarized_text)
+    total_text = extracted_info+'\n'+tagged_text
 
-    print('readme formatting')
+    # print('readme formatting')
     # # readme formatting
     main_re = re.compile(r'<main>(.*?)</main>', re.DOTALL)
     sub_re = re.compile(r'<sub>(.*?)</sub>', re.DOTALL)
@@ -170,27 +143,26 @@ def process_text_summarization():
     page_re = re.compile(r'<page>(.*?)</page>', re.DOTALL)
 
     # Find all occurrences of each tag
-    subject = tagged_text.split("<subject>")[1].split("</subject>")[0].strip()
-    team = tagged_text.split("<team>")[1].split("</team>")[0].strip().split(", ")
-    index = tagged_text.split("<index>")[1].split("</index>")[0].strip().split(", ")
-    mains = main_re.findall(tagged_text)
+    subject = total_text.split("<subject>")[1].split("</subject>")[0].strip()
+    team = total_text.split("<team>")[1].split("</team>")[0].strip().split(", ")
+    index = total_text.split("<index>")[1].split("</index>")[0].strip().split(", ")
+    mains = main_re.findall(total_text)
 
     # Convert to Markdown format
-    readme_md = f"""
-    # {subject}
-    (프로젝트 진행기간을 입력하세요. ####.##.## ~ ####.##.##)
-    ### Team
-    {', '.join(team)}
+    readme_md = f"""# {subject}
+(프로젝트 진행기간을 입력하세요. ####.##.## ~ ####.##.##)
+### Team
+{', '.join(team)}
 
-    ## Table of Contents
-    """
+## Table of Contents
+"""
     for i, section in enumerate(index, 1):
         readme_md += f"- [{section}](#section_{i})\n"
     readme_md += "<br>\n"
     for idx, main in enumerate(mains):
         main_text = main.strip()
         readme_md += f"<a name='section_{idx + 1}'></a>\n\n## {main_text}\n\n"
-        section_content = tagged_text.split(f"<main>{main_text}</main>")[1].split("<main>")[0]
+        section_content = total_text.split(f"<main>{main_text}</main>")[1].split("<main>")[0]
 
         subs = sub_re.findall(section_content)
         contents = content_re.findall(section_content)
@@ -207,6 +179,8 @@ def process_text_summarization():
         os.remove(readme_filepath)
     with open(readme_filepath, 'w', encoding='utf-8') as f:
         f.write(readme_md)
+    # 작업한 txt_filepath를 삭제
+    # os.remove(txt_filepath)
 
 @app.route('/')
 def index():
@@ -215,7 +189,7 @@ def index():
 @app.route('/loadimages.do', methods=['GET'])
 def loadImageGallery():
     images_list = os.listdir(WORKIMAGEDIR)
-    return images_list
+    return jsonify({'dir':WORKIMAGEDIR.split(os.sep)[-1],'filelist':images_list})
 
 # upload 처리
 @app.route('/upload.do', methods=['POST']) # 단일 파일 업로드
@@ -224,6 +198,7 @@ def fileUpload():
     global WORKFILECLEAN
     global WORKIMAGEDIR
     global WORKFILEHASH
+    start_time = time.time()
     try:
         # 파일은 request.files['파라미터명']으로 받기
         files = request.files['file']
@@ -239,7 +214,14 @@ def fileUpload():
         WORKFILECLEAN = clean_filename(WORKFILEORIGIN)+f"_{timestamp}"  # WORKFILEORIGIN에서 공백/특수문자/확장자를 제거한 clean filename (폴더 생성 시 오류 방지를 위해)
         WORKIMAGEDIR = os.path.join(WORKSPACE, 'images_'+WORKFILECLEAN)  # pdf에 대한 이미지 분류 결과를 저장할 이미지 폴더 경로
         WORKFILEHASH = str(hash(WORKFILEORIGIN))[1:]+f"_{timestamp}"
+
+        WORKFILECLEAN = '비타민_시계열예측과_강화학습을_활용한_시스템_트레이딩_1724372048'
+        WORKIMAGEDIR = os.path.join(WORKSPACE, 'images_'+WORKFILECLEAN)
+        return jsonify({'code': 200, 'msg': [WORKFILEORIGIN, WORKFILECLEAN]})
+
         try:
+            # 원본 파일명을 WORKFILECLEAN으로 변경함
+            os.rename(os.path.join(WORKSPACE,WORKFILEORIGIN), os.path.join(WORKSPACE,WORKFILECLEAN+".pdf"))
             if os.path.exists(WORKIMAGEDIR):
                 pass
                 #📢📢📢📢📢📢 마지막에 주석 풀어야 함.
@@ -256,6 +238,8 @@ def fileUpload():
         ###############################################################
         # object detection 프로세스를 통해 전체 텍스트와 전체 이미지를 추출한다.
         process_object_detection()
+        ttime = time.time()
+        print(f"{ttime-start_time:0.3f} seconds to process_object_detection")
         # Multi-thread : 아래 2가지 프로세스를 병렬적으로 진행한다.
         try:
             # # image classification을 진행한 후 WORKFILEIMAGEDIR에 저장한다.
@@ -266,6 +250,8 @@ def fileUpload():
             thread2.start()
             thread1.join()
             thread2.join()
+            ttime2 = time.time()
+            print(f"{ttime2 - ttime:0.3f} seconds to img_clf and text_summ")
         except Exception as e:
             print("Threading 중 에러:", e, ',',WORKFILECLEAN, WORKIMAGEDIR)
 
@@ -277,11 +263,15 @@ def fileUpload():
 
 @app.route('/loadfile.do',methods=['GET'])
 def loadFile():
+    global WORKSPACE
+    global WORKFILECLEAN
     md_filepath = os.path.join(WORKSPACE,WORKFILECLEAN+'.md')
+    print(md_filepath)
     if os.path.exists(md_filepath):
         try:
             with open(md_filepath,'r',encoding='utf-8') as f:
-                data = f.readlines()
+                data = f.read()
+            print(data)
             return jsonify({'code': 200, 'msg': data})
         except Exception as e:
             print(e)

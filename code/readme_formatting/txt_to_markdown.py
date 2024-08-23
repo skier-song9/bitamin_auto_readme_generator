@@ -49,6 +49,7 @@ for idx,main in enumerate(mains):
         readme_md += f"- {content_text.strip()}\n\n"
         #readme_md += f"*Page: {page.strip()}*\n\n"
 
+print(readme_md)
 # save readme file
 readme_dir = 'C:/Users/happy/Desktop/bitamin_auto_readme_generator/data/reademe_formatting'
 with open(f'{readme_dir}/{subject}.md', 'w', encoding='utf-8') as file:
