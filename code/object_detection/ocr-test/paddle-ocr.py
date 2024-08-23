@@ -15,12 +15,14 @@ if not os.path.exists(output_dir):
     os.makedirs(output_dir)
 
 page_texts = {}
-
+def sort_key(filename):
+        match = re.search(r'\d+', filename)
+        return int(match.group()) if match else 0
 # Get a sorted list of filenames
 # filenames = [f for f in os.listdir(image_dir) if f.endswith('.jpg')]
 # filenames.sort(key=lambda x: (int(x.split('_')[0]), int(x.split('_')[1])))
 filenames = os.listdir(image_dir)
-filenames.sort()
+filenames.sort(key=sort_key)
 
 for filename in filenames:
     parts=filename.split('_')
