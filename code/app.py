@@ -81,15 +81,17 @@ def process_object_detection():
     global img_det
     global ocr
     pdf_filepath = os.path.join(WORKSPACE,WORKFILECLEAN+".pdf")
-    # 페이지별로 이미지로 변환 >> page image가 저장된 디렉토리 이름 반환 > WORKFILECLEAN
-    pdf2img_dirname = pdf2img.convert_and_rename_pdf(input_filepath=pdf_filepath,
+    # 페이지별로 이미지로 변환 >> page image가 저장된 디렉토리 이름 반환 > WORKFILECLEAN, /data/object_detection/input/WORKFILECLEAN
+    pdf2img_dirname, pdf2img_dirpath = pdf2img.convert_and_rename_pdf(input_filepath=pdf_filepath,
                                    workfileorigin=WORKFILECLEAN+".pdf",
                                    workfileclean=WORKFILECLEAN)
-    # image detector 실행 >> textbox image들이 저장된 경로 반환 /data/object_detection/output/WORKFILECLEAN/
+    # image detector 실행 >> textbox image들이 저장된 경로 반환 /data/object_detection/output/WORKFILECLEAN/textbox
     textbox_dirpath = img_det.predict(pdf_name=pdf2img_dirname, save_image_dir=WORKIMAGEDIR, save=True)
 
     # OCR
     ocr(textbox_dirpath=textbox_dirpath, save_filepath=os.path.join(WORKSPACE,WORKFILECLEAN+'.txt'))
+
+    return pdf2img_dirpath, os.sep.join(textbox_dirpath.split(os.sep))
 
 def process_image_classification():
     '''
@@ -100,7 +102,7 @@ def process_image_classification():
     '''
     global WORKIMAGEDIR
     global img_clf
-    print('start image classification')
+    # print('start image classification')
     # 추론
     img_clf_result_df, _ = img_clf.predict(WORKIMAGEDIR, save=False) # 결과 df를 csv파일로 저장하지 않음.
     for _, row in img_clf_result_df.iterrows():
@@ -122,7 +124,7 @@ def process_text_summarization():
     '''
     global WORKSPACE
     global WORKFILECLEAN
-    print('start text summarization')
+    # print('start text summarization')
     txt_filepath = os.path.join(WORKSPACE, WORKFILECLEAN+'.txt')
     if not os.path.exists(txt_filepath):
         raise OSError(f"{txt_filepath} File doesn't exists")
@@ -215,9 +217,9 @@ def fileUpload():
         WORKIMAGEDIR = os.path.join(WORKSPACE, 'images_'+WORKFILECLEAN)  # pdf에 대한 이미지 분류 결과를 저장할 이미지 폴더 경로
         WORKFILEHASH = str(hash(WORKFILEORIGIN))[1:]+f"_{timestamp}"
 
-        WORKFILECLEAN = '비타민_시계열예측과_강화학습을_활용한_시스템_트레이딩_1724372048'
-        WORKIMAGEDIR = os.path.join(WORKSPACE, 'images_'+WORKFILECLEAN)
-        return jsonify({'code': 200, 'msg': [WORKFILEORIGIN, WORKFILECLEAN]})
+        # WORKFILECLEAN = '비타민_시계열예측과_강화학습을_활용한_시스템_트레이딩_1724372048'
+        # WORKIMAGEDIR = os.path.join(WORKSPACE, 'images_'+WORKFILECLEAN)
+        # return jsonify({'code': 200, 'msg': [WORKFILEORIGIN, WORKFILECLEAN]})
 
         try:
             # 원본 파일명을 WORKFILECLEAN으로 변경함
@@ -237,7 +239,7 @@ def fileUpload():
 
         ###############################################################
         # object detection 프로세스를 통해 전체 텍스트와 전체 이미지를 추출한다.
-        process_object_detection()
+        pdf2img_dirpath, textbox_dirpath = process_object_detection()
         ttime = time.time()
         print(f"{ttime-start_time:0.3f} seconds to process_object_detection")
         # Multi-thread : 아래 2가지 프로세스를 병렬적으로 진행한다.
@@ -266,15 +268,15 @@ def loadFile():
     global WORKSPACE
     global WORKFILECLEAN
     md_filepath = os.path.join(WORKSPACE,WORKFILECLEAN+'.md')
-    print(md_filepath)
+    # print(md_filepath)
     if os.path.exists(md_filepath):
         try:
             with open(md_filepath,'r',encoding='utf-8') as f:
                 data = f.read()
-            print(data)
+            # print(data)
             return jsonify({'code': 200, 'msg': data})
         except Exception as e:
-            print(e)
+            # print(e)
             return jsonify({'code':400,'msg':"Server Error: Cannot read markdown file"})
     else:
         return jsonify({'code': 400, 'msg':"Server Error: File doesn't exists!"})
