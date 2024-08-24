@@ -1,23 +1,24 @@
-<subject>감성 분석 프로젝트</subject>  
-<team>팀명</team>  
-<index>감성 분석을 통한 여론 조사</index>  
+<subject>프로젝트 요약</subject>  
+<team>팀원</team>  
+<index>주제 선정 배경, 데이터 수집 기준, 데이터 수집- 웹크롤링, 전처리 및 EDA 분석, 모델링, 결과 분석 및 시각화</index>  
 
 <main>주제 선정 배경</main>  
-<sub>주제 선정 배경</sub> <content>자연어 처리(NLP)를 활용한 클린스만호에 대한 감성 분석을 진행함.</content> <page>3</page>  
+<sub>주제 선정 배경</sub> <content>자연어 처리(NLP) 결과를 기반으로 한 토너먼트 별 클린스만호 감성 분석이 주제입니다.</content> <page>3</page>  
 
 <main>데이터 수집 기준</main>  
-<sub>데이터 수집 기준</sub> <content>조별리그와 16강, 8강, 4강 전후로 나누어 여론 데이터를 수집하였으며, 클린스만 경질 관련 이슈 또한 포함됨.</content> <page>5</page>  
+<sub>데이터 수집 기준</sub> <content>조별리그와 16강, 8강, 4강 전후의 여론을 반영한 데이터 수집 기간을 설정하였으며, 클린스만 경질 관련 여론 이슈도 포함되었습니다.</content> <page>5</page>  
 
-<main>데이터 수집 - 웹크롤링</main>  
-<sub>웹 크롤링 - 날짜 정제화</sub> <content>뉴스 날짜를 정제하는 함수를 구현하여 과거 및 최근 뉴스의 날짜 포맷을 통일함.</content> <page>7</page>  
-<sub>웹 크롤링 - 내용 정제화</sub> <content>뉴스 기사 내용의 불필요한 부분을 제거하는 정제화 함수를 적용함.</content> <page>8</page>  
-<sub>웹 크롤링 - Crawler 함수</sub> <content>네이버 뉴스에서 필요한 정보를 동적으로 수집하기 위해 Beautiful Soup을 활용하여 제목과 링크를 추출함.</content> <page>9</page>  
+<main>데이터 수집- 웹크롤링</main>  
+<sub>웹 크롤링- 날짜 정제화</sub> <content>뉴스 날짜 형식을 처리하기 위한 정규 표현식을 이용한 날짜 정제화 함수 정의를 포함합니다.</content> <page>7</page>  
+<sub>웹 크롤링- 내용 정제화</sub> <content>HTML 태그 제거 및 본문 내용 정제를 위한 과정이 설명되며, 세 가지 정제 단계로 나누어 진행됩니다.</content> <page>8</page>  
+<sub>웹 크롤링- Crawler 함수</sub> <content>뉴스 제목과 링크 추출을 위한 Crawler 함수 정의 및 불필요한 정보 제거 과정을 설명합니다.</content> <page>9</page>  
 
 <main>전처리 및 EDA 분석</main>  
-<sub>전처리 및 분석 결과 EDA</sub> <content>감성 분석을 위해 Lexicon-based, Linguistic, Machine Learning approaches를 활용하여 데이터를 분석함.</content> <page>14</page>  
+<sub>전처리 및 분석 결과 EDA</sub> <content>EDA 분석 과정 및 결과에 대한 개요를 제공합니다.</content> <page>12</page>  
+<sub>감성 분석 방법론</sub> <content>Lexicon 기반, 언어적, 머신러닝 접근법을 통한 감성 분석 기법이 설명됩니다.</content> <page>14</page>  
 
 <main>모델링</main>  
-<sub>모델링</sub> <content>Hugging Face의 amphOra/KorFinASC-XLM-RoBERTa 모델을 사용하여 한국어 및 영어 텍스트의 감성을 분석함.</content> <page>15</page>  
+<sub>모델링</sub> <content>Hugging Face의 amphOra/KorFinASC-XLM-RoBERTa 모델을 활용하여 감성 분석을 수행하며, 이 모델은 한국어와 영어 텍스트에 유용함을 강조합니다.</content> <page>15</page>  
 
 <main>결과 분석 및 시각화</main>  
-<sub>결과 분석 및 시각화</sub> <content>감성 분석 결과 4강을 전후로 부정적인 여론이 증가하는 경향을 확인하였으며, 이를 통해 위기 관리에 효과적으로 대응할 수 있음을 보여줌.</content> <page>25</page>
+<sub>결과 분석 및 시각화</sub> <content>수집한 데이터의 감성 분류 결과를 분석하고, 4강 이후 부정적인 여론의 증가를 확인하여 위기 상황 대응의 중요성을 강조합니다.</content> <page>25</page>

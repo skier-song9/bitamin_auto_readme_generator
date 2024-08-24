@@ -1,21 +1,27 @@
 <subject>데이터 증강 BRAIN 및 TUMOR</subject>
-<team>12기 김고은, 12기 김채연, 12기 김희원, 13기 이예령, 13기 이승우</team>
-<index>01 주제 선정 이유> <index>02 RESNET> <index>03 원본데이터 설명 및 한계> <index>04 구현 RESNET> <index>05 결과 비교> <index>06 결론 및 아쉬운 점>
+<team>CV 3조</team>
+<team>12기 김고은</team>
+<team>12기 김채연</team>
+<team>12기 김희원</team>
+<team>13기 이예령</team>
+<team>13기 이승우</team>
 
-<main>주제 선정 이유</main>
-<sub>주제 선정 이유</sub> <content>본 연구는 RESNET 구조를 활용하여 BRAIN TUMOR DATA에 대한 학습을 진행하기 위해 선정되었습니다.</content> <page>4</page>
+<index>01 주제 선정 이유</index>
+<index>02 RESNET</index>
+<index>03 원본데이터 설명 및 한계</index>
+<index>04 구현 RESNET</index>
+<index>05 결과 비교</index>
+<index>06 결론 및 아쉬운 점</index>
 
-<main>RESNET</main>
-<sub>RESNET 구조</sub> <content>RESNET-18과 RESNET-50을 구현하여 BRAIN TUMOR 데이터에 적용하였습니다.</content> <page>5</page>
+<main>02 RESNET</main>
+<sub>STEP 01</sub> <content>데이터 전처리 및 증강</content> <page>1</page>
+<sub>STEP 02</sub> <content>RESNET 18 구현</content> <page>1</page>
+<sub>STEP 03</sub> <content>50 구현 RESNET</content> <page>1</page>
+<sub>STEP 04</sub> <content>원본데이터 RESNET 18 / 50 증강데이터 RESNET 18 /50 결과 비교</content> <page>1</page>
 
 <main>원본데이터 설명 및 한계</main>
-<sub>원본 데이터 한계</sub> <content>원본 데이터의 개수가 적어 모델의 성능을 정확히 판단하기 어려웠습니다.</content> <page>6</page>
-
-<main>구현 RESNET</main>
-<sub>모델 구현</sub> <content>RESNET-18과 RESNET-50을 직접 구현하여 학습을 진행하였습니다.</content> <page>7</page>
+<sub>데이터 부족</sub> <content>DATA가 부족하여 모델의 정확도 자체가 높지 않았음. 데이터 개수 부족으로 TRAIN DATA에 할당할 수 있는 DATA의 수가 여전히 부족했음.</content> <page>1</page>
+<sub>증강 필요성</sub> <content>DATA를 통해 ARGUMENTATION을 DATA의 수를 늘리는 방법론이 필요함.</content> <page>1</page>
 
 <main>결과 비교</main>
-<sub>결과 비교</sub> <content>증강된 데이터에서는 RESNET-50의 성능이 더 우수하였습니다.</content> <page>8</page>
-
-<main>결론 및 아쉬운 점</main>
-<sub>결론 및 아쉬운 점</sub> <content>데이터 부족으로 인해 모델의 정확도가 낮았으며, 데이터 수를 늘리는 ARGUMENTATION 방법론이 필요합니다.</content> <page>9</page>
+<sub>모델 성능</sub> <content>원본 DATA에서는 성능이 같았음. 데이터의 개수가 적어 모델의 성능을 판단하기에는 부적절함. 증강 DATA에서는 RESNET-50의 성능이 더 좋았음.</content> <page>1</page>

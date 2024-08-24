@@ -1,25 +1,21 @@
 <subject>모델 SASREC</subject>  
 <team>이하나, 김하니</team>  
-<index>모델 SASREC>  
+<index>모델 설명, 모델 성능, 모델 구현</index>  
 
-<main>모델 SASREC</main>  
-<sub>모델 설명</sub> <content>SASRec은 사용자의 상호작용 시퀀스를 모델링하기 위해 Self-Attention을 활용하며, Embedding Layer와 User-Item Interaction을 통해 학습을 진행한다.</content> <page>10</page>  
-<sub>모델 성능</sub> <content>SASRec 모델은 NDCG@10과 Hit@10 지표로 평가하여 추천 시스템에서 최고의 성능을 보였다.</content> <page>13</page>  
-<sub>모델 사용 이유</sub> <content>사용자의 선호도 변화를 잘 포착하며, 낮은 Sparsity에서도 효과적인 Embedding으로 높은 성능을 발휘하였다.</content> <page>15</page>  
+<main>모델 설명</main>  
+<sub>모델 설명</sub> <content>SASRec은 사용자의 상호작용 시퀀스를 모델링하기 위해 설계된 순차 추천 모델로, Self-Attention Layer를 통해 사용자-아이템 상호작용을 학습한다.</content> <page>10</page>  
+<sub>모델 성능</sub> <content>SASRec은 NDCG@10 및 HR@10 평가에서 가장 높은 성능을 보이며, 사용자 선호도 변화를 효과적으로 반영하여 추천 시스템의 성능을 극대화하였다.</content> <page>13</page>  
+<sub>모델 구현</sub> <content>SASRec을 활용한 추천 시스템이 성공적으로 구현되었으며, 사용자의 음식 선호도를 바탕으로 높은 성능을 발휘하였다.</content> <page>15</page>  
 
 <main>사용 데이터</main>  
-<sub>사용 데이터 설명</sub> <content>FOODCOM과 YELPCOM 데이터셋을 사용하여 음식 이름, 레시피, 식당의 인기도 정보를 포함한다.</content> <page>5</page>  
-<sub>데이터 변환</sub> <content>FOODCOM과 YELPCOM의 음식 정보를 TF-IDF 벡터로 변환하여 사용하였다.</content> <page>17</page>  
+<sub>사용 데이터 출처</sub> <content>사용된 데이터는 Foodcom과 Yelpcom 데이터셋으로, TF-IDF 벡터로 변환되어 음식과 식당 정보를 포함한다.</content> <page>5</page>  
 
 <main>식당 추천 알고리즘</main>  
-<sub>추천 알고리즘 구현 과정</sub> <content>SASRec 모델을 통해 FOODCOM과 YELPCOM의 음식 간 유사도를 Cosine으로 계산하여 추천한다.</content> <page>17</page>  
-<sub>추천 예시</sub> <content>User 1842에게 Kimchi Pancake 관련 식당이 추천되었고, User 19073에게 Rubirosa 식당이 추천되었다.</content> <page>18</page>  
+<sub>추천 알고리즘 설명</sub> <content>SASRec 모델 기반의 추천 알고리즘은 각 식당의 음식과 유사도를 Cosine 계산을 통해 도출하며, Foodcom과 Yelpcom 데이터의 유사도를 기반으로 추천 결과를 생성한다.</content> <page>17</page>  
+<sub>추천 예시</sub> <content>사용자 1842에게 Kimchi Pancake을 추천하고, 사용자 19073에게 Rubirosa와 Chicago Style Deep Dish Sausage Pizza를 추천하여 음식 선호도를 반영한 결과를 보여준다.</content> <page>18</page><page>19</page>  
 
-<main>모델 설명 & 성능 비교</main>  
-<sub>모델 성능 평가</sub> <content>추천 시스템의 성능을 NDCG@10과 Hit@10으로 측정하여 SASRec이 가장 높은 성능을 기록하였다.</content> <page>13</page>  
-<sub>모델 정의</sub> <content>다양한 추천 시스템 모델(NCF, FM, Wide & Deep 등)의 특성과 성능을 비교하여 설명하였다.</content> <page>12</page>  
+<main>모델 설명 & 성능 비교 C</main>  
+<sub>모델 성능 비교</sub> <content>SASRec은 NCF, FM, Wide & Deep 모델과 비교에서 우수한 추천 성능을 보여주며, 개인 맞춤형 추천 품질이 높게 평가되었다.</content> <page>12</page>  
 
 <main>향후 발전방향</main>  
-<sub>적용 가능한 지역 확대</sub> <content>특정 지역의 데이터에 한정되지 않고 다양한 지역의 식당 데이터를 추가할 예정이다.</content> <page>20</page>  
-<sub>사전훈련된 단어 벡터 사용</sub> <content>tf-idf 외에 Word2Vec과 같은 사전훈련된 단어 벡터를 활용할 계획이다.</content> <page>20</page>  
-<sub>더 많은 유저 필요</sub> <content>추천 시스템 성능 향상을 위해 더 많은 사용자 데이터를 확보할 필요가 있다.</content> <page>20</page>
+<sub>발전 방향 및 계획</sub> <content>향후 음식점 데이터의 지역 확대, 사전 훈련된 단어 벡터 사용, 더 많은 사용자 데이터 확보를 통해 추천 시스템의 정확성과 범위를 넓힐 계획이다.</content> <page>20</page>

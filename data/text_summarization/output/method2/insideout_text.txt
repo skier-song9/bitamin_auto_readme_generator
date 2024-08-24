@@ -1,17 +1,21 @@
-<subject>프로젝트 개요</subject>
-<team>CV 1조</team>
-<index>O1 주제 선정 배경> 
+<subject>CE SEGMENTATION & EMOTION CLASSIFICATION</subject>
+<team>김재원, 김채원, 문승민, 이서현, 황영서</team>
+<index>01 주제 선정 배경, 02 모델 구축 과정, 03 결과 분석, 04 의의 및 한계점</index>
 
-<main>주제 선정 배경</main>
-<sub>주제 선정 이유</sub> <content>본 프로젝트는 특정 문제를 해결하기 위해 데이터 분석과 머신러닝 기법을 적용하는 것을 목표로 하였습니다. 이 과정에서 데이터의 중요성과 활용 가능성에 대한 인식을 강화하고자 하였습니다.</content> <page>1</page>
+<main>01 주제선정 배경</main>
+<sub>[아이디어]</sub> <content>인간의 감정 인식에 대한 연구는 널리 이루어졌으나 애니메이션 캐릭터의 감정 인식에 대한 연구는 제한적이다.</content> <page>1</page>
+<sub>[기존 연구]</sub> <content>애니메이션 중에서도 감정을 다루는 영화의 캐릭터 감정을 분석할 필요성이 제기되었다.</content> <page>1</page>
+<sub>참고 논문</sub> <content>'Tom and Jerry'의 8113개 이미지에 대해 4개의 감정 레이블을 사용하여 MasK R-CNN 모델로 캐릭터 탐지 및 감정 분류를 수행하였다.</content> <page>1</page>
 
-<main>모델 구축 과정</main>
-<sub>데이터 수집</sub> <content>데이터는 여러 출처에서 수집되었으며, 필요한 전처리 과정을 거쳐 모델 학습에 적합한 형태로 변환되었습니다.</content> <page>2</page>
-<sub>모델 선택</sub> <content>여러 머신러닝 모델 중 성능이 우수한 모델을 선택하여 학습을 진행하였으며, 최적의 하이퍼파라미터 조정을 통해 모델의 성능을 극대화하였습니다.</content> <page>3</page>
+<main>02 모델 구축 과정</main>
+<sub>데이터 수집</sub> <content>8000장의 이미지에서 4프레임 단위로 이미지 추출 후, 관련 없는 이미지를 삭제하여 데이터셋을 구축하였다.</content> <page>2</page>
+<sub>라벨링</sub> <content>Roboflow와 OpenCV를 이용하여 감정 분류 및 얼굴 분할을 위한 라벨링 과정을 수행하였다.</content> <page>2</page>
+<sub>모델 구현</sub> <content>ResNet, DenseNet, VGGNet 등 다양한 CNN 모델을 구현하고, YOLOv8을 활용한 인스턴스 세그멘테이션을 진행하였다.</content> <page>2</page>
 
-<main>결과 분석</main>
-<sub>모델 성능</sub> <content>최종 모델은 정확도 95%로 평가되었으며, 재현율과 정밀도 또한 높은 수치를 기록하여 성능이 우수한 것으로 나타났습니다. 이러한 결과는 모델의 신뢰성을 높이는 데 기여하였습니다.</content> <page>4</page>
+<main>03 결과 분석</main>
+<sub>YOLO Object mask 학습 결과</sub> <content>F1 점수, 정밀도-리콜 커브, 혼동 행렬 등을 통해 모델의 성능을 평가하였다.</content> <page>3</page>
+<sub>최종 모델 선정</sub> <content>ResNet50 모델이 가장 높은 성능을 보였으며, 감정별 분석에서 기쁨이 가장 다양한 감정을 지닌 캐릭터로 분석되었다.</content> <page>3</page>
 
-<main>의의 및 한계점</main>
-<sub>의의</sub> <content>본 프로젝트는 데이터 분석의 실제 적용 사례를 통해 이론과 실무 간의 간극을 줄이는 데 기여하였습니다.</content> <page>5</page>
-<sub>한계점</sub> <content>데이터의 한정성과 특정 환경에서의 성능 저하 가능성 등 몇 가지 한계점이 존재하며, 향후 연구에서는 이러한 한계를 극복할 방법을 모색해야 합니다.</content> <page>6</page>
+<main>04 의의 및 한계점</main>
+<sub>의의</sub> <content>애니메이션 캐릭터에 대한 감정 분석은 사람에 국한되지 않고, 관련 산업의 발달에 기여할 수 있는 의미 있는 연구이다.</content> <page>4</page>
+<sub>한계점</sub> <content>감정 라벨링 과정에서 주관적인 요소가 포함되어 데이터의 일관성 부족이 모델 성능에 영향을 미쳤을 가능성이 있다.</content> <page>4</page>

@@ -1,24 +1,14 @@
-<subject>식당 추천 시스템</subject>
+<subject>추천 시스템</subject>
 <team>김태호12기, 이철민13기, 김아진13기, 김윤영13기</team>
-<index>Ndex</index>
+<index>모델 SASREC, 사용 데이터, 식당 추천 알고리즘, 모델 설명 & 성능 비교, 향후 발전 방향</index>
 
-<main>모델</main>
-<sub>SASREC</sub> <content>사용자의 입맛에 맞는 음식을 추천하고 해당 음식을 제공하는 식당을 추천하는 알고리즘입니다.</content> <page>1</page>
-
+<main>모델 SASREC</main>
+<sub>SASREC</sub> <content>사용자의 선호도를 잘 포착하며, Sparse한 데이터에서도 높은 성능을 보이는 추천 시스템으로, 최종 모델로 선정되었다.</content> <page>15</page>
 <main>사용 데이터</main>
-<sub>식당 추천 알고리즘</sub> <content>사용되는 데이터는 Foodcom과 Yelpcom에서 가져온 정보입니다.</content> <page>1</page>
-
+<sub>사용 데이터</sub> <content>Foodcom 및 Yelpcom 데이터셋을 활용하여 사용자와 음식간의 관계를 분석한다.</content> <page>6</page>
+<main>식당 추천 알고리즘</main>
+<sub>식당 추천 알고리즘</sub> <content>SASREC 모델의 출력 결과를 바탕으로, Cosine 유사도를 활용하여 사용자에게 적합한 식당을 추천한다.</content> <page>18</page>
 <main>모델 설명 & 성능 비교</main>
-<sub>모델 성능</sub> <content>추천 시스템의 성능은 NDCG 및 Hit Ratio로 평가되며, SASReC 모델이 가장 뛰어난 성능을 보였습니다.</content> <page>1</page>
-
-<main>식당 추천 알고리즘 구현</main>
-<sub>구현 과정</sub> <content>1. FOODCOM과 YELPCOM 데이터를 TF-IDF 벡터로 변환, 2. SASREC 모델을 사용해 FOODCOM 음식 이름과 YELPCOM의 유명 음식 간의 유사도를 Cosine으로 계산, 3. 가장 높은 유사도를 가진 식당을 추천합니다.</content> <page>1</page>
-
-<main>식당 추천 예시</main>
-<sub>User 1842</sub> <content>추천된 식당은 Kimchi Pancake, Pork Belly 등으로, SASReC 모델을 통해 추천되었습니다.</content> <page>1</page>
-<sub>User 19073</sub> <content>추천된 식당은 Rubirosa, Small Sausage And Broccoli Rabe Pizza 등으로, SASReC 모델을 통해 추천되었습니다.</content> <page>1</page>
-
+<sub>모델 성능</sub> <content>SASREC 모델은 NDCG@10과 Hit@10 지표에서 가장 좋은 성능을 보이며, 개인화된 추천을 제공한다.</content> <page>14</page>
 <main>향후 발전 방향</main>
-<sub>적용 가능한 지역 확대</sub> <content>다양한 지역의 식당을 추가하여 추천 시스템의 적용 범위를 넓히고자 합니다.</content> <page>1</page>
-<sub>음식점 추천 시 사전훈련된 단어 벡터 사용</sub> <content>tf-idf 외에 Word2Vec과 같은 사전 훈련된 단어 벡터를 활용할 계획입니다.</content> <page>1</page>
-<sub>더 많은 유저 필요</sub> <content>추천의 정확도를 높이기 위해 더 많은 사용자 데이터를 수집할 필요가 있습니다.</content> <page>1</page>
+<sub>향후 발전 방향</sub> <content>추천 시스템의 지역을 확대하고, 사전 훈련된 단어 벤터를 활용하여 유사도를 계산할 계획이다.</content> <page>21</page>

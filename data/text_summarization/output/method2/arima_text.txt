@@ -1,31 +1,24 @@
-<subject>SARIMA와 ARIMA 모델 비교를 통한 미세먼지 분석</subject>
+<subject>2024년도 1학기 비타민 프로젝트 발표</subject>
 <team>TEAM 시계열 2조 김채연 김아진 문승민 서윤 허범현</team>
-<index>프로젝트 배경 소개>
-<index>시계열 모델 스터디>
-<index>ARIMA & SARIMA>
-<index>사용 데이터셋>
-<index>시계열 데이터 분석의 전처리>
-<index>ARIMA SARIMA 적용과 비교>
-<index>분석결과>
-<index>프로젝트 인사이트 공유>
+<index>11 프로젝트 배경 소개, 21 시계열 모델 스터디, 22 ARIMA & SARIMA, 31 사용 데이터셋, 32 시계열 데이터 분석의 전처리, 41 ARIMA SARIMA 적용과 비교, 51 분석결과, 52 프로젝트 인사이트 공유</index>
 
 <main>프로젝트 배경 소개</main>
-<content>WHO는 2060년까지 대기오염으로 인한 조기 사망자가 29배 증가할 것으로 전망하며, 미세먼지 추세를 분석하는 프로젝트를 계획함.</content> <page>1</page>
+<content>포용적 기후정책 아이디어 공모전에서의 미세먼지 예측을 위한 시계열 분석 프로젝트로, WHO의 대기오염으로 인한 조기사망자 증가 전망을 반영하여 진행됨.</content> <page>11</page>
 
 <main>시계열 모델 스터디</main>
-<content>ARIMA 모델은 비정상 시계열 데이터를 정상화하기 위해 차분을 사용하는 방법을 포함하며, SARIMA 모델은 계절성을 추가하여 ARIMA를 확장한 것이다.</content> <page>2</page>
+<content>ARIMA 및 SARIMA 모델의 기본 개념과 차수를 설명하며 비정상성을 정규성으로 변환하는 과정을 다룸.</content> <page>21</page>
+
+<main>사용 데이터셋</main>
+<content>대기환경지수와 미세먼지 관련 데이터를 포함한 다양한 환경 지표를 활용함.</content> <page>31</page>
 
 <main>시계열 데이터 분석의 전처리</main>
-<content>데이터 전처리를 통해 필요 없는 칼럼을 제거하고, 연도와 월별로 그룹화하여 평균 미세먼지 농도를 계산함. Dickey-Fuller 검정을 통해 정상성을 테스트하고, 시각화를 통해 데이터의 추세와 계절성을 분석함.</content> <page>3</page>
+<content>데이터 전처리 과정에서 불필요한 칼럼 제거 및 '년', '월'을 추출하여 새로운 컬럼을 생성하고, 2002년부터 2023년까지의 데이터만 필터링함.</content> <page>32</page>
 
-<main>ARIMA</main>
-<content>최적 파라미터를 탐색하여 모델을 적합시키고 미래값을 예측 및 시각화함.</content> <page>4</page>
-
-<main>SARIMA</main>
-<content>SARIMA 모델을 적용하여 계절성을 데이터에 포함시키고 미래값을 예측 및 시각화함.</content> <page>5</page>
+<main>ARIMA SARIMA 적용과 비교</main>
+<content>ARIMA와 SARIMA 모델을 각각 적용하여 미래값을 예측하고, 두 모델의 성능을 비교함.</content> <page>41</page>
 
 <main>분석 결과</main>
-<content>대부분의 ARIMA 및 SARIMA 파라미터가 통계적으로 유의미하며, 잔차의 독립성과 자기상관 구조가 잘 설명되지만 정규성을 따르지 않음.</content> <page>6</page>
+<content>대부분의 파라미터가 통계적으로 유의미하며, 잔차의 독립성은 확인되나, 정규성을 따르지 않음에 따라 불확실성이 증가할 수 있음.</content> <page>51</page>
 
-<main>결론 및 인사이트 공유</main>
-<content>서울시의 미세먼지 농도는 전반적으로 감소하는 추세를 보이며, 특정 시기에 주기적인 변동이 있음을 확인하였다. 2024년 예측 결과에 따르면 미세먼지 농도는 현재의 감소 추세를 유지할 것으로 보이며, 계절적 요인에 따른 대기 질 관리를 위한 지속적인 정책적 노력이 필요하다.</content> <page>7</page>
+<main>프로젝트 인사이트 공유</main>
+<content>서울시 미세먼지 농도는 전반적으로 감소하는 추세를 보이며, 계절적 요인에 따라 특정 시기에 농도가 높아지는 경향이 있음. 2024년 예측 결과는 현재의 감소 추세 유지 전망과 함께, 정책적 노력이 필요하다는 점을 강조함.</content> <page>52</page>

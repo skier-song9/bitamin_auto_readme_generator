@@ -1,39 +1,36 @@
 <subject>Netflix Stock Price Prediction with News Topic & Sentiment</subject>
 <team>송규헌, 권도영, 이태경, 김서윤, 한진솔</team>
-<index>CONTENTS</index>
+<index>01 INTRODUCTION, 02 DATA PREPROCESSING, 03 MODELING, 04 CONCLUSIONS AND LIMITATIONS</index>
 
 <main>01 INTRODUCTION</main>
-<sub>1.1 Background of topic selection</sub> <content>뉴스가 주가 변동에 미치는 영향을 탐구하고, 주가 예측에 뉴스를 활용하기 위한 프로젝트입니다. 주가를 예측하는데 뉴스의 감성 분석 및 토픽 모델링 결과를 사용합니다.</content> <page>4</page>
-<sub>1.2 Long-term trend consideration in stock price prediction model implementation</sub> <content>장기적인 추세를 고려하여 예측 일수와 시권스 길이를 늘려 단기적인 변동뿐만 아니라 장기적인 추세를 반영한 예측 결과를 얻고자 합니다.</content> <page>5</page>
-<sub>1.3 Brief Project Introduction</sub> <content>뉴스 데이터를 활용한 주가 예측 모델의 최적화 및 효율적인 파라미터 선정이 목표입니다. LSTM, GRU, Transformer 모델의 실험을 통해 각 모델의 효과성을 검토합니다.</content> <page>6</page>
-<sub>1.4 Data collection</sub> <content>2018년 1월 2일부터 2023년 12월 29일까지 NETFLIX 기업의 주가 데이터를 FinanceDataReader 라이브러리를 통해 수집하였습니다.</content> <page>7</page>
-<sub>1.5 News data collection</sub> <content>Stock News API를 활용하여 동일 기간에 발행된 NETFLIX 관련 뉴스 데이터를 수집하였습니다. 웹 스크래핑 및 API 사용으로 데이터 정확도를 높이고자 하였습니다.</content> <page>8</page>
+<sub>1.1 Background of topic selection</sub> <content>뉴스가 주가 변동에 미치는 영향을 탐구하고, 뉴스의 감성 분석 및 토픽 모델링 결과를 활용하여 주가를 예측하는 프로젝트를 진행함.</content> <page>5</page>
+<sub>1.2 Long-term trend consideration in stock price prediction model implementation</sub> <content>장기적인 추세를 고려하여 예측 일수와 시권스 길이를 늘려 예측 결과를 도출하고자 함.</content> <page>6</page>
+<sub>1.3 Brief Project Introduction</sub> <content>뉴스 데이터를 활용한 주가 예측 모델의 최적화 및 파라미터 선정, LSTM, GRU, Transformer 모델 실험을 통해 유용성을 검토함.</content> <page>7</page>
+<sub>1.4 Data collection</sub> <content>FinanceDataReader 라이브러리를 활용하여 Netflix의 2018년 1월 2일부터 2023년 12월 29일까지의 주가 데이터를 수집함.</content> <page>8</page>
+<sub>1.5 News data</sub> <content>Stock News Ap를 활용하여 관련 뉴스 데이터를 수집하고, FinBERT와 BERTopic을 통해 감성 분석 및 토픽 모델링을 시도함.</content> <page>9</page>
 
 <main>02 DATA PREPROCESSING</main>
-<sub>2.1 Make derived variable</sub> <content>변화율과 이동 평균 등의 파생 변수를 생성하였습니다. 2018년 데이터를 추가로 수집해 활용합니다.</content> <page>10</page>
-<sub>2.2 Add indicators</sub> <content>금융 시계열 데이터에 대한 기술 분석 라이브러리를 사용하여 다양한 지표를 추가하였습니다.</content> <page>11</page>
-<sub>2.3 Peer Analysis</sub> <content>Netflix와 유사한 기업의 종가를 feature로 추가하여 분석에 활용하였습니다.</content> <page>12</page>
-<sub>2.4 Handle missing values</sub> <content>상장 이전의 결측값은 최초 상장일의 종가로 대체하였습니다.</content> <page>13</page>
-<sub>2.5 Remove multicollinearity</sub> <content>주가의 변화에 관련된 기본 지표는 유지하며 다중공선성을 제거하였습니다.</content> <page>14</page>
-<sub>2.6 Make derived variable for News Topics & Sentiment</sub> <content>뉴스 주제 및 감성에 대한 파생 변수를 생성하였습니다.</content> <page>15</page>
-<sub>2.7 Dataset creation</sub> <content>주가 데이터셋(stockOnly-df)을 생성하였습니다.</content> <page>16</page>
-<sub>2.8 Total dataset creation</sub> <content>총 데이터셋(total-df)을 생성하였습니다.</content> <page>17</page>
+<sub>2.1 Make derived Variable</sub> <content>변화율 및 이동 평균을 포함한 파생 변수를 생성함.</content> <page>11</page>
+<sub>2.2 Technical Analysis Library</sub> <content>금융 시계열 데이터에 대한 기술 분석 라이브러리를 활용함.</content> <page>12</page>
+<sub>2.3 Add indicators</sub> <content>다양한 기술적 지표들을 추가하여 분석의 정확성을 높임.</content> <page>13</page>
+<sub>2.4 Peer Analysis</sub> <content>Netflix와 유사한 기업의 종가를 feature로 추가함.</content> <page>14</page>
+<sub>2.5 Missing Value</sub> <content>상장 이전의 결측값은 최초 상장일의 종가로 대체함.</content> <page>15</page>
+<sub>2.6 Remove multicollinearity</sub> <content>주가 변화와 관련된 주요 지표들을 유지하고 다중공선성을 제거함.</content> <page>16</page>
+<sub>2.7 Make derived variable for News Topics & Sentiment</sub> <content>뉴스 주제와 감성을 파생변수로 추가하여 예측 모델을 강화함.</content> <page>18</page>
+<sub>2.8 Dataset stockOnly-df</sub> <content>1257*38 크기의 데이터셋을 생성함.</content> <page>19</page>
+<sub>2.9 Dataset total-df</sub> <content>1257*59 크기의 전체 데이터셋을 생성함.</content> <page>20</page>
 
 <main>03 MODELING</main>
-<sub>3.1 Time Series</sub> <content>시간에 따른 데이터 패턴을 분석하여 미래 값을 예측하는 모델링 방법을 설명합니다.</content> <page>19</page>
-<sub>3.2 Modeling</sub> <content>Sequence Length와 Predict Size를 설정하여 학습 데이터 형태를 정의하였습니다.</content> <page>20</page>
-<sub>3.3 Define Model</sub> <content>LSTM, GRU, Transformer 모델을 정의하고 각 모델의 특징을 설명하였습니다.</content> <page>21</page>
-<sub>3.4 Model Comparison</sub> <content>예측 목표에 따른 모델 비교를 진행하였습니다.</content> <page>22</page>
-<sub>3.5 Model Comparison 2</sub> <content>뉴스 데이터를 포함한 모델과 그렇지 않은 모델을 비교하였습니다.</content> <page>23</page>
-<sub>3.6 Model Comparison 3</sub> <content>LSTM 모델과 Transformer 모델 간의 비교를 진행하였습니다.</content> <page>24</page>
+<sub>3.1 Time Series</sub> <content>시간에 따른 데이터 패턴 분석 및 미래 예측을 위한 시퀀스 길이를 정의함.</content> <page>21</page>
+<sub>3.2 Modeling Step 1: Sequence Length</sub> <content>60개의 시퀀스 데이터와 10개의 예측 데이터 형태로 학습을 진행함.</content> <page>22</page>
+<sub>3.3 Define Model</sub> <content>LSTM, GRU, Transformer 모델을 정의하고 비교하여 예측의 유의미성을 검토함.</content> <page>23</page>
+<sub>3.4 Model Comparison</sub> <content>예측의 타겟과 데이터 포함 여부에 따른 모델 성능을 비교함.</content> <page>24</page>
 
 <main>04 CONCLUSIONS AND LIMITATIONS</main>
-<sub>4.1 Evaluation</sub> <content>모델 성능 평가 기준을 정하고, 뉴스 데이터의 유의미한 영향을 검토하였습니다.</content> <page>26</page>
-<sub>4.2 Select target variable</sub> <content>Close와 1dLROC를 목표 변수로 설정하고 LSTM 모델의 성능을 평가하였습니다.</content> <page>27</page>
-<sub>4.3 Model Result</sub> <content>ROC로 예측하는 것이 추세 반영이 잘 되는 것으로 확인되었습니다.</content> <page>28</page>
-<sub>4.4 Model Results for LSTM</sub> <content>LSTM 모델의 손실 결과를 RMSE로 확인하였습니다.</content> <page>29</page>
-<sub>4.5 Model Results for GRU</sub> <content>GRU 모델의 손실 결과를 RMSE로 확인하였습니다.</content> <page>30</page>
-<sub>4.6 Model Results for Transformer</sub> <content>Transformer 모델의 손실 결과를 RMSE로 확인하였습니다.</content> <page>31</page>
-<sub>4.7 Compare each parameter</sub> <content>LSTM의 평균 Loss가 가장 작고, Transformer의 평균 Loss가 가장 큰 것으로 나타났습니다.</content> <page>32</page>
-<sub>4.8 Best parameter for each model</sub> <content>모델별 최적의 파라미터 조합을 선정하여 평균 오차율을 분석하였습니다.</content> <page>33</page>
-<sub>4.9 Limitations</sub> <content>예측의 어려움 및 모델 성능 평가 시의 한계점을 논의하였습니다.</content> <page>34</page>
+<sub>4.1 Evaluation</sub> <content>예측 평가 기준으로 RMSE를 선택하고, 다양한 타겟 변수를 비교하여 모델의 효과성을 검토함.</content> <page>27</page>
+<sub>4.2 Select target variable</sub> <content>Close 예측보다 ROC를 타겟으로 설정하여 추세 반영을 잘하도록 함.</content> <page>28</page>
+<sub>4.3 Model Result</sub> <content>모델별 RMSE 결과를 기록하고 LSTM, GRU, Transformer 모델의 성능을 비교함.</content> <page>30</page>
+<sub>4.4 Compare each parameter</sub> <content>LSTM 모델의 Loss 평균값이 가장 작고, Transformer 모델의 Loss 평균값이 가장 큼.</content> <page>33</page>
+<sub>4.5 Best parameter for each model</sub> <content>모델별 최적의 파라미터 조합을 선정하여 평균 오차율을 확인함.</content> <page>34</page>
+<sub>4.6 Limitations</sub> <content>예측의 정확도에 한계가 있으며, 금융 시장의 변동성으로 인해 예측이 어려움.</content> <page>35</page>
+<sub>4.7 THANK YOU</sub> <content>프로젝트 팀원들에게 감사의 말을 전함.</content> <page>36</page>

@@ -1,14 +1,23 @@
-<subject>Financial Time Series Analysis</subject>
-<team>팀원들</team>
-<index>Modeling and Risk Assessment>
+<subject>Time Series Analysis and Value at Risk</subject>
+<team>팀명 미제공</team>
+<index>Timeline, Introduction to Time Series Analysis, Value at Risk & Conclusion, Discussion</index>
 
-<main>도메인 공통 관심</main>
-<sub>VAR 모델링</sub> <content>VAR 모델링을 통해 여러 모델을 선정하였으며, 모델들은 각각 Iag=11, AR ag=12, AR ag=9, VAR Iag=5로 설정되었습니다.</content> <page>17</page>
-<sub>종목선정</sub> <content>분석에 사용된 종목은 셀트리온 (068270), 현대차 (005380), SK이노베이션 (096770)이며, 분석 기간은 2013년 1월부터 2022년 12월까지입니다.</content> <page>11</page>
+<main>Timeline</main>
+<sub>Timeline</sub> <content>주제 모델을 이용한 VAR 포트폴리오의 수익률 예측과 측정 Value at Risk.</content> <page>3</page>
 
-<main>목표 금융 분석에 주로 사용되는 시계열 모델 경험</main>
-<sub>VAR 모델링을 이용한 수익률 예측</sub> <content>2023년 1월 기준으로 예측값과 실젯값을 비교하였으며, 예측값은 00344, 00620, 00572, 00069, 00200, 00526, 00902, 01516, 00477, 01060으로 기록되었습니다.</content> <page>22</page>
-<sub>Value at Risk 측정 지표</sub> <content>VaR 측정 방법으로는 RiskMetrics, TimeSeries Approach, Block Maxima, Peaks Over Threshold가 사용되었습니다.</content> <page>24</page>
-<sub>Value at Risk</sub> <content>유의수준 0.99일 때, 1원에 대한 종목별 VaR가 계산되었습니다.</content> <page>28</page>
-<sub>포트폴리오의 수익률과 VaR</sub> <content>포트폴리오의 수익률과 VaR 간의 상관관계를 분석하였습니다.</content> <page>32</page>
-<sub>결론 및 한계점</sub> <content>정확한 수익률 예측보다는 추세 예측이 중요하며, VAR 모델은 단순하여 실제 금융 시장과 차이가 클 수 있음을 언급하였습니다. 또한, VaR는 경향성을 보이고 RiskMetrics는 과소측정하는 경향이 있음을 지적하였습니다.</content> <page>33</page> <page>34</page>
+<main>Introduction to Time Series Analysis</main>
+<sub>자기 회귀 모델</sub> <content>현재의 값이 이전 값들에 의존하는 Auto-Regressive 모델로, 과거 값의 선형 조합을 통해 변수를 예측한다.</content> <page>6</page>
+<sub>백터 자기회귀 모델</sub> <content>Vector Auto-Regressive 모델은 서로 영향을 주는 다변량 시계열 예측에 사용된다.</content> <page>7</page>
+<sub>정상성</sub> <content>정상성 정의 및 검정 방법으로 Dicky-Fuller ADF Test와 Augmented Phillips-Perron PP Test를 사용하여 귀무가설을 설정한다.</content> <page>8</page>
+<sub>그랜처-인과관계 검정</sub> <content>변수들의 상호 연관성을 검정하고 인과관계를 판단한다.</content> <page>9</page>
+<sub>종목선정</sub> <content>O CELTRON, 현대차, SK이노베이션을 선정하고, 분석 기간은 2013년 1월부터 2022년 12월까지이다.</content> <page>11</page>
+<sub>변수 수집 및 선정</sub> <content>재고순환지표, 경제심리지수, 수출입 물가비율 등 다양한 경제 변수를 수집하여 선정하였다.</content> <page>12</page>
+
+<main>Value at Risk & Conclusion</main>
+<sub>VAR모델링</sub> <content>VAR 모델은 Lag=11, AR Lag=12, AR Lag=9, VAR Lag=5로 설정되어 예측값과 실젯값이 비교되었다.</content> <page>17</page>
+<sub>Value at Risk 측정 지표</sub> <content>RiskMetrics, TimeSeries Approach, Block Maxima, Peaks Over Threshold를 사용하여 Value at Risk를 측정하였다.</content> <page>24</page>
+<sub>포트폴리오의 Risk Value at Risk</sub> <content>각 포트폴리오의 수익률과 VaR를 기반으로 수익률과 리스크를 분석하였다.</content> <page>32</page>
+<sub>결론 및 한계점</sub> <content>추세 예측의 의의를 강조하며, VAR 모델의 한계점 및 대체 모델 선정의 필요성을 언급하였다.</content> <page>33</page>
+
+<main>Discussion</main>
+<sub>결론 및 한계점</sub> <content>VAR 모델은 실제 금융 시장과 차이가 있을 수 있으며, VaR의 경향성 및 과소측정 문제를 지적하였다.</content> <page>34</page>

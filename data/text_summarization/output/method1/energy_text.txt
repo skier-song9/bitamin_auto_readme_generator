@@ -1,19 +1,19 @@
 <subject>에너지 프로슈머 분석</subject>  
-<team>팀명</team>  
-<index>에너지 프로슈머 분석>  
+<team>팀 이름</team>  
+<index>분석 개요, 변수 선택, 모델링</index>  
 
-<main>분석 개요</main>  
-<sub>에너지 프로슈머란?</sub> <content>에너지의 생산과 소비를 동시에 수행하는 주체로, 주거용 태양광 패널 및 기업의 풍력 발전 등 대규모 분산 에너지를 활용한다.</content> <page>4</page>  
-<sub>에너지 중요한 이유 프로슈머가</sub> <content>프로슈머 수의 증가로 에너지 생산과 소비 간 불균형이 심화되고 있으며, 이를 통해 친환경 에너지 사용을 독려할 수 있는 요소를 밝힌다.</content> <page>5</page>  
-<sub>데이터 소개</sub> <content>에스토니아의 기후 데이터, 에너지 소비 비용, 태양광 에너지 사용률을 바탕으로 에너지 프로슈머의 전력 생산소비량을 예측한다.</content> <page>6</page>  
+<main>01 분석 개요</main>  
+<sub>에너지 프로슈머란?</sub> <content>에너지 프로슈머는 에너지를 동시에 생산하고 소비하는 주체로, 주거용은 주로 태양광 패널을, 기업은 풍력 발전과 같은 대규모 분산 에너지원(DER)을 사용한다.</content> <page>4</page>  
+<sub>에너지 중요한 이유 프로슈머가</sub> <content>프로슈머의 증가는 에너지 생산과 소비 간 불균형을 초래하며, 이를 분석하면 친환경 에너지 사용을 촉진할 수 있는 요소를 밝힐 수 있다.</content> <page>5</page>  
+<sub>데이터 소개</sub> <content>에스토니아의 기후 데이터와 에너지 소비 정보를 이용해 에너지 프로슈머의 전력 생산 소비량을 예측한다.</content> <page>6</page>  
 
-<main>변수 선택</main>  
-<sub>상관분석</sub> <content>50여개의 features 중 타겟과의 상관계수가 낮은 유의미한 변수를 선별하고자 한다.</content> <page>15</page>  
-<sub>요인분석</sub> <content>변수 간 상관관계를 고려하여 중요 요인을 추출하며, Scree Plot을 사용해 적절한 요인 개수를 찾는다.</content> <page>16</page>  
-<sub>파생변수 도출</sub> <content>시간 변수의 Fourier feature transform 및 평균, 표준편차를 반영한 파생변수를 도출하였다.</content> <page>19</page>  
+<main>02 변수 선택</main>  
+<sub>상관분석</sub> <content>50여 개의 변수 중 유의미한 변수를 선별하기 위해 상관관계를 분석한 결과, 타겟과의 상관계수가 전반적으로 낮았다.</content> <page>15</page>  
+<sub>요인분석</sub> <content>변수 간의 상관관계를 고려하여 내재된 중요 요인을 추출하는 방법론으로 요인 분석을 통해 기존 변수에 영향을 미치는 공통 요인을 파악한다.</content> <page>16</page>  
+<sub>파생변수 도출</sub> <content>시간, 월, 날짜 등의 변수를 기반으로 Fourier feature transform을 통해 파생변수를 생성하고 계절 구분을 실시하였다.</content> <page>19</page>  
 
-<main>모델링</main>  
-<sub>모델 및 평가지표 소개</sub> <content>XGBoost 모델을 사용하며, MAE(Mean Absolute Error)를 평가지표로 설정하였다.</content> <page>22</page>  
-<sub>초기 모델</sub> <content>모든 변수를 활용하여 모델 피팅을 수행하였고, MAE는 558973823.5473633으로 나타났다.</content> <page>23</page>  
-<sub>수정된 모델</sub> <content>데이터를 consumption과 business에 따라 4가지로 분리하여 모델 피팅과 평가를 수행하였다.</content> <page>24</page>  
+<main>03 모델링</main>  
+<sub>모델 및 평가지표 소개</sub> <content>Extreme Boosting 모델을 활용하고, 성능 평가는 Mean Absolute Error (MAE) 지표로 진행한다.</content> <page>22</page>  
+<sub>초기 모델</sub> <content>모든 변수를 활용한 초기 모델의 MAE는 558.97382였다.</content> <page>23</page>  
+<sub>수정된 모델</sub> <content>데이터를 소비와 비즈니스에 따라 4가지로 분리하여 모델 피팅 및 평가를 수행하였다.</content> <page>24</page>  
 <sub>최종 결과</sub> <content>4개의 MAE 평균은 25.4941로 나타났다.</content> <page>31</page>

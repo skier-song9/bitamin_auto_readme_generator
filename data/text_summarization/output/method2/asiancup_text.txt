@@ -1,20 +1,26 @@
-<subject>자연어처리 모델을 이용한 감성 분석</subject>  
-<team>N나P 1팀</team>  
-<index>Conference>  
+<subject>자연어 처리 모델</subject>
+<team>N나P 1팀</team>
+<index>1 주제 선정 배경, 2 데이터 수집 기준, 3 데이터 수집- 웹크롤링, 4 전처리 및 EDA 분석, 5 모델링, 6 결과 분석 및 시각화, 7 결론</index>
 
-<main>주제 선정 배경</main>  
-<sub>주체 선정배경</sub> <content>자연어 처리(NLP) 결과로 토너먼트 별 클린스만호 감성 분석을 진행하였다.</content> <page>3</page>  
+<main>주제 선정 배경</main>
+<content>자연어 처리(NLP) 모델을 활용하여 클린스만 감독의 감성 분석을 수행하는 프로젝트입니다.</content> <page>2</page>
 
-<main>데이터 수집</main>  
-<sub>데이터 수집 기준</sub> <content>경기 날짜를 기준으로 제목과 본문 내용을 크롤링하고 경기 결과에 따른 여론 분석을 진행하였다.</content> <page>4</page>  
-<sub>여론 이슈</sub> <content>클린스만 감독 경질 전후의 여론 이슈를 분석하였고, 경질 이후의 여론 변화도 포함하였다.</content> <page>6</page>  
+<main>데이터 수집 기준</main>
+<content>조별리그와 16강 전후의 여론을 분석하기 위해 경기 날짜를 기준으로 데이터를 수집하였습니다.</content> <page>4</page>
 
-<main>웹 크롤링</main>  
-<sub>웹 크롤링 - 날짜 정제화 함수</sub> <content>정규 표현식을 활용하여 뉴스 기사의 날짜를 정제하는 과정을 설명하였다.</content> <page>7</page>  
-<sub>웹 크롤링 - 내용 정제화 함수</sub> <content>HTML 태그를 제거하고 본문 내용을 정제하는 함수의 작동 방식을 기술하였다.</content> <page>8</page>  
+<main>웹 크롤링</main>
+<content>뉴스 기사의 제목과 본문을 크롤링하여 불필요한 정보를 제거하고 정제하는 과정을 포함합니다.</content> <page>9</page>
 
-<main>모델링</main>  
-<sub>모델링</sub> <content>Hugging Face의 amphOra/KorFinASC-XLM-RoBERTa 모델을 사용하여 감성 분석을 수행하였다. 이 모델은 한국어 및 영어 텍스트 감성 분석에 유용하다.</content> <page>15</page>  
+<main>감성 분석</main>
+<sub>Lexicon-based approach</sub> <content>CUP 2023 감성 단어 사전을 이용한 기법입니다.</content>
+<sub>Linguistic approach</sub> <content>텍스트의 문법적 구조를 분석하여 감성을 판별합니다.</content>
+<sub>Machine Learning approach</sub> <content>기계학습을 활용한 감성 분석 접근법으로 RNN 및 STM 같은 사전 학습 모델을 사용합니다.</content> <page>15</page>
 
-<main>결과 분석 및 시각화</main>  
-<sub>결과 분석</sub> <content>클린스만 감독 경질 이후 4강을 기점으로 부정적인 여론이 증가하는 경향을 확인하였다. 감성 분석을 통해 트렌드를 파악할 수 있었으며 위기 상황에 민감하게 대처할 수 있는 가능성을 제시하였다.</content> <page>25</page>
+<main>모델링</main>
+<content>Hugging Face의 amphOra/KorFinASC-XLM-RoBERTa 모델을 사용하여 한국어와 영어 텍스트의 감성 분석을 수행합니다.</content> <page>16</page>
+
+<main>결과 분석 및 시각화</main>
+<content>데이터 감성 분류의 결과를 시각화하며, 4강을 기점으로 부정적인 여론이 강해지는 경향을 확인하였습니다.</content> <page>26</page>
+
+<main>결론</main>
+<content>감성 분석을 통해 트렌드를 파악하고 위기 상황에 민감하게 대처할 수 있는 가능성을 보여줍니다.</content> <page>26</page>

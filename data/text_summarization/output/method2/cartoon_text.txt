@@ -1,30 +1,37 @@
 <subject>CartOOnGAN</subject>
-<team>재원</team>
-<team>선장</team>
-<team>용호</team>
-<team>항해사</team>
-<team>영서</team>
-<index>CONTENTS</index>
+<team>재원 선장</team>
+<team>용호 항해사</team>
+<team>영서 항해사</team>
+
 <index>GAN 이란?</index>
 <index>CartoonGAN</index>
 <index>Dataset</index>
 <index>CartoonGAN 변형</index>
 <index>Experiment</index>
 
-<main>GAN 이란?</main>
-<sub>GAN이란?</sub> <content>GAN은 Generator와 Discriminator 간의 적대적 훈련을 통해 진짜 같은 이미지를 생성하는 것이 목표이다. 훈련 과정에서 Generator는 Discriminator를 속이기 위해 점점 더 정교한 이미지를 생성하도록 학습한다.</content> <page>1</page>
+<main>GAN이란?</main>
+<content>GAN의 훈련 과정은 적대적 훈련으로, Generator가 Discriminator를 속여 진짜 같은 이미지를 생성하는 것이 목표입니다.</content> <page>1</page>
+
+<main>손실함수</main>
+<content>Generator와 Discriminator 간의 경쟁을 통해 Generator가 진짜 같은 이미지를 생성하도록 학습하며, 손실 함수 최소화가 학습 목표가 아닙니다.</content> <page>2</page>
 
 <main>CartoonGAN</main>
-<sub>CartoonGAN 구조</sub> <content>CartoonGAN은 실제 사진을 입력받아 만화 스타일의 이미지를 생성하며, VGG 네트워크의 특정 레이어에서 추출한 피처를 통해 스타일 변환을 수행한다.</content> <page>2</page>
+<content>CartoonGAN의 다양한 변형과 구조에 대한 설명이 포함되어 있습니다.</content> <page>3</page>
 
 <main>Dataset</main>
-<sub>데이터셋</sub> <content>총 9728장의 만화 이미지와 10000장의 실제 이미지로 구성된 데이터셋이 사용되며, 다양한 애니메이션 영화에서 추출된 이미지가 포함되어 있다.</content> <page>3</page>
+<content>사용된 데이터셋은 One Piece 애니메이션의 다양한 영화들로 구성되어 있으며, 약 9728장의 만화 이미지와 10000장의 실제 이미지가 포함됩니다.</content> <page>4</page>
 
 <main>변형 CartoonGAN</main>
-<sub>ResNet Block</sub> <content>Generator에 사용되는 ResNet Block은 배치 정규화와 잔차 연결을 포함하며, ReLU가 적용되는 구조이다.</content> <page>4</page>
-<sub>Generator Upsampling</sub> <content>Generator에서는 블러링과 배치 정규화를 사용하여 업샘플링 과정에서 발생할 수 있는 아티팩트를 줄이고, 보다 안정적인 학습을 가능하게 한다.</content> <page>5</page>
-<sub>Content Loss</sub> <content>Content Loss는 VGG19에서 VGG16으로 변경되어, VGG16의 초기 24개 레이어만 사용하여 저수준의 피처를 추출하는 방식으로 계산된다.</content> <page>6</page>
+<content>Generator에 ResNet Block을 사용하며, batch normalization과 residual connection 구조를 적용합니다.</content> <page>5</page>
+
+<main>변형 CartoonGAN Generator Upsampling</main>
+<content>Generator에서 blurring과 batch normalization을 사용하여 업샘플링 과정에서 발생할 수 있는 문제를 해결할 수 있습니다.</content> <page>6</page>
+
+<main>CartOonGAN 변형 Content Loss</main>
+<content>Content Loss를 VGG19에서 VGG16으로 변경하여 feature extractor로 사용하며, 계산의 효율성을 높입니다.</content> <page>7</page>
 
 <main>Experiment</main>
-<sub>Training Step</sub> <content>Generator는 실제 이미지의 내용을 유지하기 위해 사전 훈련되며, 학습 과정에서 다양한 파라미터가 설정된다.</content> <page>7</page>
-<sub>결과</sub> <content>Discriminator와 Generator는 상호작용하며 훈련을 진행하여, 최종적으로 생성된 이미지의 품질이 개선된다.</content> <page>8</page>
+<content>실험은 Generator를 사전 훈련하고, 다양한 파라미터를 설정하여 학습합니다.</content> <page>8</page>
+
+<main>Experiment Results</main>
+<content>모델의 결과에 대한 평가 및 감사가 포함되어 있습니다.</content> <page>9</page>

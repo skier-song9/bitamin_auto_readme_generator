@@ -1,16 +1,28 @@
-<subject>LLM 기반 거짓말 탐지기</subject>
-<team>조민호, 박소연, 박준형, 박세준</team>
-<index>배경 및 기획 서비스</index>
+<subject>기반 거짓말 LLM 탐지기 피의자 신문 언어적 접근</subject>
+<team>팀원 조민호</team>
+<team>박소연</team>
+<team>박준형</team>
+<team>박세준</team>
+<index>서비스 배경 및 기획, 모델 구축 과정, 결론 및 제언</index>
 
 <main>서비스 배경 및 기획</main>
-<sub>문제 상황</sub> <content>현재의 거짓말 탐지기는 비언어적 생체 신호에 의존해 오류가 발생할 수 있으며, 언어적 요소를 고려하지 않아 신뢰성 문제가 제기되고 있습니다. 거짓말은 개인의 심리 상태에 따라 복합적으로 이루어지므로, 언어적 접근이 필요합니다.</content> <page>3</page>
-<sub>서비스 제안 및 사용 예시</sub> <content>AI 어시스턴트가 수사관의 심문을 지원하여 피의자의 거짓말 유형을 이해하고 질문 전략을 조정함으로써 진실에 더 가까워질 수 있도록 돕습니다.</content> <page>6</page>
+<sub>문제 상황</sub> <content>기존 거짓말 탐지기는 비언어적 생체 신호에 의존하며, 언어적 요소를 무시해 결과의 정확성을 보장할 수 없고, 거짓말의 복잡성을 반영하지 못하는 문제점이 있다.</content> <page>3</page>
+<sub>문제 상황</sub> <content>언어적 접근을 통한 실시간 거짓말 탐지 및 거짓말 유형 분류의 필요성이 제기된다.</content> <page>5</page>
+
+<main>서비스 제안 및 사용 예시</main>
+<content>AI 어시스턴트가 수사관의 심문을 지원하여 피의자의 거짓말 유형을 이해하고 실시간으로 질문 전략을 조정할 수 있는 사용 예시를 제시한다.</content> <page>6</page>
+
+<main>실무 파이프라인</main>
+<content>RAG 및 PEFT를 활용한 실무 파이프라인을 설명하며, 음성을 텍스트로 변환하고 LLM을 미세 조정하는 과정을 포함한다.</content> <page>7</page>
 
 <main>모델 구축 과정</main>
-<sub>STT 구현</sub> <content>사용자의 음성을 텍스트로 변환하는 과정을 구현하였으며, Google Cloud의 Speech-to-Text API를 활용하여 개별 화자의 발화를 구분하고 스크립트 형태로 반환합니다.</content> <page>11</page>
-<sub>데이터 구축</sub> <content>훈련 데이터셋을 생성하기 위해 수사관-피의자 간의 대화 형식의 심문 기록을 필요로 하며, 보안 문제로 인해 기존 데이터셋 활용이 어렵습니다. OpenAI API를 활용하여 직접 데이터셋을 구축하기로 결정했습니다.</content> <page>14</page>
-<sub>Fine Tuning</sub> <content>Llama-2-7b-chat-hf 모델을 선택하여 비용 효율적으로 학습을 진행하고, PEFT 기법을 활용하여 성능을 조정하며 이의 결과를 기존 모델과 비교하여 평가합니다.</content> <page>20</page>
+<sub>STT 구현</sub> <content>사용자의 음성을 텍스트로 변환하고, Google Cloud의 Speech-to-Text API를 활용하여 화자 구분이 가능한 데이터를 생성하는 과정을 설명한다.</content> <page>11</page>
+<sub>데이터 구축</sub> <content>피의자 신문기록 데이터를 전처리하고, 거짓말 신호를 포함한 데이터셋을 구축하기 위한 다양한 문제점과 해결 방안을 제시한다.</content> <page>13</page>
+<sub>Fine Tuning</sub> <content>모델을 미세 조정하여 성능을 향상시키고, 로컬 및 클라우드 환경에서의 비교를 통해 최적의 학습 방법을 결정한다.</content> <page>20</page>
+
+<main>RAG</main>
+<content>LangChain을 활용하여 사건 기록을 임베딩하고, 사용자의 질의에 대한 검색 기반으로 KBI를 검출하는 방법을 설명한다.</content> <page>28</page>
 
 <main>결론 및 제언</main>
-<sub>프로젝트 의의</sub> <content>프로토타입 개발을 통해 LLM을 활용한 거짓말 탐지 기술의 가능성을 제시하며, 실시간 심문 지원 및 복합적 분석을 통한 수사 효율성을 증대시킬 수 있음을 보여줍니다.</content> <page>29</page>
-<sub>추가 지향점</sub> <content>더 큰 모델 사용 및 실시간 거짓 탐지가 가능한 시스템으로의 전환을 통해 성능 향상을 기대하며, 실제 경찰청 데이터를 활용하여 정확성을 높이려 합니다.</content> <page>30</page>
+<sub>프로젝트 의의</sub> <content>LLM을 활용한 거짓말 탐지 기술의 가능성을 제시하며, 수사 효율성 증대와 실시간 심문 지원의 장점을 강조한다.</content> <page>31</page>
+<sub>추가 지향점</sub> <content>Iama2 70b 및 GPT-4 모델 사용 시 성능 향상 기대와 함께 실시간 거짓 탐지로의 전환을 목표로 한다.</content> <page>31</page>

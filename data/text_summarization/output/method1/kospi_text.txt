@@ -1,16 +1,17 @@
-<subject>모델 소개 및 결과 분석</subject>  
-<team>팀원 이름</team>  
-<index>LEVEL 2 모델 소개 XGB LSTM GRU>  
+<subject>모델 소개 및 성능 평가</subject>  
+<team>팀원</team>  
+<index>LEVEL 2 모델 소개, LEVEL 3 피쳐 중요도 분석, LEVEL 4 결과 비교 및 결론</index>  
 
-<main>LEVEL 2 모델 소개 XGB LSTM GRU</main>  
-<sub>XGBoost</sub> <content>트리 기반의 앙상블 학습 알고리즘으로, 그래디언트 부스팅 방식으로 학습하며 이진분류 모델을 구현, 빠른 속도로 뛰어난 예측 성능을 보여줍니다.</content> <page>7</page>  
-<sub>LSTM</sub> <content>긴 시퀀스 내의 중요한 정보를 유지하고 불필요한 정보를 잊어버리는 Cell state와 Gate 메커니즘을 사용하여 장기 의존성 문제를 효과적으로 해결합니다.</content> <page>11</page>  
-<sub>GRU</sub> <content>LSTM과 유사한 게이트 메커니즘을 통해 중요한 정보를 유지하고, Reset Gate와 Update Gate를 사용하여 시계열 데이터의 패턴을 학습합니다.</content> <page>13</page>  
+<main>LEVEL 2 모델 소개</main>  
+<sub>XGB</sub> <content>트리 기반의 앙상블 학습 알고리즘으로, 이진 분류를 위한 'binary: logistic' 손실함수를 사용하며, 빠른 예측 성능을 자랑한다.</content> <page>7</page>  
+<sub>LSTM</sub> <content>Cell state와 Gate 메커니즘을 활용하여 긴 시퀀스의 정보를 효과적으로 유지하고 장기 의존성 문제를 해결하는 시계열 데이터 학습 모델이다.</content> <page>11</page>  
+<sub>GRU</sub> <content>LSTM과 유사하나 두 개의 Gate만 사용하여 장기 의존성 문제를 해결하며, 시계열 데이터의 패턴을 학습하는 데 효과적이다.</content> <page>13</page>  
 
-<main>LEVEL 3 피쳐 중요도 분석 Attention SHAP</main>  
-<sub>Attention</sub> <content>입력 벡터의 중요도를 계산하여 가중치를 생성, 특정 시간 단계에서 중요한 정보에 집중하여 모델의 예측 성능을 향상시킵니다.</content> <page>16</page>  
-<sub>SHAP</sub> <content>피쳐의 중요도를 시각화하여 모델 예측에 미치는 영향을 분석하는 게임이론 기반 접근법입니다.</content> <page>19</page>  
+<main>LEVEL 3 피쳐 중요도 분석</main>  
+<sub>Attention</sub> <content>각 단어의 중요도를 계산하여 시계열 데이터의 특정 시간 단계에서 중요한 정보에 집중할 수 있게 해주는 메커니즘이다.</content> <page>16</page>  
+<sub>SHAP</sub> <content>피쳐 중요도를 시각화하여 모델 예측에 미치는 영향을 나타내며, 상위 20개의 피쳐가 중요한 영향을 미친다.</content> <page>19</page>  
+<sub>SHAP XGB</sub> <content>상위 피쳐만 사용한 모델 성능이 유지되며, 변수 중요도 분석을 통해 중요한 변수를 식별할 수 있었다.</content> <page>22</page>  
 
 <main>LEVEL 4 결과 비교 및 결론</main>  
-<sub>결과 비교</sub> <content>XGBoost가 가장 우수한 성능을 보였으며, 변화율 데이터를 사용하여 예측 정확도가 높아졌습니다.</content> <page>26</page>  
-<sub>결론</sub> <content>변화율 데이터가 종가 데이터보다 더 정확한 성능을 보이며, 변수 중요도 분석을 통해 모델 성능을 개선할 수 있습니다.</content> <page>29</page>
+<sub>결과 비교</sub> <content>XGBoost가 가장 뛰어난 성능을 보였으며, 변화율 데이터가 모델의 예측 정확도를 높이는 데 기여했다.</content> <page>26</page>  
+<sub>결론</sub> <content>변화율 데이터가 잡음을 줄이고 LSTM과 GRU의 성능을 향상시켰으며, Attention을 활용한 분석으로 RNN 모델의 정확도를 높일 수 있었다.</content> <page>29</page>

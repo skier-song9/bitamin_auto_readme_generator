@@ -1,21 +1,26 @@
-<subject>VAR 포트폴리오 수익률 예측 및 Value at Risk 분석</subject>  
-<team>송휘종, 이수정, 강춘우, 김나현, 이형석</team>  
-<index>겨울방학 시계열 프로젝트 4조</index>  
+<subject>의과 모델을 이용한 VAR 포트폴리오의 수익률 예측과 측정 Value at Risk</subject>
+<team>제작팀</team>
+<index>Timeline, Introduction to Time Series Analysis, Analysis, VAR모델링, Value at Risk, 결론 및 한계점</index>
 
-<main>서론</main>  
-<sub>목차</sub> <content>모델을 이용한 VAR 포트폴리오의 수익률 예측과 Value at Risk 측정에 대한 개요를 제시하며, 금융 분석에 필요한 시계열 모델의 경험을 목표로 합니다.</content> <page>1</page>  
+<main>Timeline</main>
 
-<main>모델 개요</main>  
-<sub>자기 회귀 모델</sub> <content>자기 회귀 모델은 현재의 값이 이전 값들에 의존하는 구조로, 과거 값의 선형 조합을 통해 변수를 예측합니다.</content> <page>5</page>  
-<sub>백터 자기회귀 모델</sub> <content>다변량 시계열 예측에 사용되며, 여러 데이터셋이 서로 영향을 주는 경우 각 변수의 미래값을 전반적인 과거 값으로부터 예측합니다.</content> <page>7</page>  
+<main>Introduction to Time Series Analysis</main>
+<sub>자기 회귀CAuto-Regressive 모델</sub> <content>Auto-Regressive 모델은 현재의 값이 이전 값에 의존하여 변수의 예측을 수행하는 시계열 모델입니다.</content> <page>1</page>
+<sub>백터 자기회귀 모델</sub> <content>Vector Auto-Regressive 모델은 여러 시계열 간의 상호 영향을 고려하여 각 변수의 미래 값을 예측합니다.</content> <page>2</page>
+<sub>정상성</sub> <content>정상성을 검정하기 위해 ADF Test와 Phillips-Perron Test를 사용하며, 귀무가설은 정상성을 만족하지 못한다는 것입니다.</content> <page>3</page>
+<sub>그랜처-인과관계 검정</sub> <content>변수 간의 인과관계를 검정하여, 귀무가설이 기각되면 해당 변수를 예측 인자로 사용할 수 있습니다.</content> <page>4</page>
 
-<main>방법론</main>  
-<sub>변수 선정</sub> <content>삼성증권, 셀트리온, SK이노베이션, KCC, 현대차 등 여러 종목의 다양한 경제 지표를 수집하여 분석을 위한 변수를 선정하였습니다.</content> <page>11</page>  
-<sub>VAR 모델링</sub> <content>여러 VAR 모델을 선정하여 각각의 시점에 따른 수익률 예측을 시행하였으며, 모델의 성능을 기반으로 예측값을 도출하였습니다.</content> <page>17</page>  
+<main>Analysis</main>
+<sub>종목선정</sub> <content>분석 대상 종목은 셀트리온, 현대차, SK이노베이션이며, 분석 기간은 2013년 1월부터 2022년 12월까지입니다.</content> <page>5</page>
+<sub>변수 수집 및 선정</sub> <content>재고순환지표, 경제심리지수, 기계류 내 수출지수 등 다양한 변수를 수집하여 분석에 활용합니다.</content> <page>6</page>
 
-<main>결과</main>  
-<sub>예측 성과</sub> <content>2023년 1월 기준으로 VAR 모델링을 통해 도출된 예측값과 실젯값을 비교 분석하였습니다.</content> <page>22</page>  
-<sub>Value at Risk</sub> <content>주어진 데이터에 대한 Value at Risk를 측정하며, 다양한 접근법(RiskMetrics 등)을 통해 금융 리스크를 평가하였습니다.</content> <page>24</page>  
+<main>VAR모델링</main>
+<content>선정된 VAR 모델은 lag=11과 AR 모델로 설정되어 예측값과 실젯값을 비교합니다.</content> <page>7</page>
 
-<main>결론</main>  
-<sub>결론 및 한계점</sub> <content>정확한 수익률 예측보다는 추세 예측의 중요성을 강조하며, VAR 모델의 한계를 인식하고 보다 적절한 모델 선택을 위해 객관적인 지표의 필요성을 제기합니다.</content> <page>33</page>
+<main>Value at Risk</main>
+<content>Value at Risk는 특정 시점에서의 손실 가능성을 측정하는 지표로, RiskMetrics와 TimeSeries Approach를 사용하여 계산합니다.</content> <page>8</page>
+<sub>유의수준</sub> <content>유의수준 0.99일 때, 각각의 종목에 대한 VaR을 산출합니다.</content> <page>9</page>
+<sub>포트폴리오의 Risk</sub> <content>포트폴리오의 구성 요소 간 상관계수와 가중치를 분석합니다.</content> <page>10</page>
+
+<main>결론 및 한계점</main>
+<content>본 연구는 정확한 수익률 예측보다는 추세 예측의 의의와 분산 투자를 통한 위험 감소의 중요성을 강조합니다. 그러나 VaR 모델의 한계로 인해 실제 금융 시장과 차이가 있을 수 있습니다.</content> <page>11</page>

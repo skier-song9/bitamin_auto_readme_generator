@@ -1,13 +1,18 @@
-<subject>KOSPI Index Prediction</subject>
-<team>BITAmin Team</team>
-<index>Final Project Presentation>
+<subject>BITAmin 시계열 1조</subject>
+<team>비타민 학기 프로젝트 팀</team>
+<index>LEVEL 2 모델 소개, LEVEL 3 피쳐 중요도 분석, LEVEL 4 결과 비교 및 결론</index>
 
-<main>Final Project Presentation</main>
-<sub>Model Introduction</sub> <content>XGBoost, LSTM, and GRU models are introduced for predicting the KOSPI index through feature importance analysis.</content> <page>1</page>
-<sub>Data Preprocessing</sub> <content>Data merging was performed based on various indices and commodities, with adjustments made to date formats and handling of missing values using forward fill methods.</content> <page>2</page>
-<sub>XGBoost Model</sub> <content>The model utilizes a decision tree as the base learner, achieving fast processing and strong prediction performance, with hyperparameter tuning resulting in an accuracy of 0.5518.</content> <page>3</page>
-<sub>LSTM Model</sub> <content>Two LSTM layers are employed alongside dropout to prevent overfitting, effectively addressing long-term dependencies in time series data.</content> <page>4</page>
-<sub>GRU Model</sub> <content>Similar to LSTM, the GRU model utilizes gating mechanisms for important information retention while efficiently managing long-term dependencies.</content> <page>5</page>
-<sub>Feature Importance Analysis</sub> <content>Attention and SHAP methods are employed to evaluate feature importance, revealing insights into the significant variables affecting model predictions.</content> <page>6</page>
-<sub>Results Comparison</sub> <content>XGBoost shows superior performance over LSTM and GRU, particularly with the use of rate of change data, which enhances prediction accuracy by reducing noise and capturing trends effectively.</content> <page>7</page>
-<sub>Conclusion</sub> <content>The study concludes that using rate of change data, supported by attention mechanisms, improves predictive performance in stock price forecasting, allowing for effective feature selection with fewer variables.</content> <page>8</page>
+<main>LEVEL 2 모델 소개</main>
+<sub>XGB LSTM GRU</sub> <content>여러 모델을 사용하여 주가 예측에 대한 성능을 분석하였으며, XGBoost, LSTM, GRU 모델을 적용하여 최적의 결과를 도출하였다.</content> <page>1</page>
+
+<main>LEVEL 3 피쳐 중요도 분석</main>
+<sub>Attention SHAP</sub> <content>주요 변수의 중요도를 분석하기 위해 Attention 및 SHAP 기법을 활용하였으며, SHAP을 통해 변수의 기여도를 시각화하고 분석하였다.</content> <page>2</page>
+
+<main>LEVEL 4 결과 비교 및 결론</main>
+<content>모델 성능 비교를 통해 XGBoost가 가장 우수한 성능을 보였으며, 변화율 데이터를 사용함으로써 성능이 향상되었음을 확인하였다. Attention 매커니즘을 활용하여 변수 중요도를 분석하였고, LSTM과 GRU 모델 또한 성능이 증가하였다.</content> <page>3</page>
+
+<main>시계열 1조 최종 BITAmin 발표</main>
+<content>최종 발표에서는 데이터 전처리 과정 및 다양한 모델의 성능 비교 결과를 요약하였으며, 결과적으로 변화율 데이터가 종가 데이터보다 더 정확한 예측 성능을 보임을 강조하였다.</content> <page>4</page>
+
+<main>결론</main>
+<content>변화율 데이터가 주가 예측에서 더 유의미한 패턴을 제공하며, 변수 중요도 분석을 통해 모델의 성능을 최적화할 수 있음을 밝혔다.</content> <page>5</page>

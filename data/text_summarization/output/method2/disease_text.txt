@@ -1,19 +1,27 @@
-<subject>안저사진 분석</subject>
-<team>CV 권도영, 1조 권민지, 김서윤, 김채원, 박서진</team>
-<index>1주제 및 배경> <index>2데이터 소개 및 EDA> <index>3전처리> <index>4모델링> <index>5결과>
+<subject>안저 데이터를 이용한 질병 분류</subject>
+<team>CV 권도영, 권민지, 김서윤, 김채원, 박서진</team>
+<index>1주제 및 배경, 2데이터 소개 및 EDA, 3전처리, 4모델링, 5결과</index>
 
-<main>주제 및 배경</main>
-<sub>프로젝트 개요</sub> <content>안저검사 망막 사진을 이용하여 자폐스펠트럼장애를 예측하는 모델을 개발했으며, 이 연구는 국제학술지에 게재되었습니다.</content> <page>1</page>
+<main>프로젝트 배경</main>
+<sub>안저 검사 및 모델 개발</sub> <content>안저사진 10만장을 분석하여 망막질환을 판독하는 모델 개발이 이루어졌으며, 이를 통해 자폐스펠트럼장애 예측이 가능해졌다. 연구팀은 안저검사 망막 사진을 활용하여 자폐스펠트럼장애를 선별하고 증상 중증도를 예측하는 모델을 개발하였다.</content> <page>1</page>
+<sub>안저 영상의 특징</sub> <content>안저영상은 망막의 구조적 특징을 관찰할 수 있게 해주며, 이를 통해 다양한 망막질환의 여부를 판단할 수 있다.</content> <page>2</page>
+<sub>안저 검사 데이터의 장점</sub> <content>안저 검사는 비침습적이며 짧은 검사 시간으로 여러 기관에서 통합 분석이 용이하다. OCT 기술 발전으로 고해상도 이미지 데이터 획득이 가능해졌다.</content> <page>3</page>
 
-<main>데이터 소개 및 EDA</main>
-<sub>안저 데이터</sub> <content>안저 영상에서 망막의 다양한 특징을 관찰할 수 있으며, 저침습적이고 짧은 검사 시간으로 고해상도 이미지 데이터를 획득할 수 있습니다.</content> <page>2</page>
-<sub>Kaggle 데이터베이스</sub> <content>Kaggle의 ODIR 데이터셋은 5000명의 환자와 의사의 진단 키워드로 구조화된 안과 데이터베이스입니다.</content> <page>3</page>
+<main>데이터 소개</main>
+<sub>데이터베이스 설명</sub> <content>Kaggle의 ODIR 데이터베이스는 5000명의 환자 안저 사진과 의사의 진단 키워드를 포함하여 구조화된 안과 데이터베이스이다.</content> <page>4</page>
+
+<main>EDA</main>
+<sub>라벨과 클래스 불균형</sub> <content>19개의 라벨이 있으며, 클래스 불균형이 문제로 나타났다. 노멀, 당뇨병, 독내장 등 다양한 질병이 포함되지만, 일부 라벨의 개수가 압도적으로 많아 진단의 부정확성이 증가하고 있다.</content> <page>5</page>
 
 <main>전처리</main>
-<sub>클래스 불균형 문제</sub> <content>19개의 라벨 중 일부는 데이터 수가 불균형하여 진단의 부정확성을 초래하며, 이 문제를 해결하기 위해 TOP 5 라벨을 선정했습니다.</content> <page>4</page>
+<sub>라벨 선정 및 데이터 증강</sub> <content>질병을 구분하기 위해 TOP 5 라벨을 선정하고, 이미지 클래스 불균형 문제를 해결하기 위한 이미지 증강이 필요하다는 결론에 이르렀다.</content> <page>6</page>
 
 <main>모델링</main>
-<sub>모델 선정</sub> <content>ResNet18, DenseNet, VGG16, VGG19와 같은 다양한 이미지 분류 모델을 비교하여 최적의 모델을 선정했습니다.</content> <page>5</page>
+<sub>모델 선정 및 구조</sub> <content>ResNet18, DenseNet, VGG16, VGG19 등 다양한 이미지 분류 모델을 선정하였으며, 각 모델의 구조와 특징을 통해 효율적인 학습을 도모하였다.</content> <page>7</page>
 
-<main>결과</main>
-<sub>모델 성능</sub> <content>DenseNet을 통해 높은 정확도를 달성하였으나, GAN을 활용한 데이터 증강에서 이미지 품질 문제로 기대했던 효과를 얻지 못했습니다.</content> <page>6</page>
+<main>모델링 결과</main>
+<sub>모델 선정 및 성능 평가</sub> <content>각 모델의 성능을 비교하고, 최적의 이미지를 선정하기 위한 여러 방법을 시도하였다.</content> <page>8</page>
+
+<main>한계 및 의의</main>
+<sub>한계</sub> <content>GAN을 통해 데이터 불균형 문제를 해결하고자 하였으나, 생성된 이미지의 품질이 낮아 활용에 어려움이 있었다. 모델의 정확도를 높이기 위한 다양한 시도가 부족했던 점이 아쉬움으로 남는다.</content> <page>9</page>
+<sub>의의</sub> <content>Kaggle 프로젝트를 통해 데이터 전처리 방법을 배우고, 여러 모델의 성능을 비교하여 최적의 모델을 선정하는 경험을 쌓았다.</content> <page>10</page>

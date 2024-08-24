@@ -1,33 +1,12 @@
-<subject>ESTM을 활용한 한강공원 여의도 예측 이용객 수</subject>
-<team>강나염</team> <team>김진호</team> <team>서영우</team> <team>이선경</team> <team>조성빈</team>
-<index>목차</index>
-<index>연구 01 배경</index>
-<index>02 모델 선정 배경</index>
-<index>03 사용 데이터 셋</index>
-<index>04 전처리</index>
-<index>05 분석 결과</index>
-<index>결론 06</index>
+<subject>Machine Learning Model Evaluation</subject>
+<team>홍길동, 김철수</team>
+<index>Model Selection, Final Model Results, Performance Metrics</index>
 
-<main>연구 배경</main>
-<sub>연구 배경</sub> <content>한강공원 이용자 수 예측을 통해 이상적인 기상 조건과 비교적 덜 붐비는 날짜를 선택하여 방문 가능성을 높이며, 관련 기관은 행사 안전 조치를 효과적으로 계획할 수 있게 한다.</content> <page>3</page>
+<main>Model Selection</main>
+<sub>기법 비교</sub> <content>여러 기계 학습 기법을 비교하여 최적의 모델을 선택했습니다. 기법으로는 랜덤 포레스트, SVM, 그리고 신경망이 포함되었으며, 각 모델의 성능을 평가하기 위해 교차 검증을 실시했습니다.</content> <page>1</page>
 
-<main>모델 선정 배경</main>
-<sub>모델 선정 배경</sub> <content>Long Short-Term Memory Network 모델을 사용하여 시계열 데이터의 장기 의존성 문제를 해결하고 복잡한 시간적 패턴을 예측하는 데 적합하다.</content> <page>4</page>
+<main>Final Model Results</main>
+<sub>최종 모델</sub> <content>최종적으로 선택된 모델은 랜덤 포레스트로, 테스트 데이터에서 92%의 정확도를 기록했습니다. 이 모델은 과적합을 방지하기 위해 하이퍼파라미터 튜닝을 통해 최적의 성능을 발휘했습니다.</content> <page>3</page>
 
-<main>사용 데이터 셋</main>
-<sub>사용 데이터 셋</sub> <content>여의도 한강공원의 주차대수 및 기상 데이터를 사용하여 평균 풍속, 강수량, 평균 기온, 평균 습도, 미세먼지, 초미세먼지를 분석한다.</content> <page>5</page>
-
-<main>전처리</main>
-<sub>전처리</sub> <content>정규화 및 결측치 대체를 통해 데이터를 0과 7 사이의 값으로 변환하고, 결측 데이터를 앞뒤 데이터의 평균으로 채운다.</content> <page>6</page>
-
-<main>예측 주차대수 방법</main>
-<sub>예측 주차대수 방법</sub> <content>기온 데이터만을 사용하여 여의도 주차대수를 예측하며, 기온, 평균 기온, 평균 습도를 모두 활용하여 예측 성능을 향상시킨다.</content> <page>7</page>
-
-<main>최종 점수 산정 방법</main>
-<sub>최종 점수 산정 방법</sub> <content>이용객 수 점수와 기상 점수를 기반으로 일별 주차대수를 예측하여 점수를 산정하며, 각 기상 변수를 평가하여 최적 날씨 기준을 정한다.</content> <page>12</page>
-
-<main>결론</main>
-<sub>결론</sub> <content>예측 결과는 3월 29일 995점, 3월 24일 956점 등으로, 평일과 주말 점수를 구분하여 분석하였다.</content> <page>14</page>
-
-<main>의의 및 한계점</main>
-<sub>의의 및 한계점</sub> <content>관광객들은 쾌적한 나들이 날짜를 선택할 수 있으며, 방문자 수 예측을 통해 인력 배치를 효율적으로 할 수 있지만, 가중치 결정의 주관성 및 하이퍼파라미터 조정의 어려움이 있다.</content> <page>15</page>
+<main>Performance Metrics</main>
+<sub>성능 지표</sub> <content>모델의 성능을 평가하기 위해 사용된 주요 지표는 정확도, 정밀도, 재현율, F1 점수입니다. 랜덤 포레스트 모델은 정밀도 90%, 재현율 93%, F1 점수 91%로 나타났습니다.</content> <page>5</page>

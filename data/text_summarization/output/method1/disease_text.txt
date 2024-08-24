@@ -1,24 +1,23 @@
-<subject>안저 이미지 분석 프로젝트</subject>  
+<subject>망막질환 판독 AI 모델 개발</subject>  
 <team>팀명 미제공</team>  
-<index>안저 이미지 분석 프로젝트>  
+<index>1주제 및 배경, 2데이터 소개 및 EDA, 3전처리, 4모델링, 5결과</index>  
 
 <main>1주제 및 배경</main>  
-<sub>프로젝트 배경</sub> <content>안저사진 10만장을 분석하여 망막질환 판독하는 A모델을 개발하며, 자폐스펠트럼장애의 선별 및 중증도 예측이 가능하다. 안저 영상 분석은 의료 AI에서 매우 유망한 분야로 주목받고 있으며, 이를 통해 망막질환의 여부를 판단할 수 있다.</content> <page>3</page>  
+<sub>프로젝트 배경</sub> <content>안저사진 10만장을 분석하여 망막질환 판독하는 A모델과 자폐스펙트럼장애를 선별하는 AI 모델 개발. 연구 결과는 '자마 네트워크 오픈'에 게재됨. 안저 영상에서 망막의 해부학적 조직 특징을 분석하여 각종 망막질환 판단 가능.</content> <page>3</page>  
+<sub>프로젝트 배경</sub> <content>안저 데이터는 낮은 침습성 및 짧은 검사 시간, 다양한 기관을 통한 시행 및 통합 분석의 용이성을 제공하며, OCT 기술 발전으로 고해상도 이미지 데이터 획득 가능.</content> <page>5</page>  
 
-<main>데이터 소개 및 EDA</main>  
-<sub>데이터 소가</sub> <content>Kaggle의 ODIR 데이터베이스를 활용하여 5000명의 환자의 연령, 안저 사진, 의사 진단 키워드로 구성된 데이터를 사용한다.</content> <page>6</page>  
-<sub>EDA</sub> <content>19개의 라벨을 포함하는 이미지 클래스의 불균형 문제를 다루며, 정상(N), 당뇨병(D), 독내장(G), 백내장(C), 연령 관련 황반변성(A) 등 다양한 질병이 포함된다.</content> <page>7</page>  
+<main>2데이터 소개 및 EDA</main>  
+<sub>데이터 소개</sub> <content>Kaggle의 ODIR 데이터셋은 5000명의 환자 데이터로, 안저 사진과 의사 진단 키워드로 구조화되어 있음.</content> <page>6</page>  
+<sub>EDA</sub> <content>19개의 라벨을 포함하며, 클래스 수 불균형 문제를 확인. 다양한 질병(노멀, 당뇨병, 독내장, 백내장, 고혈압 등)이 포함되어 있음.</content> <page>7</page>  
 
-<main>전처리</main>  
-<sub>이미지 클래스 수 불균형</sub> <content>정상(N), 당뇨병(D), 백내장(C), 녹내장(G), 병리학적 근시(M) 등 TOP 5 라벨을 선정하여 불균형 문제를 해결하고자 하였다.</content> <page>8</page>  
-<sub>이미지 증강 필요</sub> <content>FASTAI, ALBUMENTATION, GAN을 사용하여 데이터 증강을 수행하여 이미지 클래스의 불균형을 해소하였다.</content> <page>11</page>  
-<sub>증강 방법</sub> <content>ALBUMENTATION과 GAN을 통해 다양한 이미지 증강 기법을 적용하였으나, GAN 구현에 실패하여 AUTO AUGMENT로 최적 방법을 탐색하였다.</content> <page>12</page>  
+<main>3전처리</main>  
+<sub>전처리</sub> <content>TOP 5 질병(노멀, 당뇨병, 백내장, 병리학적 근시, 녹내장)을 선정하여 이미지 클래스 불균형 해소를 위한 작업 진행. DIAGNOSES 컬럼 생성 후 저장하여 이미지 증강 필요성을 강조.</content> <page>8</page>  
+<sub>전처리</sub> <content>FASTAI 및 ALBUMENTATION 라이브러리를 사용하여 다양한 이미지 증강 기법 적용. GAN 사용 시 구현 실패.</content> <page>11</page>  
 
-<main>모델링</main>  
-<sub>모델링 단계</sub> <content>이미지 분류 모델 선정 및 클래스별 데이터 불균형 해소를 위한 이미지 증강 방법을 선정하는 2단계로 진행되었다.</content> <page>14</page>  
-<sub>모델 선정 결과</sub> <content>ResNet18, DenseNet, VGG16, VGG19 모델을 사용하여 이미지 분류를 수행하였으며, ResNet18은 경량화된 모델로 학습 속도를 개선하였다.</content> <page>15</page>  
-<sub>모델 상세</sub> <content>DenseNet은 모든 이전 레이어의 출력을 입력으로 받아 정보의 흐름을 극대화하며, VGG16은 3x3 필터를 사용하여 깊은 네트워크를 형성하였다.</content> <page>16</page>  
+<main>4모델링</main>  
+<sub>모델링 단계</sub> <content>1단계: 이미지 분류 모델 선정. 2단계: 클래스별 데이터 불균형 해소를 위한 이미지 증강 방법 선정. ResNet18 모델을 선택하여 경량화된 학습 진행.</content> <page>14</page>  
+<sub>모델링 결과</sub> <content>DenseNet과 VGG 모델 구조 설명 및 성능 향상 기법 논의. VGG16은 작은 필터를 사용하여 파라미터 수 증가를 최소화함.</content> <page>15</page>  
 
-<main>결과</main>  
-<sub>모델링 결과</sub> <content>AUTO AUGMENT를 통한 데이터 증강 방법 탐색 시, 특정 데이터셋에 최적화되지 않아 학습 성능이 낮아짐을 확인하였다.</content> <page>20</page>  
-<sub>한계 및 의의 프로젝트</sub> <content>GAN을 통한 데이터 불균형 해소 시도는 실패하였고, 모델 정확도를 높이기 위한 조정이 필요했으나, Kaggle에서의 연구 경험을 통해 데이터 전처리 방법과 다양한 모델 성능 비교를 배웠다.</content> <page>22</page>
+<main>5결과</main>  
+<sub>모델링 결과</sub> <content>이미지 분류 모델 선정 결과 및 이미지 증강 방법 선정에 대한 성과를 기술. AUTOAUGMENT의 성능 저하 문제 언급.</content> <page>19</page>  
+<sub>한계 및 의의 프로젝트</sub> <content>GAN을 통한 데이터 불균형 문제 해결을 시도했으나 생성된 이미지 품질이 낮아 효과를 보지 못함. 다양한 데이터 전처리 방법을 학습함.</content> <page>22</page>

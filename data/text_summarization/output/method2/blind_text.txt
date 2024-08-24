@@ -1,17 +1,27 @@
 <subject>시각장애인 사진 촬영 지원 서비스</subject>
 <team>김지원, 박석우, 박소언, 배성윤, CV2조</team>
-<index>목차</index>
+<index>서비스 목표, 프로젝트 목표, 플로우 및 기능설명, 얼굴 탐지 모델 훈련 과정, 객체 탐지 모델 선정, 음성 안내 알고리즘, 한계점</index>
 
-<main>시각장애인 서비스</main>
-<sub>프로젝트 목표</sub> <content>음성 안내를 통해 시각장애인이 사진을 보다 정확하고 효율적으로 촬영할 수 있도록 하여 자율성과 사회적 참여를 향상시킴.</content> <page>1</page>
+<main>서비스 목표</main>
+<sub>목표</sub> <content>시각장애인 이용자가 더욱 수월하게 사진을 촬영할 수 있도록 음성으로 안내하는 서비스 제공</content> <page>04</page>
 
-<main>객체 탐지 모델</main>
-<sub>모델 성능 비교</sub> <content>YOLOv8n과 YOLOv8s 모델을 비교하여 성능을 평가하며, mAP5O 50% 이상의 겹침 threshold를 기준으로 정확도를 검토함.</content> <page>2</page>
-<sub>모델 최적화</sub> <content>실시간 추론 속도를 개선하기 위해 적절한 모델 Weight를 활용하고, TTS 알고리즘을 최적화하여 탐지된 객체를 적절한 시기에 음성으로 안내함.</content> <page>3</page>
+<main>프로젝트 목표</main>
+<sub>목표</sub> <content>1 객체탐지 모델을 서비스에 맞는 one-stage 얼굴 탐지 모델로 전이학습 정확도 향상 2 적절한 모델 Weight를 활용하여 실시간 추론 속도 개선 3 탐지된 객체를 적절한 시기에 말해주기 위한 TTS 알고리즘 최적화</content> <page>04</page>
+<sub>효과</sub> <content>음성 안내를 통해 더욱 정확하고 효율적으로 사진을 촬영할 수 있게 하며 그들의 자율성과 사회적 참여를 크게 향상시킨다</content> <page>04</page>
+
+<main>플로우 및 기능설명</main>
+<sub>텍스트 음성 변환</sub> <content>1 화면에 잡히는 얼굴의 위치 인식 2 시선 방향 및 각도 파악 3 얼굴의 위치와 방향성을 TTS로 안내</content> <page>05</page>
+
+<main>얼굴 탐지 모델 훈련 과정</main>
+<sub>훈련 과정</sub> <content>원래 계획은 Mobilenet+SSD YOLO 비교 후 RetinaNet fine-tuning이었으나 실제 진행 과정에서 성능 비교를 위해 YOLOv8n과 YOLOv8s를 사용하였다.</content> <page>07</page>
+<sub>비교 결과</sub> <content>객체가 최소한 mAP50 50%의 겹침 threshold이 있는 경우를 평가하며, 정확한 위치를 보다 세부적으로 고려할 수 있다.</content> <page>07</page>
+
+<main>객체 탐지 모델 선정</main>
+<sub>선정 과정</sub> <content>추론 속도를 최적화하기 위해 YOLOv8 모델을 사용하며, 조명 환경에서 성능을 높이기 위해 데이터 증강 라이브러리를 이용하였다.</content> <page>10</page>
 
 <main>음성 안내 알고리즘</main>
-<sub>전면카메라</sub> <content>움직이는 객체에 대한 음성 안내 시점을 결정하기 위해 IoU를 계산하는 방식으로 수정함. 실시간으로 변화 탐지 문제를 해결하기 위한 방법을 제안함.</content> <page>4</page>
-<sub>후면카메라</sub> <content>후면카메라는 Confidence가 높은 세 가지 객체만 인식하며, IOU 측정 함수를 재정의하고 FPS를 고려하여 bbox를 업데이트함. 유의미한 움직임을 감지하는 기준을 설정함.</content> <page>5</page>
+<sub>전면카메라</sub> <content>움직이는 객체의 실시간 음성안내 시점을 결정하는 알고리즘을 개발하였다.</content> <page>11</page>
+<sub>후면카메라</sub> <content>후면 카메라는 Confidence가 높은 세 가지의 객체만을 인식하며, 움직임의 안정성 판단 함수가 추가되어 IOU 측정과 상태 변화를 반영하였다.</content> <page>14</page>
 
 <main>한계점</main>
-<sub>사용성 문제</sub> <content>음성 안내 도중 변동사항 반영 불가, TTS 특성상 음성 재생 중단 불가, 객체 Label의 한정성과 카메라 프레임 규격 조정 실패로 인해 사용성 측면에서 개선이 필요함.</content> <page>6</page>
+<sub>제약 사항</sub> <content>음성 안내 도중 변동사항 반영이 불가능하며, TTS 구현의 특성상 음성 재생 도중 중단이 불가하다. 사용자의 움직임 감지에 대한 입력 정보 반영이 실패하였다.</content> <page>16</page>

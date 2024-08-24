@@ -1,32 +1,25 @@
-<subject>주식 투자 시스템</subject>  
-<team>팀원</team>  
-<index>시계열 예측과 강화학습</index>  
+<subject>주제</subject> <team>강화학습팀</team> <index>시계열 예측과 트레이딩 수익 극대화, NorkFlow, 종목 선정, 데이터수집및 전처리, 시계열 모델, 모델 평가및 선정, 시스템 트레이딩, 강화학습 모델, 결과</index>
 
-<main>주제</main>  
-<sub>주제</sub> <content>시계열 예측과 트레이딩 수익 극대화를 위한 강화학습 시스템을 제안하며, 기존 금융 딥러닝의 문제점인 노이즈, 데이터 부족, 과적합을 해결하기 위해 Time Series Forecasting과 Reinforcement Learning을 활용한다.</content> <page>3</page>  
+<main>시계열 예측과 트레이딩 수익 극대화</main> <sub>강화학습을 활용한 시스템</sub> <content>노이즈와 데이터 부족으로 인한 과적합 문제를 해결하기 위해, 향후 일주일 동안 가장 큰 종가 변화율을 보일 종목을 예측하고 분 단위 거래를 학습하여 단타매매를 실행한다.</content> <page>3</page>
 
-<main>NorkFlow</main>  
-<sub>NorkFlow</sub> <content>Day Candle Stoch Data, LETF, 6 Stock Code, 크레온 AP, Airute Candle EtoC 및 A2를 포함한 시스템 흐름을 설명한다.</content> <page>4</page>  
+<main>NorkFlow</main> <sub>데이터 흐름</sub> <content>Day Candle Stoch Data, LETF, 6 Stock Code, 크레온 AP, Airute Candle, EtoC, A2를 포함한 데이터 흐름을 설명한다.</content> <page>4</page>
 
-<main>종목 선정</main>  
-<sub>종목 선정 데이터 수집 및 전처리</sub> <content>국내 주식 Reader를 통해 2017-01-01부터 현재까지 KOSP 종목의 종가 데이터를 수집한다.</content> <page>5</page>  
+<main>종목 선정</main> <sub>데이터 수집 및 전처리</sub> <content>국내 주식 Reader와 IFinance Data를 통해 2017년 1월 1일부터 현재까지 KOSP 종목의 종가 데이터를 수집한다.</content> <page>5</page>
 
-<main>데이터수집및 전처리</main>  
-<sub>종목 선정 데이터 수집 및 전처리</sub> <content>RSI 및 Sharpe Ratio를 계산하는 방법을 설명하며, Sharpe Ratio는 포트폴리오의 기대 수익률과 무위험 수익률의 차이를 포트폴리오 수익률의 표준편차로 나눈 값이다.</content> <page>7</page>  
+<main>데이터수집및 전처리</main> <sub>지표 계산</sub> <content>RSI와 Sharpe Ratio를 계산하여 주가 변동성과 투자 포트폴리오의 기대 수익률을 평가한다.</content> <page>7</page>
 
-<main>시계열 모델</main>  
-<sub>시계열 모델</sub> <content>LSTM 기반 모델과 Dlinear LSTF-linear 모델을 소개하며, LSTM은 RNN의 장기 의존성 문제를 해결하고 Dlinear는 Transformer 구조를 사용해 시간적 정보 손실을 방지한다.</content> <page>8</page>  
+<main>시계열 모델</main> <sub>모델 선정</sub> <content>LSTM 기반 모델은 장기 의존성 문제를 해결하고, Dlinear LSTF-linear는 Transformer 구조를 사용하여 선형 예측과 시간적 정보 손실을 방지한다.</content> <page>8</page>
 
-<main>모델 평가및 선정</main>  
-<sub>모델 평가 기법</sub> <content>MSE 및 MAE 평가 기법을 사용하여 LSTM의 MAE는 37084, MSE는 150189, LSTF의 MAE는 0.00811, MSE는 0.00348로 측정되었다.</content> <page>10</page>  
+<main>모델 평가및 선정</main> <sub>평가 기법</sub> <content>MSE와 MAE를 사용하여 모델 성능을 평가하며, LSTM의 MAE는 37084, MSE는 150189, LSTF는 MAE 0.00811, MSE 0.00348로 나타났다.</content> <page>10</page>
 
-<main>시스템 트레이딩</main>  
-<sub>시스템 트레이딩 데이터 수집</sub> <content>대신증권을 통해 최대 20만개의 분봉 데이터를 수집하고, 당일 분봉 데이터 15000개를 추가 학습 데이터로 사용한다.</content> <page>11</page>  
+<main>시스템 트레이딩</main> <sub>데이터 수집</sub> <content>대신증권을 통해 최대 20만 개의 분봉 데이터를 수집하고, 학습 후 당일 분봉 데이터 1500개를 추가로 사용한다.</content> <page>11</page>
 
-<main>강화학습 모델</main>  
-<sub>강화학습 정의</sub> <content>강화학습은 행동 결과에 따라 보상이나 벌칙을 주어 스스로 학습하게 하는 머신러닝의 한 분야로, 주식 투자에서 매수, 매도, 관망 결정을 지원한다.</content> <page>14</page>  
-<sub>A2C 알고리즘</sub> <content>A2C 알고리즘을 사용하여 Actor가 행동을 결정하고 Critic이 행동 가치를 평가하는 방식을 설명한다.</content> <page>15</page>  
+<main>시스템 트레이딩</main> <sub>데이터 전처리</sub> <content>종가, 거래량의 이동 평균 및 다양한 지표를 사용하여 데이터 분석 및 트레이딩 신호를 생성한다.</content> <page>12</page>
 
-<main>결과</main>  
-<sub>시스템 트레이딩 결과</sub> <content>포트폴리오 가치는 267260이며, HD현대일렉트르, 삼부토건, 동일제강, 신풍, 진원생명과학 등의 종목에 대한 성과를 포함한다.</content> <page>18</page>  
-<sub>시스템 트레이딩 한계점</sub> <content>훈련 과정에서 과적합 문제가 발생하였으며, RL:a2c 관련 수치와 평가 지표를 제공한다.</content> <page>19</page>
+<main>강화학습 모델</main> <sub>강화학습 개념</sub> <content>주식 투자에서 매수, 매도, 관망 등의 행동을 통해 보상 또는 벌칙을 주어 학습하는 머신러닝 기법이다.</content> <page>14</page>
+
+<main>강화학습 모델</main> <sub>A2C 알고리즘 설명</sub> <content>Actor-Critic 방식으로, Actor는 정책 경사 모델을 사용하고 Critic은 Q-러닝 모델을 통해 행동의 가치를 평가하여 Advantage로 정책을 업데이트한다.</content> <page>15</page>
+
+<main>결과</main> <sub>트레이딩 테스트 결과</sub> <content>A2C CNN 모델을 사용하여 11분 단위로 buy, sell, hold 예측을 수행하고, Confidence에 따라 주문 수량을 결정한다.</content> <page>16</page>
+
+<main>결과</main> <sub>시스템 트레이딩 한계점</sub> <content>훈련 과정에서 과적합 문제 발생과 관련된 성능 지표 데이터가 포함되어 있다.</content> <page>19</page>

@@ -1,22 +1,25 @@
-<subject>Predict Energy Behavior Of Prosumers</subject>
-<team>1조 박지원</team>
+<subject>에너지 프로슈머의 행동양식 예측하기</subject>
+<team>박지원</team>
 <team>박정훈</team>
 <team>박초은</team>
+<index>01 분석 개요, 02 변수 선택, 03 모델링</index>
 
-<index>01 분석 개요</index>
-<main>분석개요</main>
-<sub>에너지 프로슈머란?</sub> <content>에너지 프로슈머는 에너지를 생산하고 소비하는 주체로, 주거용은 소규모 배터리와 태양광 패널을, 기업은 대규모 분산 에너지 자원을 사용한다.</content> <page>4</page>
-<sub>데이터 소개</sub> <content>에스토니아에서 기후 데이터, 에너지 소비, 비용, 태양광 에너지 사용률 등을 바탕으로 에너지 프로슈머의 전력 생산 및 소비량을 예측하는 데이터 세트를 사용한다.</content> <page>6</page>
-<sub>분석 방향성 소개</sub> <content>상관분석과 요인분석을 통해 변수 중요도를 파악하고, 최종 모델링은 XGBoost를 사용한다.</content> <page>13</page>
+<main>01 분석 개요</main>
+<sub>에너지 프로슈머란?</sub> <content>에너지의 생산과 소비의 역할을 동시에 하는 주체로, 주거용은 태양광 패널을, 기업은 풍력과 태양열을 사용하는 경우가 일반적이다.</content> <page>4</page>
+<sub>에너지 중요한 이유 프로슈머가</sub> <content>에너지 프로슈머의 수 증가로 생산과 소비 간 불균형이 심화되고, 신뢰와 지속가능성이 저하된다. 프로슈머 행동 양식을 파악하면 친환경 에너지 사용을 독려할 수 있다.</content> <page>5</page>
+<sub>데이터 소개</sub> <content>에스토니아의 기후 데이터, 에너지 소비 비용, 태양광 사용률 등을 바탕으로 프로슈머의 전력 생산 소비량을 예측한다.</content> <page>6</page>
 
-<index>02 변수 선택</index>
-<main>변수선택</main>
-<sub>상관분석 & 요인분석</sub> <content>50여개의 feature 중 유의미한 변수를 선별하고, 요인 분석을 통해 변수 간의 관계를 파악한다.</content> <page>15</page>
-<sub>파생변수 도출</sub> <content>시간, 요일, 월 등의 변수를 활용하여 불쾌지수를 포함한 다양한 파생변수를 도출하였다.</content> <page>19</page>
+<main>02 변수 선택</main>
+<sub>상관분석</sub> <content>50여개의 features 중 유의미한 변수를 선별하기 위해 상관 분석을 진행하였다. 타겟과의 상관계수가 낮은 경향이 나타났다.</content> <page>15</page>
+<sub>요인분석?</sub> <content>여러 변수 간 상관관계를 고려하여 저변에 내제된 중요 요인을 추출하는 방법론으로, PCA와 유사하지만 공통 요인을 파악하는 점이 다르다.</content> <page>16</page>
+<sub>요인분석</sub> <content>Scree Plot을 이용하여 적절한 요인의 개수를 찾고, 이를 바탕으로 중요한 features를 묶을 수 있다.</content> <page>18</page>
+<sub>2 파생변수 도출 traincsv</sub> <content>시간, 월, 날짜, 요일 등의 변수를 Fourier feature transform하여 파생변수를 도출하였다.</content> <page>19</page>
+<sub>2 파생변수 도출- forecast_weathercsv</sub> <content>상대습도, 불쾌지수 등의 변수에 대한 월별 평균 및 County별 표준편차를 반영하여 파생변수를 도출하였다.</content> <page>20</page>
 
-<index>03 모델링</index>
-<main>모델링</main>
-<sub>모델 및 평가지표 소개</sub> <content>XGBoost 모델을 사용하여 예측 성능을 극대화하며, MAE를 평가지표로 설정하였다.</content> <page>22</page>
-<sub>초기 모델</sub> <content>모든 변수를 활용하여 초기 모델을 피팅하고, MAE 평균은 5589였다.</content> <page>23</page>
-<sub>수정된 모델</sub> <content>데이터를 비즈니스별로 분리하여 모델을 재조정하고, 하이퍼파라미터 최적화를 통해 성능을 개선하였다.</content> <page>26</page>
-<sub>최종 결과</sub> <content>4개의 MAE 평균은 2549로 개선되었다.</content> <page>31</page>
+<main>03 모델링</main>
+<sub>모델 및 평가지표 소개</sub> <content>Extreme Boosting의 알고리즘을 통해 오답에 집중하고 후속 모델을 학습할 수 있도록 구성된 모델이다.</content> <page>22</page>
+<sub>초기 모델</sub> <content>거의 모든 변수를 활용하여 모델 피팅을 수행하였고, MAE는 5589738235473633으로 나타났다.</content> <page>23</page>
+<sub>수정된 모델 1 데이터 분리</sub> <content>consumption과 business에 따라 4가지 데이터로 분리하여 모델 피팅 및 평가를 진행하였다.</content> <page>24</page>
+<sub>모델-2 수정된 하이퍼 튜닝 파라미터</sub> <content>Random Search 기법을 활용하여 각 데이터에 최적의 하이퍼 파라미터를 찾았다.</content> <page>26</page>
+<sub>모델 3 수정된 변수 제거</sub> <content>SHAP 변수 중요도를 바탕으로 오차가 높은 변수를 제거하여 모델 성능을 개선하였다.</content> <page>27</page>
+<sub>최종 결과</sub> <content>4개의 MAE 평균은 25 4941로 나타났다.</content> <page>31</page>

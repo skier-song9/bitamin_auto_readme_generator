@@ -1,34 +1,32 @@
-<subject>도배 하자 질의 응답 처리 한솔데코 시즌 2 Al 경진대회</subject>
-<team>구준회</team>
-<team>김지원</team>
-<team>박서진</team>
-<team>신진섭</team>
-<team>엄성원</team>
+<subject>도배하자 질의응답 LLM 개발</subject>
+<team>구준회</team> <team>김지원</team> <team>박서진</team> <team>신진섭</team> <team>엄성원</team>
+<index>01 프로젝트 배경, 02 EDA, 03 Text Augmentation, 04 Modeling & Inference, 05 보완할 점 & 추후계획</index>
 
-<index>01 프로젝트 배경</index>
-<index>02 EDA</index>
-<index>03 Text Augmentation</index>
-<index>04 Modeling & Inference</index>
-<index>05 보완할 점 & 추후계획</index>
+<main>Project Background</main>
+<content>자연어를 처리하여 언어모델에 학습시키고 특정 TASK에 적합한 TEXT를 생성하는 원리를 이해하는 것을 목표로 합니다.</content> <page>03</page>
 
-<main>프로젝트 배경</main>
-<sub>언어모델</sub> <content>자연어처리 추론을 통해 특정 TASK에 적합한 TEXT 생성 원리를 이해하는 것이 목표입니다.</content> <page>03</page>
+<main>Overall Progress</main>
+<content>NLP 도메인 이해, Transformer 및 관련 논문 공부를 통해 언어모델 개발 및 추론을 진행했습니다.</content> <page>04</page>
 
 <main>EDA</main>
-<content>Train Data는 질문 2개, 질문의 카테고리, 답변 5개의 column으로 구성되어 있으며, 질문 답변 Set로 토큰화하여 입력합니다.</content> <page>05</page>
+<content>Train Data는 질문 2개와 5개의 답변 컬럼으로 구성되며, 질문 답변 Set로 토큰화하여 입력합니다.</content> <page>05</page>
 
 <main>Text Augmentation</main>
-<sub>Crawling & Prompt Engineering</sub> <content>논문 및 자료를 기반으로 실용적 Train 데이터를 생성하고, ChatGPT를 이용하여 전문적인 답변을 생성하는 방법을 탐색했습니다.</content> <page>08</page>
+<sub>Crawling & Prompt Engineering</sub> <content>실용적 Train 데이터 키워드를 기반으로 다양한 질문을 생성하며, ChatGPT를 이용하여 전문적인 답변을 생성합니다.</content> <page>08</page>
 
 <main>최종 train dataset</main>
-<content>기존 6440 QA Sets에서 증강 후 8319 QA Sets로 증가하였습니다.</content> <page>09</page>
+<content>기존 6440 QA Rows에서 증강 후 8319 QA Sets로 증가했습니다.</content> <page>09</page>
+
+<main>Issues</main>
+<content>한정된 GPU 자원 사용 문제와 한국어 데이터로 사전훈련된 모델의 성능 기대에 대한 이슈가 있습니다.</content> <page>10</page>
 
 <main>Modeling</main>
-<sub>Fine Tuning</sub> <content>사전 학습된 모델을 소규모의 특정 데이터 세트에 대해 추가로 학습시켜 성능을 향상시키는 프로세스를 진행했습니다.</content> <page>11</page>
-<sub>LORA PEFT</sub> <content>LoRA 방법론을 활용하여 적은 매개변수 학습으로도 특정 작업의 성능을 향상시킬 수 있는 기법을 적용했습니다.</content> <page>12</page>
+<sub>Fine Tuning</sub> <content>사전 학습된 모델을 소규모 특정 데이터 세트에 추가 학습시켜 성능을 향상시키는 과정입니다.</content> <page>11</page>
+<sub>LORA PEFT</sub> <content>매개변수 학습을 최소화하여 훈련 비용과 리소스를 절약하면서도 특정 작업의 성능을 향상시키는 기법입니다.</content> <page>12</page>
 
 <main>Inference</main>
-<content>Fine-tuned model은 주어진 질문에 대해 구체적인 답변을 생성하도록 instruction을 부여하여 개선된 성능을 보였습니다.</content> <page>13</page>
+<sub>Base model</sub> <content>무의미한 동어 반복의 Text Generation 발생.</content> <page>13</page>
+<sub>Fine-tuned model</sub> <content>주어진 질문에 대한 구체적인 답변을 생성하도록 Instruction을 부여하여 학습된 정보를 바탕으로 자세한 답변을 생성합니다.</content> <page>13</page>
 
 <main>Gradio</main>
-<content>프로젝트의 결과는 EOD로 마무리되었습니다.</content> <page>15</page>
+<content>EOD</content> <page>15</page>

@@ -1,19 +1,21 @@
-<subject>서비스 배경 및 기획</subject>  
-<team>팀 이름 미제공</team>  
-<index>서비스 배경 및 기획>  
+<subject>배경 및 기획 서비스</subject>  
+<team>이하나, 김하니</team>  
+<index>서비스 배경 및 기획 문제 상황, 서비스 배경 및 기획 서비스 제안 및 사용 예시, 모델 구축 과정, 결론 및 제언</index>  
 
-<main>서비스 배경 및 기획</main>  
-<sub>문제 상황</sub> <content>거짓말 탐지기의 신뢰성 문제와 언어적 요소를 무시하는 기존 방법의 한계를 지적하며, 비언어적 생체 신호의 오인과 언어적 접근의 부족함을 강조하고 피의자 신문 과정에서의 실시간 거짓말 탐지 필요성을 제기.</content> <page>3, 4, 5</page>  
-<sub>서비스 제안 및 사용 예시</sub> <content>AI 어시스턴트를 통해 수사관이 피의자의 거짓말 유형을 이해하고 질문 전략을 조정하도록 지원하는 방안을 제안.</content> <page>6</page>  
+<main>서비스 배경 및 기획 문제 상황</main>  
+<sub>문제 사례</sub> <content>거짓말 탐지기 검사 결과 '거짓 반응'이 나와 재판에 넘겨진 사례가 있으며, 새로운 증거로 무죄가 선고됐다. 거짓말 탐지기의 신뢰성에 대한 의문이 제기된다.</content> <page>3</page>  
+<sub>거짓말의 복잡성</sub> <content>거짓말 탐지기는 생리적 반응을 측정하지만, 긴장이나 감정 상태 등 다양한 요소로 인해 결과의 정확성이 보장되지 않는다.</content> <page>4</page>  
+<sub>시간적 비효율성</sub> <content>실시간 거짓말 탐지 및 거짓말 유형 분류를 위한 언어적 접근의 필요성이 강조된다.</content> <page>5</page>  
+
+<main>서비스 배경 및 기획 서비스 제안 및 사용 예시</main>  
+<sub>AI assistant</sub> <content>AI assistant는 수사관이 피의자의 거짓말 유형을 이해하여 질문 전략을 조정할 수 있도록 지원한다.</content> <page>6</page>  
 
 <main>모델 구축 과정</main>  
-<sub>STT 구현</sub> <content>사용자의 음성을 텍스트로 변환하는 프로세스를 설명하며, Google Cloud의 Speech to Text API를 활용.</content> <page>11</page>  
-<sub>데이터 구축</sub> <content>수사관-피의자 신문 기록 데이터셋 생성의 필요성과 SCAN 기법을 통한 거짓말 신호 유형 및 모순 문장 데이터 활용 방법을 설명, 또한 ChatGPT를 통한 합성 데이터 생성 과정을 공유.</content> <page>15, 16, 17</page>  
-<sub>Fine Tuning</sub> <content>LLaMA-2-7b-chat-hf 모델을 선택하여 모델을 미세 조정하고, autotrain-advanced 패키지를 활용한 성능 평가 방식을 설명하며, ChatGPT와의 성능 차이를 분석.</content> <page>21, 23, 24</page>  
+<sub>STT 구현</sub> <content>Google Cloud의 speech to text API를 활용하여 사용자의 음성을 텍스트로 변환하고, Speaker diarization으로 개별 화자의 발화를 구분한다.</content> <page>11</page>  
+<sub>데이터 구축</sub> <content>수사관과 피의자의 신문 기록을 기반으로 데이터셋을 생성하고, OpenAI API를 통해 학습용 데이터셋을 구축한다.</content> <page>14</page>  
+<sub>Synthetic Data Generation</sub> <content>두 개의 모순된 문장을 포함한 피의자 신문 기록 데이터를 생성하여 총 1700개의 가상 피의자 신문 데이터를 만든다.</content> <page>19</page>  
+<sub>Fine Tuning</sub> <content>Llama-2-7b-chat-hf 모델을 미세 조정하여, Epoch 15, batch size 2로 학습한 결과 loss 값 0.05로 성능이 개선된다.</content> <page>21</page> <page>23</page>  
 
-<main>Fine Tuning</main>  
-<sub>Fine Tuning 결과</sub> <content>미세 조정된 LLaMA-2 모델의 성능 향상 사례를 제시.</content> <page>25</page>  
-
-<main>RAG</main>  
-<sub>RAG 구현</sub> <content>LangChain을 활용하여 사건 기록을 생성하고 KBI 검출 과정을 설명.</content> <page>26</page>  
-<sub>최종 출력</sub> <content>사건 당일 용의자의 진술과 CCTV footage와의 불일치로 KBI를 검출한 사례를 설명.</content> <page>27</page>
+<main>결론 및 제언</main>  
+<sub>프로젝트 의의</sub> <content>LLM을 활용한 거짓말 탐지 기술의 가능성을 제시하며, 실시간 심문 지원이 가능하다. 기존 생체신호 기반 탐지기와는 달리 문장 단위 거짓말 탐지가 가능하다.</content> <page>29</page>  
+<sub>추가 지향점</sub> <content>Llama2 70b/GPT-4 모델 사용 시 성능 향상이 기대되며, 다른 LLM과 실제 경찰청 데이터를 활용할 계획이다.</content> <page>30</page>

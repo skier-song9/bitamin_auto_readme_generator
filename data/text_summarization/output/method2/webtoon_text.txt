@@ -1,30 +1,29 @@
 <subject>독자와 웹툰 간 로그데이터를 활용한 웹툰 추천 시스템</subject>
 <team>RecSys Team 2 - 강나영, 김나현, 엄성원, 이철민</team>
-<index>TABLE OF CONTENTS</index>
+<index>프로젝트 소개, 데이터 수집 및 전처리, 모델 선택 및 학습, 웹툰 추천 시스템 구현, 결론 및 향후 과제</index>
 
 <main>프로젝트 소개</main>
-<sub>프로젝트 배경</sub> <content>정제된 '대량의 데이터'를 사용하여 모델 선택 범위를 넓히고자 하며, 사용자 데이터를 효과적으로 사용할 수 있는 주제 선정과 직관적인 추천 시스템의 작동을 확인할 수 있도록 가급적 국내 최신 데이터를 활용합니다.</content> <page>1</page>
-<sub>프로젝트 목표</sub> <content>사용자 데이터와 웹툰 데이터를 이용해 개인화된 추천 시스템을 개발하여 사용자가 흥미를 느낄 만한 웹툰을 정확히 추천하고, 사용자와 아이템의 데이터에 맞는 알고리즘을 탐색 및 적용합니다.</content> <page>2</page>
+<sub>프로젝트 배경</sub> <content>정제된 대량의 데이터를 사용하여 모델 선택 범위를 넓히고 사용자 데이터를 효과적으로 활용하기 위한 주제를 선정하였습니다.</content> <page>5</page>
+<sub>프로젝트 목표</sub> <content>사용자 데이터와 웹툰 데이터를 기반으로 개인화된 추천 시스템을 개발하여 사용자가 흥미를 느낄 만한 웹툰을 정확히 추천하는 것을 목표로 합니다.</content> <page>5</page>
 
 <main>데이터 수집 및 전처리</main>
-<sub>데이터 소스 설명</sub> <content>Webtoon_CustomersCsV, Webtoon_articlescs!, Webtoon_interaction_traincs! 등의 다양한 데이터 소스를 사용합니다.</content> <page>3</page>
-<sub>데이터 전처리</sub> <content>649만 개의 데이터 중 100개 이상 평가한 유저만 남기며, 피봇 테이블 형식의 데이터로 변환합니다.</content> <page>4</page>
+<sub>데이터 소스 설명</sub> <content>사용된 데이터는 Webtoon_Customers.csv, Webtoon_articles.csv, Webtoon_interaction_train.csv 등으로 구성되어 있습니다.</content> <page>6</page>
+<sub>데이터 전처리</sub> <content>649만 개의 데이터에서 100개 이상 평가한 사용자만 남기고, 피봇 테이블 형식으로 데이터를 생성하였습니다.</content> <page>7</page>
 
 <main>모델 선택 및 학습</main>
-<sub>Filtering 모델 CFCCollaborative</sub> <content>User-Based와 Item-Based 알고리즘을 통해 비슷한 취향을 가진 사용자들이 다른 아이템에 대해서도 비슷한 취향을 가지고 있을 것이라는 가정으로 추천을 진행하며, 직관적인 결과를 제공하나 Cold Start Problem이 존재합니다.</content> <page>5</page>
-<sub>NCF Filtering 모델 Neura Collaborative</sub> <content>사용자와 아이템을 embedding vector로 표현하고, 사용자-아이템 간 interaction을 바탕으로 추천 확률을 학습하여 아이템을 추천합니다. 장점은 복잡한 비선형 학습이 가능하나 데이터의 희소성 문제를 안고 있습니다.</content> <page>6</page>
-<sub>모델 SVDSingular Value Decomposition</sub> <content>사용자-아이템 행렬을 세 개의 행렬로 분해하여 잠재적 특성을 추출하며, 차원 축소를 통해 계산 효율성을 증가시키지만 실시간 업데이트가 어렵습니다.</content> <page>7</page>
-<sub>ALS 모델 Alternating Least Squares</sub> <content>사용자-아이템 상호작용 행렬을 저차원 행렬로 분해하여 잠재 요인을 학습하는 방식으로, 대규모 데이터셋에 적합합니다.</content> <page>8</page>
+<sub>Filtering 모델 CFCCollaborative</sub> <content>User-Based와 Item-Based 방식으로 사용자 간 유사도를 측정하여 추천하는 알고리즘을 사용하였으며, 계산량이 많아 추천의 효율성이 떨어지는 단점이 있습니다.</content> <page>8</page>
+<sub>NCF Filtering 모델 Neural Collaborative</sub> <content>사용자와 아이템을 각각 embedding vector로 표현하고 학습하여 아이템을 추천하는 방식으로, 복잡한 비선형 학습이 가능합니다.</content> <page>10</page>
+<sub>모델 SVDSingular Value Decomposition</sub> <content>사용자-아이템 행렬을 분해하여 잠재적 특성을 추출하는 방식으로, 차원 축소를 통해 계산 효율성을 증가시키지만 계산 비용이 높아질 수 있습니다.</content> <page>12</page>
+<sub>ALS 모델 Alternating Least Squares</sub> <content>사용자-아이템 상호작용 행렬을 두 개의 저차원 행렬로 분해하여 잠재 요인을 학습하는 기법입니다.</content> <page>15</page>
 
 <main>최종 모델 선정</main>
-<sub>모델 선정 이유 ALS Alternating Least Squares</sub> <content>Implicit Feedback의 형태로 수집된 데이터에서 사용자 선호를 정확히 파악하기 어려운 문제를 해결하며, 대규모 데이터에 적합하여 RMSE 수치가 우수합니다.</content> <page>9</page>
-<sub>ALS Alternating Least Squares 모델링 및 결과 출력</sub> <content>웹툰 추천 진행 모델 성능 평가를 통해 RMSE를 측정합니다.</content> <page>10</page>
+<sub>모델 선정 이유 ALS Alternating Least Squares</sub> <content>Implicit Feedback 형태의 데이터를 활용하여 RMSE 수치가 0.1로 나타나 최적의 모델로 선정하였습니다.</content> <page>17</page>
+<sub>ALS 모델링 및 결과 출력</sub> <content>웹툰 추천을 진행하였으며, 모델 성능을 평가하였습니다.</content> <page>18</page>
 
 <main>웹툰 추천 시스템 구현</main>
-<sub>웹툰 추천 결과</sub> <content>USER_ID 100001344 사용자가 이전에 봤던 웹툰과 추천 결과를 바탕으로 RMSE 0.10001713을 기록합니다.</content> <page>11</page>
-<sub>웹툰 추천 결과</sub> <content>USER_ID 123456의 좋아하는 웹툰 3개 입력 결과로 RMSE 0.10001718을 기록합니다.</content> <page>12</page>
+<sub>기존 사용자</sub> <content>기존 사용자의 웹툰 추천 결과를 바탕으로 RMSE는 0.10001713으로 나타났습니다.</content> <page>19</page>
+<sub>신규 사용자</sub> <content>신규 사용자의 웹툰 추천 결과를 바탕으로 RMSE는 0.10001718로 나타났습니다.</content> <page>20</page>
 
 <main>결론 및 향후 과제</main>
-<sub>프로젝트 요약 및 의의</sub> <content>여러 추천 알고리즘 모델을 구축하고 비교 분석하여 최적의 모델을 선택함으로써 사용자에게 더 나은 추천을 제공하고, 사용자들의 만족도와 플랫폼 이용률을 증가시킬 수 있는 가능성을 보여줍니다.</content> <page>13</page>
-<sub>한계점</sub> <content>정제된 데이터 사용으로 인해 사용자의 선호도를 정확하게 파악하기 어려운 Cold Start Problem이 존재합니다.</content> <page>14</page>
-<sub>향후과제</sub> <content>피드백을 통한 Explicit 모델 성능 향상과 아이템 데이터의 genre 컬럼 활용을 통한 모델 개선이 필요합니다.</content> <page>15</page>
+<sub>프로젝트 요약 및 의의</sub> <content>다양한 추천 알고리즘 모델을 구축하고 비교 분석하여 사용자에게 더 나은 추천을 제공할 수 있음을 확인하였습니다.</content> <page>21</page>
+<sub>한계점 및 향후 과제</sub> <content>Implicit feedback을 사용한 데이터의 한계로 신규 사용자에 대한 추천의 적합성 문제와 Cold Start Problem을 언급하였으며, 향후 Explicit 데이터 수집을 통한 모델 성능 향상을 계획하고 있습니다.</content> <page>22</page>
