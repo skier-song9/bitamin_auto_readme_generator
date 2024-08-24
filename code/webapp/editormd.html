@@ -239,18 +239,16 @@
             var workFileClean = "";
 
             $(function() { //factory function 
-                const session_json = {'workfileclean':[], 'workimagedir':[], 'pdf_filepath':[], 'pdf2img_dir':[], 'textbox_dir':[], 'text_filepath':[], 'md_filepath':[]}
+                const session_json = {'workfileclean':[], 'workimagedir':[], 'pdf_filepath':[], 'pdf2img_dir':[], 'textbox_dir':[], 'text_filepath':[], 'md_filepath':[], 'zip_filepath':[]}
                 /////////////////////////////////////////////////////
                 // File Uploader
                 const uploadContainer = $('#upload-container');
                 const fileInput = $('#file-input');
                 function updateSessionJson(session_json, response_session) {
-                    for (let key in session_json){
-                        if(response_session[key].length > 0){
-                            session_json[key] = session_json[key].concat(response_session[key])
-                        }
+                    for (let key in response_session){
+                        session_json[key] = session_json[key].concat(response_session[key])
                     }
-                }
+                };
                 // UploadFile 함수
                 // Upload file function
                 function uploadFile(file) {
@@ -350,7 +348,39 @@
 
                                     // file loading이 끝나면 download 버튼을 보인다.
                                     btn_download.style.display = "block";
+                                    /////////////////////////////////////////////////////
+                                    // download 버튼에 클릭 이벤트 리스너 추가
+                                    btn_download.addEventListener('click', function(){
+                                        $.ajax({
+                                            url:'/download.do',
+                                            type:'POST',
+                                            contentType:'application/json',
+                                            data:JSON.stringify(session_json),
+                                            dataType:'json',
+                                            xhrFields: {
+                                                responseType: 'blob' // binary data 처리
+                                            },
+                                            success: function(response){
+                                                const blob = new Blob([response], {type:'application/zip'});
+                                                const url = window.URL.createObjectURL(blob);
+                                                const temp_a = document.createElement('a');
+                                                temp_a.style.color = 'white';
+                                                temp_a.href = url;
+                                                temp_a.download = 'your_readme.zip';
+                                                document.body.appendChild(temp_a);
+                                                temp_a.click();
+                                                window.URL.revokeObjectURL(url);
+                                                updateSessionJson(session_json, {'zip_filepath':['']})
 
+                                                // temp_a.remove();
+                                            },
+                                            error: function(error){
+                                                alert("Download Failed...", error);
+                                            }
+                                        });
+                                    })
+
+                                    
                                     break;
                                 default: // code == 400
                                     uct.removeChild(gifTag)
@@ -401,7 +431,7 @@
                         uploadFile(file); //위의 uploadFile 함수
                     }
                 });
-
+                
                 /////////////////////////////////////////////////////
                 // Markdown 편집기를 불러온다.
                 $.ajax({
@@ -616,23 +646,35 @@
                     });
                 };
 
-                /////////////////////////////////////////////////////
-                // download 버튼에 클릭 이벤트 리스너 추가
-                btn_download.addEventListener('click', function(){
-                    $.ajax({
-                        url:'/download.do',
-                        type:'POST',
-                        contentType:'application/json',
-                        data:JSON.stringify(session_json),
-                        dataType:'json',
-                        success: function(response){
-                            
-                        },
-                        error: function(error){
-                            alert("Download Failed...")
-                        }
-                    });
-                })
+                // /////////////////////////////////////////////////////
+                // // download 버튼에 클릭 이벤트 리스너 추가
+                // btn_download.addEventListener('click', function(){
+                //     $.ajax({
+                //         url:'/download.do',
+                //         type:'POST',
+                //         contentType:'application/json',
+                //         data:JSON.stringify(session_json),
+                //         dataType:'json',
+                //         xhrFields: {
+                //             responseType: 'blob' // binary data 처리
+                //         },
+                //         success: function(response){
+                //             const blob = new Blob([response], {type:'application/zip'});
+                //             const url = window.URL.createObjectURL(blob);
+                //             const temp_a = document.createElement('a');
+                //             temp_a.style.display = none;
+                //             temp_a.href = url;
+                //             temp_a.download = 'your_readme.zip';
+                //             document.body.appendChild(temp_a);
+                //             temp_a.click();
+                //             window.URL.revokeObjectURL(url);
+                //             updateSessionJson(session_json, {'zip_filepath':['']})
+                //         },
+                //         error: function(error){
+                //             alert("Download Failed...", error);
+                //         }
+                //     });
+                // })
 
                 /////////////////////////////////////////////////////
                 // Markdown 편집기의 테마를 변경하는 select element를 위한 함수.

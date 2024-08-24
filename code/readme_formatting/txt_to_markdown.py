@@ -20,7 +20,7 @@ def txt_to_markdown(content):
 
     # Convert to Markdown format
     readme_md = f"""# 🍊 {subject}
-:calendar:(프로젝트 진행기간을 입력하세요. ####.##.## ~ ####.##.##)
+🗓️(프로젝트 진행기간을 입력하세요. ####.##.## ~ ####.##.##)
 ### 🚀 Team
 {', '.join(team)}
 

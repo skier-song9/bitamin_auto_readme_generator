@@ -76,7 +76,7 @@ class Image_Detector:
 
         for paths in dataloader:
             for path in paths:
-                outputs = self.model.predict(path, conf=0.65)[0]
+                outputs = self.model.predict(path, conf=0.65, verbose=False)[0]
                 boxes = []
                 for box in outputs.boxes:
                     class_id = outputs.names[box.cls[0].item()]

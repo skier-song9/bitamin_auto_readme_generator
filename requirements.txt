@@ -1,0 +1,17 @@
+regex
+pandas
+numpy
+matplotlib
+scikit-learn
+timm
+opencv-python
+ultralytics
+openai
+langchain_openai
+pdf2jpg
+paddlepaddle
+paddleocr
+Flask
+Flask-Cors
+waitress
+sockets
