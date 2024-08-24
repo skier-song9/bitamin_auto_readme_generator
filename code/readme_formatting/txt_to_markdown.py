@@ -19,19 +19,19 @@ def txt_to_markdown(content):
     mains = main_re.findall(content)
 
     # Convert to Markdown format
-    readme_md = f"""# :orange: {subject}
+    readme_md = f"""# 🍊 {subject}
 :calendar:(프로젝트 진행기간을 입력하세요. ####.##.## ~ ####.##.##)
-### :rocket: Team
+### 🚀 Team
 {', '.join(team)}
 
-## :spiral_notepad:Table of Contents
+## 🗒️Table of Contents
 """
     for i, section in enumerate(index, 1):
         readme_md += f"- [{section}](#section_{i})\n"
     readme_md += "<br>\n"
     for idx, main in enumerate(mains):
         main_text = main.strip()
-        readme_md += f"<a name='section_{idx + 1}'></a>\n\n## :large_blue_diamond: {main_text}\n\n"
+        readme_md += f"<a name='section_{idx + 1}'></a>\n\n## 🔷 {main_text}\n\n"
         section_content = content.split(f"<main>{main_text}</main>")[1].split("<main>")[0]
 
         subs = sub_re.findall(section_content)
