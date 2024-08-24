@@ -19,6 +19,7 @@ from object_detection import detection, pdf2img, textocr
 from image_classification import image_classifier
 from text_summarization import textsumm_method3
 from object_pooling.objcet_pooling import ObjectPool
+from readme_formatting import txt_to_markdown
 
 # 웹 앱 생성
 app = Flask(__name__,
@@ -361,43 +362,44 @@ def fileUpload():
                 total_text = extracted_info + '\n' + tagged_text
 
                 print('readme formatting')
+                readme_md = txt_to_markdown.txt_to_markdown(total_text)
                 # # readme formatting
-                main_re = re.compile(r'<main>(.*?)</main>', re.DOTALL)
-                sub_re = re.compile(r'<sub>(.*?)</sub>', re.DOTALL)
-                content_re = re.compile(r'<content>(.*?)</content>', re.DOTALL)
-                page_re = re.compile(r'<page>(.*?)</page>', re.DOTALL)
-
-                # Find all occurrences of each tag
-                subject = total_text.split("<subject>")[1].split("</subject>")[0].strip()
-                team = total_text.split("<team>")[1].split("</team>")[0].strip().split(", ")
-                index = total_text.split("<index>")[1].split("</index>")[0].strip().split(", ")
-                mains = main_re.findall(total_text)
-
-                # Convert to Markdown format
-                readme_md = f"""# {subject}
-(프로젝트 진행기간을 입력하세요. ####.##.## ~ ####.##.##)
-### Team
-{', '.join(team)}
-
-## Table of Contents
-"""
-                for i, section in enumerate(index, 1):
-                    readme_md += f"- [{section}](#section_{i})\n"
-                readme_md += "<br>\n"
-                for idx, main in enumerate(mains):
-                    main_text = main.strip()
-                    readme_md += f"<a name='section_{idx + 1}'></a>\n\n## {main_text}\n\n"
-                    section_content = total_text.split(f"<main>{main_text}</main>")[1].split("<main>")[0]
-
-                    subs = sub_re.findall(section_content)
-                    contents = content_re.findall(section_content)
-                    pages = page_re.findall(section_content)
-
-                    # Add the subsections and content
-                    for sub, content_text, page in zip(subs, contents, pages):
-                        readme_md += f"#### {sub.strip()}\n\n"
-                        readme_md += f"- {content_text.strip()}\n\n"
-                        # readme_md += f"*Page: {page.strip()}*\n\n"
+#                 main_re = re.compile(r'<main>(.*?)</main>', re.DOTALL)
+#                 sub_re = re.compile(r'<sub>(.*?)</sub>', re.DOTALL)
+#                 content_re = re.compile(r'<content>(.*?)</content>', re.DOTALL)
+#                 page_re = re.compile(r'<page>(.*?)</page>', re.DOTALL)
+#
+#                 # Find all occurrences of each tag
+#                 subject = total_text.split("<subject>")[1].split("</subject>")[0].strip()
+#                 team = total_text.split("<team>")[1].split("</team>")[0].strip().split(", ")
+#                 index = total_text.split("<index>")[1].split("</index>")[0].strip().split(", ")
+#                 mains = main_re.findall(total_text)
+#
+#                 # Convert to Markdown format
+#                 readme_md = f"""# {subject}
+# (프로젝트 진행기간을 입력하세요. ####.##.## ~ ####.##.##)
+# ### Team
+# {', '.join(team)}
+#
+# ## Table of Contents
+# """
+#                 for i, section in enumerate(index, 1):
+#                     readme_md += f"- [{section}](#section_{i})\n"
+#                 readme_md += "<br>\n"
+#                 for idx, main in enumerate(mains):
+#                     main_text = main.strip()
+#                     readme_md += f"<a name='section_{idx + 1}'></a>\n\n## {main_text}\n\n"
+#                     section_content = total_text.split(f"<main>{main_text}</main>")[1].split("<main>")[0]
+#
+#                     subs = sub_re.findall(section_content)
+#                     contents = content_re.findall(section_content)
+#                     pages = page_re.findall(section_content)
+#
+#                     # Add the subsections and content
+#                     for sub, content_text, page in zip(subs, contents, pages):
+#                         readme_md += f"#### {sub.strip()}\n\n"
+#                         readme_md += f"- {content_text.strip()}\n\n"
+#                         # readme_md += f"*Page: {page.strip()}*\n\n"
 
                 readme_filepath = os.path.join(WORKSPACE, WORKFILECLEAN + '.md')
                 if os.path.exists(readme_filepath):
