@@ -617,6 +617,24 @@
                 };
 
                 /////////////////////////////////////////////////////
+                // download 버튼에 클릭 이벤트 리스너 추가
+                btn_download.addEventListener('click', function(){
+                    $.ajax({
+                        url:'/download.do',
+                        type:'POST',
+                        contentType:'application/json',
+                        data:JSON.stringify(session_json),
+                        dataType:'json',
+                        success: function(response){
+                            
+                        },
+                        error: function(error){
+                            alert("Download Failed...")
+                        }
+                    });
+                })
+
+                /////////////////////////////////////////////////////
                 // Markdown 편집기의 테마를 변경하는 select element를 위한 함수.
                 function themeSelectAll(id, editormd, lsKey, callback){
                     var select = $("#"+id);
