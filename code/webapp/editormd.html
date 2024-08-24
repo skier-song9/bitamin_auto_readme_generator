@@ -165,6 +165,9 @@
                 <h1 style="color: black; display: block;">
                     🍊BITAMin Auto-Project-ReadMe-Generator
                 </h1>
+                <button id="btn-download" style="display:none; font-size: 1.5em; cursor: pointer; background: none; border: none;" title="Download">
+                    💾Download
+                </button>
             </header>
             <input type="file" name="pdf" id="file-input" style="display:none;">
             <div id="upload-container">
@@ -235,11 +238,19 @@
             var workFileOrigin = "";
             var workFileClean = "";
 
-            $(function() { //factory function               
+            $(function() { //factory function 
+                const session_json = {'workfileclean':[], 'workimagedir':[], 'pdf_filepath':[], 'pdf2img_dir':[], 'textbox_dir':[], 'text_filepath':[], 'md_filepath':[]}
                 /////////////////////////////////////////////////////
                 // File Uploader
                 const uploadContainer = $('#upload-container');
                 const fileInput = $('#file-input');
+                function updateSessionJson(session_json, response_session) {
+                    for (let key in session_json){
+                        if(response_session[key].length > 0){
+                            session_json[key] = session_json[key].concat(response_session[key])
+                        }
+                    }
+                }
                 // UploadFile 함수
                 // Upload file function
                 function uploadFile(file) {
@@ -249,6 +260,7 @@
                     const uct = document.querySelector('#upload-container-text')
                     const gifPath = `${rootUrl}/webapp/images/loading.gif`;
                     const gifTag = document.createElement('img');
+                    const btn_download = document.querySelector('#btn-download');
                     gifTag.src = gifPath;
                     gifTag.alt = "Loading & Processing...";
                     uct.textContent = '';
@@ -264,19 +276,25 @@
                             // console.log(response)
                             switch (response.code) {
                                 case 200:
-                                    workFileOrigin = response.msg[0] // = WORKFILEORIGIN
-                                    workFileClean = response.msg[1]
-                                    console.log(workFileClean)
+                                    response_session = response.msg
+                                    workFileOrigin = response.workfileorigin
+                                    updateSessionJson(session_json, response_session)
+                                    workFileClean = session_json['workfileclean'].at(-1)
+                                    
+                                    console.log(session_json)
                                     uct.removeChild(gifTag)
-                                    uct.innerText = `${response.msg[0]}`
+                                    uct.innerText = `${workFileOrigin}`
 
-                                    loadImageGallery();
+                                    loadImageGallery(session_json);
                                     attachImageOverlay('.image-gallery img');
                                     attachImageDragstart('.image-gallery img');
 
                                     $.ajax({
                                         url: "/loadfile.do",
-                                        type : 'GET',
+                                        type : 'POST',
+                                        contentType : 'application/json',
+                                        data : JSON.stringify(session_json),
+                                        dataType : 'json',
                                         success: function(response) {
                                             // "your-readme" id를 가진 div 태그 내의 textarea 요소를 찾는다.
                                             let yourReadmeTextarea = document.querySelector('#your-readme textarea');
@@ -304,7 +322,7 @@
                                                     sequenceDiagram : true,
                                                     imageUpload : true,
                                                     imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-                                                    imageUploadURL : "./php/upload.php",
+                                                    // imageUploadURL : "./php/upload.php",
                                                     onload : function() {
                                                         console.log('onload', this);
                                                         // this.fullscreen();
@@ -324,8 +342,15 @@
                                         },
                                         error: function(e) {
                                             alert(e);
+                                        },
+                                        xhrFields: {
+                                            withCredentials: true  // 이 설정으로 쿠키를 요청에 포함시킴
                                         }
                                     });
+
+                                    // file loading이 끝나면 download 버튼을 보인다.
+                                    btn_download.style.display = "block";
+
                                     break;
                                 default: // code == 400
                                     uct.removeChild(gifTag)
@@ -338,8 +363,15 @@
                             uct.removeChild(gifTag)
                             uct.innerText = "Drag & Drop or click here to upload your project PDF"
                             console.error( textStatus, errorThrown);
+                        },
+                        xhrFields: {
+                            withCredentials: true  // 이 설정으로 쿠키를 요청에 포함시킴
                         }
-                    });
+                    });// upload.do
+
+                    // loadImageGallery(); 
+                    // attachImageOverlay('.image-gallery img');
+                    // attachImageDragstart('.image-gallery img');
                 }
                 // upload container를 click해도 file-input이 change가 발생하도록 트리거 부착
                 uploadContainer.on('click',function(e){
@@ -371,26 +403,99 @@
                 });
 
                 /////////////////////////////////////////////////////
+                // Markdown 편집기를 불러온다.
+                $.ajax({
+                    url: "/tutorial.do",
+                    type : 'GET',
+                    success: function(response) {
+                        // "your-readme" id를 가진 div 태그 내의 textarea 요소를 찾는다.
+                        let yourReadmeTextarea = document.querySelector('#your-readme textarea');
+                        if (response.code == 200){
+                            console.log(response.msg);
+                            // 읽은 텍스트를 textarea 요소의 value로 입력한다.
+                            yourReadmeTextarea.value = response.msg;
+                            yourReadme = editormd("your-readme",{
+                                width       : "90%",
+                                height      : () => window.innerHeight * 0.75,
+                                path        : 'lib/',
+                                theme       : (localStorage.theme) ? localStorage.theme : "default",
+                                previewTheme: (localStorage.previewTheme) ? localStorage.previewTheme : "default",
+                                editorTheme : (localStorage.editorTheme) ? localStorage.editorTheme : "default",
+                                codeFold    : true,
+                                saveHTMLToTextarea : true,
+                                searchReplace : true,
+                                htmlDecode  : "style,script,iframe|on*",       
+                                toc         : true,
+                                emoji       : true,
+                                taskList    : true,
+                                tocm        : false,
+                                tex         : true,                   
+                                flowChart   : true,             
+                                sequenceDiagram : true,
+                                imageUpload : true,
+                                imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                                // imageUploadURL : "./php/upload.php",
+                                onload : function() {
+                                    console.log('onload', this);
+                                    // this.fullscreen();
+                                    //this.unwatch();
+                                    //this.watch().fullscreen();
+
+                                    //this.setMarkdown("#PHP");
+                                    // this.width("80%");
+                                    // this.height(480);
+                                    // this.resize("100%", 640);
+                                }
+                            });
+                        }
+                        else{
+                            alert(response.msg);
+                        }
+                    },
+                    error: function(e) {
+                        alert(e);
+                    },
+                    xhrFields: {
+                        withCredentials: true  // 이 설정으로 쿠키를 요청에 포함시킴
+                    }
+                });
+
+                /////////////////////////////////////////////////////
                 // /webabb/workspace/images 내의 이미지들을 불러와 menu-bar에 가로로 표시하는 함수.
-                function loadImageGallery(){
+                function loadImageGallery(session_json){
                     $.ajax({
                         url: '/loadimages.do',
-                        type : 'GET',
-                        success: function(data) {
-                            imgDir = data['dir']
-                            imgList = data['filelist']
-                            // console.log(data) // data는 image file name list 이다.
-                            if (imgList){
-                                imgList.forEach(function(imgName){
-                                    if (imgName.match(/\.(jpg|jpeg|png|gif|bmp|webp)$/i)) {
-                                        let altText = imgName.substring(0, imgName.lastIndexOf('.')); // Remove extension
-                                        let srcText = `${rootUrl}/webapp/workspace/${imgDir}/${imgName}`;
-                                        let imgTag = '<img id="'+ altText +'" src="' + srcText + '" alt="' + altText + '">';
-                                        imageGallery.append(imgTag);
-                                    }
-                                }); // forEach
-                            }// if
-                        } //success
+                        type : 'POST',
+                        contentType:'application/json',
+                        data: JSON.stringify(session_json),
+                        dataType:'json',
+                        success: function(response) {
+                            switch (response.code) {
+                                case 200:
+                                    // response_session = response.msg
+                                    imgDir = response['dir']
+                                    imgList = response['filelist']
+                                    // console.log(data) // data는 image file name list 이다.
+                                    if (imgList){
+                                        imgList.forEach(function(imgName){
+                                            if (imgName.match(/\.(jpg|jpeg|png|gif|bmp|webp)$/i)) {
+                                                let altText = imgName.substring(0, imgName.lastIndexOf('.')); // Remove extension
+                                                let srcText = `${rootUrl}/webapp/workspace/${imgDir}/${imgName}`;
+                                                let imgTag = '<img id="'+ altText +'" src="' + srcText + '" alt="' + altText + '">';
+                                                imageGallery.append(imgTag);
+                                            }
+                                        }); // forEach
+                                    }// if
+                                    break;
+                            
+                                default:
+                                    alert("Fail to load Images...")
+                                    break;
+                            } // switch
+                        }, //success
+                        xhrFields: {
+                            withCredentials: true  // 이 설정으로 쿠키를 요청에 포함시킴
+                        }
                     });
                 }; // loadImageGallery()
 
@@ -483,42 +588,6 @@
                         
                     }
                 });
-
-                /////////////////////////////////////////////////////
-                // Markdown 편집기를 불러온다.
-                yourReadme = editormd("your-readme",{
-                    width       : "90%",
-                    height      : () => window.innerHeight * 0.75,
-                    path        : 'lib/',
-                    theme       : (localStorage.theme) ? localStorage.theme : "default",
-                    previewTheme: (localStorage.previewTheme) ? localStorage.previewTheme : "default",
-                    editorTheme : (localStorage.editorTheme) ? localStorage.editorTheme : "default",
-                    codeFold    : true,
-                    saveHTMLToTextarea : true,
-                    searchReplace : true,
-                    htmlDecode  : "style,script,iframe|on*",       
-                    toc         : true,
-                    emoji       : true,
-                    taskList    : true,
-                    tocm        : false,
-                    tex         : true,                   
-                    flowChart   : true,             
-                    sequenceDiagram : true,
-                    imageUpload : true,
-                    imageFormats : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-                    imageUploadURL : "./php/upload.php",
-                    onload : function() {
-                        console.log('onload', this);
-                        // this.fullscreen();
-                        //this.unwatch();
-                        //this.watch().fullscreen();
-
-                        //this.setMarkdown("#PHP");
-                        // this.width("80%");
-                        // this.height(480);
-                        // this.resize("100%", 640);
-                    }
-                });
                 
                 /////////////////////////////////////////////////////
                 // workspace에서 md 파일을 읽어 your-readme아래의 textarea에 내용을 채운다.
@@ -540,6 +609,9 @@
                         },
                         error: function(e) {
                             alert(e);
+                        },
+                        xhrFields: {
+                            withCredentials: true  // 이 설정으로 쿠키를 요청에 포함시킴
                         }
                     });
                 };
@@ -592,6 +664,24 @@
                 themeSelect("preview-area-theme-select", editormd.previewThemes, "previewTheme", function($this, theme) {
                     yourReadme.setPreviewTheme(theme);
                 });      
+
+                window.addEventListener('beforeunload',function(e){
+                    fetch('/endsession.do', {
+                        method:'POST',
+                        credentials:'same-origin',
+                        headers:{
+                            'Content-Type':'application/json',
+                        },
+                        body: JSON.stringify(session_json),
+                        credentials: 'include'
+                    }).then(response => {
+                        if (response.ok){
+                            console.log("Files removed successfully.")
+                        }
+                    }).catch(error => {
+                        console.log(error)
+                    })
+                });
 
                 // Drag over event: Necessary to allow a drop event
                 // $('.CodeMirror-code').on('dragover', function(e) {

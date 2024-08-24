@@ -92,7 +92,8 @@ class Image_Classifier:
         # modify model
         self.model.reset_classifier(num_classes = len(CLASS_NAMES))
         # load classifier parameter weights
-        self.model.get_classifier().load_state_dict(torch.load(clf_params_path))
+        # map GPU weights to CPU
+        self.model.get_classifier().load_state_dict(torch.load(clf_params_path, map_location=torch.device('cpu')))
 
         # set transform for inference
         self.transform_infer = transforms.Compose([

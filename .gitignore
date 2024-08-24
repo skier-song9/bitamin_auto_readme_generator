@@ -169,3 +169,4 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 code/assets/VGG19_acc94_240728.pth
+code/assets/session_secret_key.json
