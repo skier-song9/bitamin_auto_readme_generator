@@ -29,7 +29,7 @@ class TextSummarizer:
         - <main>: Main topic headings.
         - <sub>: Subtopics under each main topic.
         - <content>: Detailed content related to each subtopic.
-        - <page>: For any occurrence of a page marker (e.g., <p.1>, <p.2>), wrap it within <page></page> tags.
+        - <page>: For any occurrence of a page marker (e.g., <p.01>, <p.02>), wrap it within <page></page> tags.
         - <nan>: Unnecessary content not fitting into the above categories or repeated main/sub topics.
 
         Ensure the original text is not modified, summarized, or omitted. 
@@ -103,7 +103,7 @@ class TextSummarizer:
 
         <subject>Korea</subject>
         <team>이하나, 김하니</team>
-        <index>Seasons in Korea>
+        <index>Seasons in Korea, Animals in Korea</index>
         
         <main>Seasons in Korea</main>
         <sub>봄</sub> <content>한국의 봄은 3월에서 5월까지 지속되며, 온화한 기온과 함께 벚꽃이 만개하는 시기입니다. 이 시기에는 다양한 봄꽃 축제가 열리며, 사람들이 야외 활동을 즐기기에 좋은 날씨입니다.</content> <page>1</page>
@@ -127,7 +127,7 @@ class TextSummarizer:
 
 
 if __name__ == "__main__":
-    api_key_path = "C:\\Users\\PC\\Desktop\\DoYoung\\DS\\비타민NLP_240701\\text_summarization\\openai_api_key.json"
+    api_key_path = "C:/Users/PC/Desktop/DoYoung/DS/github/bitamin_auto_readme_generator/code/assets/openai_api_key.json"
     input_directory = 'C:\\Users\\PC\\Desktop\\DoYoung\\DS\\github\\bitamin_auto_readme_generator\\data\\object_detection\\output\\ocr_samples_txt'
     output_directory = 'C:\\Users\\PC\\Desktop\\DoYoung\\DS\\github\\bitamin_auto_readme_generator\\data\\text_summarization\\output\\method2'
 

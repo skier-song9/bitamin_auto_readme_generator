@@ -20,7 +20,7 @@ class TextSummarizer:
     # STEP1: 첫 5페이지의 텍스트에서 팀원, 주제, main topic 추출
     @staticmethod
     def extract_5pages(text):
-        end_marker = text.find('<p.6>')
+        end_marker = text.find('<p.06>')
         if end_marker != -1:
             text5 = text[:end_marker]
         else:
@@ -87,7 +87,7 @@ class TextSummarizer:
         Use the main topics provided below:
         {main_topics}
         
-        The text is divided into pages using the format <p.number>. For example, page 2 is marked as <p.2>. 
+        The text is divided into pages using the format <p.number>. For example, page 2 is marked as <p.02>. 
         Make sure to extract text from all pages except for the first five pages to ensure no information is missed.
         If any part of the text seems to be related to the main topics but is not included in the main topics list(main_topics), include it as a subtopic under the appropriate main topic.
         Do not include any additional notes or explanations in the output.
@@ -127,7 +127,7 @@ class TextSummarizer:
 
         <subject>Korea</subject>
         <team>이하나, 김하니</team>
-        <index>Seasons in Korea>
+        <index>Seasons in Korea, Animals in Korea</index>
         
         <main>Seasons in Korea</main>
         <sub>봄</sub> <content>한국의 봄은 3월에서 5월까지 지속되며, 온화한 기온과 함께 벚꽃이 만개하는 시기입니다. 이 시기에는 다양한 봄꽃 축제가 열리며, 사람들이 야외 활동을 즐기기에 좋은 날씨입니다.</content> <page>1</page>
@@ -152,7 +152,7 @@ class TextSummarizer:
         return summary
     
 if __name__ == "__main__":
-    api_key_path = "C:\\Users\\PC\\Desktop\\DoYoung\\DS\\비타민NLP_240701\\text_summarization\\openai_api_key.json"
+    api_key_path = "C:/Users/PC/Desktop/DoYoung/DS/github/bitamin_auto_readme_generator/code/assets/openai_api_key.json"
     input_directory = 'C:\\Users\\PC\\Desktop\\DoYoung\\DS\\github\\bitamin_auto_readme_generator\\data\\object_detection\\output\\ocr_samples_txt'
     output_directory = 'C:\\Users\\PC\\Desktop\\DoYoung\\DS\\github\\bitamin_auto_readme_generator\\data\\text_summarization\\output\\method1'
 
