@@ -1,0 +1,28 @@
+<subject>재원 선장</subject>
+<subject>용호 항해사</subject>
+<subject>영서 항해사</subject>
+<team>재원 선장, 용호 항해사, 영서 항해사</team>
+<index>GAN 이란?, CartoonGAN, Dataset, CartoonGAN 변형, Experiment</index>
+
+<main>GAN 이란?</main>
+<sub>GAN의 훈련 과정</sub> <content>GAN은 Generator와 Discriminator 간의 적대적 훈련을 통해, Generator가 진짜 같은 이미지를 생성하여 Discriminator를 속이는 것을 목표로 함.</content> <page>4</page>
+
+<main>CartoonGAN</main>
+<sub>Architecture</sub> <content>CartoonGAN은 실제 사진을 입력으로 받아 만화 이미지를 생성하며, VGG 네트워크의 특정 레이어에서 추출한 피처를 사용하여 생성된 이미지와 원본 이미지 간의 고수준 특징의 차이를 최소화하여 스타일 변환을 수행함.</content> <page>7</page>
+<sub>Dataset</sub> <content>CartoonGAN은 다양한 영화에서 약 9728장의 만화 이미지를 추출하고, 10000장의 실제 이미지를 사용하여 데이터셋을 구성함.</content> <page>10</page>
+<sub>Experiment Results</sub> <content>최종 실험 결과는 모델의 성능을 평가하는 데 중요한 지표를 제공하며, 생성된 이미지의 품질 및 스타일 변환의 효과성을 강조함.</content> <page>20</page>
+
+<main>Dataset</main>
+<sub>데이터 설명</sub> <content>총 9728장의 'One Piece' 영화 관련 이미지와 10000장의 실제 이미지로 구성된 데이터셋. 영화 목록에는 'One Piece: The Movie', 'Clockwork Island Adventure', 'Chopper Kingdom of Strange Animal Island' 등 포함.</content> <page>11</page>
+<sub>데이터 전처리</sub> <content>이미지 처리에는 Edge Smoothing 및 Canny Edge 검출이 포함되며, dilation 연산과 Gaussian blur를 사용하여 가장자리를 부드럽게 처리.</content> <page>11</page>
+
+<main>CartoonGAN 변형</main>
+<sub>변형 CartoonGAN</sub> <content>CartoonGAN의 다양한 변형을 통해 성능 개선을 목표로 함.</content> <page>2</page>
+<sub>변형 CartoonGAN ResNet Block</sub> <content>Generator에 사용되는 ResNet Block에서 batch normalization과 residual connection 이후에 ReLU를 적용하여 구조를 개선함.</content> <page>13</page>
+<sub>변형 CartoonGAN Generator Upsampling</sub> <content>Generator에서 blurring과 batch normalization을 사용하여 upsampling 과정에서 발생할 수 있는 checkerboard 문제를 해결하고, 학습 속도와 안정성을 증가시킴.</content> <page>14</page>
+<sub>CartoonGAN 변형 Content Loss</sub> <content>Content Loss를 VGG19에서 VGG16으로 변경하고, VGG16의 24번째 레이어까지만 사용하여 낮은 계산 비용으로 저수준 특징을 효과적으로 추출함.</content> <page>15</page>
+
+<main>Experiment</main>
+<sub>Experiment Train</sub> <content>The generator was pre-trained to maintain the content of real images, using a configuration of 10 epochs, batch size of 16, AdamW optimizer, and a learning rate of 0.0001. The loss functions included Content Loss and base loss.</content> <page>18</page>
+<sub>Experiment Train Presentation</sub> <content>The training involved both the discriminator and generator, with the discriminator trained to produce a score of 0 for cartoon edges and the generator aimed to achieve a score of 1 for real images. The training ran for 10 epochs with similar parameters as above, incorporating adversarial loss and content loss.</content> <page>19</page>
+<sub>Experiment Results</sub> <content>Detailed outcomes of the training were documented, highlighting the performance metrics and evaluation results.</content> <page>20</page>

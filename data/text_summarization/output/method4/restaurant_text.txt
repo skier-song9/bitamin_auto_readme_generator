@@ -1,0 +1,21 @@
+<subject>나용자의 순차적 고려한 레시피 기반 음식 & 식당 추천 선호도를</subject>
+<team>김태호12기, 이철민13기, 김아진13기, 김윤영13기</team>
+<index>프로젝트 소가, 모델 SASREC, 사용 데이터, 식당 추천 알고리즘, 모델 설명 & 성능 비교 C, 향후 발전방향</index>
+
+<main>프로젝트 소가</main>
+<sub>모델 SASREC</sub> <content>SASREC은 사용자의 상호작용 정보를 효과적으로 모델링하기 위해 설계된 순차 추천 모델로, 기존 추천 시스템의 한계를 극복하고자 한다. 특히 Self-Attention Layer를 통해 영화 시청 순서에서 중요한 패턴을 학습하며, Point-wise FFN과 Prediction Layer를 통해 최종 추천 결과를 생성한다.</content> <page>2</page>
+<sub>모델 사용 이유</sub> <content>SASREC은 Self-Attention을 활용하여 사용자 선호도와 그 변화를 효과적으로 포착하며, 데이터의 희소성(Sparsity) 문제를 극복할 수 있는 Embedding 기능 덕분에 높은 성능을 보였다. 최종적으로 SASREC 모델을 사용하여 음식점 추천을 진행할 예정이다.</content> <page>10</page>
+<main>사용 데이터</main>
+<sub>데이터 출처</sub> <content>Foodcom과 Yelpcom 데이터셋을 활용하여 사용자 맞춤형 음식 추천을 위한 모델을 개발.</content> <page>3</page>
+<sub>추천 알고리즘</sub> <content>사용자의 선호도를 기반으로 SASREC 모델을 통해 비슷한 음식을 추천하고, 해당 음식을 제공하는 식당을 제안.</content> <page>4</page>
+<main>식당 추천 알고리즘</main>
+<sub>구현 과정</sub> <content>FOODCOM과 YELPCOM 데이터의 음식을 TF-IDF 벡터로 변환 후, SASREC 모델을 통해 음식 간 유사도를 계산하여 가장 높은 유사도를 가진 식당을 추천.</content> <page>17</page>
+<sub>추천 예시</sub> <content>특정 사용자에 대해 SASREC 모델을 통해 추천된 식당과 먹은 음식 목록을 제공, 예: 사용자 1842의 경우 김치 팬케이크와 관련된 추천 결과.</content> <page>18</page>
+<main>모델 설명 & 성능 비교 C</main>
+<sub>모델 성능</sub> <content>NDCG@10을 통해 관련성이 높은 문서가 상위에 추천되는지 평가하며, 전체 사용자 수 대비 적중한 사용자 수를 측정하여 성능을 비교. 가장 성능이 우수한 모델은 SASRec으로 추천 시스템을 구현하였다.</content> <page>13</page>
+<sub>모델 정의</sub> <content>NCF, FM, WIDE&DEEP, SASRec 모델의 정의 및 특징을 설명. 각 모델은 서로 다른 접근 방식으로 추천 시스템의 성능을 높이기 위해 설계되었다.</content> <page>11</page>
+<sub>모델 사용 이유</sub> <content>SASRec은 Self-Attention을 활용하여 사용자의 선호도와 그 변화를 효과적으로 포착하며, 데이터의 희소성에도 불구하고 높은 성능을 발휘하였다. 최종적으로 SASRec 모델을 사용하고, 이를 기반으로 음식점 추천 시스템을 진행할 예정이다.</content> <page>15</page>
+<main>향후 발전 방향</main>
+<sub>적용 가능한 지역 확대</sub> <content>현재 음식점 데이터에 한정되어 있으며, 이후 다양한 지역의 식당 추가로 사용 지역을 확대할 계획임.</content> <page>20</page>
+<sub>음식점 추천 개선</sub> <content>기존의 tf-idf만을 활용한 유사도 계산 방식에서, 사전 훈련된 단어 벡터인 Word2Vec을 사용하여 추천 시스템의 성능을 향상시키려는 의도가 있음.</content> <page>20</page>
+<sub>더 많은 유저 필요</sub> <content>시스템의 개선을 위해 더 많은 사용자 데이터를 확보할 필요성이 강조됨.</content> <page>21</page>

@@ -1,0 +1,37 @@
+<subject>2024년도 1학기 비타민 프로젝트 발표</subject>
+<team>김채연, 김아진, 문승민, 서윤, 허범현</team>
+<index>프로젝트 배경 소개, 시계열 모델 스터디, ARIMA & SARIMA, 사용 데이터셋, 시계열 데이터 분석의 전처리, ARIMA SARIMA 적용과 비교, 분석결과, 프로젝트 인사이트 공유</index>
+
+<main>프로젝트 배경 소개</main>
+<sub>프로젝트 배경</sub> <content>포용적 기후정책 아이디어 공모전의 일환으로 미세먼지 추세를 분석하여 미래 예측을 목표로 한 시계열 분석 프로젝트 계획. WHO에 따르면, 대기오염으로 인한 조기사망자는 2060년까지 10만명당 107명으로 증가할 것으로 전망됨.</content> <page>3</page>
+
+<main>시계열 모델 스터디</main>
+<sub>모델 ARIMA&SARIMA</sub> <content>ARIMA 모델은 Autoregressive Integrated Moving Average의 약자로, 시간에 따른 데이터의 관계를 설명. SARIMA 모델은 계절성을 추가한 ARIMA 모델로, 데이터의 계절적 패턴을 고려하여 분석.</content> <page>4</page>
+
+<main>ARIMA & SARIMA</main>
+<sub>모델 ARIMA&SARIMA</sub> <content>ARIMA 모델은 차수 p, d, q로 구성되며, 비정상성 시계열 데이터를 정상성으로 변환하기 위해 차분(differencing) 과정을 포함한다. SARIMA는 계절성을 추가한 ARIMA 모델로, 시간에 따라 평균과 분산이 일정한 시계열 데이터의 예측에 사용된다.</content> <page>2</page>
+
+<main>사용 데이터셋</main>
+<sub>데이터 설명</sub> <content>대기환경지수, 미세먼지, 이산화질소, 밀산화탄소, 방산가스 등의 다양한 환경 데이터가 포함된 데이터셋을 사용한다.</content> <page>5</page>
+
+<main>시계열 데이터 분석의 전처리</main>
+<sub>사용 데이터셋</sub> <content>대기환경지수와 미세먼지 관련 데이터셋을 제공.</content> <page>7</page>
+<sub>데이터 전처리 및 구조화</sub> <content>필요 없는 칼럼 제거, '년'과 '월'을 추출하여 새로운 칼럼 추가, 2002년부터 2023년까지의 데이터 필터링.</content> <page>8</page>
+<sub>시계열 분석 함수 정의</sub> <content>이동 평균과 이동 표준편차를 계산하여 시각화.</content> <page>9</page>
+<sub>정상성 검정</sub> <content>Dickey-Fuller 검정을 통해 시계열 데이터의 정상성 테스트 수행.</content> <page>9</page>
+<sub>시계열 데이터의 정상성 확인을 위한 시각화</sub> <content>ACF, PACF 플롯 생성 및 미세먼지 농도 데이터의 추세, 계절성, 잔차를 분해 후 시각화.</content> <page>10</page>
+<sub>시각화 결과</sub> <content>미세먼지 농도의 장기적 변화와 계절적 변동을 시각화하여 불규칙한 변동 확인.</content> <page>11</page>
+<sub>시계열 데이터 플롯 및 정상성 테스트</sub> <content>정상성 검정 결과 비정상적인 시계열 데이터로 확인되어 정상적으로 변환 필요.</content> <page>12</page>
+<sub>차분을 통한 정상성 확보</sub> <content>차분을 통해 정상성 확보, 정상적인 시계열 데이터로 변환됨.</content> <page>13</page>
+
+<main>ARIMA SARIMA 적용과 비교</main>
+<sub>ARIMA</sub> <content>최적 파라미터 탐색 및 미래값 예측 시각화 수행.</content> <page>14</page>
+<sub>SARIMA</sub> <content>ARIMA 모델에 계절성을 추가하여 데이터에 적합 후 미래값 예측 및 시각화.</content> <page>15</page>
+<sub>분석 결과</sub> <content>대부분의 파라미터가 통계적으로 유의미하며 잔차의 자기상관 구조를 잘 설명하나 정규성을 따르지 않고 이분산성이 있어 불확실성을 증가시킬 수 있음.</content> <page>16</page>
+
+<main>분석결과</main>
+<sub>ARIMA 및 SARIMA</sub> <content>대부분의 파라미터가 통계적으로 유의미하다는 결과를 보였으며, 잔차는 독립적이지만 정규성을 따르지 않고 이분산성이 있어 불확실성을 증가시킬 수 있다.</content> <page>16</page>
+
+<main>프로젝트 인사이트 공유</main>
+<sub>장기 추세 및 계절성</sub> <content>서울시의 미세먼지 농도는 전반적으로 감소하는 추세를 보이며, 이는 대기 질 개선을 위한 정책의 효과를 반영한 것으로 예상된다. 미세먼지 농도는 겨울철과 봄철에 주기적으로 높아지는 경향이 있다.</content> <page>18</page>
+<sub>미래 예측 및 정책적 시사점</sub> <content>2024년 예측에 따르면 미세먼지 농도는 현재의 감소 추세를 유지할 것으로 보이며, 단기 변동성은 계속될 것으로 예상된다. 따라서 계절적 요인을 고려한 대기 오염 저감 대책의 강화가 필요하다.</content> <page>18</page>

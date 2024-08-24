@@ -1,0 +1,20 @@
+<subject>주제 모델을 이용한 VAR 포트폴리오의 수익률 예측과 측정</subject>
+<team>송휘종, 이수정, 강춘우, 김나현, 이형석</team>
+<index>Timeline, Introduction to Time Series Analysis, Value at Risk, Conclusion, Discussion</index>
+
+<main>Timeline</main>
+<sub>Timeline</sub> <content>프로젝트의 주요 일정 및 단계에 대한 설명.</content> <page>4</page>
+<main>Introduction to Time Series Analysis</main>
+<sub>Introduction to Time Series Analysis</sub> <content>시계열 분석의 기초 개념과 중요성에 대한 설명.</content> <page>5</page>
+<sub>결론 및 한계점</sub> <content>정확한 수익률 예측보다는 추세 예측의 중요성을 강조하며, 분산 투자를 통한 위험 감소를 확인. VAR 모델의 단순성과 실제 금융 시장과의 차이에 대한 한계점 언급.</content> <page>33, 34</page>
+<main>Value at Risk</main>
+<sub>주제 모델을 이용한 VAR 포트폴리오의 수익률 예측과 측정</sub> <content>금융 분석에 주로 사용되는 시계열 모델을 활용하여 VAR 포트폴리오의 수익률을 예측하고 측정하는 방법을 탐구.</content> <page>3</page>
+<sub>Value at Risk 측정 지표</sub> <content>VAR의 정의와 다양한 측정 방법에 대한 설명, RiskMetrics, TimeSeries Approach, Block Maxima, Peaks Over Threshold 등의 기법 소개.</content> <page>24</page>
+<sub>Value Risk 측정 방법</sub> <content>특정 조건 하에서의 종목별 VAR 계산 방법 및 가중치 설정에 대한 논의.</content> <page>25</page>
+<sub>포트폴리오의 수익률과 VaR</sub> <content>포트폴리오 수익률과 VAR 간의 관계를 분석하고, 수익률과 VAR의 상관관계를 설명.</content> <page>32</page>
+<sub>결론 및 한계점</sub> <content>VAR 모델의 단순함으로 인해 실제 금융 시장과의 차이가 존재하며, 적절한 모델 선택을 위한 객관적인 지표 필요성 제기.</content> <page>34</page>
+<main>결론</main>
+<sub>결론</sub> <content>정확한 수익률 예측보다는 추세 예측이 중요하며, 분산 투자를 통해 위험을 낮춘다는 포트폴리오 이론이 확인됨.</content> <page>33</page>
+<sub>VAR 모델의 한계</sub> <content>VAR 모델의 한계로 인해 실제 금융 시장과의 차이가 존재하며, 예측에 적합한 모델을 선택하기 위한 객관적인 지표가 필요하고, RiskMetrics는 과소측정하는 경향이 있음.</content> <page>34</page>
+<main>Discussion</main>
+<sub>Conclusion and Limitations</sub> <content>Emphasizes the significance of trend prediction over precise return forecasting, confirming portfolio theory's assertion of risk reduction through diversification. Highlights that VAR is a simplistic model with potential discrepancies from actual financial markets, indicating the need for objective metrics to select suitable models, and notes that RiskMetrics tends to underestimate risks.</content> <page>33</page>

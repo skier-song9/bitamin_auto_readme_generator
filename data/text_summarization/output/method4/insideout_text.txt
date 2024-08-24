@@ -1,0 +1,21 @@
+<subject>GONTENTS</subject>
+<team>김재원, 김채원, 문승민, 이서현, 황영서</team>
+<index>주제 선정 배경, 모델 구축 과정, 결과 분석, 의의 및 한계점</index>
+
+<main>주제 선정 배경</main>
+<sub>아이디어</sub> <content>인간의 감정 인식 연구는 활발하나 애니메이션 캐릭터 감정 인식 연구는 부족함.</content> <page>3</page>
+<sub>기존 연구</sub> <content>애니메이션에서 감정을 다루는 영화의 캐릭터 감정 분석을 제안하며, 다양한 감정을 가진 캐릭터에 대한 탐색.</content> <page>3</page>
+<sub>참고 논문</sub> <content>8113개의 'Tom and Jerry' 이미지로 4가지 감정 레이블(Happy, Angry, Sad, Surprise) 사용. MasK R-CNN 모델로 캐릭터 탐지 및 face segmentation, VGG16, InceptionV3, ResNet-50, MobileNetV2 모델 성능 비교.</content> <page>4</page>
+<main>모델 구축 과정</main>
+<sub>데이터 수집</sub> <content>8000장의 영화 이미지를 4프레임 단위로 추출하고 관련 없는 이미지를 삭제하여 사용.</content> <page>7</page>
+<sub>라벨링</sub> <content>컴퓨터 비전 기술을 활용해 3000장의 이미지에 대한 데이터 전처리 및 증강을 진행.</content> <page>8</page>
+<sub>모델 구현</sub> <content>YOLOv8을 사용하여 객체 감지와 세분화 작업을 수행하며, 6300장의 이미지로 모델을 학습.</content> <page>9</page>
+<sub>성능 평가</sub> <content>YOLO 모델의 F1 점수, 정밀도-리콜 커브, 혼동 행렬을 통해 성능을 평가.</content> <page>10</page>
+<sub>전이 학습</sub> <content>ResNet, DenseNet, VGGNet 등 7가지 모델을 구현하여 성능을 평가하고, 최종적으로 ResNet50 모델이 가장 높은 성능을 기록.</content> <page>11</page>
+<sub>최적화</sub> <content>Hyperparameter 조정 및 Dropout 적용을 통해 모델의 성능 향상. ResNet50의 검증 정확도는 76.98%로 확인됨.</content> <page>19</page>
+<main>결과 분석</main>
+<sub>캐릭터에 따른 감정 차이</sub> <content>캐릭터에 따른 감정 차이가 유의미하며, 감정의 다양성이 가장 높은 캐릭터는 기쁨을 나타냄.</content> <page>22</page>
+<sub>감정 분석 성능 평가</sub> <content>캐릭터에 따른 감정 분석 성능을 평가함.</content> <page>23</page>
+<main>의의 및 한계점</main>
+<sub>의의</sub> <content>사람에 국한하지 않고 애니메이션 캐릭터에 대한 감정 분석을 진행하였으며, 감정과 애니메이션을 연관시킨 추천 시스템 구축 및 관련 산업의 발달에 유의미한 분석이 이루어짐.</content> <page>24</page>
+<sub>한계점</sub> <content>감정 시 라벨링에서 주관적인 요소가 포함되어 데이터의 일관성이 부족하여 모델의 성능에 부정적인 영향을 미쳤을 것으로 추정됨.</content> <page>24</page>

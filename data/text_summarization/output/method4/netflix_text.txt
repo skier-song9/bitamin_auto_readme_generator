@@ -1,0 +1,27 @@
+<subject>Netflix Stock Price Prediction with News Topic & Sentiment</subject>
+<team>송규헌, 권도영, 이태경, 김서윤, 한진솔</team>
+<index>INTRODUCTION, DATA PREPROCESSING, MODELING, CONCLUSIONS AND LIMIT ATION</index>
+
+<main>INTRODUCTION</main>
+<sub>Background of topic selection</sub> <content>뉴스가 주가 변동에 미치는 영향을 탐구하여, 주가 예측에 뉴스의 감성 분석 및 토픽 모델링 결과를 활용하고자 함.</content> <page>4</page>
+<sub>Long-term trend consideration</sub> <content>짧은 시간 동안의 주가 변동 예측을 넘어, 예측 일수와 시권스 길이를 늘려 장기적인 추세를 고려한 결과 도출 목표.</content> <page>5</page>
+<sub>Brief Project Introduction</sub> <content>뉴스 데이터를 활용한 주가 예측 모델의 최적화 및 효율적인 파라미터 선정, LSTM, GRU, Transformer 모델의 효과 비교와 뉴스 감성 분석 및 토픽 모델링의 유용성 검토.</content> <page>6</page>
+<sub>Data collection</sub> <content>FinanceDataReader 라이브러리를 통해 NETFLIX 기업의 주가 데이터와 Stock News API를 이용해 관련 뉴스 데이터를 수집하여 감성 분석과 토픽 모델링을 수행.</content> <page>7</page>
+<main>데이터 전처리</main>
+<sub>파생 변수 생성</sub> <content>변화율 및 이동 평균과 같은 파생 변수를 생성하며, 초기 NaN 상태를 해결하기 위해 2018년 데이터를 추가 수집.</content> <page>11</page>
+<sub>기술 지표 추가</sub> <content>금융 시계열 데이터에 대한 다양한 기술 분석 지표(예: Bollinger Bands, Keltner Channel 등)를 추가.</content> <page>12</page>
+<sub>유사 기업 분석</sub> <content>Netflix와 유사한 기업의 종가 데이터를 특성으로 추가하여 분석.</content> <page>14</page>
+<sub>결측값 처리</sub> <content>PINS의 경우 최초 상장일의 종가로 결측값을 대체.</content> <page>15</page>
+<sub>다중공선성 제거</sub> <content>주가 변화와 관련된 주요 지표를 유지하고, 상관관계가 높은 보조 지표는 제거.</content> <page>16</page>
+<sub>뉴스 주제 및 감정에 대한 파생 변수 생성</sub> <content>뉴스의 과거 영향력을 측정하기 위해 이동 평균 방식으로 추가.</content> <page>17</page>
+<sub>데이터셋 설명</sub> <content>최종 데이터셋(stockOnly-df) 및 전체 데이터셋(total-df)의 크기와 특성.</content> <page>18</page>
+<main>MODEL</main>
+<sub>Time Series</sub> <content>데이터 패턴 분석을 통해 미래 값을 예측하며, 입력되는 연속 데이터 수와 예측할 미래 데이터의 길이를 설정하는 방식에 대해 설명.</content> <page>21</page>
+<sub>Modeling</sub> <content>LSTM, GRU, Transformer 모델을 정의하고, 각 모델의 예측 설정 및 비교를 통해 성능 평가. LSTM은 주가 예측에서 주로 사용되며, GRU는 복잡성을 줄이고 Transformer는 NLP의 성능을 활용.</content> <page>22-26</page>
+<main>CONCLUSIONS AND LIMITATIONS</main>
+<sub>Evaluation</sub> <content>The model evaluation utilized RMSE as the loss function due to high MSE values, with a focus on predicting the target variable's effectiveness, specifically the relation between Close prices and 1dLROC.</content> <page>27</page>
+<sub>Select target variable</sub> <content>Predicting 1dLROC was confirmed to reflect trends better than direct Close price predictions, emphasizing the importance of ensuring stationarity in time series forecasting for reliable model outcomes.</content> <page>29</page>
+<sub>Model Result</sub> <content>The final model results indicated that LSTM, GRU, and Transformer models all achieved RMSE, with LSTM showing the lowest loss values.</content> <page>31-33</page>
+<sub>Compare each parameter</sub> <content>Among the models, LSTM demonstrated the smallest average loss, while Transformer had the highest. The use of news data improved performance for both LSTM and Transformer models compared to GRU, which solely used stock data.</content> <page>34-35</page>
+<sub>Best parameter for each model</sub> <content>The optimal parameter combinations selected through repeated validation indicated that LSTM had an average error rate of 185%, GRU 166%, and Transformer 162% using their respective datasets.</content> <page>36</page>
+<sub>Limitations</sub> <content>The unpredictability of financial markets poses challenges for accurate predictions, as model performance evaluation based solely on numerical metrics may be insufficient. Additionally, achieving under 5% error is critical in stock predictions to avoid significant financial losses.</content> <page>40</page>

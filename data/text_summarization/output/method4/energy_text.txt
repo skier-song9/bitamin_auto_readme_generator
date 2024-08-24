@@ -1,0 +1,21 @@
+<subject>Predict Energy Behavior Of Prosumers</subject>
+<team>박지원, 박정훈, 박초은</team>
+<index>분석 개요, 변수 선택, 모델링</index>
+
+<main>분석 개요</main>
+<sub>에너지 프로슈머란</sub> <content>에너지 프로슈머의 개념과 중요성, 증가하는 수에 따른 에너지 생산과 소비 간 불균형, 효율적 이용률 저하 문제를 다루며, 프로슈머의 행동양식을 파악하여 친환경 에너지 사용을 촉진할 수 있는 가능성을 제시.</content> <page>2</page>
+<sub>데이터 소개</sub> <content>에스토니아의 기후 데이터, 에너지 소비 비용 및 태양광 에너지 사용률을 기반으로 에너지 프로슈머의 전력 생산 소비량 예측을 위한 데이터 설명.</content> <page>6</page>
+<sub>분석 방향성 소개</sub> <content>상관분석, 요인분석, 파생변수 도출 및 변수 중요도 파악을 통해 최종 모델링에 XGBoost 알고리즘을 사용할 계획을 설명.</content> <page>13</page>
+<main>변수 선택</main>
+<sub>상관분석</sub> <content>50여 개의 features 중 유의미한 변수를 선별하기 위해 상관분석을 실시하였으며, 타겟과의 상관계수가 낮은 경향을 보였다.</content> <page>15</page>
+<sub>요인분석</sub> <content>여러 변수 간 상관관계를 고려하여 중요 요인을 추출하는 방법론으로, 기존 변수에 영향을 미치는 내재된 공통 요인을 파악하는 데 초점을 맞추었다.</content> <page>16</page>
+<sub>요인분석 결과</sub> <content>Scree Plot을 이용해 적절한 요인의 개수를 찾았고, 5개의 요인을 선정하여 중요한 features를 묶었다.</content> <page>17-18</page>
+<sub>파생변수 도출</sub> <content>시간, 월, 날짜, 요일 등의 변수를 Fourier feature transform을 통해 파생시켰으며, target의 평균 및 표준편차를 반영하였다.</content> <page>19</page>
+<sub>forecast_weather.csv의 파생변수</sub> <content>상대습도, 습구온도, 불쾌지수 등 다양한 변수를 County별 및 월별로 평균 및 표준편차를 계산하여 지역성과 계절성을 반영하였다.</content> <page>20</page>
+<main>모델링</main>
+<sub>모델 및 평가지표 소개</sub> <content>Extreme Boosting의 병렬 학습 gradient 모델로, 순차적 학습을 통해 오답에 집중하여 후순위 모델을 학습할 수 있도록 설계됨. MAE(Mean Absolute Error) 지표 사용.</content> <page>22</page>
+<sub>초기 모델</sub> <content>정보 손실을 최소화하고 변수 간 관계를 파악하기 위해 거의 모든 변수를 활용하여 모델 피팅을 수행, 비즈니스 별 구분이 최종 모델에 반영됨. MAE 평균 5589.738235473633으로 측정됨.</content> <page>23</page>
+<sub>수정된 모델 1 데이터 분리</sub> <content>소비 및 비즈니스에 따라 4가지 데이터로 분리하여 모델 피팅 및 평가를 진행.</content> <page>24</page>
+<sub>수정된 하이퍼 튜닝 파라미터</sub> <content>Random Search 기법을 사용하여 4개의 데이터에 대해 최적화 수행, 성능이 가장 좋은 하이퍼 파라미터가 도출됨.</content> <page>26</page>
+<sub>수정된 변수 제거</sub> <content>SHAP 변수 중요도를 바탕으로 변수 제거를 수행, 최적화된 경우에도 성능이 우수하나 특정 파라미터 조합에서는 오차가 증가함. 최종 MAE 평균 8152.894156.</content> <page>27</page>
+<sub>최종 결과</sub> <content>4개의 MAE 평균이 25.4941로 측정됨.</content> <page>31</page>

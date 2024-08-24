@@ -1,0 +1,17 @@
+<subject>추천 챗못 칵테일 "BarBot"</subject>
+<team>이선경, 강춘우, 이예령, 임채현, 조성빈</team>
+<index>프로젝트 타임라인, 주제 선정 배경, 칵테일 추천 챗못</index>
+
+<main>프로젝트 타임라인</main>
+<sub>주제 선정 배경</sub> <content>추천 시스템 입문자들로 구성되어 흥미 위주의 주제 선택. 소비자가 쉽게 원하는 칵테일을 선택할 수 있도록 도와주는 모델 구현을 목표로 함.</content> <page>4</page>
+<sub>모델 파이프라인</sub> <content>RAG 모델을 통해 칵테일의 유래, 재료, 제조 방법 등에 대한 질의 응답 기능 제공.</content> <page>28</page>
+<sub>결과-추천 기능</sub> <content>사용자에게 추천된 칵테일 리스트 중 'Irish Coffee'와 'Adam Sunrise' 포함. 사용자는 칵테일에 관한 정보를 챗봇에 질문 가능.</content> <page>30</page>
+<sub>결과-챗봇 기능</sub> <content>칵테일의 제조 방법을 기반으로 한 정보 제공, 예를 들어 아이리시 커피 제조 방법 설명.</content> <page>31</page>
+<main>주제 선정 배경</main>
+<sub>주제 선정 이유</sub> <content>추천 시스템 입문자들로 구성되어 흥미 위주의 주제 선택. 칵테일 소비가 증가했으나 소비자들이 칵테일 종류를 잘 알지 못하고, 다양한 재료와 맛으로 선택이 어려운 점을 해결하고자 함.</content> <page>4</page>
+<sub>모델 목표</sub> <content>소비자가 쉽게 원하는 칵테일을 선택할 수 있도록 도와주는 모델 구현. 칵테일 추천과 관련 정보를 제공하는 챗봇 구축을 목표로 함.</content> <page>4</page>
+<main>칵테일 추천 챗못</main>
+<sub>프로젝트 소개</sub> <content>"BarBot"이라는 칵테일 추천 챗봇을 구현하여 사용자의 재료 선호와 맛을 기반으로 칵테일을 추천함. 추천된 칵테일의 기본 정보 및 제조 방법도 제공.</content> <page>1</page>
+<sub>모델 프로세스</sub> <content>설문조사를 통해 사용자 선호 정보를 수집하고, 아이템 기반 협업 필터링 기법을 사용하여 3개의 칵테일 추천 리스트를 생성. 추천된 칵테일의 알코올 도수 및 재료명과 함께 제조 방법도 설명.</content> <page>28</page>
+<sub>결과-추천 기능</sub> <content>사용자에게 추천된 칵테일 리스트 예시로 'Irish Coffee', 'Sunrise' 등이 있으며, 사용자는 추가 질문을 통해 더 많은 정보를 요청할 수 있음.</content> <page>30</page>
+<sub>결과-챗못 기능</sub> <content>추천된 칵테일의 유래와 제조 방법에 대한 정보도 제공되며, 사용자가 질문할 수 있는 구조로 설계됨.</content> <page>31</page>

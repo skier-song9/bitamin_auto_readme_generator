@@ -1,0 +1,23 @@
+<subject>Conference</subject>
+<team>N나P 1팀</team>
+<index>주제 선정 배경, 데이터 수집 기준, 데이터 수집- 웹크롤링, 전처리 및 EDA 분석, 모델링, 결과 분석 및 시각화</index>
+
+<main>주제 선정 배경</main>
+<sub>자연어 처리(NLP) 모델을 활용한 클린스만 감독의 감성 분석 연구</sub> <content>스포츠 관련 여론을 분석하는 목적을 가지고 있음.</content> <page>3</page>
+
+<main>데이터 수집 기준</main>
+<sub>경기 날짜를 기준으로 데이터 수집의 세부 기준</sub> <content>조별리그부터 4강까지의 기간에 따른 여론 분석을 포함하고 있음.</content> <page>4</page>
+<sub>여론 이슈에 대한 구체적인 수집 기준</sub> <content>클린스만 감독 경질 전후의 여론 변화를 분석하기 위한 데이터 수집 기준이 포함됨.</content> <page>5</page>
+<sub>데이터 수집</sub> <content>경기 날짜 기준으로 제목과 본문 내용을 크롤링하고, 경기 결과에 따른 여론 분석을 실시함.</content> <page>4</page>
+<sub>데이터 수집 기준</sub> <content>조별리그, 16강, 8강, 4강 전후의 기간을 설정하여 여론 이슈를 반영한 데이터 수집 기준을 명시함.</content> <page>5, 6</page>
+<sub>웹 크롤링</sub> <content>날짜와 내용 정제화 함수를 사용하여 크롤링된 데이터의 품질을 개선하고, 네이버 뉴스 검색 API를 활용하여 제목과 링크를 추출함.</content> <page>7, 8, 9, 10</page>
+
+<main>전처리 및 EDA 분석</main>
+<sub>전처리 및 분석 결과 EDA</sub> <content>감성 분석 기법으로는 Lexicon-based, Linguistic, Machine Learning 접근법을 사용하여 텍스트 데이터에서 주관적 인상 및 감정을 파악함.</content> <page>13, 14</page>
+
+<main>모델링</main>
+<sub>모델 설명</sub> <content>Hugging Face의 amphOra/KorFinASC-XLM-RoBERTa 모델을 사용하여 금융 분야에서의 감성 분석을 수행. 이 모델은 XLM 아키텍처를 기반으로 하며, 한국어와 영어 텍스트에 특히 유용하다.</content> <page>15</page>
+
+<main>결과 분석 및 시각화</main>
+<sub>결과 분석</sub> <content>트랜스포머 라이브러리의 amphOra/KorFinASC-XLM-RoBERTa 모델을 사용하여 수집한 데이터의 감성 분류를 수행한 결과, 4강을 기점으로 부정적인 여론이 강해지는 것을 확인.</content> <page>18</page>
+<sub>결론</sub> <content>감성 분석을 통해 트렌드를 정확히 파악할 수 있으며 위기 상황에 민감하게 대처할 수 있는 가능성을 확인.</content> <page>25</page>

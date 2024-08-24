@@ -1,0 +1,21 @@
+<subject>도배 하자 질의 응답 처리 한솔데코 시즌 2 Al 경진대회 알고리즘 언어 - LLM MLOps OA - Cosine Similarity</subject>
+<team>구준회, 김지원, 박서진, 신진섭, 엄성원</team>
+<index>01 프로젝트 배경, 02 EDA, 03 Text Augmentation, 04 Modeling & Inference, 05 보완할 점 & 추후계획</index>
+
+<main>프로젝트 배경</main>
+<sub>프로젝트 목표</sub> <content>자연어 처리 및 언어모델 학습을 통해 특정 TASK에 적합한 TEXT를 생성하는 원리를 이해하고자 함.</content> <page>3</page>
+
+<main>EDA</main>
+<sub>데이터 설명</sub> <content>주최 측에서 제공한 Train Data는 질문 2개와 관련된 카테고리, 답변으로 구성된 5개의 컬럼을 포함하며, 질문과 답변 Set으로 토큰화되어 입력됨.</content> <page>5</page>
+
+<main>Text Augmentation</main>
+<sub>Text Augmentation Crawling & Prompt Engineering</sub> <content>다양한 질문을 생성하기 위해 전문적인 질문 소스를 탐색하고, ChatGPT를 활용해 전문적인 답변을 생성하는 방법을 설명.</content> <page>8</page>
+<sub>최종 train dataset</sub> <content>기존의 644 QA 세트를 2배로 증대시켜 6440 QA 세트를 만들고, 증강 후 최종적으로 8319 QA 세트를 확보함.</content> <page>9</page>
+
+<main>Modeling & Inference</main>
+<sub>Modeling Fine Tuning</sub> <content>Instruction을 통해 특정 task에 적합한 대답을 생성하는 과정으로, 사전 학습된 모델을 소규모 데이터 세트에 대해 추가 학습하여 성능을 개선한다.</content> <page>11</page>
+<sub>Modeling LORA PEFT</sub> <content>적은 매개변수로 새로운 문제를 효과적으로 해결하는 fine-tuning 기법으로, 대부분의 매개변수는 유지하고 일부만 미세조정하여 훈련 비용과 리소스를 절약하며 성능을 향상시킨다.</content> <page>12</page>
+<sub>Inference</sub> <content>기본 모델은 무의미한 동어 반복 텍스트 생성을 하며, fine-tuned 모델은 주어진 질문에 대한 구체적인 답변을 생성하도록 instruction을 부여받아 학습된 정보를 바탕으로 상세한 답변을 제공한다.</content> <page>13</page>
+
+<main>보완할 점 & 추후계획</main>
+<sub>Issues</sub> <content>GPU 자원의 한정으로 Kaggle Notebook과 Colab T4를 사용하고 있으며, RAM은 16GB이다. 파라미터 수가 큰 모델의 경우 한국어 데이터로 사전훈련되지 않았더라도 높은 성능을 기대할 수 있다.</content> <page>2</page>

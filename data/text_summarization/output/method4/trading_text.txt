@@ -1,0 +1,29 @@
+<subject>시계열 예측과 트레이딩 수익 극대화 강화학습을 활용한시스템</subject>
+<team>송규헌, 송휘종, 서영우, 이태경, 정유진, 정준우</team>
+<index>주제, NorkFlow, 종목 선정, 시스템 트레이딩, 데이터수집및 전처리, 시계열 모델, 강화학습 모델, 모델 평가및 선정, 결과</index>
+
+<main>주제</main>
+<sub>시계열 예측과 트레이딩 수익 극대화</sub> <content>강화학습을 활용하여 다음 일주일 동안 가장 큰 종가 변화율을 보일 종목을 예측하고, 분 단위 거래를 학습하여 단타매매를 실행. 데이터 수집은 9491개의 주식 일봉 데이터로 이루어짐.</content> <page>3</page>
+<main>NorkFlow</main>
+<sub>시스템 설명</sub> <content>Day Candle Stoch Datd 구성 요소가 포함된 거래 시스템을 설명.</content> <page>4</page>
+<main>종목 선정</main>
+<sub>데이터 수집 및 전처리</sub> <content>국내 주식 데이터를 Reader로 수집, 2017년 1월 1일부터 현재까지의 종가 데이터를 포함.</content> <page>5</page>
+<sub>성과 지표 계산</sub> <content>RSI와 Sharpe Ratio를 계산하여 종목 선정의 기초 자료로 활용.</content> <page>7</page>
+<main>시스템 트레이딩</main>
+<sub>종목선정 데이터 수집 및 전처리</sub> <content>국내 주식 데이터를 IFinance를 통해 2017년 1월 1일부터 현재까지 종가를 수집함.</content> <page>5</page>
+<sub>시스템 수집 트레이딩 데이터</sub> <content>대신증권을 이용하여 최대 20만 개의 분봉 데이터를 수집하고, 이를 통해 학습 및 모델 개선을 수행함.</content> <page>11</page>
+<sub>시스템 트레이딩 데이터 전처리</sub> <content>종가와 거래량의 이동 평균 및 다양한 기술적 지표를 통해 과매도 상태 및 가격 변동성을 분석하여 데이터의 품질을 향상시킴.</content> <page>12</page>
+<main>데이터수집 및 전처리</main>
+<sub>전처리 후 데이터 예시</sub> <content>전처리된 데이터의 구체적인 예시를 제공하여 데이터 품질을 명확히 함.</content> <page>13</page>
+<sub>시스템 트레이딩 강화학습 모델</sub> <content>A2C(Advantage Actor-Critic) 알고리즘을 사용하여 정책 및 가치를 평가하고, 강화학습을 통해 모델의 성능을 최적화함.</content> <page>15</page>
+<main>시계열 모델</main>
+<sub>Long Short-Term Memory (LSTM)</sub> <content>RNN 기반 모델로 장기 의존성 문제를 해결하여 오랜 기간의 데이터를 반영할 수 있음.</content> <page>8</page>
+<sub>Dlinear LSTF-linear</sub> <content>Transformer 구조를 활용하여 선형 예측을 수행하며, 기존 Transformer의 시간적 정보 손실을 방지함.</content> <page>9</page>
+<main>강화학습 모델</main>
+<sub>강화학습 개념</sub> <content>머신러닝의 한 분야로, 행동의 결과를 통해 잘된 행동인지 판단하고 보상 또는 벌칙을 주며 스스로 학습하는 방식. 주식 투자에 적용하여 매수, 매도, 관망 행동을 결정함.</content> <page>14</page>
+<sub>A2C (Advantage Actor-Critic) 알고리즘</sub> <content>Actor-Critic 방식을 사용하여 정책을 결정하는 Actor와 Q-러닝 모델을 사용해 행동의 가치를 평가하는 Critic을 포함. Advantage를 통해 보상과 가치 함수의 차이를 이용하여 정책을 업데이트함.</content> <page>15</page>
+<main>모델 평가및 선정</main>
+<sub>평가 기법</sub> <content>MSE(평균 제곱 오차)와 MAE(평균 절대 오차)를 사용하여 모델 성능을 평가. LSTM의 MAE는 37084, MSE는 150189이며, LSTF의 MAE는 0.0811, MSE는 0.0348로 나타남.</content> <page>10</page>
+<main>결과</main>
+<sub>시스템 결과</sub> <content>최종 모델의 결과를 바탕으로 트레이딩 시스템의 성과를 분석함.</content> <page>18</page>
+<sub>시스템 트레이딩 한계점</sub> <content>훈련 과정에서 발생한 과적합이 시스템의 성능에 부정적인 영향을 미침.</content> <page>19</page>

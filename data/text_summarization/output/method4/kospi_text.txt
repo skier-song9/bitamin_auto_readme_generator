@@ -1,0 +1,22 @@
+<subject>비타민 학기 프로젝트 최종 발표</subject>
+<team>시계열 1조</team>
+<index>LEVEL 2 모델 소개, LEVEL 3 피쳐 중요도 분석, LEVEL 4 결과 비교 및 결론</index>
+
+<main>LEVEL 2 모델 소개</main>
+<sub>XGBoost</sub> <content>트리 기반의 앙상블 학습 알고리즘으로, 의사결정나무를 기본 학습기로 사용하여 그래디언트 부스팅 방식으로 학습. 이진분류 모델 구현 시 'binary: logistic' 손실함수 사용, 빠른 속도와 뛰어난 예측 성능을 보임.</content> <page>7</page>
+<sub>LSTM</sub> <content>긴 시간동안 RNN의 메모리를 유지하며, Cell state와 Gate 메커니즘을 통해 중요 정보를 장기적으로 유지하고 불필요한 정보는 잊어버림. 시계열 데이터의 패턴과 추세를 효과적으로 학습.</content> <page>11</page>
+<sub>GRU</sub> <content>LSTM과 유사한 게이트 메커니즘을 사용하나 셀 상태 없이 두 개의 Gate만으로 장기 의존성 문제를 해결. 시계열 데이터의 중요한 패턴과 추세를 효과적으로 학습.</content> <page>13</page>
+<sub>Attention</sub> <content>자연어 처리와 컴퓨터 비전에서의 기술을 시계열 데이터에 적용하여 특정 시간 단계에서 중요한 정보에 집중. 가중치는 각 변수의 중요도를 의미.</content> <page>17</page>
+<sub>SHAP</sub> <content>머신러닝 모델의 출력을 설명하기 위한 접근법으로, 피쳐 중요도를 시각화. 중요도가 높은 상위 20개 피쳐를 분석하고, SHAP 값을 통해 피쳐가 모델 예측에 미치는 영향을 해석.</content> <page>19</page>
+<sub>결론</sub> <content>변화율 데이터가 종가 데이터보다 더 정확한 성능을 보이며, Attention 매커니즘을 활용하여 변수 중요도 분석이 가능. LSTM과 GRU의 예측 성능이 증가하였고, 변수 중요도 분석을 통한 Feature Selection으로 모델 성능을 유지할 수 있음.</content> <page>29</page>
+<main>LEVEL 3 피쳐 중요도 분석</main>
+<sub>Attention SHAP</sub> <content>Attention 메커니즘을 통해 시계열 데이터에서 특정 시간 단계의 중요한 정보에 집중하고, 각 단어의 중요도 가중치를 계산하여 최종 출력 벡터를 생성하는 방법을 설명.</content> <page>2</page>
+<sub>SHAP</sub> <content>게임이론 기반의 머신러닝 모델 피쳐 중요도를 시각화하여 상위 20개 피쳐의 중요도를 분석하고, SHAP 값에 따라 피쳐 값의 효과를 해석하여 모델 예측에 미치는 영향을 평가.</content> <page>19</page>
+<sub>SHAP XGB</sub> <content>SHAP 변수를 이용한 모델링 결과, 상위 피쳐만을 사용하여도 원래 모델 성능과 유사한 결과를 얻을 수 있었으며, 300개 및 500개의 피쳐 사용 시 성능이 유지됨을 보여줌.</content> <page>22</page>
+<sub>SHAP XGB</sub> <content>또 다른 SHAP 변수 중요도 분석을 통해, 적은 수의 피쳐를 사용하더라도 원래 모델 성능에 근접한 결과를 달성했다는 점을 강조.</content> <page>23</page>
+<main>LEVEL 4 결과 비교 및 결론</main>
+<sub>결과 1 및 비교</sub> <content>피쳐 중요도 분석을 통한 KOSPI200 지수 예측 모델 성능 비교. 종가와 변화율 데이터의 성능 차이 및 Attention을 이용한 Feature importance 분석 결과 포함.</content> <page>24</page>
+<sub>결과 비교</sub> <content>종가와 변화율을 사용한 모델 성능 비교에서 XGBoost가 가장 우수한 성능을 보였으며, 변화율 데이터 사용 시 성능 향상이 확인됨. 이는 변화율 데이터가 더 유의미한 패턴을 제공하여 예측 정확도를 높이고 노이즈를 줄이는데 기여함을 나타냄.</content> <page>25</page>
+<sub>결과 비교</sub> <content>변수 중요도 적용 유무에 따른 모델 성능 비교에서 XGBoost가 STM 및 GRU에 비해 높은 성능을 기록. Attention을 이용한 Feature 적용 결과 LSTM과 GRU에서 성능 증가가 있었으나, XGBoost는 약간의 성능 하강을 보임. 이는 모델 특성에 따른 차이로 해석됨.</content> <page>26</page>
+<sub>결과 비교</sub> <content>변수 중요도 적용 방법에 따른 모델 성능 비교에서 XGBoost와 LSTM이 각각 우수한 성능을 보였으며, 변수 중요도 계수를 적용한 경우 성능이 가장 높았음.</content> <page>28</page>
+<sub>결론</sub> <content>변화율 데이터가 종가 데이터보다 정확한 성능을 보이며, Attention 매커니즘을 활용한 변수 중요도 분석이 LSTM 및 GRU의 예측 성능을 증가시킴. 변수 중요도 분석을 통해 모델 성능 개선 및 Feature Selection이 가능함.</content> <page>29</page>

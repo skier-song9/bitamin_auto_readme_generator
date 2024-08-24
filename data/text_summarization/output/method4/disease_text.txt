@@ -1,0 +1,25 @@
+<title>안저 데이터를 이용한 질병 분류</title>
+<team>권도영, 권민지, 김서윤, 김채원, 박서진</team>
+<index>주제 및 배경, 데이터 소개 및 EDA, 전처리, 모델링, 결과</index>
+
+<main>주제 및 배경</main>
+<sub>프로젝트 배경</sub> <content>안저 사진을 분석하여 망막 질환을 판독하는 모델 개발, 특히 자폐 스펙트럼 장애 선별 및 예측 시스템 구축을 목표로 함.</content> <page>3</page>
+<main>데이터 소개 및 EDA</main>
+<sub>데이터 소스</sub> <content>Kaggle의 Ocular Disease Recognition 데이터셋을 사용, 5000명의 환자 안저 사진과 의사의 진단 키워드로 구성된 데이터베이스.</content> <page>6</page>
+<sub>EDA</sub> <content>19개의 라벨 포함 여부와 이미지 클래스 불균형 문제 분석, 특히 정상(N) 및 당뇨병(D) 라벨의 개수가 많아 진단의 부정확성이 우려됨.</content> <page>7</page>
+<main>전처리</main>
+<sub>라벨 선정</sub> <content>19개 라벨 중 TOP 5를 선정하였으며, 노멀N, 당뇨병D, 백내장C, 병리학적 근시M, 녹내장G가 포함됨.</content> <page>8</page>
+<sub>이미지 클래스 불균형</sub> <content>각 클래스의 이미지 수가 불균형하여 이미지 증강이 필요함. Normal(2873), diabetes(1608), Cataract(293), glaucoma(284), pathological myopia(232)로 확인됨.</content> <page>10</page>
+<sub>이미지 증강 방법</sub> <content>FASTAI, AUTO AUGMENT, ALBUMENTATION, GAN을 활용하여 불균형 문제 해결을 위한 다양한 이미지 증강 기법 적용. 가장 효과적인 방법을 선택하여 증강 진행.</content> <page>11</page>
+<sub>ALBUMENTATION과 GAN</sub> <content>ALBUMENTATION은 이미지의 회전과 색 변화 등을 통해 데이터셋을 변환하고, GAN은 실제와 유사한 이미지를 생성하는 모델로 다양한 데이터를 제공할 수 있도록 함.</content> <page>12</page>
+<sub>GAN 구현 실패</sub> <content>GAN을 사용하고자 하였으나 구현에 실패하였음.</content> <page>13</page>
+<main>모델링</main>
+<sub>이미지 분류 모델 선정</sub> <content>다양한 이미지 분류 모델을 평가하여 최적의 모델을 선정하는 과정이 포함됨.</content> <page>14</page>
+<sub>ResNet18</sub> <content>경량화된 ResNet18을 선택하여 이미지 분류를 수행하며, 기울기 소실 문제를 해결하기 위해 Skip Connection을 사용함.</content> <page>15</page>
+<sub>Densenet</sub> <content>Dense Block과 Transition Layer를 통해 정보 흐름을 극대화하고, 직접 연결을 통해 소실 문제를 완화하여 효율적인 학습이 가능하도록 설계됨.</content> <page>16</page>
+<sub>VGG16</sub> <content>모든 Convolutional Layer에 3X3 필터를 사용하고 He 초기화를 통해 기울기 소실 문제를 해결하여 뛰어난 성능을 보임.</content> <page>17</page>
+<sub>VGG19</sub> <content>VGG16의 확장된 버전으로 더 깊은 네트워크 구조를 가지며, 3개의 추가 Layer를 포함함.</content> <page>18</page>
+<sub>이미지 증강 방법 선정</sub> <content>데이터 불균형 문제를 해결하기 위해 다양한 이미지 증강 방법을 탐색하였으며, AUTOAUGMENT와 FASTAI AUGMENTATION의 특징을 분석함.</content> <page>20</page>
+<main>결과</main>
+<sub>한계</sub> <content>GAN을 통해 특정 데이터 수가 적은 문제를 해결하고자 했으나 생성된 이미지의 질이 낮아 데이터 불균형 문제를 해소하는 데 활용하지 못함. 모델의 정확도를 높이기 위한 다양한 조정과 실험이 부족했던 점이 아쉬움으로 남음.</content> <page>22</page>
+<sub>의의</sub> <content>Kaggle에서 프로젝트 관련 자료를 살펴보며 미지 데이터의 전처리 방법을 학습할 수 있었고, 분류 모델을 시도하며 여러 모델의 성능을 비교하여 최적의 이미지를 선별할 수 있었음.</content> <page>22</page>

@@ -1,0 +1,35 @@
+<subject>시각장애인을 위한 음성 안내 카메라 서비스</subject>
+<team>김지원, 박석우, 박소언, 배성윤</team>
+<index>서비스 시연 영상, 서비스 시연 영상 주제 선정 배경, 플로우 및 기능설명, 데이터 수집, 얼굴 탐지 모델 훈련 과정, 객체 탐지 모델 선정, 음성 안내 알고리즘, 한계점</index>
+
+<main>서비스 시연 영상</main>
+<sub>전면카 메라</sub> <content>서비스의 전면 카메라 기능 시연을 위한 링크 제공.</content> <page>2</page>
+<sub>후면 카메라</sub> <content>서비스의 후면 카메라 기능 시연을 위한 링크 제공.</content> <page>2</page>
+
+<main>서비스 시연 영상 주제 선정 배경</main>
+<sub>플로우 및 기능설명</sub> <content>서비스의 전반적인 흐름과 기능에 대한 설명.</content> <page>3</page>
+<sub>데이터 수집</sub> <content>서비스 시연을 위한 데이터 수집 과정 설명.</content> <page>3</page>
+<sub>얼굴 탐지 모델 훈련 과정</sub> <content>얼굴 탐지 모델의 훈련 과정 및 방법론.</content> <page>3</page>
+<sub>객체 탐지 모델 선정</sub> <content>사용된 객체 탐지 모델에 대한 선정 이유 및 특징.</content> <page>3</page>
+<sub>음성 안내 알고리즘</sub> <content>음성 안내 기능의 알고리즘과 작동 원리 설명.</content> <page>3</page>
+<sub>한계점</sub> <content>서비스의 현재 한계점 및 개선 사항에 대한 논의.</content> <page>3</page>
+
+<main>플로우 및 기능설명</main>
+<sub>텍스트 음성 변환</sub> <content>얼굴 위치 인식 및 시선 방향을 파악하여 TTS로 안내. 최대 3개 객체의 라벨을 인식하고 각 객체의 위치 및 화면 차지 비중을 TTS로 안내.</content> <page>5</page>
+
+<main>데이터 수집</main>
+<sub>얼굴 탐지 모델 훈련 과정</sub> <content>객체 탐지 모델 선정 및 음성 안내 알고리즘의 한계점에 대한 설명.</content> <page>3</page>
+
+<main>얼굴 탐지 모델 훈련 과정</main>
+<sub>모델 훈련 계획</sub> <content>Mobilenet+SSD와 YOLO 비교 후 RetinaNet fine-tuning을 진행하며, YOLO yolov8n과 yolov8s의 성능을 비교함.</content> <page>7</page>
+<sub>하이퍼 파라미터 튜닝</sub> <content>모델 성능을 최적화하기 위한 다양한 하이퍼 파라미터 조정 과정 포함.</content> <page>8</page>
+
+<main>객체 탐지 모델 선정</main>
+<sub>최적화 및 성능 향상</sub> <content>YOLOv3 모델을 사용하여 추론 속도 최적화 및 조명 환경에서 성능 향상을 위한 데이터 증강 라이브러리 활용.</content> <page>10</page>
+
+<main>음성 안내 알고리즘</main>
+<sub>전면카메라</sub> <content>움직이는 객체의 위치 변화에 따른 음성 안내 시점을 탐지하는 알고리즘을 개발하였으나, 이전 프레임과의 IoU를 계산하는 방식으로 수정하여 정확성을 높임.</content> <page>11</page>
+<sub>후면카메라</sub> <content>후면 카메라는 Confidence가 높은 세 가지 객체만 인식하며, IOU 측정 함수와 움직임 안정화 판단 함수를 재정의하여 성능을 향상시킴.</content> <page>14</page>
+
+<main>한계점</main>
+<sub>음성 안내 도중 변동사항 반영이 불가능하며, TTS 구현의 특성상 음성 재생 중단이 불가하여 사용성이 저하될 수 있음. 또한, 객체의 라벨 한정성과 카메라 프레임 규격에 따른 학습 한계로 인해 정확한 정보 전달에 어려움이 있음.</sub> <content></content> <page>16</page>
