@@ -399,6 +399,9 @@
                                         }
                                     }); // loadfile.do
 
+                                    yourReadme.setCursor({"line":1,"ch":99999});
+                                    yourReadme.focus();
+
                                     // file loading이 끝나면 download 버튼을 보인다.
                                     /////////////////////////////////////////////////////
                                     // download 버튼에 클릭 이벤트 리스너 추가
@@ -745,6 +748,7 @@
                         return response.blob();
                     }).then(blob => {
                         var downloadUrl = window.URL.createObjectURL(blob);
+                        // console.log("😎download Link:", downloadUrl);
                         var anchorElement = document.createElement('a');
                         document.body.appendChild(anchorElement);
                         anchorElement.style.color = 'white';

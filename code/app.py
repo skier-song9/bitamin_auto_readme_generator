@@ -63,10 +63,10 @@ with app.app_context():
     def create_txt_summ():
         return textsumm_method3.TextSummarizer(api_key_path=os.path.join(ASSETS, 'openai_api_key.json'))
     # 각 객체 풀 생성
-    img_det_pool = ObjectPool(create_img_det, max_size=30)
-    ocr_pool = ObjectPool(create_ocr, max_size=30)
-    img_clf_pool = ObjectPool(create_img_clf, max_size=30)
-    txt_summ_pool = ObjectPool(create_txt_summ, max_size=30)
+    img_det_pool = ObjectPool(create_img_det, max_size=25)
+    ocr_pool = ObjectPool(create_ocr, max_size=25)
+    img_clf_pool = ObjectPool(create_img_clf, max_size=25)
+    txt_summ_pool = ObjectPool(create_txt_summ, max_size=25)
 
 
 # session 사용을 위한 secret_key 설정
@@ -625,11 +625,18 @@ def endSession():
     request_session = request.get_json()
     print(request_session)
     session_keys = ['workimagedir','pdf_filepath','pdf2img_dir','textbox_dir','text_filepath','md_filepath']
-    # for key in session_keys:
-    #     paths = request_session[key]
-    #     for path in paths:
-    #         if os.path.isfile(path):
-    #             os.remove(path)
-    #         else: # directory
-    #             shutil.rmtree(path)
+    for key in session_keys:
+        paths = request_session[key]
+        for path in paths:
+            if os.path.isfile(path):
+                os.remove(path)
+            else: # directory
+                shutil.rmtree(path)
+    for workfileclean in request_session['workfileclean']:
+        zip_filepath = os.path.join(WORKSPACE, "your_readme_"+workfileclean+".zip")
+        if os.path.exists(zip_filepath):
+            shutil.rmtree(zip_filepath)
     return 'Session CLeared.',200
+
+if __name__ == '__main__':
+    app.run()
