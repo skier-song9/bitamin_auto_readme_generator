@@ -170,3 +170,4 @@ cython_debug/
 #.idea/
 code/assets/VGG19_acc94_240728.pth
 code/assets/session_secret_key.json
+*.pem
