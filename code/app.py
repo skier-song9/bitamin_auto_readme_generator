@@ -1,4 +1,6 @@
 import queue
+import traceback
+
 from flask import Flask
 from flask import request, g, copy_current_request_context, send_file, jsonify # session,
 # # session은 각 클라이언트별로 json 형태의 데이터를 독립적으로 관리할 수 있는 객체이다.
@@ -61,10 +63,10 @@ with app.app_context():
     def create_txt_summ():
         return textsumm_method3.TextSummarizer(api_key_path=os.path.join(ASSETS, 'openai_api_key.json'))
     # 각 객체 풀 생성
-    img_det_pool = ObjectPool(create_img_det, max_size=3)
-    ocr_pool = ObjectPool(create_ocr, max_size=3)
-    img_clf_pool = ObjectPool(create_img_clf, max_size=3)
-    txt_summ_pool = ObjectPool(create_txt_summ, max_size=3)
+    img_det_pool = ObjectPool(create_img_det, max_size=30)
+    ocr_pool = ObjectPool(create_ocr, max_size=30)
+    img_clf_pool = ObjectPool(create_img_clf, max_size=30)
+    txt_summ_pool = ObjectPool(create_txt_summ, max_size=30)
 
 
 # session 사용을 위한 secret_key 설정
@@ -532,47 +534,89 @@ def loadFile():
 def tutorial():
     global APP_ROOT
     md_filepath = os.path.join(APP_ROOT,'webapp','tutorial.md')
+
     # print(md_filepath)
     if os.path.exists(md_filepath):
         try:
             with open(md_filepath,'r',encoding='utf-8') as f:
                 data = f.read()
+                ### 앱 시작 시, tutorial에 serviceflow 이미지 url 설정
+                image_path = os.path.join(APP_ROOT, 'webapp', 'projectmaker_flowchart.png').replace('\\','/')
+                data = re.sub(r'!\[ProjectMakerServiceFlow\]\(.*?\)',
+                              rf"![ProjectMakerServiceFlow]({image_path})",
+                              data)
             # print(data)
             return jsonify({'code': 200, 'msg': data})
         except Exception as e:
-            # print(e)
-            return jsonify({'code':400,'msg':"Server Error: Cannot read markdown file"})
+            return jsonify({'code':400,'msg':str(e)+"Server Error: Cannot read markdown file"})
     else:
         return jsonify({'code': 400, 'msg':"Server Error: File doesn't exists!"})
 
 @app.route('/download.do', methods=["POST"])
 def download():
     global WORKSPACE
-    request_session = request.get_json()
+    req = request.get_json()
+    github_url = req['github']
+    if github_url.endswith('/'):
+        github_url = github_url[:-1]
+    request_session = req['session_json']
     print('✅Download')
     print(request_session)
     WORKFILECLEAN = request_session['workfileclean'][-1]
     WORKIMAGEDIR = request_session['workimagedir'][-1]
     md_filepath = request_session['md_filepath'][-1]
+    # new_md_filepath = os.path.join(WORKSPACE,'new_'+WORKFILECLEAN+'.md')
+    textarea = req['textarea']
+    # textarea의 이미지 텍스트를 수정
+    image_pattern = r'!\[(.*?)\]\((http://[^\)]+)\)'
+    new_textarea = re.sub(
+        image_pattern,
+        lambda match : f"![{match.group(1)}]({github_url}/images_readme/{match.group(1)})",
+        textarea
+    )
 
-    zip_filepath = os.path.join(WORKSPACE, f'your_readme_{WORKFILECLEAN}.zip')
+    print('⭐textarea:\n',new_textarea)
+    # rewrite the md_file
+    with open(md_filepath, 'w', encoding='utf-8') as f:
+        f.write(new_textarea)
+
+    zip_dir = os.path.join(WORKSPACE, f'your_readme_{WORKFILECLEAN}')
+    os.mkdir(zip_dir)
+    zip_filepath = os.path.join(WORKSPACE, zip_dir+'.zip')
+
+    # for test
+    request_session['zip_filepath'] = []
+
     request_session['zip_filepath'].append(zip_filepath)
 
     try:
+        shutil.copy(md_filepath, zip_dir)
+        zip_img_dir = os.path.join(zip_dir, "images_readme")
+        os.makedirs(zip_img_dir, exist_ok=True)
+        # Copy all files from img_dir to zip_img_dir
+        for img_file in os.listdir(WORKIMAGEDIR):
+            full_img_file = os.path.join(WORKIMAGEDIR, img_file)
+            if os.path.isfile(full_img_file):
+                shutil.copy(full_img_file, zip_img_dir)
+
         # zip 파일 생성
-        with zipfile.ZipFile(zip_filepath,'w') as zipf:
-            # WORKIMAGEDIR 폴더를 압축
-            for root, dirs, files in os.walk(WORKIMAGEDIR):
+        # zipfile.ZIP_DEFLATED : 압축 알고리즘
+        with zipfile.ZipFile(zip_filepath,'w', zipfile.ZIP_DEFLATED) as zipf:
+            # Walk through the directory and add all files to the ZIP file
+            for root, dirs, files in os.walk(zip_dir):
                 for file in files:
-                    file_path = os.path.join(root, file)
-                    arcname = os.path.relpath(file_path, WORKIMAGEDIR)
-                    zipf.write(file_path, arcname)
-            # md_filepath 파일을 압축
-            zipf.write(md_filepath, "README.md")
+                    full_path = os.path.join(root, file)
+                    # Add file to the ZIP file
+                    relative_path = os.path.relpath(full_path, zip_dir)
+                    zipf.write(full_path, relative_path)
         return send_file(zip_filepath, as_attachment=True, download_name="your_readme.zip")
     except Exception as e:
-        print(e)
+        print('⚠️',e)
+        traceback.print_exc()
         return str(e)
+    finally:
+        if os.path.exists(zip_dir):
+            shutil.rmtree(zip_dir)
 
 
 @app.route('/endsession.do',methods=['POST'])
@@ -581,11 +625,11 @@ def endSession():
     request_session = request.get_json()
     print(request_session)
     session_keys = ['workimagedir','pdf_filepath','pdf2img_dir','textbox_dir','text_filepath','md_filepath']
-    for key in session_keys:
-        paths = request_session[key]
-        for path in paths:
-            if os.path.isfile(path):
-                os.remove(path)
-            else: # directory
-                shutil.rmtree(path)
+    # for key in session_keys:
+    #     paths = request_session[key]
+    #     for path in paths:
+    #         if os.path.isfile(path):
+    #             os.remove(path)
+    #         else: # directory
+    #             shutil.rmtree(path)
     return 'Session CLeared.',200

@@ -2,7 +2,7 @@
 <html lang="ko">
     <head>
         <meta charset="utf-8" />
-        <title>ProjectMe.md - Auto Readme Generator</title>
+        <title>ProjectMaker - Auto Readme Generator</title>
         <script src="{{url_for('static',filename='js/jquery.min.js')}}"></script>
         <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}" />
         <link rel="stylesheet" href="{{url_for('static',filename='css/editormd.css')}}" />
@@ -157,16 +157,65 @@
                 background-color: #e0e0e0;
                 border-color: #333;
             }
+
+            #github-url-modal {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
+
+            #github-url-modal-content {
+                background-color: white;
+                width: 45%;
+                height: 25%;
+                border-radius: 10px;
+                position: relative;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+
+            #close-github-url-modal {
+                position: absolute;
+                top: 10px;
+                right: 20px;
+                font-size: 24px;
+                cursor: pointer;
+            }
+
+            #github-url-input {
+                width: 80%;
+                padding: 10px;
+                margin-bottom: 20px;
+                font-size: 16px;
+            }
+
+            #btn-github-url {
+                padding: 10px 20px;
+                font-size: 16px;
+                cursor: pointer;
+            }
         </style>     
     </head>
     <body>
         <div id="layout">
             <header style="display:flex; justify-content: space-between;">
                 <h1 style="color: black; display: block;">
-                    🍊BITAMin Auto-Project-ReadMe-Generator
+                    🍊BITAMin ProjectMaker
                 </h1>
                 <button id="btn-download" style="display:none; font-size: 1.5em; cursor: pointer; background: none; border: none;" title="Download">
-                    💾Download
+                    <a id="a-download" download="your-readme.zip" style="display:none;text-decoration: none; color: inherit;">
+                        💾Download
+                    </a>
                 </button>
             </header>
             <input type="file" name="pdf" id="file-input" style="display:none;">
@@ -239,26 +288,29 @@
             var workFileClean = "";
 
             $(function() { //factory function 
-                const session_json = {'workfileclean':[], 'workimagedir':[], 'pdf_filepath':[], 'pdf2img_dir':[], 'textbox_dir':[], 'text_filepath':[], 'md_filepath':[], 'zip_filepath':[]}
+                var session_json = {'workfileclean':[], 'workimagedir':[], 'pdf_filepath':[], 'pdf2img_dir':[], 'textbox_dir':[], 'text_filepath':[], 'md_filepath':[], 'zip_filepath':[]}
                 /////////////////////////////////////////////////////
                 // File Uploader
-                const uploadContainer = $('#upload-container');
-                const fileInput = $('#file-input');
+                var uploadContainer = $('#upload-container');
+                var fileInput = $('#file-input');
                 function updateSessionJson(session_json, response_session) {
                     for (let key in response_session){
                         session_json[key] = session_json[key].concat(response_session[key])
                     }
                 };
+
                 // UploadFile 함수
                 // Upload file function
                 function uploadFile(file) {
                     const formData = new FormData();
                     formData.append('file', file);
 
-                    const uct = document.querySelector('#upload-container-text')
+                    var uct = document.querySelector('#upload-container-text')
                     const gifPath = `${rootUrl}/webapp/images/loading.gif`;
-                    const gifTag = document.createElement('img');
-                    const btn_download = document.querySelector('#btn-download');
+                    var gifTag = document.createElement('img');
+                    var btn_download = document.querySelector('#btn-download');
+                    console.log(btn_download)
+
                     gifTag.src = gifPath;
                     gifTag.alt = "Loading & Processing...";
                     uct.textContent = '';
@@ -279,7 +331,7 @@
                                     updateSessionJson(session_json, response_session)
                                     workFileClean = session_json['workfileclean'].at(-1)
                                     
-                                    console.log(session_json)
+                                    console.log("◾/upload.do" , session_json)
                                     uct.removeChild(gifTag)
                                     uct.innerText = `${workFileOrigin}`
 
@@ -287,6 +339,7 @@
                                     attachImageOverlay('.image-gallery img');
                                     attachImageDragstart('.image-gallery img');
 
+                                    var yourReadmeTextarea = document.querySelector('#your-readme textarea');
                                     $.ajax({
                                         url: "/loadfile.do",
                                         type : 'POST',
@@ -295,9 +348,9 @@
                                         dataType : 'json',
                                         success: function(response) {
                                             // "your-readme" id를 가진 div 태그 내의 textarea 요소를 찾는다.
-                                            let yourReadmeTextarea = document.querySelector('#your-readme textarea');
+                                            // let yourReadmeTextarea = document.querySelector('#your-readme textarea');
                                             if (response.code == 200){
-                                                console.log(response.msg);
+                                                // console.log(response.msg);
                                                 // 읽은 텍스트를 textarea 요소의 value로 입력한다.
                                                 yourReadmeTextarea.value = response.msg;
                                                 yourReadme = editormd("your-readme",{
@@ -344,43 +397,19 @@
                                         xhrFields: {
                                             withCredentials: true  // 이 설정으로 쿠키를 요청에 포함시킴
                                         }
-                                    });
+                                    }); // loadfile.do
 
                                     // file loading이 끝나면 download 버튼을 보인다.
-                                    btn_download.style.display = "block";
                                     /////////////////////////////////////////////////////
                                     // download 버튼에 클릭 이벤트 리스너 추가
-                                    btn_download.addEventListener('click', function(){
-                                        $.ajax({
-                                            url:'/download.do',
-                                            type:'POST',
-                                            contentType:'application/json',
-                                            data:JSON.stringify(session_json),
-                                            dataType:'json',
-                                            xhrFields: {
-                                                responseType: 'blob' // binary data 처리
-                                            },
-                                            success: function(response){
-                                                const blob = new Blob([response], {type:'application/zip'});
-                                                const url = window.URL.createObjectURL(blob);
-                                                const temp_a = document.createElement('a');
-                                                temp_a.style.color = 'white';
-                                                temp_a.href = url;
-                                                temp_a.download = 'your_readme.zip';
-                                                document.body.appendChild(temp_a);
-                                                temp_a.click();
-                                                window.URL.revokeObjectURL(url);
-                                                updateSessionJson(session_json, {'zip_filepath':['']})
+                                    btn_download.style.display = "block";
+                                    let a_download = document.querySelector('#a-download');
+                                    a_download.style.display = 'inline';
+                                    btn_download.addEventListener('click', function(){                                        
+                                        // download 버튼에 attachGithubModal
+                                        attachGithubUrlModal(yourReadmeTextarea.value, session_json);
+                                    });//btn_download.addEventListener('click')
 
-                                                // temp_a.remove();
-                                            },
-                                            error: function(error){
-                                                alert("Download Failed...", error);
-                                            }
-                                        });
-                                    })
-
-                                    
                                     break;
                                 default: // code == 400
                                     uct.removeChild(gifTag)
@@ -412,7 +441,7 @@
                 });
                 // Handle file input change event
                 fileInput.on('change',function(e){
-                    const file = e.target.files[0];
+                    var file = e.target.files[0];
                     if (file){
                         uploadFile(file); //위의 uploadFile 함수
                     }
@@ -426,7 +455,7 @@
                 uploadContainer.on('drop', function(event) {
                     event.preventDefault();
                     uploadContainer.removeClass('dragover');
-                    const file = event.originalEvent.dataTransfer.files[0];
+                    var file = event.originalEvent.dataTransfer.files[0];
                     if (file) {
                         uploadFile(file); //위의 uploadFile 함수
                     }
@@ -441,7 +470,7 @@
                         // "your-readme" id를 가진 div 태그 내의 textarea 요소를 찾는다.
                         let yourReadmeTextarea = document.querySelector('#your-readme textarea');
                         if (response.code == 200){
-                            console.log(response.msg);
+                            // console.log(response.msg);
                             // 읽은 텍스트를 textarea 요소의 value로 입력한다.
                             yourReadmeTextarea.value = response.msg;
                             yourReadme = editormd("your-readme",{
@@ -580,7 +609,7 @@
                     let y = e.originalEvent.clientY;
                     
                     // drag 중에 cursor와 가장 가까운 위치의 pre 태그를 선택
-                    const targetLine = document.elementFromPoint(x,y).closest('pre');
+                    var targetLine = document.elementFromPoint(x,y).closest('pre');
                     let currentLine = null;
                     if (targetLine){
                         currentLine = targetLine.previousElementSibling.innerText;
@@ -601,24 +630,78 @@
                     3. 해당 lineNumber 다음 줄에 image를 추가한다.
                     */
                     e.preventDefault();
-                    const draggedElementId = e.originalEvent.dataTransfer.getData('text/plain');
+                    var draggedElementId = e.originalEvent.dataTransfer.getData('text/plain');
 
                     let x = e.originalEvent.clientX;
                     let y = e.originalEvent.clientY;
                     // let imageId = e.originalEvent.dataTransfer.getData('text/plain');
                     // drag 중에 cursor와 가장 가까운 위치의 pre 태그를 선택
-                    const targetLine = document.elementFromPoint(x,y).closest('pre');
+                    var targetLine = document.elementFromPoint(x,y).closest('pre');
                     let currentLine = null;
                     if (targetLine){
                         let prevLineNumber = targetLine.previousElementSibling.innerText;
 
                         yourReadme.setCursor({"line":parseInt(prevLineNumber-1),"ch":99999})
                         yourReadme.focus()
-                        yourReadme.insertValue(`\n![${draggedElementId}](${rootUrl}/webapp/workspace/images_${workFileClean}/${draggedElementId}.jpg)`);
+                        yourReadme.insertValue(`\n![${draggedElementId}.jpg](${rootUrl}/webapp/workspace/images_${workFileClean}/${draggedElementId}.jpg)`);
                         
                     }
                 });
                 
+                /////////////////////////////////////////////////////
+                // github repo url을 받는 모달창 띄우기
+                function attachGithubUrlModal(textareaValue, session_json){
+                    var githubUrlModal = `
+                    <div id="github-url-modal">
+                        <div id="github-url-modal-content">
+                            <span id="close-github-url-modal">&times;</span>
+                            <input type="text" id="github-url-input" value="https://github.com/">
+                            <button id="btn-github-url">확인</button>
+                        </div>
+                    </div>
+                    `;
+                    $('body').append(githubUrlModal);
+                    document.getElementById('close-github-url-modal').addEventListener('click', function () {
+                        // 모달창을 닫음
+                        $('#github-url-modal').remove();
+                    });
+                    document.getElementById('btn-github-url').addEventListener('click', function () {
+                        let githubUrlInput = document.getElementById('github-url-input').value;
+
+                        // 1. 입력값이 있는지 확인
+                        if (!githubUrlInput) {
+                            alert("GitHub URL을 입력하세요.");
+                            return;
+                        }
+
+                        // 2. 입력된 주소가 "https://github.com/"으로 시작하는지 확인
+                        if (!githubUrlInput.startsWith("https://github.com/")) {
+                            alert("유효한 GitHub Repository URL을 입력하세요.");
+                            return;
+                        }
+
+                        // 3. 입력값이 유효하면 githubUrl 변수에 저장
+                        var githubUrl = githubUrlInput;
+                        console.log("GitHub URL:", githubUrl);
+
+                        // 모달창 닫기
+                        $('#github-url-modal').remove();
+
+                        let yourReadmeTextarea = document.querySelector('#your-readme textarea');
+                        let data = {
+                            'textarea':textareaValue,
+                            'github':githubUrl,
+                            'session_json':session_json
+                        };
+                        callDownload(JSON.stringify(data));
+
+                        // 콜백 함수 호출로 githubUrl을 전달
+                        // if (typeof callback === 'function'){
+                        //     callback(githubUrl);
+                        // }
+                    });
+                };
+
                 /////////////////////////////////////////////////////
                 // workspace에서 md 파일을 읽어 your-readme아래의 textarea에 내용을 채운다.
                 function loadReadmeFile() {
@@ -646,35 +729,34 @@
                     });
                 };
 
-                // /////////////////////////////////////////////////////
-                // // download 버튼에 클릭 이벤트 리스너 추가
-                // btn_download.addEventListener('click', function(){
-                //     $.ajax({
-                //         url:'/download.do',
-                //         type:'POST',
-                //         contentType:'application/json',
-                //         data:JSON.stringify(session_json),
-                //         dataType:'json',
-                //         xhrFields: {
-                //             responseType: 'blob' // binary data 처리
-                //         },
-                //         success: function(response){
-                //             const blob = new Blob([response], {type:'application/zip'});
-                //             const url = window.URL.createObjectURL(blob);
-                //             const temp_a = document.createElement('a');
-                //             temp_a.style.display = none;
-                //             temp_a.href = url;
-                //             temp_a.download = 'your_readme.zip';
-                //             document.body.appendChild(temp_a);
-                //             temp_a.click();
-                //             window.URL.revokeObjectURL(url);
-                //             updateSessionJson(session_json, {'zip_filepath':['']})
-                //         },
-                //         error: function(error){
-                //             alert("Download Failed...", error);
-                //         }
-                //     });
-                // })
+                //////////////////////////////////////////
+                // 다운로드
+                function callDownload(data) {    
+                    fetch('/download.do', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: data
+                    }).then(response => {
+                        if (!response.ok){
+                            alert("Download Failed...");
+                        }
+                        return response.blob();
+                    }).then(blob => {
+                        var downloadUrl = window.URL.createObjectURL(blob);
+                        var anchorElement = document.createElement('a');
+                        document.body.appendChild(anchorElement);
+                        anchorElement.style.color = 'white';
+                        anchorElement.href = downloadUrl;
+                        anchorElement.download = 'your_readme.zip';
+                        anchorElement.click();
+                        document.body.removeChild(anchorElement);
+                        window.URL.revokeObjectURL(downloadUrl);
+                    }).catch(error => {
+                        alert("Download Failed...",error);
+                    });
+                }    
 
                 /////////////////////////////////////////////////////
                 // Markdown 편집기의 테마를 변경하는 select element를 위한 함수.
@@ -703,7 +785,7 @@
                             return false;
                         }
                         
-                        console.log("lsKey =>", lsKey, theme);
+                        // console.log("lsKey =>", lsKey, theme);
                         
                         localStorage[lsKey] = theme;
                         callback(select, theme);
@@ -742,127 +824,6 @@
                         console.log(error)
                     })
                 });
-
-                // Drag over event: Necessary to allow a drop event
-                // $('.CodeMirror-code').on('dragover', function(e) {
-                //     e.preventDefault(); // Allow dropping
-                //     // var textarea = this;
-                //     let nearestDiv = getCursorPositionFromMouseEvent(e, textarea);
-                //     console.log("nearestDiv: " + nearestDiv)
-
-
-
-                //     // 커서를 계산된 위치로 이동시킵니다.
-                //     // textarea.setSelectionRange(cursorPosition, cursorPosition);
-                // });
-
-                // Drop event: Insert the image ID at the cursor position
-                // $('.CodeMirror-code').on('drop', function(e) {
-                //     console.log('drop event')
-                //     e.preventDefault();
-
-                //     // Get the dropped text (image id)
-                //     var imageId = e.originalEvent.dataTransfer.getData('text/plain');
-                //     console.log('drop',imageId)
-
-                //     // Find the cursor position and insert the image ID
-                //     let cursorPos = this.selectionStart;
-                //     let textAreaTxt = $(this).val();
-                //     let textBefore = textAreaTxt.substring(0, cursorPos);
-                //     let textAfter = textAreaTxt.substring(cursorPos, textAreaTxt.length);
-                //     console.log(cursorPos + ", " + textAreaTxt)
-
-                //     $(this).val(textBefore + imageId + textAfter);
-                // });
-
-                // function createNewImageLine(prevLineNumber,imageId) {
-                //     // Make New Element
-                //     let newdiv = document.createElement('div');
-                //     newdiv.style.position='relative';
-                //     let gutterWrapper = document.createElement('div');
-                //     gutterWrapper.className = 'CodeMirror-gutter-wrapper';
-                //     gutterWrapper.style.left = '-42px';
-                //     gutterWrapper.style.width = '-42px';
-                //     let lineNumber = document.createElement('div');
-                //     lineNumber.className = 'CodeMirror-linenumber CodeMirror-gutter-elt';
-                //     lineNumber.style.left = '-42px';
-                //     lineNumber.style.width = '-42px';
-                //     lineNumber.textContent = prevLineNumber+1;
-                //     let pre = document.createElement('pre');
-                //     let spanWrapper = document.createElement('span');
-                //     spanWrapper.style.paddingRight = '0.1px';
-                //     let spanTag = document.createElement('span');
-                //     spanTag.className = 'cm-tag';
-                //     spanTag.textContent = `![${imageId}]`;
-                //     let spanString = document.createElement('span');
-                //     spanString.className = 'cm-string';
-                //     spanString.textContent = `(./webapp/workspace/images/${imageId}.jpg)`;
-
-                //     // 요소들을 연결
-                //     spanWrapper.appendChild(spanTag)
-                //     spanWrapper.appendChild(spanString)
-                //     pre.appendChild(spanWrapper)
-                //     gutterWrapper.appendChild(lineNumber)
-                //     newdiv.appendChild(gutterWrapper)
-                //     newdiv.appendChild(pre)             
-                //     return newdiv       
-                // }
-                
-                // $("#goto-line-btn").bind("click", function(){
-                //     yourReadme.gotoLine(90);
-                // });
-                
-                // $("#show-btn").bind('click', function(){
-                //     yourReadme.show();
-                // });
-                
-                // $("#hide-btn").bind('click', function(){
-                //     yourReadme.hide();
-                // });
-                
-                // $("#get-md-btn").bind('click', function(){
-                //     alert(yourReadme.getMarkdown());
-                // });
-                
-                // $("#get-html-btn").bind('click', function() {
-                //     alert(yourReadme.getHTML());
-                // });                
-                
-                // $("#watch-btn").bind('click', function() {
-                //     yourReadme.watch();
-                // });                 
-                
-                // $("#unwatch-btn").bind('click', function() {
-                //     yourReadme.unwatch();
-                // });              
-                
-                // $("#preview-btn").bind('click', function() {
-                //     yourReadme.previewing();
-                // });
-                
-                // $("#fullscreen-btn").bind('click', function() {
-                //     yourReadme.fullscreen();
-                // });
-                
-                // $("#show-toolbar-btn").bind('click', function() {
-                //     yourReadme.showToolbar();
-                // });
-                
-                // $("#close-toolbar-btn").bind('click', function() {
-                //     yourReadme.hideToolbar();
-                // });
-                
-                // $("#toc-menu-btn").click(function(){
-                //     yourReadme.config({
-                //         tocDropdown   : true,
-                //         tocTitle      : "目录 Table of Contents",
-                //     });
-                // });
-                
-                // $("#toc-default-btn").click(function() {
-                //     yourReadme.config("tocDropdown", false);
-                // });
-
 
             }); // factory function
         </script>

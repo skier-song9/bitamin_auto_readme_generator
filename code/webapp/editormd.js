@@ -4118,6 +4118,10 @@
 //        css.href   = fileName + ".css";
         css.href = window.location.origin + "/webapp/" + fileName + ".css";
 
+        if (css.href == window.location.origin + "/webapp///cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css"){
+            css.href = "https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.css";
+        }
+
         if(into === "head") {
             document.getElementsByTagName("head")[0].appendChild(css);
         } else {
@@ -4148,6 +4152,10 @@
         script.type   = "text/javascript";        
 //        script.src    = fileName + ".js";
         script.src = window.location.origin + "/webapp/" + fileName + ".js";
+
+        if (script.src == window.location.origin + "/webapp///cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js"){
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min.js';
+        }
 
         if (editormd.isIE8) 
         {            
