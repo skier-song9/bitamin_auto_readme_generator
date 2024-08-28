@@ -1,5 +1,4 @@
 # 👋Welcome
----
 
 ### 🍊BITAMin Project Maker 소개
 > 연구/개발 프로젝트를 마무리하고 Github Repository에 README 파일을 작성하실 때마다 번거로우셨나요?
