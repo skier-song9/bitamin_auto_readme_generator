@@ -572,7 +572,7 @@ def download():
     image_pattern = r'!\[(.*?)\]\((http://[^\)]+)\)'
     new_textarea = re.sub(
         image_pattern,
-        lambda match : f"![{match.group(1)}]({github_url}/images_readme/{match.group(1)})",
+        lambda match : f"![{match.group(1)}](/images_readme/{match.group(1)})",
         textarea
     )
 
@@ -607,6 +607,9 @@ def download():
             for root, dirs, files in os.walk(zip_dir):
                 for file in files:
                     full_path = os.path.join(root, file)
+                    # if .md file then change filename to README
+                    if file.endswith('.md'):
+                        file = 'README.md'
                     # Add file to the ZIP file
                     relative_path = os.path.relpath(full_path, zip_dir)
                     zipf.write(full_path, relative_path)
@@ -629,6 +632,8 @@ def endSession():
     for key in session_keys:
         paths = request_session[key]
         for path in paths:
+            if not os.path.exists(path):
+                continue
             if os.path.isfile(path):
                 os.remove(path)
             else: # directory
