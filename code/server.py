@@ -37,7 +37,7 @@ try:
 except socket.error as e:
     host = "0.0.0.0"
 
-port = "5959"
+port = "5000"
 
 print(f'➡️서버가 시작되었습니다.\nURL: http://{host}:{port}')
 
