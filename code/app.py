@@ -63,10 +63,10 @@ with app.app_context():
     def create_txt_summ():
         return textsumm_method3.TextSummarizer(api_key_path=os.path.join(ASSETS, 'openai_api_key.json'))
     # 각 객체 풀 생성
-    img_det_pool = ObjectPool(create_img_det, max_size=25)
-    ocr_pool = ObjectPool(create_ocr, max_size=25)
-    img_clf_pool = ObjectPool(create_img_clf, max_size=25)
-    txt_summ_pool = ObjectPool(create_txt_summ, max_size=25)
+    img_det_pool = ObjectPool(create_img_det, max_size=3)
+    ocr_pool = ObjectPool(create_ocr, max_size=3)
+    img_clf_pool = ObjectPool(create_img_clf, max_size=3)
+    txt_summ_pool = ObjectPool(create_txt_summ, max_size=3)
 
 
 # session 사용을 위한 secret_key 설정
@@ -530,9 +530,10 @@ def loadFile():
     else:
         return jsonify({'code': 400, 'msg':"Server Error: File doesn't exists!"})
 
-@app.route('/tutorial.do',methods=['GET'])
+@app.route('/tutorial.do',methods=['POST'])
 def tutorial():
     global APP_ROOT
+    url = request.get_json()['url']
     md_filepath = os.path.join(APP_ROOT,'webapp','tutorial.md')
 
     # print(md_filepath)
@@ -541,7 +542,7 @@ def tutorial():
             with open(md_filepath,'r',encoding='utf-8') as f:
                 data = f.read()
                 ### 앱 시작 시, tutorial에 serviceflow 이미지 url 설정
-                image_path = os.path.join(APP_ROOT, 'webapp', 'projectmaker_flowchart.png').replace('\\','/')
+                image_path = os.path.join(url, 'webapp', 'projectmaker_flowchart.png').replace('\\','/')
                 data = re.sub(r'!\[ProjectMakerServiceFlow\]\(.*?\)',
                               rf"![ProjectMakerServiceFlow]({image_path})",
                               data)

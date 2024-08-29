@@ -468,7 +468,9 @@
                 // Markdown 편집기를 불러온다.
                 $.ajax({
                     url: "/tutorial.do",
-                    type : 'GET',
+                    type : 'POST',
+                    contentType: 'application/json',
+                    data : JSON.stringify({'url':`${rootUrl}`}),
                     success: function(response) {
                         // "your-readme" id를 가진 div 태그 내의 textarea 요소를 찾는다.
                         let yourReadmeTextarea = document.querySelector('#your-readme textarea');
