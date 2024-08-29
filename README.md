@@ -37,6 +37,7 @@
 ## 🛠️Launch Web
 1. `cd /bitamin_auto_readme_generator/code`
 2. `python server.py`
+- service demonstration : [youtube/BITAMin 12th Conference - ProjectMaker (Auto README Generator)](https://youtu.be/auJGB8_11ww?si=kXZRxjeNRZkaTG9B)
 
 <a name='section_1'></a>
 
