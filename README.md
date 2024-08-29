@@ -29,7 +29,7 @@
 #### 서비스 흐름
 
 - 프로그램의 흐름도를 설명하며, 각 단계에서의 작업을 시각적으로 표현함.
-![07_3.jpg](https://github.com/skier-song9/bitamin_auto_readme_generator/images_readme/07_3.jpg)
+![07_3.jpg](https://github.com/skier-song9/bitamin_auto_readme_generator/images/07_3.jpg)
 
 <br>
 <a name='section_3'></a>
@@ -39,7 +39,7 @@
 #### 소개
 
 - LLMO를 사용하여 README 파일을 생성하고, 유사 서비스와 비교하여 프로젝트의 구조와 기능을 설명함.
-![04_3.jpg](https://github.com/skier-song9/bitamin_auto_readme_generator/images_readme/04_3.jpg)
+![04_3.jpg](https://github.com/skier-song9/bitamin_auto_readme_generator/images/04_3.jpg)
 
 <br>
 <a name='section_4'></a>
@@ -58,8 +58,8 @@
 #### 이미지 분류
 
 - 4개의 클래스(차트, 표 등)로 이미지를 분류하는 모델을 개발하며, 데이터 전처리와 모델 평가에 대한 내용을 포함함.
-![12_5.jpg](https://github.com/skier-song9/bitamin_auto_readme_generator/images_readme/12_5.jpg)
-![12_7.jpg](https://github.com/skier-song9/bitamin_auto_readme_generator/images_readme/12_7.jpg)
+![12_5.jpg](https://github.com/skier-song9/bitamin_auto_readme_generator/images/12_5.jpg)
+![12_7.jpg](https://github.com/skier-song9/bitamin_auto_readme_generator/images/12_7.jpg)
 
 <br>
 <a name='section_6'></a>
