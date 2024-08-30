@@ -39,7 +39,7 @@
 2. `python server.py`
 - service demonstration : [youtube/BITAMin 12th Conference - ProjectMaker (Auto README Generator)](https://youtu.be/auJGB8_11ww?si=kXZRxjeNRZkaTG9B)
 
-<a name='section_1'></a>
+<a name='section_2'></a>
 
 ## 🔷 주제선정배경
 
@@ -50,7 +50,7 @@
 
 <br>
 
-<a name='section_2'></a>
+<a name='section_3'></a>
 
 ## 🔷 서비스 플로우
 
