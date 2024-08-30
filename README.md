@@ -116,3 +116,8 @@
 #### 모델 한계 및 개선점
 
 - OCR 모델의 인식 오류 및 데이터의 다양성 부족으로 인한 한계를 언급하며, 향후 개선 방향에 대한 논의. 기본 틀을 마련하여 지속적인 서비스 개선 가능성을 강조.
+
+
+## 🔗Acknowledgements
+#### Datasets
+- Our project borrowed lots of datasets from [Chart-Classification-Using-CNN----Keras](https://github.com/devsonni/Chart-Classification-Using-CNN----Keras), [DQA-NET](https://arxiv.org/abs/1603.07396), [TNCR](https://arxiv.org/abs/2106.15322), [Chart2Text](https://github.com/JasonObeid/Chart2Text), [PubTabNet](https://arxiv.org/abs/1911.10683), and other 🍊BITAMin projects.
