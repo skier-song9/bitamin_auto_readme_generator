@@ -65,7 +65,7 @@
 #### 개요
 
 - 파일 repository의 내용을 읽고 요약하여 README 파일을 생성하는 프로그램의 기능 및 구조를 설명. 이를 통해 유사 서비스와의 비교 및 분석을 수행.
-![04_4.jpg](/images_readme/04_4.jpg)
+![04_4.jpg](/images_readme/04_4.png)
 
 <br>
 <a name='section_5'></a>
