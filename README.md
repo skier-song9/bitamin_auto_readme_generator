@@ -105,7 +105,7 @@
 
 #### 서비스 아키텍처
 
-- AWS 서비스 기반으로 한 시스템 아키텍처의 개요와 시연을 제공.
+- AWS 서비스 기반으로 한 시스템 아키텍처의 개요와 [시연 영상](https://www.youtube.com/watch?v=auJGB8_11ww&t=61s)을 제공.
 ![service-architecture](/images_readme/service_architecture.png)
 
 <br>
